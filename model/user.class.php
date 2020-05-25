@@ -26,9 +26,77 @@
             // TODO
         }
 
+        public function get_lastname()
+        {
+                return $this->_lastname;
+        }
 
-        //TEST NATHAN
-        //TEST PIERRE
+        public function set_lastname($_lastname)
+        {
+                $this->_lastname = $_lastname;
+
+                return $this;
+        }
+
+        public function get_firstname()
+        {
+                return $this->_firstname;
+        }
+
+        public function set_firstname($_firstname)
+        {
+                $this->_firstname = $_firstname;
+
+                return $this;
+        }
+
+        public function get_birthdate()
+        {
+                return $this->_birthdate;
+        }
+
+        public function set_birthdate($_birthdate)
+        {
+                $this->_birthdate = $_birthdate;
+
+                return $this;
+        }
+
+        public function get_phoneNumber()
+        {
+                return $this->_phoneNumber;
+        }
+
+        public function set_phoneNumber($_phoneNumber)
+        {
+                $this->_phoneNumber = $_phoneNumber;
+
+                return $this;
+        }
+
+        public function get_mail()
+        {
+                return $this->_mail;
+        }
+
+        public function set_mail($_mail)
+        {
+                $this->_mail = $_mail;
+
+                return $this;
+        }
+
+        public function get_password()
+        {
+                return $this->_password;
+        }
+
+        public function set_password($_password)
+        {
+                $this->_password = $_password;
+
+                return $this;
+        }
     }
 
 ?>
