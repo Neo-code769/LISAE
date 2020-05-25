@@ -14,8 +14,12 @@ class Controller{
             switch ($_GET['action']) {
                 case 'registrationCollab':
                     include 'view/registrationCollab.phtml';
-                    break;
-    
+                break;
+
+                case 'registrationAnim';
+                    include 'view/registrationAnim.phtml';
+                break;
+
                 default:
                     include 'view/loginPage.phtml';
                     break;
