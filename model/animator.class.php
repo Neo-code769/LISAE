@@ -29,9 +29,8 @@
         // Fonction MAILING
 
         public function sendMailAnimator() {
-            //TODO
+            //TOdO
         }
 
     }
 
-?>
