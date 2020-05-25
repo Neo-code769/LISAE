@@ -12,13 +12,19 @@ class Controller{
 
         if(isset($_GET['action'])){
             switch ($_GET['action']) {
+                
                 case 'registrationCollab':
                     include 'view/registrationCollab.phtml';
                 break;
 
+                case 'addCollab':
+                    $t = new User ($id, htmlentities($_POST["name"]), htmlentities($_POST["desc"]));
+                    (new TypeDao())->insert($t);
+                    include '';
+                break;
+
                 case 'registrationAnim':
                     include 'view/registrationAnim.phtml';
-
                 break;
 
                 default:
