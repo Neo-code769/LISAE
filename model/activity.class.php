@@ -35,5 +35,6 @@ class Activity{
     public function removeSlot()
     {
         #TODO
+        #heeeeyp
     }
 }
