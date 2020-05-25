@@ -8,5 +8,26 @@
 
         <h1>Inscription Administrateur</h1>
 
+        <form class="formulaire" action="index.php?createAccount" method = "post">
+                <label for="FirstName"> Nom :</label>
+                <input type="texte" placeholder="nom"/>
+
+                <label for="LastName"> Prenom :</label>
+                <input type="texte" placeholder="prenom"/>
+
+                <label for="birthDate"> Date de naissance (Mois/Jour) :</label>
+                <input type="date" placeholder="date de naissance"/>
+
+                <label for="PhoneNumber"> Numero de téléphone :</label>
+                <input type="tel" placeholder="numero de telephone"/>
+
+                <label for="mail"> Mail :</label>
+                <input type="email" placeholder="Mail"/>
+
+                <button type="submit"  value="creer">Créer</button>    
+            </form>
+
+            <a href="index.php">Retourner à l'accueil</a> 
+
     </body>
     </html>
