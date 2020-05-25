@@ -21,4 +21,14 @@ class Activity{
         $this->_registrationDeadline=$registrationDeadline;
         $this->_unsubscribeDeadline=$unsubscribeDeadline;
     }
+    
+        public function addSlot()
+    {
+        #TODO
+    }
+
+    public function removeSlot()
+    {
+        #TODO
+    }
 }
