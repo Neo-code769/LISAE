@@ -34,7 +34,7 @@ abstract class Dao {
     
     abstract public function get(int $id) : array;	
     
-    abstract public function insert($c, $e);	
+    abstract public function insert($obj) : void;	
     // delete via son id
     abstract public function delete(int $id ); 
     // update d'un objet

@@ -18,6 +18,7 @@ class Controller{
 
                 case 'registrationAnim';
                     include 'view/registrationAnim.phtml';
+
                 break;
 
                 default:
