@@ -10,23 +10,22 @@
 
         <div id="connexion">
         <fieldset>
-            <form action="/LISAE/index.php?action=collaboratorDashboard" method="get">
+            <form action="/LISAE/index.php?action=collaboratorDashboard" method="post">
                 <label for="email">E-mail:</label><br>
                 <input type="text" id="email" name="email"><br>
                 <label for="mdp">Mot de passe:</label><br>
                 <input type="text" id="mdp" name="mdp"><br><br>
                 <input type="submit" value="Connexion">
+            </form><br>
+
+            <form action="/LISAE/index.php?action=registrationCollab" method="post">
+                <input type="submit" value="Inscription">
             </form>
         </fieldset>    
         </div>
 
-        <div class="inscription">
-            <fieldset>
-                <form action="/LISAE/index.php?action=registrationCollab" method="get">
-                    <input type="submit" value="Inscription">
-                </form>
-            </fieldset>
-        </div>
+
+                
 
     </body>
     </html>
