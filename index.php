@@ -6,23 +6,19 @@ declare(strict_types=1);
 
 //include 'conf.php'; TODO
 
+include 'model/user.class.php';
 include 'model/activity.class.php';
-include 'model/admin.class.php';
 include 'model/animator.class.php';
+include 'model/admin.class.php';
 include 'model/collaborator.class.php';
 include 'model/session.class.php';
 include 'model/slot.class.php';
 include 'model/theme.class.php';
 include 'model/training.class.php';
-include 'model/user.class.php';
 
 //include 'exception/LisaeException.class.php'; TODO
 
 //include 'dao/Dao.class.php'; TODO
-
-include 'view/registrationAdmin.phtml';
-include 'view/registrationAnimateur.phtml';
-include 'view/registrationCollaborateur.phtml';
 
 include 'controller/controller.class.php';
 
