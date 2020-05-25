@@ -16,7 +16,7 @@ class Controller{
                     include 'view/registrationCollab.phtml';
                 break;
 
-                case 'registrationAnim';
+                case 'registrationAnim':
                     include 'view/registrationAnim.phtml';
 
                 break;
