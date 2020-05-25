@@ -36,8 +36,5 @@ class Slot
     {
 
     }
-    public function removeCollabPresent()
-    {
-
-    }
+ 
 }
