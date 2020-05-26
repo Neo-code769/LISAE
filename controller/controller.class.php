@@ -18,9 +18,9 @@ class Controller{
                 break;
 
                 case 'addCollab':
-                    $t = new User ($id, htmlentities($_POST["name"]), htmlentities($_POST["desc"]));
-                    (new TypeDao())->insert($t);
-                    include '';
+                    $t = new User (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
+                    (new UserDao())->insert($t);
+                    echo "bravo !";
                 break;
 
                 case 'registrationAnim':

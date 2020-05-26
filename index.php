@@ -18,7 +18,8 @@ include 'model/training.class.php';
 
 //include 'exception/LisaeException.class.php'; TODO
 
-//include 'dao/Dao.class.php'; TODO
+include 'dao/Dao.class.php';
+include 'dao/userDao.class.php';
 
 include 'controller/controller.class.php';
 
