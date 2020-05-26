@@ -5,7 +5,7 @@
         <meta name="LISAE" content="SoftWare Manage Registration to Activity ELOCE AFPA">
         <meta name="author" content="Emma SCHURRER, Nathan LEBON, Pierre TRUBLEREAU">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="favicon.ico" >
+        <link rel="icon" type="image/png" href="/images/mafavicon.png" />
         <link rel="stylesheet" href="mystyle.css">
         <title>LISAE - ELOCE</title>
     </head>
