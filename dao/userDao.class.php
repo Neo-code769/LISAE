@@ -25,9 +25,8 @@ class userDao extends Dao{
         try{
         $exec->execute();
         } 
-        catch (PDOException $e) {
-            echo " echec lors de la création : " . $e->getMessage();
-        die();
+        catch (PDOException $e){
+            throw new Exception  ('erreur de la requete');
         }
     }
     public function getSession($mail, $password)
@@ -39,9 +38,8 @@ class userDao extends Dao{
             //var_dump($requete);
             $session = $requete->fetch(PDO::FETCH_ASSOC);
             //var_dump($session['mail']);
-        }catch (PDOException $e) {
-            throw new Exception("Requête vers la base de données éronnée");
-        die();
+        }catch (PDOException $e){
+            throw new Exception  ('erreur de la requete');
         }
 
         $result = [
