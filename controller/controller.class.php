@@ -39,9 +39,15 @@ class Controller{
 
                 case 'addAnim':
                     $t = new Animator (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
-                    (new UserDao())->insert($t);
-                    echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-                    include 'view/loginPage.phtml';
+                    
+                    if(($_POST["password"]) == ($_POST["password2"])) { 
+                        (new UserDao())->insert($t);
+                        echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
+                        include 'view/loginPage.phtml';
+                    }
+                    else {
+                        echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
+                    }
                 break;
 
                 //Admin
@@ -51,9 +57,15 @@ class Controller{
 
                 case 'addAdmin':
                     $t = new Admin (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
-                    (new UserDao())->insert($t);
-                    echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-                    include 'view/loginPage.phtml';
+                    
+                    if(($_POST["password"]) == ($_POST["password2"])) { 
+                        (new UserDao())->insert($t);
+                        echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
+                        include 'view/loginPage.phtml';
+                    }
+                    else {
+                        echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
+                    }
                 break;
 
                 //CONNEXION
