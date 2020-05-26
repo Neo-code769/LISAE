@@ -34,5 +34,8 @@ try {
 	$controller->run();
 }
 catch (Exception $e) {
-	echo $e->getMessage();
+	die ($e->getMessage());
+}
+finally {
+	exit();
 }

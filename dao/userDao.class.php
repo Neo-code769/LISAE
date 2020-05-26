@@ -26,23 +26,21 @@ class userDao extends Dao{
         $exec->execute();
         } 
         catch (PDOException $e){
-        echo $e;
+            throw new Exception  ('erreur de la requete');
         }
     }
     public function getSession($mail, $password)
     {
         $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare ("SELECT * FROM users where mal= '".$mail ."' and password= '". $password."'");
         try {
-            $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."' and password= '". $password."'");
-            
             $requete->execute();
             //var_dump($requete);
             $session = $requete->fetch(PDO::FETCH_ASSOC);
             //var_dump($session['mail']);
-          }
-          catch (PDOException $e){
-             throw new Exception  ('erreur de la requete');     
-          }
+        }catch (PDOException $e){
+            throw new Exception  ('erreur de la requete');
+        }
 
         $result = [
             "exist" => $requete->rowCount(),

@@ -78,12 +78,14 @@ class Controller{
                         else
                         {
                             echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
+                            include 'view/loginPage.phtml';
                         }
                     } else
                         {
                             echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
+                            include 'view/loginPage.phtml';
                         }
-                    
+                    break;
                 default:
                     include 'view/loginPage.phtml';
                     break;
