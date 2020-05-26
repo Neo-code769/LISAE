@@ -13,6 +13,7 @@ class Controller{
         if(isset($_GET['action'])){
             switch ($_GET['action']) {
                 
+                //Collab
                 case 'registrationCollab':
                     include 'view/registrationCollab.phtml';
                 break;
@@ -20,11 +21,32 @@ class Controller{
                 case 'addCollab':
                     $t = new Collaborator (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
                     (new UserDao())->insert($t);
-                    echo "bravo !";
+                    echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
+                    include 'view/loginPage.phtml';
                 break;
 
+                //Anim
                 case 'registrationAnim':
                     include 'view/registrationAnim.phtml';
+                break;
+
+                case 'addAnim':
+                    $t = new Animator (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
+                    (new UserDao())->insert($t);
+                    echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
+                    include 'view/loginPage.phtml';
+                break;
+
+                //Admin
+                case 'registrationAdmin':
+                    include 'view/registrationAdmin.phtml';
+                break;
+
+                case 'addAdmin':
+                    $t = new Admin (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
+                    (new UserDao())->insert($t);
+                    echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
+                    include 'view/loginPage.phtml';
                 break;
 
                 default:

@@ -6,26 +6,27 @@
     <body>
         <h1>Inscription Animateur</h1>
         <fieldset>
-            <form class="formulaire" action="index.php?" method = "post">
-                <label for="FirstName"> Nom :</label>
-                <input type="texte"/>
+            <form class="formulaire" action="index.php?action=addAnim" method = "post">
+            <label>Prenom :</label>
+                <input type="text" name="firstname"><br><br>
 
-                <label for="LastName"> Prenom :</label>
-                <input type="texte"/>
+                <label>Nom :</label>
+                <input type="text" name="lastname"><br><br>
 
-                <label for="birthDate"> Date de naissance (Mois/Jour) :</label>
-                <input type="date"/>
+                <label>Date de naissance :</label>
+                <input type="date" name="birthdate"><br><br>
 
-                <label for="PhoneNumber"> Numero de téléphone :</label>
-                <input type="tel"/>
+                <label>Numero de telephone :</label>
+                <input type="number" name="phoneNumber"><br><br>
 
-                <label for="mail"> Mail :</label>
-                <input type="email"/>
+                <label>E-mail :</label>
+                <input type="email" name="mail"><br><br>
 
                 <label>Mot de passe :</label>
-                <input type="password">
+                <input type="password" name="password"><br><br>
 
-                <button type="submit"  value="creer">Créer</button>    
+                <input type="submit" value="Valider">
+                <input type="reset" value="Annuler">    
             </form>
             </fieldset>
             <a href="index.php">Retourner à l'accueil</a>  

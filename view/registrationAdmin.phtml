@@ -8,26 +8,31 @@
 
         <h1>Inscription Administrateur</h1>
 
-        <form class="formulaire" action="index.php?createAccount" method = "post">
-                <label for="FirstName"> Nom :</label>
-                <input type="texte" placeholder="nom"/>
+        <fieldset>
+            <form class="formulaire" action="index.php?action=addAdmin" method = "post">
+            <label>Prenom :</label>
+                <input type="text" name="firstname"><br><br>
 
-                <label for="LastName"> Prenom :</label>
-                <input type="texte" placeholder="prenom"/>
+                <label>Nom :</label>
+                <input type="text" name="lastname"><br><br>
 
-                <label for="birthDate"> Date de naissance (Mois/Jour) :</label>
-                <input type="date" placeholder="date de naissance"/>
+                <label>Date de naissance :</label>
+                <input type="date" name="birthdate"><br><br>
 
-                <label for="PhoneNumber"> Numero de téléphone :</label>
-                <input type="tel" placeholder="numero de telephone"/>
+                <label>Numero de telephone :</label>
+                <input type="number" name="phoneNumber"><br><br>
 
-                <label for="mail"> Mail :</label>
-                <input type="email" placeholder="Mail"/>
+                <label>E-mail :</label>
+                <input type="email" name="mail"><br><br>
 
-                <button type="submit"  value="creer">Créer</button>    
+                <label>Mot de passe :</label>
+                <input type="password" name="password"><br><br>
+
+                <input type="submit" value="Valider">
+                <input type="reset" value="Annuler">    
             </form>
-
-            <a href="index.php">Retourner à l'accueil</a> 
+        </fieldset>
+        <a href="index.php">Retourner à l'accueil</a>  
 
     </body>
     </html>
