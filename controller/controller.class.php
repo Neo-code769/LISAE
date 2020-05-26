@@ -13,6 +13,7 @@ class Controller{
         if(isset($_GET['action'])){
             switch ($_GET['action']) {
                 
+                //INSCRIPTION
                 //Collab
                 case 'registrationCollab':
                     include 'view/registrationCollab.phtml';
@@ -49,31 +50,33 @@ class Controller{
                     include 'view/loginPage.phtml';
                 break;
 
-                //connexion
+                //CONNEXION
                 case 'checkConnection':
-                    $tab = new UserDao();
-                    $tab->getSession($_POST["mail"], $_POST["password"]);
-                    
-                   /*  $tab->rowCount();
-                    if(!empty(htmlentities($_POST["mail"])) AND !empty(sha1($_POST["password"])))
+                    $mail = htmlspecialchars($_POST["mail"]);
+                    $password = sha1($_POST["password"]);
+                    if(!empty($mail) AND !empty($password))
                     {
-                        if($tab == 1)
+                        $userDao = new UserDao();
+                        $tab=$userDao->getSession($mail, $password);
+                        //var_dump($tab);
+
+                        if($tab['exist'] == 1)
                         {
-                            $session = $tab->fetch(PDO::FETCH_ASSOC);
                             $_SESSION['id_user'] = $tab['id_user'];
-                            $_SESSION['pseudo'] = $tab['pseudo'];
+                            $_SESSION['mail'] = $tab['mail'];
                             $_SESSION['password'] = $tab['password'];
                             $_SESSION['role'] = $tab['role'];
-                            echo 'connexion réussie';
+                            echo '<script type="text/javascript">window.alert("Connexion réussie !");</script>';
+                            
                         }  
                         else
                         {
-                            echo "mauvais mot de passe ou pseudo !";
+                            echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
                         }
                     } else
                         {
-                            echo "Tous le champs doivent être complétés !";
-                        }     */     
+                            echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
+                        }
                     
                 default:
                     include 'view/loginPage.phtml';

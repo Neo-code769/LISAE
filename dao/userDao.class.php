@@ -33,23 +33,27 @@ class userDao extends Dao{
     {
         $pdo = Dao::getConnexion();
         try {
-            $requete = $pdo->prepare ("SELECT * FROM users where mail= . '$mail .' and password= '. $password' ");
+            $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."' and password= '". $password."'");
             
             $requete->execute();
-            var_dump($requete);
+            //var_dump($requete);
             $session = $requete->fetch(PDO::FETCH_ASSOC);
+            //var_dump($session['mail']);
           }
           catch (PDOException $e){
              throw new Exception  ('erreur de la requete');     
           }
-        /*  $result = ["id_user" => $session['id_user'], 
-                  "mail" => $session['mail'], 
-                  "password" => $session['password'],
-                  "role" => $session['role']
 
-        ];
-        var_dump($result);
-             return $result; */
+        $result = [
+            "exist" => $requete->rowCount(),
+            "id_user" => $session['id_user'], 
+            "mail" => $session['mail'], 
+            "password" => $session['password'],
+            "role" => $session['role']
+            ];
+
+        //var_dump($result);
+        return $result;
 
     }
 
