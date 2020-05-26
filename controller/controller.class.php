@@ -49,6 +49,32 @@ class Controller{
                     include 'view/loginPage.phtml';
                 break;
 
+                //connexion
+                case 'checkConnection':
+                    $tab = new UserDao();
+                    $tab->getSession($_POST["mail"], $_POST["password"]);
+                    
+                   /*  $tab->rowCount();
+                    if(!empty(htmlentities($_POST["mail"])) AND !empty(sha1($_POST["password"])))
+                    {
+                        if($tab == 1)
+                        {
+                            $session = $tab->fetch(PDO::FETCH_ASSOC);
+                            $_SESSION['id_user'] = $tab['id_user'];
+                            $_SESSION['pseudo'] = $tab['pseudo'];
+                            $_SESSION['password'] = $tab['password'];
+                            $_SESSION['role'] = $tab['role'];
+                            echo 'connexion réussie';
+                        }  
+                        else
+                        {
+                            echo "mauvais mot de passe ou pseudo !";
+                        }
+                    } else
+                        {
+                            echo "Tous le champs doivent être complétés !";
+                        }     */     
+                    
                 default:
                     include 'view/loginPage.phtml';
                     break;
