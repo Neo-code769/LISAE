@@ -85,17 +85,16 @@ class Controller{
                             $_SESSION['password'] = $tab['password'];
                             $_SESSION['role'] = $tab['role'];
                             echo '<script type="text/javascript">window.alert("Connexion réussie !");</script>';
-                            
                         }  
                         else
                         {
                             echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
-                            require 'view/loginPage.phtml';
+                            require "view/loginPage.phtml";
                         }
                     } else
                         {
                             echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
-                            require 'view/loginPage.phtml';
+                            require "view/loginPage.phtml";
                         }
                     break;
                 default:
