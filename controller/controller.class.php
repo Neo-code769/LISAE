@@ -16,7 +16,7 @@ class Controller{
                 //INSCRIPTION
                 //Collab
                 case 'registrationCollab':
-                    include 'view/registrationCollab.phtml';
+                    require 'view/registrationCollab.phtml';
                 break;
 
                 case 'addCollab':
@@ -25,7 +25,7 @@ class Controller{
                     if(($_POST["password"]) == ($_POST["password2"])) { 
                         (new UserDao())->insert($t);
                         echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-                        include 'view/loginPage.phtml';
+                        require 'view/loginPage.phtml';
                     }
                     else {
                         echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
@@ -34,7 +34,7 @@ class Controller{
 
                 //Anim
                 case 'registrationAnim':
-                    include 'view/registrationAnim.phtml';
+                    require 'view/registrationAnim.phtml';
                 break;
 
                 case 'addAnim':
@@ -43,7 +43,7 @@ class Controller{
                     if(($_POST["password"]) == ($_POST["password2"])) { 
                         (new UserDao())->insert($t);
                         echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-                        include 'view/loginPage.phtml';
+                        require 'view/loginPage.phtml';
                     }
                     else {
                         echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
@@ -52,7 +52,7 @@ class Controller{
 
                 //Admin
                 case 'registrationAdmin':
-                    include 'view/registrationAdmin.phtml';
+                    require 'view/registrationAdmin.phtml';
                 break;
 
                 case 'addAdmin':
@@ -61,7 +61,7 @@ class Controller{
                     if(($_POST["password"]) == ($_POST["password2"])) { 
                         (new UserDao())->insert($t);
                         echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-                        include 'view/loginPage.phtml';
+                        require 'view/loginPage.phtml';
                     }
                     else {
                         echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
@@ -90,20 +90,20 @@ class Controller{
                         else
                         {
                             echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
-                            include 'view/loginPage.phtml';
+                            require 'view/loginPage.phtml';
                         }
                     } else
                         {
                             echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
-                            include 'view/loginPage.phtml';
+                            require 'view/loginPage.phtml';
                         }
                     break;
                 default:
-                    include 'view/loginPage.phtml';
+                    require 'view/loginPage.phtml';
                     break;
             }
         }else{
-            include 'view/loginPage.phtml';
+            require 'view/loginPage.phtml';
         }
         
     }

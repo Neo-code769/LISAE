@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 // Liste des classes dans l'ordre des dépendances.
 
-//include 'conf.php'; TODO
+//require_once 'conf.php'; TODO
 
-include 'model/user.class.php';
-include 'model/activity.class.php';
-include 'model/animator.class.php';
-include 'model/admin.class.php';
-include 'model/collaborator.class.php';
-include 'model/session.class.php';
-include 'model/slot.class.php';
-include 'model/theme.class.php';
-include 'model/training.class.php';
+require_once 'model/user.class.php';
+require_once 'model/activity.class.php';
+require_once 'model/animator.class.php';
+require_once 'model/admin.class.php';
+require_once 'model/collaborator.class.php';
+require_once 'model/session.class.php';
+require_once 'model/slot.class.php';
+require_once 'model/theme.class.php';
+require_once 'model/training.class.php';
 
-//include 'exception/LisaeException.class.php'; TODO
+//require_once 'exception/LisaeException.class.php'; TODO
 
-include 'dao/Dao.class.php';
-include 'dao/userDao.class.php';
+require_once 'dao/Dao.class.php';
+require_once 'dao/userDao.class.php';
 
-include 'controller/controller.class.php';
+require_once 'controller/controller.class.php';
 
 
 
