@@ -13,13 +13,14 @@ class userDao extends Dao{
     }
     
     public function insert($obj) :void{
-        $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`) VALUES (null, ?, ?, ?, ?, ?, null,?);";
+        $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`) VALUES (null, ?, ?, ?, ?, ?, ?,?);";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_firstname());
         $exec->bindValue(2, $obj->get_lastname());
-        $exec->bindValue(3, $obj->get_birthday());
+        $exec->bindValue(3, $obj->get_birthdate());
         $exec->bindValue(4, $obj->get_phoneNumber());
         $exec->bindValue(5, $obj->get_mail());
+        $exec->bindValue(6, $obj->get_role());
         $exec->bindValue(7, $obj->get_password());
         try{
         $exec->execute();

@@ -32,5 +32,8 @@
             //TOdO
         }
 
+        public function get_role(){
+            return get_class($this);
+        }
     }
 
