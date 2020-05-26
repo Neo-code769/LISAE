@@ -18,7 +18,7 @@ class Controller{
                 break;
 
                 case 'addCollab':
-                    $t = new User (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
+                    $t = new Collaborator (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
                     (new UserDao())->insert($t);
                     echo "bravo !";
                 break;

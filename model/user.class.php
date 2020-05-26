@@ -1,6 +1,6 @@
 <?php
 
-    class User {
+    abstract class User {
 
         private $_lastname;
         private $_firstname;
@@ -97,6 +97,8 @@
 
                 return $this;
         }
+
+        abstract public function get_role();
     }
 
 ?>
