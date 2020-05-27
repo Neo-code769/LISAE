@@ -6,12 +6,23 @@
         <meta name="author" content="Emma SCHURRER, Nathan LEBON, Pierre TRUBLEREAU">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
-        <link rel="stylesheet" href="front-end/style.css">
+        <link rel="stylesheet" href="/view/front-end/style.css" >
         <title>LISAE - ELOCE</title>
     </head>
 
-    <header>
-        
-    </header>
-
     <body>
+
+      <?= $content ?>
+
+        <footer> 
+            <figure>
+              <img src="images/AFPA.jpg" alt="logo AFPA" />
+            </figure>
+    
+            <figure>
+              <img src="images/LISAE.png" alt="logo LISAE" />
+            </figure>
+    
+        </footer>
+    </body>
+    </html>
