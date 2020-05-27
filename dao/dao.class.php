@@ -21,7 +21,7 @@ abstract class Dao {
                 } catch (PDOException $e) {
                     //echo " echec lors de la connexion : " . $e->getMessage();
                     //die();
-                    throw new ExceptionLisae("Echec");
+                    throw new LisaeException("Echec");
                 }
             } 
             return self::$_conn;
