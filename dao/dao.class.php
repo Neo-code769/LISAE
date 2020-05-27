@@ -19,8 +19,9 @@ abstract class Dao {
                 self::PASSW);
                // echo "<p>Succes connexion</p>";
                 } catch (PDOException $e) {
-                    echo " echec lors de la connexion : " . $e->getMessage();
-                die();
+                    //echo " echec lors de la connexion : " . $e->getMessage();
+                    //die();
+                    throw new ExceptionLisae("Echec");
                 }
             } 
             return self::$_conn;
