@@ -43,5 +43,5 @@ abstract class LisaeTemplate {
             </footer>
         EOD;
     }
+
 }
-?>
