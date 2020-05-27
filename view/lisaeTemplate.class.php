@@ -5,12 +5,6 @@ abstract class LisaeTemplate {
 
     }
 
-    public function run() {
-        $this->setHeader();
-        $this->setBody();
-        $this->setFooter();
-    }
-
     public function setHeader() {
         // Menu Bootstrap
         // Lien sur les thémes : index.php?galerie

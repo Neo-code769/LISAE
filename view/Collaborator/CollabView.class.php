@@ -2,6 +2,12 @@
 
 class CollabView extends LisaeTemplate {
 
+    public function run() {
+        $this->setHeader();
+        $this->setBody();
+        $this->setFooter();
+    }
+
     public function setBody($content) {
 
         switch ($content) {
@@ -22,11 +28,5 @@ class CollabView extends LisaeTemplate {
         }
     }
 }
-
-    new CollabView;
-    $this->setHeader();
-    $this->setBody();
-    $this->setFooter();
-    
 
 ?>
