@@ -4,7 +4,15 @@
 */
 class MainController {
   const CONTROLLER_SUFF = "Controller";
-  const CONTROLLER_USE_CASES = ["list" => 2, "addForm"=> 3, "add" => 4, "clear" => 5];
+  const CONTROLLER_USE_CASES = 
+    [
+    "registrationCollab" => 2, "addCollab"=> 3, 
+    "registrationAnim" => 4, "addAnim" => 5,
+    "registrationAdmin" => 6, "addAdmin"=> 7, 
+    "checkConnection" => 8
+
+
+    ];
   protected $_case = 1;
   protected $_class = null;
 
@@ -25,7 +33,7 @@ class MainController {
   public function run () : void {
     switch ($this->_case) {
       case 1 :
-        include "view/index.phtml"; 
+        include "view/loginPage.phtml"; 
         break;
 
       default:

@@ -1,6 +1,9 @@
 <?php
-/* 
-class TypeController extends MainController implements AbstractController {
+/*
+* Collaborator Type
+*/
+
+class CollabController extends MainController{
 
 	public function __construct() { 
     parent::__construct();
@@ -9,7 +12,7 @@ class TypeController extends MainController implements AbstractController {
   public function run () : void {
     switch ($this->_case) {
       case 2 :  // list types
-        $list = (new TypeDao())->getList();
+        $list = (new UserDao())->getList();
         //var_dump ($list);
         include "view/type/listTypes.phtml";
         break;
@@ -38,6 +41,6 @@ class TypeController extends MainController implements AbstractController {
     }
   }
  
-} */
+}
 
 ?>
