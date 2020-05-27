@@ -21,7 +21,9 @@ require_once 'exception/LisaeException.class.php'; //TODO
 require_once 'dao/Dao.class.php';
 require_once 'dao/userDao.class.php';
 
-require_once 'controller/controller.class.php';
+//require_once 'controller/controller.class.php';
+require_once 'controller/mainController.class.php';
+require_once 'controller/collabController.class.php';
 
 
 
@@ -29,12 +31,13 @@ require_once 'controller/controller.class.php';
 /********** CODE PRINCIPAL **********/
 
 // Création d'une instance de notre programme et du moteur SVG puis exécution.
-$controller  = new Controller();
 try {
+	$controllerName = (new MainController())->getClassName();
+	$controller = new $controllerName();
 	$controller->run();
 }
 catch (LisaeException $e) {
-	$e->render();
+	die ($e->render());
 }
 finally {
 	exit();
