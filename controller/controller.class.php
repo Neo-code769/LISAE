@@ -25,10 +25,12 @@ class Controller{
                 break;
 
                 case 'addCollab':
-                    throw new ExceptionLisae("Error", 4);
-                    
+                    //Exemple Erreur:
+                    //throw new ExceptionLisae("Error", 4);
+
+                    //Ici instanciation userForm
                     $t = new Collaborator (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]), sha1($_POST["password2"]));
-                    
+
                     if(($_POST["password"]) == ($_POST["password2"])) { 
                         (new UserDao())->insert($t);
                         echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
