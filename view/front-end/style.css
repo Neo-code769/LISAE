@@ -1,3 +1,15 @@
-body {
-    font-family: Verdana;
+@font-face { /* New Font Montserrat */
+    font-family: 'Montserrat-Regular';
+    src: url('Montserrat-Regular.ttf') format('truetype');
+    src: url('Montserrat-Bold.ttf') format('truetype');
+}
+
+body { /* Default Font */
+    font-family: 'Montserrat-Regular', Verdana;
+    background-color: rgb(233, 224, 213);
+}
+
+h1 {
+    font-family: 'Montserrat-Regular';
+    font-weight: bold;
 }
