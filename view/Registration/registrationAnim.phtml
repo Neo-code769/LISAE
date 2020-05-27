@@ -1,9 +1,8 @@
-<?php //require 'header.html' ?>
+<?php require 'view/template.php' ?>
 
-        <h1>Inscription Administrateur</h1>
-
+        <h1>Inscription Animateur</h1>
         <fieldset>
-            <form class="formulaire" action="./index.php/collab/addAdmin" method = "post">
+            <form class="formulaire" action="./index.php/collab/addAnim" method = "post">
             <label>Prenom :</label>
                 <input type="text" name="firstname">
 
@@ -28,7 +27,5 @@
                 <input type="submit" value="Valider">
                 <input type="reset" value="Annuler">    
             </form>
-        </fieldset>
-        <a href="index.php">Retourner à l'accueil</a>  
-
-<?php //require 'footer.html' ?>
+            </fieldset>
+            <a href="index.php">Retourner à l'accueil</a>  

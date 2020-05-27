@@ -5,12 +5,6 @@ abstract class LisaeTemplate {
 
     }
 
-    public function run() {
-        $this->setHeader();
-        $this->setBody();
-        $this->setFooter();
-    }
-
     public function setHeader() {
         // Menu Bootstrap
         // Lien sur les thémes : index.php?galerie
@@ -26,6 +20,7 @@ abstract class LisaeTemplate {
                     <link rel="stylesheet" href="/view/front-end/style.css" >
                     <title>LISAE - ELOCE</title>
                 </head>
+                <body>
         EOD;
     }
 
@@ -41,7 +36,10 @@ abstract class LisaeTemplate {
                 </figure>
         
             </footer>
+            </body>
         EOD;
     }
+
+    abstract public function setBody($content);
+
 }
-?>
