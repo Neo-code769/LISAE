@@ -1,11 +1,9 @@
-<?php require 'header.php' ?>
+<?php require 'header.html' ?>
 
-        <h1>Inscription Collaborateur</h1>
-
+        <h1>Inscription Animateur</h1>
         <fieldset>
-            <form action="index.php?action=addCollab" method="post">
-
-                <label>Prenom :</label>
+            <form class="formulaire" action="index.php?action=addAnim" method = "post">
+            <label>Prenom :</label>
                 <input type="text" name="firstname">
 
                 <label>Nom :</label>
@@ -27,10 +25,9 @@
                 <input type="password" name="password2">
 
                 <input type="submit" value="Valider">
-                <input type="reset" value="Annuler">
+                <input type="reset" value="Annuler">    
             </form>
-        </fieldset><br>
+            </fieldset>
+            <a href="index.php">Retourner à l'accueil</a>  
 
-        <button><a href="index.php">Retourner à l'accueil</a></button>
-
-<?php require 'footer.php' ?>
+<?php require 'footer.html' ?>
