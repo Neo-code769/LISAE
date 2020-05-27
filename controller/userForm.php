@@ -3,7 +3,7 @@
 class UserForm{
 
     private $_pass;
-    
+
 
     public function __construct($params)
     {
@@ -14,6 +14,6 @@ class UserForm{
     private function checkValues()
     {
         throw new ExceptionLisae("");
-        new Collaborator();
+        //new Collaborator();
     }
 }
