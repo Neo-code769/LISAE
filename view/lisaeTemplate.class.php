@@ -38,4 +38,6 @@ abstract class LisaeTemplate {
         EOD;
     }
 
+    abstract public function setBody($content);
+
 }
