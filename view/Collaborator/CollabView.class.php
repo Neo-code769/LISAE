@@ -16,11 +16,17 @@ class CollabView extends LisaeTemplate {
             break;
 
             case "topics": $include = "topicsActivity.php";
-            
+
             default: $include = "dashboard.php";
 
         }
     }
 }
+
+    new CollabView;
+    $this->setHeader();
+    $this->setBody();
+    $this->setFooter();
+    
 
 ?>
