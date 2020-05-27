@@ -21,6 +21,9 @@ require_once 'exception/LisaeException.class.php'; //TODO
 require_once 'dao/Dao.class.php';
 require_once 'dao/userDao.class.php';
 
+require_once 'view/lisaeTemplate.class.php';
+require_once 'view/Collaborator/CollabView.class.php';
+
 //require_once 'controller/controller.class.php';
 require_once 'controller/mainController.class.php';
 require_once 'controller/collabController.class.php';
@@ -28,7 +31,11 @@ require_once 'controller/collabController.class.php';
 
 
 
+
+
 /********** CODE PRINCIPAL **********/
+
+/*(new CollabView())->run('dashboard');*/ // Test Template CollabView
 
 // Création d'une instance de notre programme et du moteur SVG puis exécution.
 try {

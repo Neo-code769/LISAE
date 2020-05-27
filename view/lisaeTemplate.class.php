@@ -20,6 +20,7 @@ abstract class LisaeTemplate {
                     <link rel="stylesheet" href="/view/front-end/style.css" >
                     <title>LISAE - ELOCE</title>
                 </head>
+                <body>
         EOD;
     }
 
@@ -35,6 +36,7 @@ abstract class LisaeTemplate {
                 </figure>
         
             </footer>
+            </body>
         EOD;
     }
 
