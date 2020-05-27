@@ -16,7 +16,7 @@ require_once 'model/slot.class.php';
 require_once 'model/theme.class.php';
 require_once 'model/training.class.php';
 
-require_once 'exception/ExceptionLisae.class.php'; //TODO
+require_once 'exception/LisaeException.class.php'; //TODO
 
 require_once 'dao/Dao.class.php';
 require_once 'dao/userDao.class.php';
@@ -33,7 +33,7 @@ $controller  = new Controller();
 try {
 	$controller->run();
 }
-catch (ExceptionLisae $e) {
+catch (LisaeException $e) {
 	$e->render();
 }
 finally {

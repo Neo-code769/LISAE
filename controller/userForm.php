@@ -13,7 +13,7 @@ class UserForm{
 
     private function checkValues()
     {
-        throw new ExceptionLisae("");
+        throw new LisaeException("");
         //new Collaborator();
     }
 }

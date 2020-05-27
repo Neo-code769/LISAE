@@ -28,13 +28,13 @@ class userDao extends Dao{
         catch (PDOException $e) {
             //echo " echec lors de la création : " . $e->getMessage();
             //die();
-            throw new ExceptionLisae("Erreur",1);
+            throw new LisaeException("Erreur",1);
         }
     }
     public function getSession($mail, $password)
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("SELECT * FROM users where mail324= '".$mail ."' and password= '". $password."'");
+        $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."' and password= '". $password."'");
         try {
             $requete->execute();
             //var_dump($requete);
@@ -43,7 +43,7 @@ class userDao extends Dao{
         }catch (PDOException $e) {
             //throw new Exception("Requête vers la base de données éronnée");
             //die();
-            throw new ExceptionLisae("Erreur",1);
+            throw new LisaeException("Erreur",1);
         }
 
         $result = [
