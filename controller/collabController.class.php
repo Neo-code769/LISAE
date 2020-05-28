@@ -11,7 +11,7 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registrationCollab" => 2, "addCollab" => 3
+      "registration" => 2, "add" => 3
     ];
     parent::__construct();
   }

@@ -10,7 +10,7 @@ class AdminController extends MainController
   {
     $this->_listUseCases=
     [
-      "registrationAdmin" => 6, "addAdmin" => 7
+      "registration" => 6, "add" => 7
     ];
     parent::__construct();
   }

@@ -11,7 +11,7 @@ class AnimController extends MainController
     $this->_listUseCases=
     [
       //Anim
-      "registrationAnim" => 4, "addAnim" => 5
+      "registration" => 4, "add" => 5
     ];
     parent::__construct();
   }
