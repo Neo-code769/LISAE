@@ -22,7 +22,7 @@ class Activity{
         $this->_unsubscribeDeadline=$unsubscribeDeadline;
     }
 
-    public function getName() {
+    public function getActivityName() {
         return $this->_name;
     }
 
