@@ -75,7 +75,28 @@ class userDao extends Dao{
         return $result;
 
     }
+    public function getMail($mail)
+    {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."'");
+        try {
+            $requete->execute();
+            //var_dump($requete);
+            $listMail = $requete->fetch(PDO::FETCH_ASSOC);
+        }catch (PDOException $e) {
+            //throw new Exception("Requête vers la base de données éronnée");
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
 
+        $result = [
+            "exist" => $requete->rowCount(),
+            "mail" => $listMail['mail']
+            ];
+
+        //var_dump($result);
+        return $result;
+    }
     // delete via son id
     public function delete(int $id ){
 

@@ -2,7 +2,7 @@
 
 abstract class Dao {
         
-        const HOST = "mysql:host=localhost:3308";
+        const HOST = "mysql:host=localhost";
         const DB_NAME = "lisae";
         const USER = "root";
         const PASSW = "";
