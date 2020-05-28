@@ -1,6 +1,6 @@
 
     <body>
-        <h1>Login Page</h1>
+        <h2>Login Page</h2>
 
         <div id="connexion" class="row">
             <div class="col-md-4">
