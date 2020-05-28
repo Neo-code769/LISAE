@@ -26,6 +26,8 @@
             // TODO
         }
 
+        // Fonction Getteur&Setteur
+
         public function get_lastname()
         {
                 return $this->_lastname;
