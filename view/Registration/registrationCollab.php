@@ -1,9 +1,6 @@
 <body>
 
-<<<<<<< HEAD
-        <fieldset>
             <form action="../collab/add" method="post">
-=======
         <div id="title" class="container">
             <div class="row">
                 <div class="col-xl-4">
@@ -11,7 +8,6 @@
                 </div>
             </div>
         </div>
->>>>>>> 40ee9b4e6dd60d3a731a5b80b46c5e2b14124689
 
         <div id="registration" class="row">
             <div class="col-xl-4">
@@ -47,4 +43,3 @@
                 <button><a href="../../index.php">Retourner à l'accueil</a></button>
             </div>
         </div>
-</body>

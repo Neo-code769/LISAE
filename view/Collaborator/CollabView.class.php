@@ -22,6 +22,10 @@ class CollabView extends LisaeTemplate {
 
         }
     }
+
+    public function setBodyContent() {
+
+    }
 }   
 
 ?>

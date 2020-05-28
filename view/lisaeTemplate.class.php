@@ -29,6 +29,7 @@ abstract class LisaeTemplate {
 
     public function setFooter() {
         echo <<<EOD
+        <fieldset>
             <footer> 
                 <figure>
                 <img src="images/AFPA.jpg" alt="logo AFPA" />
@@ -36,10 +37,13 @@ abstract class LisaeTemplate {
                 <img src="images/LISAE.png" alt="logo LISAE" />
                 </figure>
             </footer>
+        </fieldset>
         </body>
         EOD;
     }
 
-    abstract public function setBody();
+    abstract public function setBodyContent();
+
+    abstract public function setBody($content);
 
 }
