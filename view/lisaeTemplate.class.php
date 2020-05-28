@@ -22,7 +22,6 @@ abstract class LisaeTemplate {
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
                     <title>LISAE - ELOCE</title>
                 </head>
-                <body>
         EOD;
     }
 
@@ -36,9 +35,8 @@ abstract class LisaeTemplate {
                 <figure>
                 <img src="images/LISAE.png" alt="logo LISAE" />
                 </figure>
-        
             </footer>
-            </body>
+        </body>
         EOD;
     }
 

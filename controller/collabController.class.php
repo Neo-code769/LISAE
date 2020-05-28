@@ -20,7 +20,7 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        include 'view/Registration/registrationCollab.phtml';
+        include 'view/Registration/registrationCollab.php';
         break;
 
       case 3:  // addCollab
@@ -53,15 +53,15 @@ class CollabController extends MainController
               $_SESSION['password'] = $tab['password'];
               $_SESSION['role'] = $tab['role'];
               echo '<script type="text/javascript">window.alert("Connexion réussie !");</script>';
-              include "view/loginPage.phtml";
+              include "view/loginPage.php";
             } else {
               echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
-              include "view/loginPage.phtml";
+              include "view/loginPage.php";
               //header('Location:../index.php');
             }
           } else {
             echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
-            include "view/loginPage.phtml";
+            include "view/loginPage.php";
             //header('Location:../index.php');
           }
           break;

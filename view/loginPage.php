@@ -1,4 +1,5 @@
-<body>
+
+    <body>
         <h1>Login Page</h1>
 
         <div id="connexion" class="row">
@@ -17,4 +18,3 @@
             </fieldset>   
             </div> 
         </div>
-</body>
