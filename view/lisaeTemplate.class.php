@@ -6,8 +6,6 @@ abstract class LisaeTemplate {
     }
 
     public function setHeader() {
-        // Menu Bootstrap
-        // Lien sur les thémes : index.php?galerie
         echo <<<EOD
         <!DOCTYPE html >
             <html leng="en">
@@ -24,6 +22,7 @@ abstract class LisaeTemplate {
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
                     <title>LISAE - ELOCE</title>
                 </head>
+                <body>
         EOD;
     }
 
@@ -39,6 +38,7 @@ abstract class LisaeTemplate {
                 </figure>
         
             </footer>
+            </body>
         EOD;
     }
 

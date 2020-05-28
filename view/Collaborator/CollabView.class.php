@@ -12,18 +12,18 @@ class CollabView extends LisaeTemplate {
 
         switch ($content) {
 
-            case "dashboard": $include = "dashboard.php";
+            case "dashboard": include "dashboard.php";
             break;
 
-            case "infoActivity": $include = "infoActivity.php";
+            case "infoActivity": include "infoActivity.php";
             break;
 
-            case "topics": $include = "topicsActivity.php";
+            case "topics": include "topicsActivity.php";
             break;
 
-            case "registration": $include = "registrationActivity.php";
+            case "registration": include "registrationActivity.php";
 
-            default: $include = "dashboard.php";
+            default: include "dashboard.php";
 
         }
     }

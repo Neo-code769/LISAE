@@ -1,3 +1,4 @@
+<body>
     <h1>Inscription Collaborateur</h1>
 
         <fieldset>
@@ -30,3 +31,5 @@
         </fieldset><br>
 
         <button><a href="../../index.php">Retourner à l'accueil</a></button>
+
+</body>
