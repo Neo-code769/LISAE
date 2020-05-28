@@ -22,19 +22,15 @@ class Activity{
         $this->_unsubscribeDeadline=$unsubscribeDeadline;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->_name;
     }
 
-    public function addSlot()
-    {
+    public function addSlot() {
         #TODO
     }
 
-    public function removeSlot()
-    {
+    public function removeSlot() {
         #TODO
-        #heeeeyp
     }
 }

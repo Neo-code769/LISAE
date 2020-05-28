@@ -24,20 +24,24 @@ class Slot
         $this->_collabPresent = $collabPresent;
     }
 
-    public function addCollabRegister()
-    {
-
+    public function getSlotDate() {
+        return $this->_slotDate;
     }
-    public function addCollabPresent()
-    {
 
+    public function getSlotHour() {
+        return $this->_slotHour;
     }
-    public function removeCollabRegister()
-    {
 
+    public function addCollabRegister() {
     }
-    public function removeCollabPresent()
-    {
 
+    public function addCollabPresent() {
     }
+
+    public function removeCollabRegister() {
+    }
+
+    public function removeCollabPresent() {
+    }
+
 }
