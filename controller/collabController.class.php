@@ -26,7 +26,7 @@ class CollabController extends MainController
       case 3:  // addCollab
         //Exemple Erreur:
         //throw new ExceptionLisae("Error", 4);
-
+        new UserForm($_POST)
         //Ici instanciation userForm
         $t = new Collaborator(htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]), sha1($_POST["password2"]));
 
