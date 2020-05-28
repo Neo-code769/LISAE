@@ -5,7 +5,7 @@ abstract class LisaeTemplate {
 
     }
 
-    public function setHeader() {
+    public function setHeader($errorMess="") {
         echo <<<EOD
         <!DOCTYPE html >
             <html leng="en">
@@ -22,6 +22,8 @@ abstract class LisaeTemplate {
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
                     <title>LISAE - ELOCE</title>
                 </head>
+                <body>
+                <p>$errorMess<p> 
         EOD;
     }
 
@@ -40,6 +42,6 @@ abstract class LisaeTemplate {
         EOD;
     }
 
-    abstract public function setBody($content);
+    abstract public function setBody();
 
 }

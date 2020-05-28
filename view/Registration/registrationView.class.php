@@ -2,22 +2,22 @@
 
 class RegistrationView extends LisaeTemplate {
 
-    public function run($content) {
+    public function run() {
         $this->setHeader();
-        $this->setBody($content);
+        $this->setBody();
         $this->setFooter();
     }
 
-    public function setBody($content) {
+    public function setBody() {
 
-        switch ($content) {
+     /*    switch () {
 
             case "registration": $include = "registrationCollab.php";
             break;
 
             default: $include = "registrationCollab.php";
         }
-
+ */
     }
 
 }

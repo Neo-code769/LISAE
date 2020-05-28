@@ -21,20 +21,17 @@ require_once 'exception/LisaeException.class.php'; //TODO
 require_once 'dao/Dao.class.php';
 require_once 'dao/userDao.class.php';
 
-require_once 'view/lisaeTemplate.class.php';
-require_once 'view/loginPageView.class.php';
-require_once 'view/Registration/registrationView.class.php';
-require_once 'view/Collaborator/CollabView.class.php';
-
 //require_once 'controller/controller.class.php';
 require_once 'controller/mainController.class.php';
+require_once 'controller/userForm.php';
 require_once 'controller/collabController.class.php';
 require_once 'controller/animController.class.php';
 require_once 'controller/adminController.class.php';
 
-
-
-
+require_once 'view/lisaeTemplate.class.php';
+require_once 'view/loginPageView.class.php';
+require_once 'view/Registration/registrationView.class.php';
+require_once 'view/Collaborator/CollabView.class.php';
 
 
 /********** CODE PRINCIPAL **********/

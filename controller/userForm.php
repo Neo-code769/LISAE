@@ -9,58 +9,65 @@ class UserForm{
     private $_mail;
     private $_password;
     private $_password2;
+    private $_collab=null;
 
 
     public function __construct($params)
     {
-        $this->_password = htmlentities($params["password"]);
+        $this->_password = sha1($params["password"]);
         $this->_firstname = htmlentities($params["firstname"]);
         $this->_lastname = htmlentities($params["lastname"]);
         $this->_birthdate = htmlentities($params["birthdate"]);
         $this->_phoneNumber = htmlentities($params["phoneNumber"]);
         $this->_mail = htmlentities($params["mail"]);
-        $this->_password2 = htmlentities($params["password2"]);    
+        $this->_password2 = sha1($params["password2"]);
+
+        if ($this->checkPassword() && $this->checkMail() ) {
+            $this->_collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+        }else {
+            throw new LisaeException("Erreur saisi collab");
+        }
     }
 
     private function checkPassword()
     {
         $passwordOk = false;
-        throw new LisaeException("");
         //new Collaborator();
-        if (($_POST["password"]) == ($_POST["password2"]))
+        if ($this->_password == $this->_password2)
         {
             $passwordOk = true;
-        } else {
-            echo '<script type="text/javascript">window.alert("les mots de passe doivent etre identiques !");</script>';
         }
         return $passwordOk;
     }
+    
     private function checkMail()
     {
         $mailOk = false;
-        if ((new UserDao())->getMail($this->_mail) == 0)
+
+        $userDao = new UserDao();
+        $tab = $userDao->getMail($this->_mail);
+        if ($tab['exist'] == 0)
         {
+            //var_dump($tab['exist']);
             $mailOk = true;
-        } else {
-            echo '<script type="text/javascript">window.alert("mails déjà utilisé!");</script>';
         }
         return $mailOk;
     }
 
-    public function createCollaborator()
-    {
-        $this->checkPassword();
-        $this->checkMail();
-        $t = new Collaborator();
-    }
-
     public function createAnimator()
     {
-        $this->checkValues();
+
     }
 
     public function createAdministrator()
     {
-        $this->checkValues();
+    }
+
+    /**
+     * Get the value of _collab
+     */ 
+    public function getCollab()
+    {
+        return $this->_collab;
     }
 }

@@ -30,7 +30,7 @@ class MainController
   {
     switch ($this->_case) {
       case 1:
-        (new LoginPageView())->run('loginpage');
+        (new LoginPageView())->run();
         /* include "view/loginPage.phtml"; */
         break;
 

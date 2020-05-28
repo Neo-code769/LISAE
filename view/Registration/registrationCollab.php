@@ -2,7 +2,7 @@
     <h1>Inscription Collaborateur</h1>
 
         <fieldset>
-            <form action="./index.php/collab/add" method="post">
+            <form action="../collab/add" method="post">
 
                 <label>Prenom :</label>
                 <input type="text" name="firstname" pattern="[A-Z][a-z]+" title="Le prénom ne doit pas contenir de chiffres et doit commencer par une majuscule." required>

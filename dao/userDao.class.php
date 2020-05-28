@@ -23,6 +23,7 @@ class userDao extends Dao{
         $exec->bindValue(5, $obj->get_mail());
         $exec->bindValue(6, $obj->get_role());
         $exec->bindValue(7, $obj->get_password());
+        //var_dump($sql);
         try{
         $exec->execute();
         } 
