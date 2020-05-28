@@ -30,7 +30,7 @@ class UserForm{
         //new Collaborator();
         if (($_POST["password"]) == ($_POST["password2"]))
         {
-            if ()
+            
         }
     }
 
