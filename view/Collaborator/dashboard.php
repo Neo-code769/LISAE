@@ -37,17 +37,3 @@
         </div>
         </article>
     </section>
-
-    <?php 
-        /*$sql = "SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
-                FROM `activity` INNER JOIN `host` ON `activity.id_activity` = `host.id_activity`
-                                INNER JOIN `users` ON `host.id_user` = `users.id_user` 
-                WHERE `users.id_user` = `host.id_user` ";
-        $exec = (Dao::getConnexion())->prepare($sql);
-        try {
-        $exec->execute();
-        }
-        catch (PDOException $e) {
-            throw new LisaeException("Erreur", 1);
-        }*/
-    ?>

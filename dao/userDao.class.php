@@ -12,7 +12,8 @@ class userDao extends Dao{
         return [];
     }
     
-    public function insert($obj) :void{
+    public function insert($obj) :void
+    {
         $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`) VALUES (null, ?, ?, ?, ?, ?, ?,?);";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_firstname());
@@ -31,6 +32,22 @@ class userDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }
+
+    public function select() : void 
+    {
+        $sql = "SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
+                FROM `activity` INNER JOIN `host` ON `activity.id_activity` = `host.id_activity`
+                                INNER JOIN `users` ON `host.id_user` = `users.id_user` 
+                WHERE `users.id_user` = `host.id_user` ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try {
+        $exec->execute();
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur", 1);
+        }
+    }
+
     public function getSession($mail, $password)
     {
         $pdo = Dao::getConnexion();
