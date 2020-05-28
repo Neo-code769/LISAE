@@ -5,6 +5,12 @@ abstract class LisaeTemplate {
 
     }
 
+    public function run($content) {
+        $this->setHeader();
+        $this->setBody($content);
+        $this->setFooter();
+    }
+
     public function setHeader() {
         echo <<<EOD
         <!DOCTYPE html >
