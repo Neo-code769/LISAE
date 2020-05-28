@@ -4,12 +4,52 @@
     src: url('Montserrat-Bold.ttf') format('truetype');
 }
 
-body { /* Default Font */
+* { 
     font-family: 'Montserrat-Regular', Verdana;
-    background-color: rgb(233, 224, 213);
+    /* background-image: url(./images/backgroundimg.jpg); */
+}
+
+figure {
+    align-items: center;
+    text-align: center;
+
 }
 
 h1 {
     font-family: 'Montserrat-Regular';
     font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}
+
+#title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-width: 10px;
+    border-color: black;
+    text-align: center;
+    align-items: center;
+}
+
+#connexion {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-style: solid;
+    border: 10px;
+    border-color:red;
+    text-align: center;
+    align-items: center;
+}
+
+#registration {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    align-items: center;
+}
+
+a {
+    color: white;
 }
