@@ -27,6 +27,8 @@ require_once 'view/Collaborator/CollabView.class.php';
 //require_once 'controller/controller.class.php';
 require_once 'controller/mainController.class.php';
 require_once 'controller/collabController.class.php';
+require_once 'controller/animController.class.php';
+require_once 'controller/adminController.class.php';
 
 
 
