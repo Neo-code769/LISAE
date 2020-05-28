@@ -8,6 +8,10 @@ class AdminController extends MainController
 
   public function __construct()
   {
+    $this->_listUseCases=
+    [
+      "registrationAdmin" => 6, "addAdmin" => 7
+    ];
     parent::__construct();
   }
 
@@ -17,7 +21,7 @@ class AdminController extends MainController
       
       //Admin
       case 6: // registrationAdmin
-        include 'view/Administrator/registrationAdmin.phtml';
+        include 'view/Registration/registrationAdmin.phtml';
       break;
 
       case 7: // addAdmin

@@ -5,17 +5,7 @@
 class MainController
 {
   const CONTROLLER_SUFF = "Controller";
-  const CONTROLLER_USE_CASES =
-  [
-    //Collab 
-    "registrationCollab" => 2, "addCollab" => 3,
-    //Anim
-    "registrationAnim" => 4, "addAnim" => 5,
-    //Admin
-    "registrationAdmin" => 6, "addAdmin" => 7,
-    //Connexion
-    "checkConnection" => 8
-  ];
+  protected $_listUseCases;
   protected $_case = 1;
   protected $_class = null;
 
@@ -27,7 +17,7 @@ class MainController
       $contStr = $urlLinks[count($urlLinks) - 2];
       $this->_class = $contStr . self::CONTROLLER_SUFF;
       $caseStr = $urlLinks[count($urlLinks) - 1];
-      $this->_case = self::CONTROLLER_USE_CASES[$caseStr];
+      $this->_case = $this->_listUseCases[$caseStr];
     }
   }
 

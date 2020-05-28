@@ -8,6 +8,11 @@ class AnimController extends MainController
 
   public function __construct()
   {
+    $this->_listUseCases=
+    [
+      //Anim
+      "registrationAnim" => 4, "addAnim" => 5
+    ];
     parent::__construct();
   }
 
@@ -16,7 +21,7 @@ class AnimController extends MainController
     switch ($this->_case) {
 
       case 4:  // registrationAnim
-        include 'view/Animator/registrationAnim.phtml';
+        include 'view/Registration/registrationAnim.phtml';
         break;
 
       case 5:  // addAnim

@@ -8,6 +8,11 @@ class CollabController extends MainController
 
   public function __construct()
   {
+    $this->_listUseCases=
+    [
+      //Collab 
+      "registrationCollab" => 2, "addCollab" => 3
+    ];
     parent::__construct();
   }
 
@@ -15,7 +20,7 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        include 'view/Collaborator/registrationCollab.phtml';
+        include 'view/Registration/registrationCollab.phtml';
         break;
 
       case 3:  // addCollab
