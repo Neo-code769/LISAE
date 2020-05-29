@@ -38,17 +38,14 @@ h2 {
 #title {
     margin-top: 50px;
     margin-bottom: 50px;
-    border-width: 10px;
-    border-color: black;
+    border: 3px, solid black;
     align-items: center;
 }
 
 #connexion {
     margin-top: 50px;
     margin-bottom: 50px;
-    border-style: solid;
-    border: 10px;
-    border-color:red;
+    position: relative;
     text-align: center;
     align-items: center;
 }
@@ -59,5 +56,4 @@ h2 {
     position: relative;
     align-items: center;
     text-align: center;
-    font-size: small;
 }
