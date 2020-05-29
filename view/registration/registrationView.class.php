@@ -10,6 +10,9 @@ class RegistrationView extends LisaeTemplate {
             case "registration": include "registrationCollab.html";
             break;
 
+            case "registrationEchec": include "registrationCollab.html";
+            break;
+
             default: include "registrationCollab.html";
         }
     }
