@@ -21,7 +21,7 @@ class Controller{
                 //INSCRIPTION
                 //Collab
                 case 'registrationCollab':
-                    require 'view/Collaborator/registrationCollab.php';
+                    require 'view/Collaborator/registrationCollab.html';
                 break;
 
                 case 'addCollab':
@@ -43,7 +43,7 @@ class Controller{
 
                 //Anim
                 case 'registrationAnim':
-                    require 'view/Animator/registrationAnim.php';
+                    require 'view/Animator/registrationAnim.html';
                 break;
 
                 case 'addAnim':
@@ -61,7 +61,7 @@ class Controller{
 
                 //Admin
                 case 'registrationAdmin':
-                    require 'view/Administrator/registrationAdmin.php';
+                    require 'view/Administrator/registrationAdmin.html';
                 break;
 
                 case 'addAdmin':

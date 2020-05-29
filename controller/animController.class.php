@@ -21,7 +21,8 @@ class AnimController extends MainController
     switch ($this->_case) {
 
       case 4:  // registrationAnim
-        include 'view/Registration/registrationAnim.php';
+        (new RegistrationView())->run($content="");
+        // include 'view/Registration/registrationAnim.php';
         break;
 
       case 5:  // addAnim
@@ -30,7 +31,8 @@ class AnimController extends MainController
         if (($_POST["password"]) == ($_POST["password2"])) {
           (new UserDao())->insert($t);
           echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-          include 'view/loginPage.php';
+          (new LoginPageView())->run($content="");
+          // include 'view/loginPage.php';
         } else {
           echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
         }

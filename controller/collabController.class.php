@@ -20,7 +20,8 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        include 'view/Registration/registrationCollab.html';
+        (new RegistrationView())->run($content="");
+        // include 'view/Registration/registrationCollab.html';
         break;
 
       case 3:  // addCollab
