@@ -30,7 +30,7 @@ class MainController
   {
     switch ($this->_case) {
       case 1:
-        (new LoginPageView())->run();
+        (new LoginPageView())->run($content="");
         break;
 
       default:

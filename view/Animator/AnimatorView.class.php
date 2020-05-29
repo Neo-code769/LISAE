@@ -2,6 +2,7 @@
 
 class AnimatorView extends LisaeTemplate {
 
+
     public function setBody($content) {
 
         switch ($content) {

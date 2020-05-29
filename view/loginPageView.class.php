@@ -2,13 +2,8 @@
 
 class LoginPageView extends LisaeTemplate {
 
-    public function run($errorMess="") {
-        $this->setHeader($errorMess);
-        $this->setBodyContent();
-        $this->setFooter();
-    }
 
-    public function setBodyContent() {
+    public function setBody($content) {
         echo <<<EOD
         <body>
             <div id="title" class="container">
@@ -33,10 +28,6 @@ class LoginPageView extends LisaeTemplate {
                     </div> 
                 </div>
         EOD;
-    }
-
-    public function setBody($content) {
-
     }
 
 }

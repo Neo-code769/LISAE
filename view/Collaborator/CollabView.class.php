@@ -2,7 +2,6 @@
 
 class CollabView extends LisaeTemplate {
 
-
     public function setBody($content) {
 
         switch ($content) {
@@ -21,10 +20,6 @@ class CollabView extends LisaeTemplate {
             default: include "dashboard.php";
 
         }
-    }
-
-    public function setBodyContent() {
-
     }
 }   
 

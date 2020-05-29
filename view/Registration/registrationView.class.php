@@ -2,11 +2,6 @@
 
 class RegistrationView extends LisaeTemplate {
 
-    public function run() {
-        $this->setHeader();
-        $this->setBody($content);
-        $this->setFooter();
-    }
 
     public function setBody($content) {
 
@@ -17,10 +12,6 @@ class RegistrationView extends LisaeTemplate {
 
             default: $include = "registrationCollab.php";
         }
-    }
-
-    public function setBodyContent() {
-
     }
 
 }

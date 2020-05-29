@@ -20,7 +20,7 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        include 'view/Registration/registrationCollab.php';
+        include 'view/Registration/registrationCollab.html';
         break;
 
       case 3:  // addCollab
@@ -33,7 +33,7 @@ class CollabController extends MainController
 
          if (($_POST["password"]) == ($_POST["password2"])) {
           (new UserDao())->insert($t);
-          include 'view/loginPage.phtml';
+          (new LoginPageView())->run();
           //echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
         } else {
           echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
@@ -64,15 +64,15 @@ class CollabController extends MainController
               $_SESSION['password'] = $tab['password'];
               $_SESSION['role'] = $tab['role'];
               echo '<script type="text/javascript">window.alert("Connexion réussie !");</script>';
-              include "view/loginPage.php";
+              (new LoginPageView())->run();
             } else {
               echo '<script type="text/javascript">window.alert("Mauvais mot de passe ou pseudo !");</script>';
-              include "view/loginPage.php";
+              (new LoginPageView())->run();
               //header('Location:../index.php');
             }
           } else {
             echo '<script type="text/javascript">window.alert("Tous le champs doivent être complétés !");</script>';
-            include "view/loginPage.php";
+            (new LoginPageView())->run();
             //header('Location:../index.php');
           }
           break;
