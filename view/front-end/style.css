@@ -24,18 +24,16 @@ h2 {
 }
 
 #button {
+    text-decoration: none;
+    color: black;
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
     width: 100px;
     position: relative;
+    border-width: 1px;
+    font-size: small;
 }
-
-#registration, a {
-    text-decoration: none;
-    color: black;
-}
-
 
 #title {
     margin-top: 50px;
