@@ -46,9 +46,13 @@ class CollabController extends MainController
           (new UserDao())->insert($collab);
         } catch (LisaeException $e) {
           $errorMess = $e->render();
+          (new RegistrationView())->run("",$errorMess);
+          /* header('Location: ../../index.php/collab/registration');
+          exit(); */
         }
-        (new LoginPageView())->run('loginpage',$errorMess);
-        
+        //(new LoginPageView())->run($errorMess);
+        header('Location: ../../index.php');
+        exit();
         break;
 
         case 8:
