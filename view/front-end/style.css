@@ -12,7 +12,6 @@
 figure {
     align-items: center;
     text-align: center;
-
 }
 
 h1 {
@@ -26,18 +25,23 @@ h2 {
 
 #button {
     cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    position: relative;
 }
 
-a {
+#registration, a {
     text-decoration: none;
+    color: black;
 }
+
 
 #title {
     margin-top: 50px;
     margin-bottom: 50px;
     border-width: 10px;
     border-color: black;
-    text-align: center;
     align-items: center;
 }
 
@@ -54,10 +58,8 @@ a {
 #registration {
     margin-top: 50px;
     margin-bottom: 50px;
-    text-align: center;
+    position: relative;
     align-items: center;
-}
-
-a {
-    color: white;
+    text-align: center;
+    font-size: small;
 }
