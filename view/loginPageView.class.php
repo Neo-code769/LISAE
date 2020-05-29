@@ -21,9 +21,9 @@ class LoginPageView extends LisaeTemplate {
                             <input type="email" id="email" name="mail"><br><br>
                             <label for="mdp">Mot de passe:</label><br>
                             <input type="password" id="mdp" name="password"><br><br>
-                            <input type="submit" value="Connexion">
+                            <input id="button" type="submit" value="Connexion">
                         </form><br>
-                        <button id="inscription" value="Inscription"><a href="./index.php/collab/registration"> Inscription </a></button>
+                        <button id="button" value="Inscription"><a href="./index.php/collab/registration"> Inscription </a></button>
                     </fieldset>   
                     </div> 
                 </div>

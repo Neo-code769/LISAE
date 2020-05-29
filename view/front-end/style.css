@@ -24,6 +24,11 @@ h2 {
     text-align: center;
 }
 
+#button {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 #title {
     margin-top: 50px;
     margin-bottom: 50px;
