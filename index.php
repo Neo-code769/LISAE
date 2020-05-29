@@ -30,7 +30,7 @@ require_once 'controller/adminController.class.php';
 
 require_once 'view/lisaeTemplate.class.php';
 require_once 'view/loginPageView.class.php';
-require_once 'view/registrationView.class.php';
+require_once 'view/registration/registrationView.class.php';
 require_once 'view/Collaborator/CollabView.class.php';
 
 
