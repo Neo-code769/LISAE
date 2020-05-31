@@ -1,10 +1,10 @@
 <body>
 
-    <div class="titre">
-        <h1>Tableau de Bord</h1>
+    <div id="titre" class="container">
+        <h2>Tableau de Bord</h2>
     </div>
 
-    <nav class="navigation">
+    <nav class="navigation" class="container">
         <div class="button">
             <h2>Activités par thémes</h2>
         </div>
