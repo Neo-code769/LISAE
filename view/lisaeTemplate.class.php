@@ -20,7 +20,7 @@ abstract class LisaeTemplate {
                     <meta name="LISAE" content="SoftWare Manage Registration to Activity ELOCE AFPA">
                     <meta name="author" content="Emma SCHURRER, Nathan LEBON, Pierre TRUBLEREAU">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+                    <link rel="icon" type="image/x-icon" href="/LISAE/images/favicon.ico" />
                     <link rel="stylesheet" href="/LISAE/view/Front-end/style.css" >
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
