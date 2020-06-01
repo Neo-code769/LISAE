@@ -22,8 +22,9 @@ class CollabController extends MainController
       case 2:  // registrationCollab
         if (array_key_exists("error",$_GET)) {
           (new RegistrationView())->run("registration","<p style='background-color: red;'>Erreur saisi collab</p>");
+        }else {
+          (new RegistrationView())->run("registration");
         }
-        (new RegistrationView())->run("registration");
         break;
 
       case 3:  // addCollab
