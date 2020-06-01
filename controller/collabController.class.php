@@ -21,7 +21,7 @@ class CollabController extends MainController
     switch ($this->_case) {
       case 2:  // registrationCollab
         if (array_key_exists("error",$_GET)) {
-          (new RegistrationView())->run("registration","<p style='background-color: red;'>Erreur, les mot de passe ne correspondent pas et/ou le mail est déjà utiliser!</p>");
+          (new RegistrationView())->run("registration","<p style='background-color: red;'>Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utiliser!</p>");
         }else {
           (new RegistrationView())->run("registration");
         }
