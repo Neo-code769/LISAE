@@ -20,8 +20,10 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        (new RegistrationView())->run($content="registration");
-        // include 'view/Registration/registrationCollab.html';
+        if (array_key_exists("error",$_GET)) {
+          (new RegistrationView())->run("registration","<p style='background-color: red;'>Erreur saisi collab</p>");
+        }
+        (new RegistrationView())->run("registration");
         break;
 
       case 3:  // addCollab
@@ -32,12 +34,11 @@ class CollabController extends MainController
           (new UserDao())->insert($collab);
         } catch (LisaeException $e) {
           $errorMess = $e->render();
-          (new RegistrationView())->run("registration",$errorMess);
-          //header('Location: ../../index.php/collab/registration?error');
+          header("Location:../collab/registration?error");
           exit();
         }
-        //(new LoginPageView())->run($errorMess);
-        header('Location: ../../index.php');
+        echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
+        header('Refresh:2;url=../../index.php');
         exit();
         break;
 

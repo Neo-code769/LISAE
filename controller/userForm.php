@@ -32,7 +32,6 @@ class UserForm{
     private function checkPassword()
     {
         $passwordOk = false;
-        //new Collaborator();
         if ($this->_password == $this->_password2)
         {
             $passwordOk = true;
