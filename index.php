@@ -2,10 +2,6 @@
 // typer les fcts
 declare(strict_types=1);
 
-use PHPMailer\PHPMailer;
-use PHPMailer\SMTP;
-use PHPMailer\Exception;
-
 // Liste des classes dans l'ordre des dépendances.
 
 //require_once 'conf.php'; TODO
@@ -38,22 +34,10 @@ require_once 'view/registration/registrationView.class.php';
 require_once 'view/Collaborator/CollabView.class.php';
 
 // PHPmailer
-require 'vendor/autoload.php'; 
-require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require_once 'vendor/autoload.php'; 
+require_once 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 
 /********** CODE PRINCIPAL **********/
-
-$mail = new PHPMailer;
-$mail->setFrom('pierre.trublereau@gmail.com', 'Your Name');
-$mail->addAddress('pierre.trublereau@gmail.com', 'My Friend');
-$mail->Subject  = 'First PHPMailer Message';
-$mail->Body     = 'Hi! This is my first e-mail sent through PHPMailer.';
-if(!$mail->send()) {
-  echo 'Message was not sent.';
-  echo 'Mailer error: ' . $mail->ErrorInfo;
-} else {
-  echo 'Message has been sent.';
-}
 
 /*(new CollabView())->run('dashboard');*/ // Test Template CollabView
 
