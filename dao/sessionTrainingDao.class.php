@@ -1,6 +1,6 @@
 <?php
 
-class userDao extends Dao{
+class sessionTrainingDao extends Dao{
 
     public function getList(): array{
 
@@ -22,10 +22,10 @@ class userDao extends Dao{
 
     }
 
-    public function getSessionList() : array 
+    public function getSessionTrainingList() : array 
     {
         $list = []; 
-        $pdo = Dao::getConnexion();
+        $sql = Dao::getConnexion();
         $requete = $sql->prepare("SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
                 FROM `session` INNER JOIN `tie` ON `tie.id_session` = `session.id_session`
                                 INNER JOIN `training` ON `training.id_training` = `tie.id_training` 
@@ -40,7 +40,7 @@ class userDao extends Dao{
                 $id_session=$donnees['id_session'];
                 $id_training=$donnees['id_training'];
                 $id_user=$donnees['id_user'];
-                $session = new Session();
+                $session = new SessionTraining();
                 $list[] = $session;
             }
         }
