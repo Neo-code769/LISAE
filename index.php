@@ -6,6 +6,9 @@ declare(strict_types=1);
 
 //require_once 'conf.php'; TODO
 
+require 'vendor/autoload.php'; // PHPmailer
+require 'vendor/phpmailer/src/PHPMailer.php';
+
 require_once 'model/user.class.php';
 require_once 'model/activity.class.php';
 require_once 'model/animator.class.php';
@@ -36,10 +39,23 @@ require_once 'view/Collaborator/CollabView.class.php';
 
 /********** CODE PRINCIPAL **********/
 
+$mail = new PHPMailer;
+$mail->setFrom('from@example.com', 'Your Name');
+$mail->addAddress('myfriend@example.net', 'My Friend');
+$mail->Subject  = 'First PHPMailer Message';
+$mail->Body     = 'Hi! This is my first e-mail sent through PHPMailer.';
+if(!$mail->send()) {
+  echo 'Message was not sent.';
+  echo 'Mailer error: ' . $mail->ErrorInfo;
+} else {
+  echo 'Message has been sent.';
+}
+
 /*(new CollabView())->run('dashboard');*/ // Test Template CollabView
 
 // Création d'une instance de notre programme et du moteur SVG puis exécution.
-try {
+
+/*try {
 	$controllerName = (new MainController())->getClassName();
 	$controller = new $controllerName();
 	$controller->run();
@@ -49,4 +65,4 @@ catch (LisaeException $e) {
 }
 finally {
 	exit();
-}
+}*/
