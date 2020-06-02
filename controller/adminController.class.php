@@ -10,7 +10,7 @@ class AdminController extends MainController
   {
     $this->_listUseCases=
     [
-      "registration" => 6, "add" => 7
+      "registration" => 21
     ];
     parent::__construct();
   }
@@ -20,25 +20,23 @@ class AdminController extends MainController
     switch ($this->_case) {
       
       //Admin
-      case 6: // registrationAdmin
-        (new RegistrationView())->run($content="");
-        // include 'view/Registration/registrationAdmin.php';
-      break;
-
-      case 7: // addAdmin
-        $t = new Admin (htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
-        
-        if(($_POST["password"]) == ($_POST["password2"])) { 
-            (new UserDao())->insert($t);
-            echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-            (new LoginPageView())->run($content="");
-            // include 'view/loginPage.php';
+      case 21:  // registrationAnim
+        if (isset($_POST['registration'])){
+          try {
+            $userForm =new UserForm($_POST);
+            $admin =$userForm->createAdministrator();
+            (new UserDao())->insert($admin);
+            echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
+            header('Refresh:2;url=../../index.php');
+            exit();
+          } catch (LisaeException $e) {
+            $errorMess = $e->render();
+            (new RegistrationView())->run("admin", $errorMess);
+            exit();
+          }
+        }else {
+          (new RegistrationView())->run("admin");
         }
-        else {
-            echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
-            (new LoginPageView())->run($content="");
-        }
-      break;(new LoginPageView())->run($content="");
 
       default:
       (new LoginPageView())->run($content="");

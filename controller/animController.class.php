@@ -24,18 +24,18 @@ class AnimController extends MainController
         if (isset($_POST['registration'])){
           try {
             $userForm =new UserForm($_POST);
-            $anim =$userForm->createAnim();
+            $anim =$userForm->createAnimator();
             (new UserDao())->insert($anim);
             echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
             header('Refresh:2;url=../../index.php');
             exit();
           } catch (LisaeException $e) {
             $errorMess = $e->render();
-            (new RegistrationView())->run("registration", $errorMess);
+            (new RegistrationView())->run("anim", $errorMess);
             exit();
           }
         }else {
-          (new RegistrationView())->run("registration");
+          (new RegistrationView())->run("anim");
         }
 
       break;

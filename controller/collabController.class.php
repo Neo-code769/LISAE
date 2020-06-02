@@ -32,11 +32,11 @@ class CollabController extends MainController
               exit();
             } catch (LisaeException $e) {
               $errorMess = $e->render();
-              (new RegistrationView())->run("registration", $errorMess);
+              (new RegistrationView())->run("collab", $errorMess);
               exit();
             }
           }else {
-            (new RegistrationView())->run("registration");
+            (new RegistrationView())->run("collab");
           }
 
         break;
