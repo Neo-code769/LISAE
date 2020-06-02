@@ -5,7 +5,7 @@
 
             <div id="registration" class="container">
                 <fieldset>
-                    <form action="../collab/add" method="post">
+                    <form action="" method="post">
 
                         <label>Prenom :</label>
                         <input type="text" name="firstname" pattern="[A-Z][a-z]+" title="Le prénom ne doit pas contenir de chiffres et doit commencer par une majuscule." required><br>
@@ -28,7 +28,7 @@
                         <label>Entrer le mot de passe à nouveau :</label>
                         <input type="password" name="password2" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Le mot de passe doit comporter au minimum 6 caractères et contenir une majuscule, une minuscule et un chiffre." required><br><br>
 
-                        <input id="button" type="submit" value="Valider"><br><br>
+                        <input id="button" type="submit" name="inscription" value="Valider"><br><br>
                         <input id="button" type="reset" value="Annuler"><br>
                     </form>
                 </fieldset><br><br>
