@@ -11,10 +11,9 @@ require_once 'model/activity.class.php';
 require_once 'model/animator.class.php';
 require_once 'model/admin.class.php';
 require_once 'model/collaborator.class.php';
-require_once 'model/session.class.php';
+require_once 'model/sessionTraining.class.php';
 require_once 'model/slot.class.php';
 require_once 'model/theme.class.php';
-require_once 'model/training.class.php';
 
 require_once 'exception/LisaeException.class.php'; //TODO
 
