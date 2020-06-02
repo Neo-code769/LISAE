@@ -15,7 +15,7 @@ class userDao extends Dao{
     public function insert($obj) :void
     {
         $token = bin2hex(random_bytes(12)); // Generation Token Aleatoire
-        $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`, `token`) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+        $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`, `token`) VALUES (null, ?, ?, ?, ?, ?, ?, ?, $token)"; 
         array($id_user,$FirstName, $LastName, $birthDate, $PhoneNumber, $mail, $role, $password, $token);
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_firstname());
