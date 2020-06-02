@@ -8,16 +8,14 @@
         private $_phoneNumber;
         private $_mail;
         private $_password;
-        private $_token;
 
-        public function __construct($lastname, $firstname, $birthdate, $phoneNumber, $mail, $password, $token) {
+        public function __construct($lastname, $firstname, $birthdate, $phoneNumber, $mail, $password) {
             $this->_lastname = $lastname;
             $this->_firstname = $firstname;
             $this->_birthdate = $birthdate;
             $this->_phoneNumber = $phoneNumber;
             $this->_mail = $mail;
             $this->_password = $password;
-            $this->_token = $token;
         }
 
         public function getAllActivity() {
@@ -100,11 +98,6 @@
                 $this->_password = $_password;
 
                 return $this;
-        }
-
-        public function get_token() 
-        {
-                return $this->_token;
         }
 
         abstract public function get_role();
