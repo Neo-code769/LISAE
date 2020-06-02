@@ -9,7 +9,6 @@ class UserForm{
     private $_mail;
     private $_password;
     private $_password2;
-    private $_collab=null;
 
 
     public function __construct($params)
@@ -22,15 +21,6 @@ class UserForm{
         $this->_mail = htmlentities($params["mail"]);
         $this->_password2 = sha1($params["password2"]);
 
-        if ($this->checkPassword() && $this->checkMail() ) {
-            $this->_collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
-        }elseif($this->checkPassword() == false){
-            throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
-        }elseif($this->checkMail() == false){
-            throw new LisaeException("Erreur, le mail est déjà utilisé !");
-        }else {
-            throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
-        }
     }
 
     private function checkPassword()
@@ -66,11 +56,18 @@ class UserForm{
     {
     }
 
-    /**
-     * Get the value of _collab
-     */ 
-    public function getCollab()
+    public function createCollab()
     {
-        return $this->_collab;
+        $user = null;
+        if ($this->checkPassword() && $this->checkMail() ) {
+            $user = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+        }elseif($this->checkPassword() == false){
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
+        }elseif($this->checkMail() == false){
+            throw new LisaeException("Erreur, le mail est déjà utilisé !");
+        }else {
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
+        }   
+        return $user;
     }
 }

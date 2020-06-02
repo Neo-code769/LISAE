@@ -25,7 +25,7 @@ class CollabController extends MainController
           if (isset($_POST['registration'])){
             try {
               $userForm =new UserForm($_POST);
-              $collab =$userForm->getCollab();
+              $collab =$userForm->createCollab();
               (new UserDao())->insert($collab);
               echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
               header('Refresh:2;url=../../index.php');
