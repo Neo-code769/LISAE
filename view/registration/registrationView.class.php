@@ -2,6 +2,10 @@
 
 class RegistrationView extends LisaeTemplate {
 
+    public function setSessionList($sessionList){
+
+        //return 
+    }
 
     public function setBody($content) {
         switch ($content) {
