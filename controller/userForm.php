@@ -49,18 +49,9 @@ class UserForm{
 
     public function createAnimator()
     {
-
-    }
-
-    public function createAdministrator()
-    {
-    }
-
-    public function createCollab()
-    {
-        $user = null;
+        $anim = null;
         if ($this->checkPassword() && $this->checkMail() ) {
-            $user = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+            $anim = new Animator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
         }elseif($this->checkPassword() == false){
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
         }elseif($this->checkMail() == false){
@@ -68,6 +59,36 @@ class UserForm{
         }else {
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
         }   
-        return $user;
+        return $anim;
+    }
+
+    public function createAdministrator()
+    {
+        $admin = null;
+        if ($this->checkPassword() && $this->checkMail() ) {
+            $admin = new Admin($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+        }elseif($this->checkPassword() == false){
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
+        }elseif($this->checkMail() == false){
+            throw new LisaeException("Erreur, le mail est déjà utilisé !");
+        }else {
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
+        }   
+        return $admin;
+    }
+
+    public function createCollab()
+    {
+        $collab = null;
+        if ($this->checkPassword() && $this->checkMail() ) {
+            $collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+        }elseif($this->checkPassword() == false){
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
+        }elseif($this->checkMail() == false){
+            throw new LisaeException("Erreur, le mail est déjà utilisé !");
+        }else {
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
+        }   
+        return $collab;
     }
 }

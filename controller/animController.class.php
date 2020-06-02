@@ -11,7 +11,7 @@ class AnimController extends MainController
     $this->_listUseCases=
     [
       //Anim
-      "registration" => 4, "add" => 5
+      "registration" => 11
     ];
     parent::__construct();
   }
@@ -20,26 +20,25 @@ class AnimController extends MainController
   {
     switch ($this->_case) {
 
-      case 4:  // registrationAnim
-        (new RegistrationView())->run($content="");
-        // include 'view/Registration/registrationAnim.php';
-        break;
-
-      case 5:  // addAnim
-        $t = new Animator(htmlentities($_POST["firstname"]), htmlentities($_POST["lastname"]), htmlentities($_POST["birthdate"]), htmlentities($_POST["phoneNumber"]), htmlentities($_POST["mail"]), sha1($_POST["password"]),);
-
-        if (($_POST["password"]) == ($_POST["password2"])) {
-          (new UserDao())->insert($t);
-          echo '<script type="text/javascript">window.alert("Bravo, votre compte a été crée !");</script>';
-          (new LoginPageView())->run($content="");
-          // include 'view/loginPage.php';
-        } else {
-          echo '<script type="text/javascript">window.alert("Veuillez entrer des mots de passe identique !");</script>';
+      case 11:  // registrationAnim
+        if (isset($_POST['registration'])){
+          try {
+            $userForm =new UserForm($_POST);
+            $anim =$userForm->createAnim();
+            (new UserDao())->insert($anim);
+            echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
+            header('Refresh:2;url=../../index.php');
+            exit();
+          } catch (LisaeException $e) {
+            $errorMess = $e->render();
+            (new RegistrationView())->run("registration", $errorMess);
+            exit();
+          }
+        }else {
+          (new RegistrationView())->run("registration");
         }
-        break;
 
-      default:
-        throw new LisaeException("Erreur");
+      break;
     }
   }
 }
