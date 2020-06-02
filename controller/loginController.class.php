@@ -1,18 +1,17 @@
 <?php
 
-class Controller{
+class LoginController extends mainController {
 
     public function __construct()
     {
         $this->_listUseCases=
     [
-      //Anim
-      "registration" => 10
+      "checkConnection" => 10
     ];
-    parent::__construct();
+      parent::__construct();
     }
 
-    public function run()
+    public function run(): void
     {
         switch ($this->_case) {
                 

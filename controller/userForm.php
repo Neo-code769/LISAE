@@ -54,7 +54,7 @@ class UserForm{
     {
         $confirmMail = false;
         $confirmOK = false
-        // recup $_confirmMail
+        recup $_confirmMail
             if ($tab['exist'] == 1) 
             {
                 $_confirmMail = true;

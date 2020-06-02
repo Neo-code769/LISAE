@@ -23,9 +23,11 @@ require_once 'dao/userDao.class.php';
 //require_once 'controller/controller.class.php';
 require_once 'controller/mainController.class.php';
 require_once 'controller/userForm.php';
+require_once 'controller/loginController.class.php';
 require_once 'controller/collabController.class.php';
 require_once 'controller/animController.class.php';
 require_once 'controller/adminController.class.php';
+
 
 require_once 'view/lisaeTemplate.class.php';
 require_once 'view/loginPageView.class.php';
