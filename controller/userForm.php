@@ -54,6 +54,27 @@ class UserForm{
         return $mailOk;
     }
 
+    // Confirmation E-Mail
+    public function sendMailConfirmation() 
+    {
+        $req = $userDao->query("SELECT * FROM users WHERE mail = ?", array($mail));
+        $req = $req->fetch();
+        $mail_to = $req['mail'];
+
+        // Creation du header de l'e-mail
+            $header = "From: no-reply@gmail.com\n";
+            $header .= "MIME-version: 1.0\n";
+            $header .= "Content-type: text/html; charset=utf-8\n";
+            $header .= "Content-Transfer-ncoding: 8bit";
+
+        // Ajout du message au format HTML
+        // TODO // Verifier nom de domaine
+        $contenu = '<p>Bonjour ' . $req['nom'] . ',</p><br>
+            <p>Veuillez confirmer votre compte <a href="http://www.domaine.com/conf?id=' . $req['id'] . '&token=' . $token . '">Valider</a><p>';
+        mail($mail_to, 'Confirmation de votre compte', $contenu, $header);
+    }
+    // ===================
+
     public function createAnimator()
     {
 
