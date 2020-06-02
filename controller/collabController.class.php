@@ -36,7 +36,9 @@ class CollabController extends MainController
               exit();
             }
           }else {
-            (new RegistrationView())->run("collab");
+            $regView = new RegistrationView();
+            $regView->setSessionList((new sessionDao())->getSessionList());
+            $regView->run("collab");
           }
 
         break;

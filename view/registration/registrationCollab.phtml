@@ -28,8 +28,8 @@
             <input type="password" name="password2" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Le mot de passe doit comporter au minimum 6 caractères et contenir une majuscule, une minuscule et un chiffre." required><br><br>
 
             <label >Session de formation : </label>
-            <select name="" id="">
-                <option value="">hey</option>
+            <select name="training">
+                <?php echo $sessionList;?>
             </select>
 
             <input id="button" type="submit" name="registration" value="Valider"><br><br>
