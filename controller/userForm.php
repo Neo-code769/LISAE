@@ -24,8 +24,12 @@ class UserForm{
 
         if ($this->checkPassword() && $this->checkMail() ) {
             $this->_collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+        }elseif($this->checkPassword() == false){
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
+        }elseif($this->checkMail() == false){
+            throw new LisaeException("Erreur, le mail est déjà utilisé !");
         }else {
-            throw new LisaeException("Erreur saisi collab");
+            throw new LisaeException("Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !");
         }
     }
 

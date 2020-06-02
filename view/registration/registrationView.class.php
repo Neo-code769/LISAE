@@ -7,13 +7,10 @@ class RegistrationView extends LisaeTemplate {
 
         switch($content) {
 
-            case "registration": include "registrationCollab.html";
+            case "registration": include "registrationCollab.phtml";
             break;
 
-            case "registrationEchec": include "registrationCollab.html";
-            break;
-
-            default: include "registrationCollab.html";
+            default: include "registrationCollab.phtml";
         }
     }
 

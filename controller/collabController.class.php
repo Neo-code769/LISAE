@@ -11,7 +11,7 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registration" => 2, "add" => 3
+      "registration" => 2
     ];
     parent::__construct();
   }
@@ -20,27 +20,25 @@ class CollabController extends MainController
   {
     switch ($this->_case) {
       case 2:  // registrationCollab
-        if (array_key_exists("error",$_GET)) {
-          (new RegistrationView())->run("registration","<p style='background-color: red;'>Erreur, les mots de passe ne correspondent pas et/ou le mail est déjà utilisé !</p>");
-        }else {
-          (new RegistrationView())->run("registration");
-        }
-        break;
+    
+          // On se place sur le bon formulaire grâce au "name" de la balise "input"
+          if (isset($_POST['registration'])){
+            try {
+              $userForm =new UserForm($_POST);
+              $collab =$userForm->getCollab();
+              (new UserDao())->insert($collab);
+              echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
+              header('Refresh:2;url=../../index.php');
+              exit();
+            } catch (LisaeException $e) {
+              $errorMess = $e->render();
+              (new RegistrationView())->run("registration", $errorMess);
+              exit();
+            }
+          }else {
+            (new RegistrationView())->run("registration");
+          }
 
-      case 3:  // addCollab
-        $errorMess = "insertion ok";
-        try {
-          $userForm =new UserForm($_POST);
-          $collab =$userForm->getCollab();
-          (new UserDao())->insert($collab);
-        } catch (LisaeException $e) {
-          $errorMess = $e->render();
-          header("Location:../collab/registration?error");
-          exit();
-        }
-        echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
-        header('Refresh:2;url=../../index.php');
-        exit();
         break;
 
         case 8:
