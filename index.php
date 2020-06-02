@@ -2,12 +2,13 @@
 // typer les fcts
 declare(strict_types=1);
 
+use PHPMailer\PHPMailer;
+use PHPMailer\SMTP;
+use PHPMailer\Exception;
+
 // Liste des classes dans l'ordre des dépendances.
 
 //require_once 'conf.php'; TODO
-
-require 'vendor/autoload.php'; // PHPmailer
-require 'vendor/phpmailer/src/PHPMailer.php';
 
 require_once 'model/user.class.php';
 require_once 'model/activity.class.php';
@@ -36,12 +37,15 @@ require_once 'view/loginPageView.class.php';
 require_once 'view/registration/registrationView.class.php';
 require_once 'view/Collaborator/CollabView.class.php';
 
+// PHPmailer
+require 'vendor/autoload.php'; 
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 
 /********** CODE PRINCIPAL **********/
 
 $mail = new PHPMailer;
-$mail->setFrom('from@example.com', 'Your Name');
-$mail->addAddress('myfriend@example.net', 'My Friend');
+$mail->setFrom('pierre.trublereau@gmail.com', 'Your Name');
+$mail->addAddress('pierre.trublereau@gmail.com', 'My Friend');
 $mail->Subject  = 'First PHPMailer Message';
 $mail->Body     = 'Hi! This is my first e-mail sent through PHPMailer.';
 if(!$mail->send()) {
@@ -55,7 +59,7 @@ if(!$mail->send()) {
 
 // Création d'une instance de notre programme et du moteur SVG puis exécution.
 
-/*try {
+try {
 	$controllerName = (new MainController())->getClassName();
 	$controller = new $controllerName();
 	$controller->run();
@@ -65,4 +69,4 @@ catch (LisaeException $e) {
 }
 finally {
 	exit();
-}*/
+}
