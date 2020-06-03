@@ -11,7 +11,7 @@ class RegistrationView extends LisaeTemplate {
     public function setBody($content) {
         switch ($content) {
             case 'collab':
-                $sessionList = $this->_sessionList;
+                //$sessionList = $this->_sessionList;
                 include "registrationCollab.phtml";
                 break;
 
