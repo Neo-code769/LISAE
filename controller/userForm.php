@@ -53,6 +53,7 @@ class UserForm{
     public function sendMailConfirmation() 
     {
         try{
+            $user_activation_hash = sha1(uniqid(mt_rand(), true)); //creating ramdom string
             $mail= new PHPMailer\PHPMailer\PHPMailer();
 
             $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
@@ -67,8 +68,8 @@ class UserForm{
             $mail->addAddress($_POST['mail']);  // Personnaliser l'adresse d'envoi  
             $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
             $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
-            $mail->Body = 'Veuillez confirmer votre adresse en mail en cliquant sur ce lien: <br>
-            <a href="view/registration/confirm-registration.php"> Cliquer ici pour confirmer votre mail ! </a>'; // Creation page: "LISAE/registration/confirm-registration"
+            $link = "http://www.lisae.fr/view/registration/confirm-registration"; //script".'?verification_code='.urlencode($user_activation_hash); // verification code exemple
+            $mail->Body = "Veuillez confirmer votre adresse en mail en cliquant sur ce lien:<br><br>". ' '.$link; // Creation page: "LISAE/registration/confirm-registration"
             $mail->isHTML(true);
             $mail->setLanguage('fr');
 

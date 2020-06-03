@@ -21,7 +21,7 @@ class LoginController extends mainController {
                     if (!empty($mail) and !empty($password)) {
                       $userDao = new UserDao();
                       $tab = $userDao->getSession($mail, $password);
-                      $ckeckMail = $this->getConfirmationMail();
+                      $ckeckMail = $this->getConfirmationMail($mail);
             
                       if ($tab['exist'] == 1 && $checkMail == true) {
                         $_SESSION['id_user'] = $tab['id_user'];
