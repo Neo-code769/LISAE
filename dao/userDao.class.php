@@ -102,7 +102,7 @@ class userDao extends Dao{
     public function getConfirmationMail() 
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("SELECT * FROM users where confirmMail = true");
+        $requete = $pdo->prepare ("SELECT confirmMail FROM users where confirmMail = true AND ");
         try {
             $requete->execute();
             $confirmMail = $requete->fetch(PDO::FETCH_ASSOC);

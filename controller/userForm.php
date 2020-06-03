@@ -57,8 +57,8 @@ class UserForm{
         $confirmOK = false
         
         $userDao = new UserDao();
-        $tab = $userDao->getConfirmationMail();
-            if ($tab['exist'] == 1) 
+        $result = $userDao->getConfirmationMail();
+            if ($result = true) 
             {
                 $_confirmMail = true;
                 return $confirmMail;
