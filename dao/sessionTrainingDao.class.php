@@ -37,9 +37,6 @@ class sessionTrainingDao extends Dao{
                 $slotDate=$donnees['slotDate'];
                 $name=$donnees['name'];
                 $slotHour=$donnees['slotHour'];
-                $id_session=$donnees['id_session'];
-                $id_training=$donnees['id_training'];
-                $id_user=$donnees['id_user'];
                 $session = new SessionTraining();
                 $list[] = $session;
             }
