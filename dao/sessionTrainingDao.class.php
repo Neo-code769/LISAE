@@ -26,18 +26,18 @@ class sessionTrainingDao extends Dao{
     {
         $list = []; 
         $sql = Dao::getConnexion();
-        $requete = $sql->prepare("SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
-                FROM `session` INNER JOIN `tie` ON `tie.id_session` = `session.id_session`
-                                INNER JOIN `training` ON `training.id_training` = `tie.id_training` 
-                WHERE `users.id_user` = `host.id_user` ");
+        $requete = $sql->prepare(
+        "SELECT training.name, session.session_number 
+        FROM session INNER JOIN tie ON tie.id_session = session.id_session 
+        INNER JOIN training ON training.id_training = tie.id_training"
+        );
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                $slotDate=$donnees['slotDate'];
-                $name=$donnees['name'];
-                $slotHour=$donnees['slotHour'];
-                $session = new SessionTraining();
+                $trainingName=$donnees['name'];
+                $sessionNumber=$donnees['session_number'];
+                $session = new SessionTraining($sessionNumber,$trainingName);
                 $list[] = $session;
             }
         }

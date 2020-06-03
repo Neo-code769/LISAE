@@ -5,13 +5,16 @@ class RegistrationView extends LisaeTemplate {
     private $_sessionList = null;
 
     public function setSessionList($sessionList){
-        $this->_sessionList = $sessionList;
+        $result = "";
+        foreach ($sessionList as $session) {
+            $result .= "<option value=''>".$session->get_nameTraining().$session->get_num()."</option>";
+        }
+        $this->_sessionList = $result;
     }
 
     public function setBody($content) {
         switch ($content) {
             case 'collab':
-                //$sessionList = $this->_sessionList;
                 include "registrationCollab.phtml";
                 break;
 
