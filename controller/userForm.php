@@ -50,6 +50,7 @@ class UserForm{
         return $mailOk;
     }
 
+<<<<<<< HEAD
     // Verification de la confirmation du compte mail //
   /*   private function checkConfirmation()
     {
@@ -67,6 +68,8 @@ class UserForm{
             }
     } */
 
+=======
+>>>>>>> c4651a83b29478f361d26404910e1d4999e6b39f
     /////// Verification e-mail PHPMailer /////////
     private function sendMailConfirmation() 
     {
@@ -81,7 +84,7 @@ class UserForm{
         $mail->Port = 465; 
 
         $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
-        $mail->addAddress('pierre.trublereau@gmail.com', 'Pierre Trublereau'); /****** TODO: Personnaliser l'adresse d'envoi **********/
+        $mail->addAddress($_POST["mail"], 'Utilisateur'); /* Personnaliser l'adresse d'envoi */
         $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
         $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
         $mail->Body = 'Veuillez confirmer votre adresse en mail en cliquant sur ce lien: <br>
