@@ -12,7 +12,7 @@
 
     // TO FIX //
     $userDao = new userDao();
-    $mail = $_POST['mail'];
+    $mail = $_GET['mail'];
     $userDao->setConfirmationMail($mail);
 ?>
 
