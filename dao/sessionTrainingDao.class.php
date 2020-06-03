@@ -18,21 +18,16 @@ class sessionTrainingDao extends Dao{
 
     public function insertForSession($obj/*le nom de la formation + numéro formation ex : "DWWM3"*/) :void
     {
-        $initiales = substr($obj,0,3);
+        $separation = explode(" ", $obj);
         $sql = 
         "INSERT INTO `tie`
          
          VALUES (null, 
-            SELECT MAX(`id_user`) FROM users,
-            SELECT id_training FROM training WHERE training.name LIKE '$initiales%',
-            SELECT id_session FROM session WHERE name_session = '$obj');
+            (SELECT MAX(`id_user`) FROM users),
+            (SELECT id_training FROM training WHERE training.name LIKE '$separation[0]%'),
+            (SELECT id_session FROM session WHERE session_name = '$obj'))
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $obj->get_firstname());
-        $exec->bindValue(2, $obj->get_lastname());
-        $exec->bindValue(3, $obj->get_birthdate());
-        $exec->bindValue(4, $obj->get_phoneNumber());
-        //var_dump($sql);
         try{
         $exec->execute();
         } 
@@ -53,17 +48,14 @@ class sessionTrainingDao extends Dao{
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT training.name, session.session_number 
-        FROM session INNER JOIN tie ON tie.id_session = session.id_session 
-        INNER JOIN training ON training.id_training = tie.id_training"
+        "SELECT session.session_name FROM session"
         );
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                $trainingName=$donnees['name'];
-                $sessionNumber=$donnees['session_number'];
-                $session = new SessionTraining($sessionNumber,$trainingName);
+                $sessionName=$donnees['session_name'];
+                $session = new SessionTraining($sessionName);
                 $list[] = $session;
             }
         }
