@@ -5,7 +5,6 @@ class LoginPageView extends LisaeTemplate {
 
     public function setBody($content) {
         echo <<<EOD
-        <body>
             <div id="title" class="container">
                 <h2>Login Page</h2>
             </div>
@@ -19,11 +18,12 @@ class LoginPageView extends LisaeTemplate {
                             <input type="password" id="mdp" name="password"><br><br>
                             <input id="button" type="submit" value="Connexion">
                         
-                        <button id="button" value="Inscription"><a id="button" href="./index.php/collab/registration"> Inscription </a></button>
+                        <button id="button" value="Inscription"><a id="button" href="/index.php/collab/registration"> Inscription </a></button>
                         </fieldset> 
                     </form><br>   
                 </div>
         EOD;
+        
     }
 
 }

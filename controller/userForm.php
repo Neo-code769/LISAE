@@ -101,7 +101,7 @@ class UserForm{
 
         if ($this->checkPassword() && $this->checkMail()) {
             $collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
-            $this->sendMailConfirmation();  // Envoi du mail de confirmation
+            //$this->sendMailConfirmation();  // Envoi du mail de confirmation
         }elseif($this->checkPassword() == false){
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
         }elseif($this->checkMail() == false){

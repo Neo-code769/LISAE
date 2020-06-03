@@ -3,16 +3,16 @@
 class SessionTraining
 {
     private $_nameTraining;
-    private $_num;
+    private $_numSession;
     private $_startDateFormation;
     private $_endDateFormation;
     private $_startDatePae;
     private $_endDatePae;
 
-    public function __construct($num, $nameTraining, $startDateFormation, $endDateFormation, $startDatePae, $endDatePae)
+    public function __construct($numSession, $nameTraining, $startDateFormation=null, $endDateFormation=null, $startDatePae=null, $endDatePae=null)
     {
         $this->_nameTraining = $nameTraining;
-        $this->_num = $num;
+        $this->_numSession = $numSession;
         $this->_startDateFormation = $startDateFormation;
         $this->_endDateFormation = $endDateFormation;
         $this->_startDatePae = $startDatePae;
@@ -21,12 +21,12 @@ class SessionTraining
 
     public function get_num()
     {
-        return $this->_num;
+        return $this->_numSession;
     }
  
-    public function set_num($_num)
+    public function set_num($numSession)
     {
-        $this->_num = $_num;
+        $this->_numSession = $numSession;
 
         return $this;
     }
@@ -87,6 +87,26 @@ class SessionTraining
     public function set_referent($_referent)
     {
         $this->_referent = $_referent;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _nameTraining
+     */ 
+    public function get_nameTraining()
+    {
+        return $this->_nameTraining;
+    }
+
+    /**
+     * Set the value of _nameTraining
+     *
+     * @return  self
+     */ 
+    public function set_nameTraining($_nameTraining)
+    {
+        $this->_nameTraining = $_nameTraining;
 
         return $this;
     }
