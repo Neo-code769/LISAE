@@ -50,26 +50,6 @@ class UserForm{
         return $mailOk;
     }
 
-<<<<<<< HEAD
-    // Verification de la confirmation du compte mail //
-  /*   private function checkConfirmation()
-    {
-        $confirmMail = false;
-        $confirmOK = false
-        
-        $userDao = new UserDao();
-        $tab = $userDao->getConfirmationMail();
-            if ($tab['exist'] == 1) 
-            {
-                $_confirmMail = true;
-                return $confirmMail;
-            }else {
-                echo 'Veuillez confirmer votre adresse e-mail! <a>' . $this->sendMailConfirmation(); . 'Cliquez sur ce lien pour renvoyer un e-mail de confirmation </a>';
-            }
-    } */
-
-=======
->>>>>>> c4651a83b29478f361d26404910e1d4999e6b39f
     /////// Verification e-mail PHPMailer /////////
     private function sendMailConfirmation() 
     {
