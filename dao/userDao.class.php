@@ -102,13 +102,11 @@ class userDao extends Dao{
     public function getConfirmationMail() 
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("SELECT confirmMail FROM users where confirmMail = true AND ");
+        $requete = $pdo->prepare ("SELECT confirmMail FROM users WHERE mail = ($_POST["mail"])");
         try {
             $requete->execute();
             $confirmMail = $requete->fetch(PDO::FETCH_ASSOC);
         }catch (PDOException $e) {
-            //throw new Exception("Requête vers la base de données éronnée");
-            //die();
             throw new LisaeException("Erreur",1);
         }
         return $confirmMail;
