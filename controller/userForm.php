@@ -51,7 +51,7 @@ class UserForm{
     }
 
     // Verification de la confirmation du compte mail //
-    private function checkConfirmation()
+  /*   private function checkConfirmation()
     {
         $confirmMail = false;
         $confirmOK = false
@@ -65,7 +65,7 @@ class UserForm{
             }else {
                 echo 'Veuillez confirmer votre adresse e-mail! <a>' . $this->sendMailConfirmation(); . 'Cliquez sur ce lien pour renvoyer un e-mail de confirmation </a>';
             }
-    }
+    } */
 
     /////// Verification e-mail PHPMailer /////////
     private function sendMailConfirmation() 
