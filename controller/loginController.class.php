@@ -21,7 +21,7 @@ class LoginController extends mainController {
                     if (!empty($mail) and !empty($password)) {
                       $userDao = new UserDao();
                       $tab = $userDao->getSession($mail, $password);
-                      $ckeckMail = $userDao->getConfirmationMail();
+                      $ckeckMail = $this->getConfirmationMail();
             
                       if ($tab['exist'] == 1 && $checkMail == true) {
                         $_SESSION['id_user'] = $tab['id_user'];
@@ -54,13 +54,14 @@ class LoginController extends mainController {
            $confirmMail = false;
            
            $userDao = new UserDao();
-           $result = $userDao->getConfirmationMail();
+           $result = $userDao->getConfirmationMail($_POST["mail"]);
                if ($result = true) 
                {
                    $_confirmMail = true;
                    return $confirmMail;
                }else {
-                   echo 'Veuillez confirmer votre adresse e-mail! <a>' . $this->sendMailConfirmation(); . 'Cliquez sur ce lien pour renvoyer un e-mail de confirmation </a>';
+                   echo 'Veuillez confirmer votre adresse e-mail!' . 
+                   $this->sendMailConfirmation();
                }
        }
 }
