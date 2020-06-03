@@ -102,7 +102,7 @@ class userDao extends Dao{
     public function getConfirmationMail($mail) 
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("SELECT confirmMail FROM users WHERE mail = $mail");
+        $requete = $pdo->prepare ("SELECT confirmMail FROM users WHERE mail = '$mail'");
         try {
             $requete->execute();
             $confirmMail = $requete->fetch(PDO::FETCH_ASSOC);
@@ -115,9 +115,10 @@ class userDao extends Dao{
     public function setConfirmationMail($mail)
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("UPDATE users SET confirmMail = 1 WHERE mail = $mail");
+        $requete = $pdo->prepare ("UPDATE users SET confirmMail = 1 WHERE mail = '$mail'");
         try {
             $requete->execute();
+            echo 'Adresse mail du compte valide!';
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
