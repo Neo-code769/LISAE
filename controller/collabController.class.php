@@ -27,6 +27,7 @@ class CollabController extends MainController
               $userForm =new UserForm($_POST);
               $collab =$userForm->createCollab();
               (new UserDao())->insert($collab);
+              $userForm->sendMailConfirmation(); // Envoi du mail de confirmation
               echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
               header('Refresh:2;url=../../index.php');
               exit();
@@ -36,9 +37,10 @@ class CollabController extends MainController
               exit();
             }
           }else {
-            $regView = new RegistrationView();
+            /* $regView = new RegistrationView();
             $regView->setSessionList((new SessionTrainingDao())->getSessionTrainingList());
-            $regView->run("collab");
+            $regView->run("collab"); */
+            (new RegistrationView())->run("collab");
           }
 
         break;

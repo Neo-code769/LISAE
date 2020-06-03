@@ -9,6 +9,7 @@ class UserForm{
     private $_mail;
     private $_password;
     private $_password2;
+    private $_validateAccount;
 
 
     public function __construct($params)
@@ -20,7 +21,6 @@ class UserForm{
         $this->_phoneNumber = htmlentities($params["phoneNumber"]);
         $this->_mail = htmlentities($params["mail"]);
         $this->_password2 = sha1($params["password2"]);
-
     }
 
     // Verification de la concordance des mots de passe //
@@ -49,48 +49,39 @@ class UserForm{
         return $mailOk;
     }
 
-    // Verification de la confirmation du compte mail //
-    /*private function checkConfirmation()
-    {
-        $confirmMail = false;
-        $confirmOK = false
-        recup $_confirmMail
-            if ($tab['exist'] == 1) 
-            {
-                $_confirmMail = true;
-                return $confirmMail;
-            }else {
-                echo 'Veuillez confirmer votre adresse e-mail! <a>' . $this->sendMailConfirmation(); . 'Cliquez sur ce lien pour renvoyer un e-mail de confirmation </a>';
-            }
-    }*/
-
     /////// Verification e-mail PHPMailer /////////
-    private function sendMailConfirmation() 
+    public function sendMailConfirmation() 
     {
-        $mail= new PHPMailer();
- 
-        $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
-        $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
-        $mail->SMTPAuth = true; // Activer authentication SMTP
-        $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
-        $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
-        $mail->SMTPSecure = 'ssl'; // Accepter SSL
-        $mail->Port = 465; 
+        try{
+            $mail= new PHPMailer\PHPMailer\PHPMailer();
 
-        $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
-        $mail->addAddress('pierre.trublereau@gmail.com', 'Pierre Trublereau'); /****** TODO: Personnaliser l'adresse d'envoi **********/
-        $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
-        $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
-        $mail->Body = 'Veuillez confirmer votre adresse en mail en cliquant sur ce lien: <br>
-        <a href="http://www.lisae.fr/confirm-registration"> Cliquer ici pour confirmer votre mail ! </a>'; // Creation page: "LISAE/registration/confirm-registration"
-        $mail->isHTML(true);
-        $mail->setLanguage('fr');
+            $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+            $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+            $mail->SMTPAuth = true; // Activer authentication SMTP
+            $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
+            $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
+            $mail->SMTPSecure = 'ssl'; // Accepter SSL
+            $mail->Port = 465; 
 
-        if ($mail->send()) {
-            echo 'Confirmation Message has been sent.';
-        }else {
-            echo 'Message was not sent.<br>';
-            echo 'Mailer error: ' . $mail->ErrorInfo; 
+            $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
+            $mail->addAddress($_POST['mail']);  // Personnaliser l'adresse d'envoi  
+            $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
+            $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
+            $mail->Body = 'Veuillez confirmer votre adresse en mail en cliquant sur ce lien: <br>
+            <a href="view/registration/confirm-registration.php"> Cliquer ici pour confirmer votre mail ! </a>'; // Creation page: "LISAE/registration/confirm-registration"
+            $mail->isHTML(true);
+            $mail->setLanguage('fr');
+
+            if ($mail->send()) {
+                echo 'Confirmation Message has been sent.';
+            }else {
+                echo 'Message was not sent.<br>';
+                echo 'Mailer error: ' . $mail->ErrorInfo; 
+            }
+
+        } catch (Exception $e) {
+            var_dump($e->getLine());
+            throw new LisaeException("ERROR" . $e->getLine());
         }
     }
 
@@ -101,7 +92,6 @@ class UserForm{
 
         if ($this->checkPassword() && $this->checkMail()) {
             $collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
-            //$this->sendMailConfirmation();  // Envoi du mail de confirmation
         }elseif($this->checkPassword() == false){
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
         }elseif($this->checkMail() == false){

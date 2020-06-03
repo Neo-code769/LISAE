@@ -21,9 +21,9 @@ class LoginController extends mainController {
                     if (!empty($mail) and !empty($password)) {
                       $userDao = new UserDao();
                       $tab = $userDao->getSession($mail, $password);
-                      //var_dump($tab);
+                      $ckeckMail = $this->getConfirmationMail();
             
-                      if ($tab['exist'] == 1) {
+                      if ($tab['exist'] == 1 && $checkMail == true) {
                         $_SESSION['id_user'] = $tab['id_user'];
                         $_SESSION['mail'] = $tab['mail'];
                         $_SESSION['password'] = $tab['password'];
@@ -44,7 +44,25 @@ class LoginController extends mainController {
           
                 default:
                   throw new LisaeException("Erreur");
-            }
-        
         }
-    }
+        
+   }
+
+      // Verification de la confirmation du compte mail //
+      private function checkConfirmation()
+       {
+           $confirmMail = false;
+           
+           $userDao = new UserDao();
+           $result = $userDao->getConfirmationMail($_POST['mail']);
+               if ($result = true) 
+               {
+                   $_confirmMail = true;
+                   return $confirmMail;
+               }else {
+                   echo 'Veuillez confirmer votre adresse e-mail!' . 
+                   $userForm = new UserForm($_POST);
+                   $userForm->sendMailConfirmation();
+               }
+       }
+}

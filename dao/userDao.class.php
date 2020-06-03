@@ -98,6 +98,20 @@ class userDao extends Dao{
         //var_dump($result);
         return $result;
     }
+
+    public function getConfirmationMail($mail) 
+    {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare ("SELECT confirmMail FROM users WHERE mail = $mail");
+        try {
+            $requete->execute();
+            $confirmMail = $requete->fetch(PDO::FETCH_ASSOC);
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+        return $confirmMail;
+    }
+
     // delete via son id
     public function delete(int $id ){
 
