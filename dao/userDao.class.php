@@ -112,6 +112,17 @@ class userDao extends Dao{
         return $confirmMail;
     }
 
+    public function setConfirmationMail($mail)
+    {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare ("UPDATE users SET confirmMail = 1 WHERE mail = $mail");
+        try {
+            $requete->execute();
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
     // delete via son id
     public function delete(int $id ){
 
