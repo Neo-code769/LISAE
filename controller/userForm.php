@@ -81,7 +81,7 @@ class UserForm{
         $mail->Port = 465; 
 
         $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
-        $mail->addAddress('pierre.trublereau@gmail.com', 'Pierre Trublereau'); /****** TODO: Personnaliser l'adresse d'envoi **********/
+        $mail->addAddress($_POST["mail"], 'Utilisateur'); /* Personnaliser l'adresse d'envoi */
         $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
         $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
         $mail->Body = 'Veuillez confirmer votre adresse en mail en cliquant sur ce lien: <br>
