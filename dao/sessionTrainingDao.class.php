@@ -16,10 +16,16 @@ class sessionTrainingDao extends Dao{
     {
     }
 
-    public function insertForSession($obj) :void
+    public function insertForSession($obj/*le nom de la formation + numéro formation ex : "DWWM3"*/) :void
     {
+        $initiales = substr($obj,0,3);
         $sql = 
-        "INSERT INTO `tie` (`id_tie`),`id_user`,`id_training`,`id_session`) VALUES (null, ?,?,?);
+        "INSERT INTO `tie`
+         
+         VALUES (null, 
+            SELECT MAX(`id_user`) FROM users,
+            SELECT id_training FROM training WHERE training.name LIKE '$initiales%',
+            SELECT id_session FROM session WHERE name_session = '$obj');
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_firstname());
