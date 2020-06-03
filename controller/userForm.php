@@ -9,6 +9,7 @@ class UserForm{
     private $_mail;
     private $_password;
     private $_password2;
+    private $_validateAccount;
 
 
     public function __construct($params)
@@ -50,11 +51,13 @@ class UserForm{
     }
 
     // Verification de la confirmation du compte mail //
-    /*private function checkConfirmation()
+    private function checkConfirmation()
     {
         $confirmMail = false;
         $confirmOK = false
-        // recup $_confirmMail
+        
+        $userDao = new UserDao();
+        $tab = $userDao->getConfirmationMail();
             if ($tab['exist'] == 1) 
             {
                 $_confirmMail = true;
@@ -62,7 +65,7 @@ class UserForm{
             }else {
                 echo 'Veuillez confirmer votre adresse e-mail! <a>' . $this->sendMailConfirmation(); . 'Cliquez sur ce lien pour renvoyer un e-mail de confirmation </a>';
             }
-    }*/
+    }
 
     /////// Verification e-mail PHPMailer /////////
     private function sendMailConfirmation() 
