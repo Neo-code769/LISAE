@@ -14,7 +14,27 @@ class sessionTrainingDao extends Dao{
     
     public function insert($obj) :void
     {
+    }
 
+    public function insertForSession($obj) :void
+    {
+        $sql = 
+        "INSERT INTO `tie` (`id_tie`),`id_user`,`id_training`,`id_session`) VALUES (null, ?,?,?);
+        ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_firstname());
+        $exec->bindValue(2, $obj->get_lastname());
+        $exec->bindValue(3, $obj->get_birthdate());
+        $exec->bindValue(4, $obj->get_phoneNumber());
+        //var_dump($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
     }
 
     public function select() : void 
