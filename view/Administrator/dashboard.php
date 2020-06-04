@@ -26,9 +26,9 @@
                     </tr>
                 </thead>
             <tbody>
-                <?php /*foreach($host as $host): ?>
+                <?php /*foreach($slot as $slot): ?>
                     <tr>
-                        <td><a href="index.php?infoActivity<?= $host->getHostDate()?> <?$host->getActivityName() ?> <?= $host->getHostHour() ?>"> </a></td>
+                        <td><a href="index.php?infoActivity<?= $host->getSlotDate()?> <?$host->getActivityName() ?> <?= $host->getSlotHour() ?>"> </a></td>
                     </tr>
                 <?php endforeach */?>
             </tbody>
