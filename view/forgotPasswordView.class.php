@@ -17,7 +17,6 @@ class ForgotPasswordView extends LisaeTemplate {
                     <button id="button" value="Connexion"><a id="button" href="../../index.php"> Connexion </a></button><br><br>
                 </form>  
         </div>
-
         EOD;
     }
 

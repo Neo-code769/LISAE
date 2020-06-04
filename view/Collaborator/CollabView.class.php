@@ -2,6 +2,15 @@
 
 class CollabView extends LisaeTemplate {
 
+    public function setSlot($slotList){
+        /* $result = "";
+        foreach ($slotList as $slot) {
+            $result .= "<li>".$slot->get_nameSession()."</li>";
+        } */
+        $result = var_dump($slotList);
+        $this->_sessionSlot = $result;
+    }
+
     public function setBody($content) {
 
         switch ($content) {

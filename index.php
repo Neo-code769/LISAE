@@ -17,7 +17,7 @@ require_once 'model/theme.class.php';
 
 require_once 'exception/LisaeException.class.php'; //TODO
 
-require_once 'dao/Dao.class.php';
+require_once 'dao/dao.class.php';
 require_once 'dao/userDao.class.php';
 require_once 'dao/sessionTrainingDao.class.php';
 require_once 'dao/themeDao.class.php';

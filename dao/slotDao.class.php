@@ -1,6 +1,6 @@
 <?php
 
-class slotDao extends Dao {
+class SlotDao extends Dao {
 
     public function getListSlot(){
         
@@ -10,22 +10,26 @@ class slotDao extends Dao {
         return $tab=[];
     }	
     
-    public function getListSlotForActivity($NameActivity)
+    public function getListSlotForActivity($idActivity)
     {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT * FROM host 
-        INNER JOIN activity ON activity.id_activity = host.id_activity
-        WHERE activity.name = $NameActivity"
+        WHERE id_activity = $idActivity"
         );
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                $sessionName=$donnees['session_name'];
-                $session = new SessionTraining($sessionName);
-                $list[] = $session;
+                $registrationDeadLine=$donnees['registrationDeadline'];
+                $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
+                $place=$donnees['place'];
+                $information=$donnees['information'];
+                $slotDateTimeStart=$donnees['slotDateTimeStart'];
+                $slotDateTimeEnd=$donnees['slotDateTimeEnd'];
+                $slot = new Slot($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
+                $list[] = $slot;
             }
         }
         catch (PDOException $e) {
