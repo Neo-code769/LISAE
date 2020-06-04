@@ -9,10 +9,10 @@ class ForgotPasswordView extends LisaeTemplate {
         </div>
             <div id="connexion" class="container">
                 <form method="post">
-                    <fieldset>
+                    <fieldset><br>
                         <label for="email">E-mail:</label><br>
                         <input type="email" id="email" name="mail"><br><br>
-                        <input id="button" type="submit" name="forgotPassword" value="Renvoyer"><br>
+                        <input id="button" type="submit" name="forgotPassword" value="Renvoyer"><br><br>
                 </fieldset><br>
                     <button id="button" value="Connexion"><a id="button" href="../../index.php"> Connexion </a></button><br><br>
                 </form>  
