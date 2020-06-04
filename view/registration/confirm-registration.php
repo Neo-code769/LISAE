@@ -10,7 +10,6 @@
     require_once 'C:\wamp64\www\LISAE\dao\Dao.class.php';
     require_once 'C:\wamp64\www\LISAE\dao\userDao.class.php';
 
-    // TO FIX //
     $userDao = new userDao();
     $mail = $_GET['mail'];
     $userDao->setConfirmationMail($mail);
