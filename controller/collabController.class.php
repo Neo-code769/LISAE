@@ -27,14 +27,16 @@ class CollabController extends MainController
               $userForm =new UserForm($_POST);
               $collab =$userForm->createCollab();
               (new UserDao())->insert($collab);
-              //(new SessionTrainingDao())->insertForSession($_POST['training']);
+              (new SessionTrainingDao())->insertForSession($_POST['training']);
               $userForm->sendMailConfirmation(); // Envoi du mail de confirmation
               echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
               header('Refresh:2;url=../../index.php');
               exit();
             } catch (LisaeException $e) {
               $errorMess = $e->render();
-              (new RegistrationView())->run("collab", $errorMess);
+              $regView = new RegistrationView();
+              $regView->setSessionList((new SessionTrainingDao())->getSessionTrainingList());
+              $regView->run("collab"); 
               exit();
             }
           }else {

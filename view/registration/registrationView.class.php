@@ -7,7 +7,7 @@ class RegistrationView extends LisaeTemplate {
     public function setSessionList($sessionList){
         $result = "";
         foreach ($sessionList as $session) {
-            $result .= "<option value=''>".$session->get_nameTraining().$session->get_num()."</option>";
+            $result .= "<option value='".$session->get_nameSession()."'>".$session->get_nameSession()."</option>";
         }
         $this->_sessionList = $result;
     }
