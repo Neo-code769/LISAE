@@ -72,4 +72,21 @@ class MainController
         throw new LisaeException("ERR_CONTROLLER_USE_CASE");
     }
   }
-}
+
+        private function checkConfirmation()
+              {
+                  $confirmMail = false;
+                  
+                  $userDao = new UserDao();
+                  $result = $userDao->getConfirmationMail($_POST['mail']);
+                      if ($result = true) 
+                      {
+                          $_confirmMail = true;
+                          return $confirmMail;
+                      }else {
+                          echo 'Veuillez confirmer votre adresse e-mail!' . 
+                          $userForm = new UserForm($_POST);
+                          $userForm->sendMailConfirmation();
+                      }
+              }
+            }
