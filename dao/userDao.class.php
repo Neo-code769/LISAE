@@ -124,16 +124,17 @@ class userDao extends Dao{
         }
     }
 
-    public function getPassword($mail)
+    public function changePassword($mail)
     {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare ("SELECT `password` FROM users where mail= '".$mail ."'");
+        $requete = $pdo->prepare ("UPDATE `password` FROM users where mail= '".$mail ."'");
         try {
             $requete->execute();
-            return $requete;
+            $password = $requete->fetch(PDO::FETCH_ASSOC);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
+        return $password['password'];
     }
 
     // delete via son id

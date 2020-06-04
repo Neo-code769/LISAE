@@ -23,7 +23,7 @@ class LoginPageView extends LisaeTemplate {
                     </form>
                         <div>
                             <p>
-                                <a href="http://www.lisae.fr:8081/view/forgotPassword.php"> Mot de passe oublié </a>
+                                <a href="/index.php/password/reset"> Mot de passe oublié </a>
                             </p>
                         </div>
             </div>

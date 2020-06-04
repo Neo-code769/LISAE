@@ -11,7 +11,7 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registration" => 2
+      "registration" => 4
     ];
     parent::__construct();
   }
@@ -19,7 +19,7 @@ class CollabController extends MainController
   public function run(): void
   {
     switch ($this->_case) {
-      case 2:  // registrationCollab
+      case 4:  // registrationCollab
     
           // On se place sur le bon formulaire grâce au "name" de la balise "input"
           if (isset($_POST['registration'])){
