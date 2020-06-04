@@ -40,4 +40,8 @@ abstract class Dao {
     abstract public function delete(int $id ); 
     // update d'un objet
     abstract public function update($obj ); 
+
+    abstract public function getListTheme();
+    abstract public function getThemeActivity();
+
     }

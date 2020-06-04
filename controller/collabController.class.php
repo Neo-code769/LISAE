@@ -61,8 +61,8 @@ class CollabController extends MainController
       }
 
       //Lié les activité avec les créneaux
-      foreach ($listActivity as $activity) {
-        $activity->setSlot(new SlotDAO())->getListSlotFor($activity->getName());
+      foreach ($listTheme->getListActivity() as $activity) {
+        $activity->setSlot(new SlotDAO())->getListSlotForActivity($activity->getName());
       }
 
       (new CollabView())->run("dashboard");
