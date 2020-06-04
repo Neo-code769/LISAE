@@ -30,6 +30,32 @@ class themeDao extends Dao {
             }
     }
 
+    public function getListSlot(){
+        
+    }
+
+    public function getList(): array{
+        return $tab=[];
+    }	
+    
+    public function get(int $id) : array{
+        return $tab=[];
+    }	
+    
+    public function insert($obj) : void{
+
+    }
+
+    // delete via son id
+    public function delete(int $id ){
+
+    }
+
+    // update d'un objet
+    public function update($obj ){
+
+    }
+
 }
 
 ?>
