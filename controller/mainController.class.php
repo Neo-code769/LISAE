@@ -47,7 +47,8 @@ class MainController
                             $_SESSION['role'] = $tab['role'];
                             echo "Connexion réussie !";
                         } else {
-                          throw new LisaeException("Le mail n'a pas été validé ! ");
+                          $this->sendMailConfirmation($mail);
+                          throw new LisaeException("Le mail n'a pas été validé ! Un mail vient de vous être renvoyé !");
                         }
                     } else {
                       throw new LisaeException("Mauvais mot de passe ou mail !");
@@ -77,21 +78,27 @@ class MainController
     }
   }
 
-        private function checkConfirmation()
-              {
-                  $confirmMail = false;
-                  
-                  $userDao = new UserDao();
-                  $result = $userDao->getConfirmationMail($_POST['mail']);
-                      if ($result = true) 
-                      {
-                          $_confirmMail = true;
-                          return $confirmMail;
-                      }else {
-                          echo 'Veuillez confirmer votre adresse e-mail!' . 
-                          $userForm = new UserForm($_POST);
-                          $userForm->sendMailConfirmation();
-                      }
-              }
-            }
+  public function sendMailConfirmation($email) 
+  {
+          $mail= new PHPMailer\PHPMailer\PHPMailer();
+
+          $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+          $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+          $mail->SMTPAuth = true; // Activer authentication SMTP
+          $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
+          $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
+          $mail->SMTPSecure = 'ssl'; // Accepter SSL
+          $mail->Port = 465; 
+
+          $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
+          $mail->addAddress($email);  // Personnaliser l'adresse d'envoi  
+          $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
+          $mail->Subject = 'Confirmation de votre Mail - AFPA-LISAE';
+          $link = "http://www.lisae.fr:8081/view/registration/confirm-registration.php?mail=" . $email; //script".'?verification_code='.urlencode($user_activation_hash); // verification code exemple
+          $mail->Body = "Veuillez confirmer votre adresse en mail en cliquant sur ce lien:<br><br>". ' '.$link; // Creation page: "LISAE/registration/confirm-registration"
+          $mail->isHTML(true);
+          $mail->setLanguage('fr');
+  }
+    
+}
 
