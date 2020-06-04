@@ -2,7 +2,7 @@
 
 class slotDao extends Dao {
 
-    public function getSlot(){
+    public function getListSlot(){
         
     }
 
