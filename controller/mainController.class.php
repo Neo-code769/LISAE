@@ -68,6 +68,10 @@ class MainController
         //header('Location:../index.php');
         }
         break;
+      case 2:
+        (new forgotPasswordView())->run($content="");
+        break;
+
       default:
         throw new LisaeException("ERR_CONTROLLER_USE_CASE");
     }
@@ -90,3 +94,4 @@ class MainController
                       }
               }
             }
+
