@@ -2,7 +2,7 @@
 
 class activityDao extends Dao {
 
-    public function getActivity(){
+    public function getListActivity(){
         
     }
 
