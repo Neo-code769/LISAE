@@ -57,7 +57,7 @@ class CollabController extends MainController
       
       //Lié les themes avec les activités
       foreach ($listTheme as $theme) {
-        $theme->setActivity((new ActivityDAO())->getListActivityForTheme($theme->getId()));
+        $theme->setActivity((new ActivityDAO())->getListUniqueActivityForTheme($theme->getName()));
       }
 
       //Lié les activité avec les créneaux
