@@ -11,7 +11,8 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registration" => 4
+      "registration" => 4,
+      "dashboard" => 5
     ];
     parent::__construct();
   }
@@ -47,6 +48,8 @@ class CollabController extends MainController
 
         break;
 
+      case 5: //connexion dashboard
+      (new CollabView())->run("dashboard");
         
     }
   }
