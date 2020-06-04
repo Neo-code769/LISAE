@@ -21,8 +21,12 @@ class LoginPageView extends LisaeTemplate {
                         <button id="button" value="Inscription"><a id="button" href="/index.php/collab/registration"> Inscription </a></button><br><br>
                         </fieldset><br>  
                     </form>
-                        <a href="C:\wamp64\www\LISAE\view\forgotPassword.php"> Mot de passe oublié </a>
-                </div>
+                        <div>
+                            <p>
+                                <a href="http://www.lisae.fr:8081/view/forgotPassword.php"> Mot de passe oublié </a>
+                            </p>
+                        </div>
+            </div>
         EOD;
         
     }

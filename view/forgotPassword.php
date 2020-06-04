@@ -1,7 +1,9 @@
 <?php
 
+    echo 'Page ok';
+
     try {
-        $controller = new MainController())->run(2);
+        $controller = (new PasswordController())->run();
         $controller->run();
     }
     catch (LisaeException $e) {
