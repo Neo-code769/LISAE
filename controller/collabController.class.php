@@ -36,7 +36,7 @@ class CollabController extends MainController
               $errorMess = $e->render();
               $regView = new RegistrationView();
               $regView->setSessionList((new SessionTrainingDao())->getSessionTrainingList());
-              $regView->run("collab"); 
+              $regView->run("collab", $errorMess); 
               exit();
             }
           }else {

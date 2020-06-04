@@ -24,7 +24,7 @@ require_once 'dao/sessionTrainingDao.class.php';
 //require_once 'controller/controller.class.php';
 require_once 'controller/mainController.class.php';
 require_once 'controller/userForm.php';
-require_once 'controller/loginController.class.php';
+/* require_once 'controller/loginController.class.php'; */
 require_once 'controller/collabController.class.php';
 require_once 'controller/animController.class.php';
 require_once 'controller/adminController.class.php';

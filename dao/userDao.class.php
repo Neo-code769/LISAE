@@ -109,7 +109,7 @@ class userDao extends Dao{
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
-        return $confirmMail;
+        return $confirmMail['confirmMail'];
     }
 
     public function setConfirmationMail($mail)
