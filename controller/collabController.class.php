@@ -54,10 +54,8 @@ class CollabController extends MainController
 
       //Appel de la fonction dao et instanciation des modéles des thèmes
       $listTheme=(new ThemeDAO())->getListTheme();
-      $listActivity=(new ActivityDAO())->getListActivityForTheme();
-      $listSlot=(new SlotDAO())->getListSlotFor();
       
-      //Lié les themes avec les ectivités
+      //Lié les themes avec les activités
       foreach ($listTheme as $theme) {
         $theme->setActivity((new ActivityDAO())->getListActivityForTheme($theme->getName()));
       }
