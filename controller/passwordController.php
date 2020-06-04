@@ -53,10 +53,11 @@ class PasswordController extends MainController
         if (isset($_POST['changePassword'])) {
           try {
             if($_POST['password'] == $_POST['password2']) {
+              $password = sha1($_POST["password"]);
               $userDao = new UserDao();
-              $userDao->changePassword($_GET['mail']);
+              $userDao->changePassword($password, $_GET['mail']);
               echo 'Mot de passe modifié!';
-              header('Refresh:2;url=../../index.php');
+              //header('Refresh:2;url=../../index.php');
             }else {
               throw new LisaeException('Les mots de passe ne correspondent pas!');
             }
