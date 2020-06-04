@@ -2,7 +2,6 @@
 
     require_once 'C:\wamp64\www\LISAE\controller\mainController.class.php';
     require_once 'C:\wamp64\www\LISAE\controller\userForm.php';
-    require_once 'C:\wamp64\www\LISAE\controller\loginController.class.php';
     require_once 'C:\wamp64\www\LISAE\controller\collabController.class.php';
     require_once 'C:\wamp64\www\LISAE\controller\animController.class.php';
     require_once 'C:\wamp64\www\LISAE\controller\adminController.class.php';

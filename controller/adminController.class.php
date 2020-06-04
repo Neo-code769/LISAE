@@ -26,6 +26,7 @@ class AdminController extends MainController
             $userForm =new UserForm($_POST);
             $admin =$userForm->createAdministrator();
             (new UserDao())->insert($admin);
+            $userForm->sendMailConfirmation(); // Envoi du mail de confirmation
             echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
             header('Refresh:2;url=../../index.php');
             exit();

@@ -45,7 +45,20 @@ class MainController
                             $_SESSION['mail'] = $tab['mail'];
                             $_SESSION['password'] = $tab['password'];
                             $_SESSION['role'] = $tab['role'];
-                            echo "Connexion réussie !";
+                           if ($_SESSION['role'] == 'Collaborator')
+                            {
+                              header('Location:../../index.php/collab/dashboard');
+                              exit();
+                            } elseif ($_SESSION['role'] == 'Animator')
+                            {
+                              header('Location:../../index.php/anim/dashboard');
+                              exit();
+                            }
+                            elseif ($_SESSION['role'] == 'Admin');
+                            {
+                              header('Location:../../index.php/admin/dashboard');
+                              exit();
+                            } 
                         } else {
                           $this->sendMailConfirmation($mail);
                           throw new LisaeException("Le mail n'a pas été validé ! Un mail vient de vous être renvoyé !");
@@ -80,8 +93,9 @@ class MainController
 
   public function sendMailConfirmation($email) 
   {
+    try{
           $mail= new PHPMailer\PHPMailer\PHPMailer();
-
+          
           $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
           $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
           $mail->SMTPAuth = true; // Activer authentication SMTP
@@ -98,6 +112,18 @@ class MainController
           $mail->Body = "Veuillez confirmer votre adresse en mail en cliquant sur ce lien:<br><br>". ' '.$link; // Creation page: "LISAE/registration/confirm-registration"
           $mail->isHTML(true);
           $mail->setLanguage('fr');
+
+          if ($mail->send()) {
+            echo 'Confirmation Message has been sent.';
+        }else {
+            echo 'Message was not sent.<br>';
+            echo 'Mailer error: ' . $mail->ErrorInfo; 
+        }
+
+    } catch (Exception $e) {
+        var_dump($e->getLine());
+        throw new LisaeException("ERROR" . $e->getLine());
+    }
   }
     
 }
