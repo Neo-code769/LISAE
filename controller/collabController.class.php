@@ -49,8 +49,26 @@ class CollabController extends MainController
         break;
 
       case 5: //connexion dashboard
+
+      //Liste Eloce
+
+      //Appel de la fonction dao et instanciation des modéles des thèmes
+      $listTheme=(new ThemeDAO())->getListTheme();
+      $listActivity=(new ActivityDAO())->getListActivityForTheme();
+      $listSlot=(new SlotDAO())->getListSlotFor();
+      
+      //Lié les themes avec les ectivités
+      foreach ($listTheme as $theme) {
+        $theme->setActivity((new ActivityDAO())->getListActivityForTheme($theme->getName()));
+      }
+
+      //Lié les activité avec les créneaux
+      foreach ($listActivity as $activity) {
+        $activity->setSlot(new SlotDAO())->getListSlotFor($activity->getName());
+      }
+
       (new CollabView())->run("dashboard");
-        
+      
     }
   }
 }
