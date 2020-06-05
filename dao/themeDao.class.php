@@ -2,7 +2,7 @@
 
 class themeDao extends Dao {
 
-    public function getListTheme()
+    /*public function getListTheme()
     {
         $sql = "SELECT `name` FROM theme ";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -57,5 +57,5 @@ class themeDao extends Dao {
     }
 
 }
-
+}
 ?>
