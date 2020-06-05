@@ -41,4 +41,7 @@ abstract class Dao {
     // update d'un objet
     abstract public function update($obj ); 
 
+    /*abstract public function getListTheme();
+    abstract public function getThemeActivity();*/
+
     }
