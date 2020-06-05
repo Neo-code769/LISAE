@@ -10,7 +10,7 @@ class LoginPageView extends LisaeTemplate {
             </div>
                 <div id="connexion" class="container">
                     <form method="post">
-                        <fieldset>
+                        <fieldset id="login">
                         
                             <label for="email">E-mail:</label><br>
                             <input type="email" id="email" name="mail" required><br><br>

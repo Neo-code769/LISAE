@@ -49,9 +49,12 @@ tr {
     justify-content: center;
 }
 
-#link {
+/*#link {
     margin-right: 20px;
-}
+    border: 2px black solid;
+    border-radius: 5px;
+    background-color:rgba(80, 92, 255, 0.377);
+}*/
 
 #button {
     text-decoration: none;
@@ -60,13 +63,11 @@ tr {
     margin-left: auto;
     margin-right: auto;
     width: 100px;
-    position: relative;
     border-width: 1px;
     font-size: small;
 }
 
 #title {
-    border: 3px, solid black;
     align-items: center;
 }
 
@@ -89,18 +90,19 @@ tr {
 #dashboard {
     display: flex;
     justify-content: center;
-    border: 5px blueviolet ridge;
+    border: 3px rgba(80, 92, 255, 0.377) ridge;
     border-radius: 30px;
     margin-left: 180px;
     margin-right: 180px;
     margin-bottom: 50px;
     margin-top: 30px;
+    background-color: rgba(80, 92, 255, 0.377);
 }
 
-fieldset 
+#login 
 {
+  border: 3px rgba(80, 92, 255, 0.377) solid;
   border-radius: 10px;
-  border-color: burlywood;
   background-color: rgba(80, 92, 255, 0.377);
 }
 

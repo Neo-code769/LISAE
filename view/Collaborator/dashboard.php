@@ -5,14 +5,13 @@
 
     <nav id="navigation" class="container-fluid">
         <div>
-            <button id="link">Thémes Activité</button>
+            <button>Thémes Activité</button>
         </div>
         <div>
-            <button id="link" a href="">Calendrier ELOCE</button>
+            <button>Calendrier ELOCE</button>
         </div>
     </nav>
 
-    <h3>Mes Rendez-Vous</h3>
     <section id="dashboard">
         <article>
             <div>
