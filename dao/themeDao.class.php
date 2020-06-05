@@ -2,7 +2,7 @@
 
 class themeDao extends Dao {
 
-    /*public function getListTheme()
+    public function getListTheme()
     {
         $sql = "SELECT `name` FROM theme ";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -28,31 +28,33 @@ class themeDao extends Dao {
             catch (PDOException $e) {
                 throw new LisaeException("Erreur", 1);
             }
-    }*/
+    }
 
-    public function getList(): array
-    {
+    public function getListSlot(){
+        
+    }
 
-    }		
-    
-    public function get(int $id) : array
-    {
-
+    public function getList(): array{
+        return $tab=[];
     }	
     
-    public function insert($obj) : void	
-    {
+    public function get(int $id) : array{
+        return $tab=[];
+    }	
+    
+    public function insert($obj) : void{
 
     }
+
     // delete via son id
-    public function delete(int $id )
-    {
+    public function delete(int $id ){
 
     }
-    // update d'un objet
-    public function update($obj ) 
-    {
 
-}
+    // update d'un objet
+    public function update($obj ){
+
+    }
+
 }
 ?>
