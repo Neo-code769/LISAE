@@ -30,6 +30,25 @@ class themeDao extends Dao {
             }
     }
 
+    public function getList(): array{
+
+    }	
+    
+    public function get(int $id) : array {
+
+    }	
+    
+    public function insert($obj) : void {
+
+    }	
+    // delete via son id
+    public function delete(int $id ) {
+
+    } 
+    // update d'un objet
+    public function update($obj ){
+        
+    } 
 }
 
 ?>
