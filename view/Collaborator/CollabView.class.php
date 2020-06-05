@@ -14,8 +14,8 @@ public function __construct()
         foreach ($slotList as $slot) {
             $result .= "<li>".$slot->get_nameSession()."</li>";
         } */
-        $result = var_dump($slotList);
-        $this->_sessionSlot = $result;
+        /*$result = var_dump($slotList);
+        $this->_sessionSlot = $result;*/
     }
 
     public function setBody($content) {
