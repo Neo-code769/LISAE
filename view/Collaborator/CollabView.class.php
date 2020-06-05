@@ -1,7 +1,14 @@
 <?php
 
 class CollabView extends LisaeTemplate {
-
+public function __construct()
+{
+    /* if(!ISSET($_SESSION['id_user']))
+    {
+        
+        header("Location: ../..index.php")
+    }*/
+} 
     public function setSlot($slotList){
         /* $result = "";
         foreach ($slotList as $slot) {

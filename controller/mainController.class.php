@@ -12,6 +12,7 @@ class MainController
   public function __construct()
   {
     /*var_dump($_SERVER['PATH_INFO']);*/
+    //session_start();
     if (array_key_exists('PATH_INFO', $_SERVER)) {
       $urlLinks = explode("/", $_SERVER['PATH_INFO']);
       $contStr = $urlLinks[count($urlLinks) - 2];
