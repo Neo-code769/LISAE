@@ -6,30 +6,19 @@ class Slot
     private $_unsubscribeDeadLine;
     private $_place;
     private $_information;
-    private $_slotDate;
-    private $_slotHour;
+    private $_slotDateTimeStart;
+    private $_slotDateTimeEnd;
     private $_collabRegistered =[];
     private $_collabPresent= [];
 
-    public function __construct($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDate,
-     $slotHour, $collabRegistered,$collabPresent)
+    public function __construct($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd)
     {
         $this->_registrationDeadLine = $registrationDeadLine;
         $this->_unsubscribeDeadLine = $unsubscribeDeadLine;
         $this->_place = $place;
         $this->_information = $information;
-        $this->_slotDate = $slotDate;
-        $this->_slotHour = $slotHour;
-        $this->_collabRegistered = $collabRegistered;
-        $this->_collabPresent = $collabPresent;
-    }
-
-    public function getSlotDate() {
-        return $this->_slotDate;
-    }
-
-    public function getSlotHour() {
-        return $this->_slotHour;
+        $this->_slotDateTimeStart = $slotDateTimeStart;
+        $this->_slotDateTimeEnd = $slotDateTimeEnd;
     }
 
     public function addCollabRegister() {

@@ -12,6 +12,8 @@
         </div>
     </nav>
 
+    <p><?php $this->_sessionSlot ?></p>
+
     <?php
     /******* TEST RECUPERATION INFO ACTIVITE  *******/
         $result1 = $slot->getSlotDate();

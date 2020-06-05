@@ -29,6 +29,28 @@ class themeDao extends Dao {
                 throw new LisaeException("Erreur", 1);
             }
     }
+    public function getList(): array
+    {
+
+    }		
+    
+    public function get(int $id) : array
+    {
+
+    }	
+    
+    public function insert($obj) : void	
+    {
+
+    }
+    // delete via son id
+    public function delete(int $id )
+    {
+
+    }
+    // update d'un objet
+    public function update($obj ) 
+    {
 
     public function getList(): array{
 
