@@ -54,5 +54,5 @@ class themeDao extends Dao {
     {
 
 }
-
+}
 ?>
