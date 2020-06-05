@@ -5,25 +5,24 @@
 
     <nav class="navigation" class="container">
         <div class="button">
-            <h2>Activités par thémes</h2>
+            <button>Activités par thémes</button>
         </div>
         <div class="button">
-            <h2>Calendrier ELOCE</h2>
+            <button a href="">Calendrier ELOCE</button>
         </div>
     </nav>
 
-    <p><?php $this->_sessionSlot ?></p>
 
     <?php
     /******* TEST RECUPERATION INFO ACTIVITE  *******/
-        $result1 = $slot->getSlotDate();
+    /*    $result1 = $slot->getSlotDate();
         $result2 = $activity->getActivityName();
         $result3 = $slot->getSlotHour();
 
         var_dump($result1);
         var_dump($result2);
         var_dump($result3);
-    
+    */
     ?>
 
     <section class="list">
