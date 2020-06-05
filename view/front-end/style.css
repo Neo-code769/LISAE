@@ -34,6 +34,11 @@ tr {
     justify-content: space-around;
 }
 
+#headerIMG {
+    display: flex;
+    justify-content: space-around;
+}
+
 #navigation {
     display: flex;
     margin-top: 50px;
@@ -61,8 +66,6 @@ tr {
 }
 
 #title {
-    margin-top: 50px;
-    margin-bottom: 50px;
     border: 3px, solid black;
     align-items: center;
 }
@@ -87,7 +90,7 @@ tr {
     display: flex;
     justify-content: center;
     border: 5px blueviolet ridge;
-    border-radius: 10px;
+    border-radius: 30px;
     margin-left: 180px;
     margin-right: 180px;
     margin-bottom: 50px;
@@ -100,6 +103,7 @@ fieldset
   border-color: burlywood;
   background-color: rgba(80, 92, 255, 0.377);
 }
+
 form
 {
     width: 700px;

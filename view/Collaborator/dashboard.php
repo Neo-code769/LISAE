@@ -1,7 +1,6 @@
 
     <div id="title" class="container">
-        <h1>-- LISAE --</h1>
-        <h1>Tableau de Bord</h1>
+        <h3>Tableau de Bord</h3>
     </div>
 
     <nav id="navigation" class="container-fluid">
