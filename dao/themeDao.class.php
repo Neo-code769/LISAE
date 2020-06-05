@@ -2,7 +2,7 @@
 
 class themeDao extends Dao {
 
-    public function getListTheme()
+    /*public function getListTheme()
     {
         $sql = "SELECT `name` FROM theme ";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -28,7 +28,8 @@ class themeDao extends Dao {
             catch (PDOException $e) {
                 throw new LisaeException("Erreur", 1);
             }
-    }
+    }*/
+
     public function getList(): array
     {
 
