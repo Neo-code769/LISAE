@@ -1,51 +1,25 @@
 
-    <div id="titre" class="container">
-        <h2>Tableau de Bord</h2>
+    <div id="title" class="container">
+        <h1>-- LISAE --</h1>
+        <h1>Tableau de Bord</h1>
     </div>
 
-    <nav class="navigation" class="container">
-        <div class="button">
-            <button>Activités par thémes</button>
+    <nav id="navigation" class="container-fluid">
+        <div>
+            <button id="link">Thémes Activité</button>
         </div>
-        <div class="button">
-            <button a href="">Calendrier ELOCE</button>
+        <div>
+            <button id="link" a href="">Calendrier ELOCE</button>
         </div>
     </nav>
 
-
-    <?php
-    /******* TEST RECUPERATION INFO ACTIVITE  *******/
-    /*    $result1 = $slot->getSlotDate();
-        $result2 = $activity->getActivityName();
-        $result3 = $slot->getSlotHour();
-
-        var_dump($result1);
-        var_dump($result2);
-        var_dump($result3);
-    */
-    ?>
-
-    <section class="list">
+    <h3>Mes Rendez-Vous</h3>
+    <section id="dashboard">
         <article>
-            <h3>Mes Rendez-Vous</h3>
-        <div>
-        <table class="host">
-            <caption>Liste des Rendez-Vous</caption>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Activité</th>
-                        <th>Heure</th>
-                    </tr>
-                </thead>
-            <tbody>
-                <?php /*foreach($slot as $slot): ?>
-                    <tr>
-                        <td><a href="index.php?infoActivity<?= $slot->getSlotDate()?> <?$slot->getActivityName() ?> <?= $slot->getSlotHour() ?>"> </a></td>
-                    </tr>
-                <?php endforeach */?>
-            </tbody>
-        </table>
-        </div>
+            <div>
+                <table class="host">
+                </table>
+            </div>
         </article>
+        <br><br><br><br><br><br><br><br><br><br>
     </section>

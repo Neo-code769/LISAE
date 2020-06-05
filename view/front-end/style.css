@@ -17,10 +17,35 @@ figure {
 h1 {
     font-family: 'Montserrat-Regular';
     font-weight: bold;
+    text-align: center;
 }
 
 h2 {
     text-align: center;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+tr {
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    /*margin-left: 100px;
+    margin-right: 100px;*/
+    align-items: center;
+    justify-content: center;
+}
+
+#link {
+    margin-right: 20px;
 }
 
 #button {
@@ -57,6 +82,18 @@ h2 {
     align-items: center;
     text-align: center;
 }
+
+#dashboard {
+    display: flex;
+    justify-content: center;
+    border: 5px blueviolet ridge;
+    border-radius: 10px;
+    margin-left: 180px;
+    margin-right: 180px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
 fieldset 
 {
   border-radius: 10px;
