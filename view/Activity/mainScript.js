@@ -12,13 +12,8 @@
         $('div#theme').load('jobcible.php');
     };
 
-    function conference() {
-        $('div#theme').load('conference.php');
-    };
-
     $("#SS").on("click",softSkill);
     $("#JC").on("click",jobCible);
-    $("#CONF").on("click",conference);
 
      /****** ACTIVITE *******/
      /****** Soft Skills *******/

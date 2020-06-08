@@ -53,6 +53,7 @@ class CollabController extends MainController
       case 8:
         $testView = new ThemeView();
         $testView->run($content="");
+        break;
 
       case 6: //connexion dashboard
 
