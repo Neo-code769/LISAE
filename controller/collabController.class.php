@@ -11,8 +11,8 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registration" => 4,
-      "dashboard" => 5
+      "registration" => 5,
+      "dashboard" => 6
     ];
     parent::__construct();
   }
@@ -20,7 +20,7 @@ class CollabController extends MainController
   public function run(): void
   {
     switch ($this->_case) {
-      case 4:  // registrationCollab
+      case 5:  // registrationCollab
     
           // On se place sur le bon formulaire grâce au "name" de la balise "input"
           if (isset($_POST['registration'])){
@@ -48,7 +48,7 @@ class CollabController extends MainController
 
         break;
 
-      case 5: //connexion dashboard
+      case 6: //connexion dashboard
 
       //Liste Eloce
 
