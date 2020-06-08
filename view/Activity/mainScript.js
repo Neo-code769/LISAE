@@ -2,44 +2,31 @@
 
     // Si on clique sur un button change le contenu du paragraphe
 
-    /****** THEMES *******/
-
-    function softSkill() {
-        $('div#theme').load('/view/Activity/softskill.html');
-    };
-
-    function jobCible() {
-        $('div#theme').load('/view/Activity/jobcible.php');
-    };
-
-    $("#SS").on("click",softSkill);
-    $("#JC").on("click",jobCible);
-
      /****** ACTIVITE *******/
      /****** Soft Skills *******/
 
     function confiance() {
-        $('div#activitySS').load('/view/Activity/confiance.php');
+        $('div#description').load('/view/Activity/confiance.html');
     };
 
     function mindmapping() {
-        $('div#activitySS').load('/view/Activity/mindmapping.php');
+        $('div#description').load('/view/Activity/mindmapping.html');
     };
 
     function gestionStress() {
-        $('div#activitySS').load('/view/Activity/stress.php');
+        $('div#description').load('/view/Activity/stress.html');
     };
 
     function communication() {
-        $('#activitySS').load('/view/Activity/communication.php');
+        $('div#description').load('/view/Activity/communication.html');
     };
 
     function cognitive() {
-        $('div#activitySS').load('/view/Activity/cognitive.php');
+        $('div#description').load('/view/Activity/cognitive.html');
     };
 
     function numerique() {
-        $('div#activitySS').load('/view/Activity/numerique.php');
+        $('div#description').load('/view/Activity/numerique.html');
     };
 
     $("#confiance").on("click",confiance);
@@ -53,27 +40,27 @@
     /****** JOB CIBLE *******/
 
     function profil() {
-        $('div#activityJC').load('/view/Activity/profil.php');
+        $('div#description').load('/view/Activity/profil.html');
     };
     
     function recherche() {
-        $('div#activityJC').load('/view/Activity/recherche.php');
+        $('div#description').load('/view/Activity/recherche.html');
     };
 
     function reputation() {
-        $('div#activityJC').load('/view/Activity/reputation.php');
+        $('div#description').load('/view/Activity/reputation.html');
     };
 
     function CV() {
-        $('div#activityJC').load('/view/Activity/CV.php');
+        $('div#description').load('/view/Activity/CV.html');
     };
 
     function motivation() {
-        $('div#activityJC').load('/view/Activity/motivation.php');
+        $('div#description').load('/view/Activity/motivation.html');
     };
 
     function entretien() {
-        $('div#activityJC').load('/view/Activity/entretien.php');
+        $('div#description').load('/view/Activity/entretien.html');
     };
     
     $("#profil").on("click",profil);    
