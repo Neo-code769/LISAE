@@ -4,9 +4,9 @@
 
         private $_training;
 
-        public function __construct($lastname, $firstname, $birthdate, $phoneNumber, $mail, $password,$training=null)
+        public function __construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password,$training=null)
         {
-            parent::__construct($lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
+            parent::__construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
             $this->_training=$training;
         }
         

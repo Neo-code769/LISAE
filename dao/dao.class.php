@@ -33,7 +33,7 @@ abstract class Dao {
         }
     abstract public function getList(): array;		
     
-    abstract public function get(int $id) : array;	
+    abstract public function get(int $id);	
     
     abstract public function insert($obj) : void;	
     // delete via son id

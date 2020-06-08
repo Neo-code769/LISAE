@@ -38,7 +38,7 @@ class themeDao extends Dao {
         return $tab=[];
     }	
     
-    public function get(int $id) : array{
+    public function get(int $id) {
         return $tab=[];
     }	
     

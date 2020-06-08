@@ -1,6 +1,6 @@
 <?php
 
-class RegistrationView extends LisaeTemplate {
+class RegistrationView extends LisaeTemplateDisconnected {
 
     private $_sessionList = null;
 

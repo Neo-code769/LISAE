@@ -8,7 +8,7 @@ class sessionTrainingDao extends Dao{
     }
 
     
-    public function get(int $id) : array{
+    public function get(int $id) {
         return [];
     }
     

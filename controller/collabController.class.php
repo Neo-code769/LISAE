@@ -11,8 +11,9 @@ class CollabController extends MainController
     $this->_listUseCases=
     [
       //Collab 
-      "registration" => 4,
-      "dashboard" => 5
+      "registration" => 5,
+      "dashboard" => 6,
+      "info" => 7
     ];
     parent::__construct();
   }
@@ -20,7 +21,7 @@ class CollabController extends MainController
   public function run(): void
   {
     switch ($this->_case) {
-      case 4:  // registrationCollab
+      case 5:  // registrationCollab
     
           // On se place sur le bon formulaire grâce au "name" de la balise "input"
           if (isset($_POST['registration'])){
@@ -48,7 +49,7 @@ class CollabController extends MainController
 
         break;
 
-      case 5: //connexion dashboard
+      case 6: //connexion dashboard
 
       //Liste Eloce
 
@@ -72,6 +73,14 @@ class CollabController extends MainController
       $collabView = new CollabView();
       $collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
       $collabView->run("dashboard");
+      break;
+      
+      case 7:
+      $user = (new userDao())->get($_SESSION["id_user"]);
+      $collabView = new CollabView();
+      $collabView->setInfoUser($user);
+      $collabView->run("infoUser");
+      break;
       
     }
   }

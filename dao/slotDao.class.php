@@ -38,7 +38,7 @@ class SlotDao extends Dao {
         return $list;
     }
     
-    public function get(int $id) : array{
+    public function get(int $id) {
         return $tab=[];
     }	
     

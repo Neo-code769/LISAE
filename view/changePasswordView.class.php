@@ -1,6 +1,6 @@
 <?php
 
-class ChangePasswordView extends LisaeTemplate {
+class ChangePasswordView extends LisaeTemplateDisconnected {
 
     public function setBody($content) {
     echo <<<EOD
@@ -18,7 +18,6 @@ class ChangePasswordView extends LisaeTemplate {
                 </fieldset><br>
                 </form>  
         </div>
-
         EOD;
     }
 

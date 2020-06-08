@@ -1,6 +1,13 @@
 <?php
 
-class CollabView extends LisaeTemplate {
+class CollabView extends LisaeTemplateConnected {
+
+    private $_infoUser;
+
+    public function __construct()
+    {
+        parent::__construct();
+    } 
 
     public function setSlot($slotList){
         /* $result = "";
@@ -9,6 +16,10 @@ class CollabView extends LisaeTemplate {
         } */
         /*$result = var_dump($slotList);
         $this->_sessionSlot = $result;*/
+    }
+
+    public function setInfoUser($info){
+        $this->_infoUser = $info;
     }
 
     public function setBody($content) {
@@ -25,6 +36,10 @@ class CollabView extends LisaeTemplate {
             break;
 
             case "registration": include "registrationActivity.php";
+            break; 
+            
+            case "infoUser": include "infoUser.phtml"; 
+            break;
 
             default: include "dashboard.php";
 

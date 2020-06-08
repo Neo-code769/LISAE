@@ -12,7 +12,8 @@ class PasswordController extends MainController
     [
       //Collab 
       "reset" => 2,
-      "change" => 3
+      "change" => 3,
+      "logout" => 4
     ];
     parent::__construct();
   }
@@ -46,7 +47,7 @@ class PasswordController extends MainController
             $password->run("");
           }
 
-        break;
+      break;
 
       case 3: // changePassword
 
@@ -71,6 +72,17 @@ class PasswordController extends MainController
           $password = new ChangePasswordView();
           $password->run("");
         }
+      break;
+
+      case '4': //Logout
+        $_SESSION = array();
+        unset($_SESSION['id_user']);
+        unset($_SESSION['mail']);
+        unset($_SESSION['password']);
+        unset($_SESSION['role']);
+        session_destroy();
+        header('Location:../../index.php');
+      break;
     }
   }
 

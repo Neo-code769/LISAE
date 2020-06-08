@@ -1,6 +1,6 @@
 <?php
 
-class ForgotPasswordView extends LisaeTemplate {
+class ForgotPasswordView extends LisaeTemplateDisconnected {
 
     public function setBody($content) {
     echo <<<EOD
