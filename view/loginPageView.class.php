@@ -1,6 +1,6 @@
 <?php
 
-class LoginPageView extends LisaeTemplate {
+class LoginPageView extends LisaeTemplateDisconnected {
 
 
     public function setBody($content) {
