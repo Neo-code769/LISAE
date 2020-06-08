@@ -116,26 +116,6 @@ form
     margin-right: auto;
 }
 
-#datacontent
-{
-    position: relative;
-    text-align: center;
-    align-items: center;
-}
-
-#theme
-{
-
-}
-
-.theme
-{
-    font-size: 24px;
-    margin-right: 50px;
-    border: 3px rgba(80, 92, 255, 0.377) solid;
-    border-radius: 10px;
-    background-color: rgba(80, 92, 255, 0.377);
-}
 
 .activity
 {
@@ -145,21 +125,23 @@ form
     background-color: rgba(80, 92, 255, 0.377);
 }
 
-#activitySS, #activityJC 
+#description 
 {
     background-color: rgba(80, 92, 255, 0.377);
     margin-left: 200px;
     margin-right: 200px;
+    margin-top: 50px;
 }
 
-#activityDesc
+#content
 {
     display: flex;
 }
 
-#description
+#list
 {
-    margin-left: 75px;
+    display: flex;
+    justify-content: center;
 }
 
 #imgAtelier
