@@ -3,13 +3,31 @@
 class userDao extends Dao{
 
     public function getList(): array{
-
-        return [];
     }
 
-    
-    public function get(int $id) : array{
-        return [];
+    public function get(int $id){
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT * FROM users WHERE id_user= $id");
+            try{
+                $requete->execute();
+                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+                {
+                    $idUser=$donnees['id_user'];
+                    $lastname=$donnees['LastName'];
+                    $firstname=$donnees['FirstName'];
+                    $birthdate=$donnees['birthDate'];
+                    $phoneNumber=$donnees['PhoneNumber'];
+                    $mail=$donnees['mail'];
+                    $password=$donnees['password'];
+                    $user = new Collaborator($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
+                }
+
+            }  catch (PDOException $e) {
+                echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $user;
     }
     
     public function insert($obj) :void

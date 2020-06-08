@@ -12,7 +12,8 @@ class CollabController extends MainController
     [
       //Collab 
       "registration" => 5,
-      "dashboard" => 6
+      "dashboard" => 6,
+      "info" => 7
     ];
     parent::__construct();
   }
@@ -72,6 +73,11 @@ class CollabController extends MainController
       $collabView = new CollabView();
       $collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
       $collabView->run("dashboard");
+      
+      case 7:
+      (new userDao())->get($_SESSION["id_user"]);
+      $collabView = new CollabView();
+      $collabView->run("info");
       
     }
   }

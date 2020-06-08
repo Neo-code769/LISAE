@@ -30,6 +30,10 @@ class CollabView extends LisaeTemplateConnected {
             break;
 
             case "registration": include "registrationActivity.php";
+            break; 
+            
+            case "info": include "info.phtml"; 
+            break;
 
             default: include "dashboard.php";
 

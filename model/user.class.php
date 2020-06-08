@@ -1,7 +1,7 @@
 <?php
 
     abstract class User {
-
+        private $_idUser;
         private $_lastname;
         private $_firstname;
         private $_birthdate;
@@ -9,7 +9,8 @@
         private $_mail;
         private $_password;
 
-        public function __construct($lastname, $firstname, $birthdate, $phoneNumber, $mail, $password) {
+        public function __construct( $idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password) {
+            $this->_idUser = $idUser;
             $this->_lastname = $lastname;
             $this->_firstname = $firstname;
             $this->_birthdate = $birthdate;

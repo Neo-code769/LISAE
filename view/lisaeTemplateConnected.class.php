@@ -14,6 +14,7 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
         parent::setHeader();
         echo <<<EOD
                 <p><a href="../password/logout">Déconnexion</a></p>
+                <p><a href="../collab/info">Mon Compte</a></p>
         EOD;
     }
 
