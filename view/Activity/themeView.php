@@ -1,6 +1,5 @@
 <?php
 
-require_once '../lisaeTemplate.class.php';
 
 class ThemeView extends LisaeTemplate {
 
@@ -20,8 +19,5 @@ class ThemeView extends LisaeTemplate {
     }
 
 }
-
-    $testView = new ThemeView();
-    $testView->run($content="");
 
 ?>

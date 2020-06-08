@@ -13,7 +13,8 @@ class CollabController extends MainController
       //Collab 
       "registration" => 5,
       "dashboard" => 6,
-      "info" => 7
+      "info" => 7,
+      "theme"=> 8
     ];
     parent::__construct();
   }
@@ -48,6 +49,10 @@ class CollabController extends MainController
           }
 
         break;
+
+      case 8:
+        $testView = new ThemeView();
+        $testView->run($content="");
 
       case 6: //connexion dashboard
 
