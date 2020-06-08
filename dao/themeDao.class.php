@@ -17,9 +17,9 @@ class themeDao extends Dao {
 
     public function getThemeActivity() 
     {
-        $sql = "SELECT `theme.name`, `recurring_activity.name`, `unique_activity.name` 
-                FROM `unique_activity` INNER JOIN `theme` ON `theme.id_theme` = `unique_activity.id_theme`
-                                       INNER JOIN `recurring_activity` ON `theme.id_theme` = `recurring_activity.id_theme`";
+        $sql = "SELECT * FROM theme
+        INNER JOIN recurring_activity ON recurring_activity.id_theme = theme.id_theme
+        INNER JOIN activity ON activity.id_activity = recurring_activity.id_activity";
         $exec = (Dao::getConnexion())->prepare($sql);
         try {
             $exec->execute();
