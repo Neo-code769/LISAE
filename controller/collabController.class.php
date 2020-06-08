@@ -73,12 +73,14 @@ class CollabController extends MainController
       $collabView = new CollabView();
       $collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
       $collabView->run("dashboard");
+      break;
       
       case 7:
       $user = (new userDao())->get($_SESSION["id_user"]);
       $collabView = new CollabView();
       $collabView->setInfoUser($user);
       $collabView->run("infoUser");
+      break;
       
     }
   }
