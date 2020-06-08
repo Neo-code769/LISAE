@@ -1,7 +1,7 @@
 <?php
 
 
-class ThemeView extends LisaeTemplate {
+class ThemeView extends LisaeTemplateConnected {
 
     public function setBody($content) {
         echo <<<EOD
