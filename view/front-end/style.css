@@ -123,9 +123,26 @@ form
     align-items: center;
 }
 
-.theme, .activity
+#theme
 {
+
+}
+
+.theme
+{
+    font-size: 24px;
     margin-right: 50px;
+    border: 3px rgba(80, 92, 255, 0.377) solid;
+    border-radius: 10px;
+    background-color: rgba(80, 92, 255, 0.377);
+}
+
+.activity
+{
+    font-size: 16px;
+    border: 3px rgba(80, 92, 255, 0.377) solid;
+    border-radius: 10px;
+    background-color: rgba(80, 92, 255, 0.377);
 }
 
 #activitySS, #activityJC 
@@ -133,8 +150,6 @@ form
     background-color: rgba(80, 92, 255, 0.377);
     margin-left: 200px;
     margin-right: 200px;
-    border: 3px rgba(80, 92, 255, 0.377) ridge;
-    border-radius: 30px;
 }
 
 #activityDesc

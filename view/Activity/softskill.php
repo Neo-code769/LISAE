@@ -10,9 +10,6 @@
             <button id="numerique" class ="activity">Usage du numerique</button>
         </div><br><br>
         <div id="activitySS">
-            <br/><br/>
-            <!-- Affichage des resultats -->
-            <br/><br/>
         </div>
         <script src="mainScript.js"></script>
     EOD;
