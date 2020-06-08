@@ -5,7 +5,7 @@
 
     <nav id="navigation" class="container-fluid">
         <div>
-            <button>Thémes Activité</button>
+            <button a href="../../Activity/themeView.php">Thémes Activité</a></button>
         </div>
         <div>
             <button>Calendrier ELOCE</button>
