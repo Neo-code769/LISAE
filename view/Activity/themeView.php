@@ -14,7 +14,7 @@ class ThemeView extends LisaeTemplateConnected {
                 <!-- Affichage des resultats -->
                 <br/><br/>
             </div>
-            <script src="mainScript.js"></script>
+            <script type="text/javascript" src="/view/Activity/mainScript.js"></script>
         EOD;
     }
 

@@ -5,11 +5,11 @@
     /****** THEMES *******/
 
     function softSkill() {
-        $('div#theme').load('softskill.php');
+        $('div#theme').load('/view/Activity/softskill.html');
     };
 
     function jobCible() {
-        $('div#theme').load('jobcible.php');
+        $('div#theme').load('/view/Activity/jobcible.php');
     };
 
     $("#SS").on("click",softSkill);
@@ -19,27 +19,27 @@
      /****** Soft Skills *******/
 
     function confiance() {
-        $('div#activitySS').load('confiance.php');
+        $('div#activitySS').load('/view/Activity/confiance.php');
     };
 
     function mindmapping() {
-        $('div#activitySS').load('mindmapping.php');
+        $('div#activitySS').load('/view/Activity/mindmapping.php');
     };
 
     function gestionStress() {
-        $('div#activitySS').load('stress.php');
+        $('div#activitySS').load('/view/Activity/stress.php');
     };
 
     function communication() {
-        $('div#activitySS').load('communication.php');
+        $('div#activitySS').load('/view/Activity/communication.php');
     };
 
     function cognitive() {
-        $('div#activitySS').load('cognitive.php');
+        $('div#activitySS').load('/view/Activity/cognitive.php');
     };
 
     function numerique() {
-        $('div#activitySS').load('numerique.php');
+        $('div#activitySS').load('/view/Activity/numerique.php');
     };
 
     $("#confiance").on("click",confiance);
@@ -53,27 +53,27 @@
     /****** JOB CIBLE *******/
 
     function profil() {
-        $('div#activityJC').load('profil.php');
+        $('div#activityJC').load('/view/Activity/profil.php');
     };
     
     function recherche() {
-        $('div#activityJC').load('recherche.php');
+        $('div#activityJC').load('/view/Activity/recherche.php');
     };
 
     function reputation() {
-        $('div#activityJC').load('reputation.php');
+        $('div#activityJC').load('/view/Activity/reputation.php');
     };
 
     function CV() {
-        $('div#activityJC').load('CV.php');
+        $('div#activityJC').load('/view/Activity/CV.php');
     };
 
     function motivation() {
-        $('div#activityJC').load('motivation.php');
+        $('div#activityJC').load('/view/Activity/motivation.php');
     };
 
     function entretien() {
-        $('div#activityJC').load('entretien.php');
+        $('div#activityJC').load('/view/Activity/entretien.php');
     };
     
     $("#profil").on("click",profil);    
@@ -83,3 +83,6 @@
     $("#motivation").on("click",motivation);
     $("#entretien").on("click",entretien);
 
+    window.addEventListener('load', function () {
+        alert('Cette fonction est exécutée une fois quand la page est chargée.');
+        });

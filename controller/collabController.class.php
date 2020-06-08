@@ -50,11 +50,6 @@ class CollabController extends MainController
 
         break;
 
-      case 8:
-        $testView = new ThemeView();
-        $testView->run($content="");
-        break;
-
       case 6: //connexion dashboard
 
       //Liste Eloce
@@ -88,6 +83,10 @@ class CollabController extends MainController
       $collabView->run("infoUser");
       break;
       
+      case 8:
+        $testView = new ThemeView();
+        $testView->run($content="");
+      break;
     }
   }
 }
