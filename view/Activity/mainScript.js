@@ -31,7 +31,7 @@
     };
 
     function communication() {
-        $('div#activitySS').load('/view/Activity/communication.php');
+        $('#activitySS').load('/view/Activity/communication.php');
     };
 
     function cognitive() {
@@ -82,7 +82,3 @@
     $("#CV").on("click",CV);
     $("#motivation").on("click",motivation);
     $("#entretien").on("click",entretien);
-
-    window.addEventListener('load', function () {
-        alert('Cette fonction est exécutée une fois quand la page est chargée.');
-        });
