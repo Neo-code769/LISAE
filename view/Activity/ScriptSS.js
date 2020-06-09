@@ -77,6 +77,7 @@
         $('div#description').load('/view/Activity/softskill/cognitive.html');
     };
 
+    $('div#description').load('/view/Activity/softskill/softskill.html')
     $("#apprendre").on("click",apprendre);
     $("#memoire").on("click",memoire);
     $("#confiance").on("click",confiance);
@@ -95,38 +96,3 @@
     $("#comportement").on("click",comportement);
     $("#image").on("click",image);
     $("#cognitive").on("click",cognitive);
-    $("#numerique").on("click",numerique);
-
-
-    /****** JOB CIBLE *******/
-
-    function profil() {
-        $('div#description').load('/view/Activity/jobcible/profil.html');
-    };
-    
-    function recherche() {
-        $('div#description').load('/view/Activity/jobcible/recherche.html');
-    };
-
-    function reputation() {
-        $('div#description').load('/view/Activity/jobcible/reputation.html');
-    };
-
-    function CV() {
-        $('div#description').load('/view/Activity/jobcible/CV.html');
-    };
-
-    function motivation() {
-        $('div#description').load('/view/Activity/jobcible/motivation.html');
-    };
-
-    function entretien() {
-        $('div#description').load('/view/Activity/jobcible/entretien.html');
-    };
-    
-    $("#profil").on("click",profil);    
-    $("#recherche").on("click",recherche);
-    $("#reputation").on("click",reputation);
-    $("#CV").on("click",CV);
-    $("#motivation").on("click",motivation);
-    $("#entretien").on("click",entretien);
