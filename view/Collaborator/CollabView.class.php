@@ -50,9 +50,12 @@ class CollabView extends LisaeTemplateConnected {
             return strtotime($a["dts"]) - strtotime($b["dts"]);
         }
         usort($arr, "date_sort");
-        
-        var_dump(strftime('%A %d %B %Y %H:%M', strtotime($arr[1]["dts"])));
-        
+        foreach ($arr as $x) {
+            setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+            $y[] =strftime('%A %d %B %Y %H:%M', strtotime($x["dts"]));
+        }
+        //var_dump(strftime('%A %d %B %Y %H:%M', strtotime($arr[1]["dts"])));
+        var_dump($y);
             //setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             //strftime('%A %d %B %Y %H:%M', strtotime($y["dts"]));
         
