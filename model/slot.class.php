@@ -40,7 +40,7 @@ class Slot
     public function get_slotDateTimeStart()
     {
         setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-        return strftime('%A %d %B %Y %I:%M', strtotime($this->_slotDateTimeStart));
+        return strftime('%A %d %B %Y %H:%M', strtotime($this->_slotDateTimeStart));
     }
 
     /**
@@ -48,6 +48,6 @@ class Slot
      */ 
     public function get_slotDateTimeEnd()
     {
-        return  strftime('%I:%M', strtotime($this->_slotDateTimeEnd));
+        return  strftime('%H:%M', strtotime($this->_slotDateTimeEnd));
     }
 }
