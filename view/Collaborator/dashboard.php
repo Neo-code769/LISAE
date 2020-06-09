@@ -8,14 +8,13 @@
             <a href="../collab/theme" style="text-decoration:none">Thémes Activité</a>
         </div>
         <div id="link">
-            Calendrier ELOCE
+            <a href="../collab/eloce">Calendrier ELOCE</a>
         </div>
     </nav>
 
     <section id="dashboard">
         <article>
             <div>
-                <?php echo $this->_themeList;?>
                 <table class="host">
                 </table>
             </div>

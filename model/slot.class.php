@@ -33,4 +33,20 @@ class Slot
     public function removeCollabPresent() {
     }
 
+
+    /**
+     * Get the value of _slotDateTimeStart
+     */ 
+    public function get_slotDateTimeStart()
+    {
+        return $this->_slotDateTimeStart;
+    }
+
+    /**
+     * Get the value of _slotDateTimeEnd
+     */ 
+    public function get_slotDateTimeEnd()
+    {
+        return $this->_slotDateTimeEnd;
+    }
 }
