@@ -14,8 +14,10 @@
 
     <h3>Liste des créneaux</h3>
     <section id="dashboard">
-    <div>
-                    <?php echo $this->_eloce ?>
-                
+        <article>
+            <div>
+                <?php echo $this->_eloce ?>
+            </div>
+        </article>
         <br><br><br><br><br><br><br><br><br><br>
     </section>

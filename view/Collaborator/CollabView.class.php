@@ -32,7 +32,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
-                    $result .="<li>".$slot->get_slotDateTimeStart()."-".$slot->get_slotDateTimeEnd()." - ".$theme->get_name()." - ".$activity->get_name()."</li>";
+                    $result .="<div class='eloce' style='background-color:".$theme->get_color()."'>".$slot->get_slotDateTimeStart()."-".$slot->get_slotDateTimeEnd()." - ".$theme->get_name()." - ".$activity->get_name()."</div>";
                 }
             }
         }
