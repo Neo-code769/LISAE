@@ -36,6 +36,11 @@ abstract class LisaeTemplate {
                             <img src="/images/LISAE.png" alt="logo LISAE" />
                         </figure>
                     </div>
+                        <div id="log">
+                            <div id="link"><a href="./dashboard">Dashboard</a></div>
+                            <div id="link"><a href="../collab/info">Mon Compte</a></div>
+                            <div id="link"><a href="../password/logout">Déconnexion</a></div>
+                        </div>
                     <figure>
                         <img src="/images/Life-line.png" alt="Ligne de Vie" />
                     </figure>
@@ -48,7 +53,7 @@ abstract class LisaeTemplate {
     public function setFooter() {
         echo <<<EOD
             <footer> 
-                <figure>
+                <figure id="figure">
                     <img src="/images/AFPA.jpg" alt="logo AFPA" />
                     <img src="/images/ELOCE.png" alt="logo ELOCE" />
                     <img src="/images/LISAE.png" alt="logo LISAE" />

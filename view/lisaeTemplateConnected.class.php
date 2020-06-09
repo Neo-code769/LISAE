@@ -10,14 +10,6 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
         }
     }
 
-    public function setHeader($errorMess="") {
-        parent::setHeader();
-        echo <<<EOD
-                <p><a href="../password/logout">Déconnexion</a></p>
-                <p><a href="../collab/info">Mon Compte</a></p>
-        EOD;
-    }
-
     abstract public function setBody($content);
 
 }
