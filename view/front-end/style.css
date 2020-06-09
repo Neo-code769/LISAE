@@ -138,15 +138,21 @@ form
 
 #description 
 {
-    background-color: rgba(80, 92, 255, 0.377);
-    margin-left: 200px;
-    margin-right: 200px;
+    display: flex;
+    border: 10px rgba(80, 92, 255, 0.377) solid;
+    border-radius: 10px;
+    background-color: rgb(170, 213, 238);
+    margin-left: 250px;
+    margin-right: 250px;
     margin-top: 50px;
 }
 
 #content
 {
     display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 120px;
 }
 
 #list
@@ -157,6 +163,8 @@ form
 
 #imgAtelier
 {
-    margin-left: 150px;
+    float: right;
+    margin-top: 75px;
+    margin-left: 50px;
     margin-right: 100px;
 }
