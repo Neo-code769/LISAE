@@ -26,8 +26,8 @@ class SlotDao extends Dao {
                 $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
                 $place=$donnees['place'];
                 $information=$donnees['information'];
-                $slotDateTimeStart=$donnees['slotDateTimeStart'];
-                $slotDateTimeEnd=$donnees['slotDateTimeEnd'];
+                $slotDateTimeStart=$donnees['slotDateStart'];
+                $slotDateTimeEnd=$donnees['slotDateEnd'];
                 $slot = new Slot($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
                 $list[] = $slot;
             }

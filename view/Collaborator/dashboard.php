@@ -15,6 +15,7 @@
     <section id="dashboard">
         <article>
             <div>
+                <?php echo $this->_themeList;?>
                 <table class="host">
                 </table>
             </div>

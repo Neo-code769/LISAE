@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 require_once 'model/user.class.php';
 require_once 'model/activity.class.php';
+require_once 'model/recurringActivity.class.php';
 require_once 'model/animator.class.php';
 require_once 'model/admin.class.php';
 require_once 'model/collaborator.class.php';

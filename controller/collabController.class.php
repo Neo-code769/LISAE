@@ -72,7 +72,10 @@ class CollabController extends MainController
 
       //Exemple test
       $collabView = new CollabView();
-      $collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
+      //$collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
+      //$collabView->setTheme((new ThemeDao())->getListSlot(1));
+      $collabView->setTheme((new ThemeDao())->getListTheme());
+      //$collabView->setTheme((new ThemeDao())->getListActivity(1));
       $collabView->run("dashboard");
       break;
       
@@ -84,8 +87,7 @@ class CollabController extends MainController
       break;
       
       case 8:
-        $theme = (new ThemeDao())->getListTheme();
-        var_dump($theme);
+       
         $testView = new ThemeView();
         $testView->run($content="");
         
