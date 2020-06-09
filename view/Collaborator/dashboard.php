@@ -4,11 +4,11 @@
     </div>
 
     <nav id="navigation" class="container-fluid">
-        <div>
-            <button> <a href="../collab/theme">Thémes Activité</a></button>
+        <div id="link">
+            <a href="../collab/theme">Thémes Activité</a>
         </div>
-        <div>
-            <button>Calendrier ELOCE</button>
+        <div id="link">
+            Calendrier ELOCE
         </div>
     </nav>
 
