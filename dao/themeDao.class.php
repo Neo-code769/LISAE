@@ -8,7 +8,7 @@ class themeDao extends Dao {
         $pdo = Dao::getConnexion();
 
         $requete = $pdo->prepare(
-            (
+            
                 "SELECT activity.name, slotDateStart, slotDateEnd 
                 FROM `theme`
                 INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
