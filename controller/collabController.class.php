@@ -14,8 +14,9 @@ class CollabController extends MainController
       "registration" => 5,
       "dashboard" => 6,
       "info" => 7,
-      "theme"=> 8,
-      "eloce"=> 9
+      "softskill"=> 8,
+      "jobcible"=>9,
+      "eloce"=>10
     ];
     parent::__construct();
   }
@@ -71,12 +72,19 @@ class CollabController extends MainController
       
       case 8:
        
-        $themeView = new ThemeView();
-        $themeView->run($content="");
+        $softSkill = new SoftSkillView();
+        $softSkill->run($content="");
         
       break;
 
       case 9:
+       
+        $jobCible = new JobCibleView();
+        $jobCible->run($content="");
+        
+      break;
+
+      case 10:
         $collabView = new CollabView();
         $collabView->setTheme((new ThemeDao())->getListTheme());
         $collabView->run($content="ListELOCE");
