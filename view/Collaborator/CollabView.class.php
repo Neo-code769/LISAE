@@ -28,7 +28,7 @@ class CollabView extends LisaeTemplateConnected {
         $result = var_dump($themeList);
         foreach ($themeList as $theme) {
             var_dump($theme->get_activity());
-        }
+        } 
         $this->_themeList = $result;
     }
 
