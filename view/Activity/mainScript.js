@@ -95,7 +95,6 @@
     $("#comportement").on("click",comportement);
     $("#image").on("click",image);
     $("#cognitive").on("click",cognitive);
-    $("#numerique").on("click",numerique);
 
 
     /****** JOB CIBLE *******/
@@ -113,7 +112,7 @@
     };
 
     function CV() {
-        $('div#description').load('/view/Activity/jobcible/CV.html');
+        $('div#description').load('/view/Activity/jobcible/cv.html');
     };
 
     function motivation() {

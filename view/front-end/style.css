@@ -37,7 +37,10 @@ footer {
     margin-top: 75px;
 }
 
-
+p
+{
+    font-size: 18px;
+}
 
 #headerIMG 
 {
@@ -127,24 +130,28 @@ form
     margin-right: auto;
 }
 
-
 .activity
 {
-    font-size: 16px;
+    font-size: 18px;
     border: 3px rgba(80, 92, 255, 0.377) solid;
     border-radius: 10px;
     background-color: rgba(80, 92, 255, 0.377);
+    margin-top: 8px;
 }
 
 #description 
 {
     display: flex;
-    border: 10px rgba(80, 92, 255, 0.377) solid;
-    border-radius: 10px;
     background-color: rgb(170, 213, 238);
-    margin-left: 250px;
-    margin-right: 250px;
-    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 15px;
+    max-height: 450px;
+}
+
+#themeview
+{
+    display: flex;
 }
 
 #content
@@ -152,13 +159,17 @@ form
     display: flex;
     flex-direction: column;
     float: left;
-    margin-left: 120px;
+    margin-left: 50px;
 }
 
 #list
 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    max-width: 15%;
+    min-width: 15%;
+    margin-left: 50px;
 }
 
 #imgAtelier
