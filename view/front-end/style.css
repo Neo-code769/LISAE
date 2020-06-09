@@ -54,7 +54,8 @@ footer {
 
 #link
 {
-    font-size: 16px;
+    padding: 2px;
+    font-size: 20px;
     border: 3px rgba(80, 92, 255, 0.377) solid;
     border-radius: 10px;
     background-color: rgba(80, 92, 255, 0.377);
@@ -65,8 +66,6 @@ footer {
     display: flex;
     margin-top: 50px;
     margin-bottom: 50px;
-    /*margin-left: 100px;
-    margin-right: 100px;*/
     align-items: center;
     justify-content: center;
 }

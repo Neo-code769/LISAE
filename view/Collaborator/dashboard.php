@@ -5,7 +5,7 @@
 
     <nav id="navigation" class="container-fluid">
         <div id="link">
-            <a href="../collab/theme">Thémes Activité</a>
+            <a href="../collab/theme" style="text-decoration:none">Thémes Activité</a>
         </div>
         <div id="link">
             Calendrier ELOCE

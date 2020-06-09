@@ -20,9 +20,9 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
                     </figure>
                 </div>
                     <div id="log">
-                        <div id="link"><a href="./dashboard">Dashboard</a></div>
-                        <div id="link"><a href="../collab/info">Mon Compte</a></div>
-                        <div id="link"><a href="../password/logout">Déconnexion</a></div>
+                        <div id="link"><a href="./dashboard" style="text-decoration:none">Tableau de Bord</a></div>
+                        <div id="link"><a href="../collab/info" style="text-decoration:none">Mon Compte</a></div>
+                        <div id="link"><a href="../password/logout" style="text-decoration:none">Déconnexion</a></div>
                     </div>
                 <figure>
                     <img src="/images/Life-line.png" alt="Ligne de Vie" />
