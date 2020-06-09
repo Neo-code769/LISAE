@@ -13,7 +13,7 @@
     </nav>
 
     <h3>Liste des créneaux</h3>
-    <section id="dashboard">
+    <section id="centre">
         <article>
             <div>
                 <?php echo $this->_eloce ?>
