@@ -2,16 +2,17 @@
 
 class Theme
 {
+    private $_idTheme;
     private $_name;
     private $_color;
     private $_image;
     private $_description;
     private $_detailsDescription;
     private $_activity = [];
-    private $_referent;
 
-    public function __construct($name, $color, $image, $description, $detailsDescription, $activity, $referent)
+    public function __construct($idTheme, $name, $color, $image, $description, $detailsDescription, $activity)
     {
+        $this->_idTheme = $idTheme;
         $this->_name = $name;
         $this->_color = $color;
         $this->_image = $image;
@@ -21,7 +22,17 @@ class Theme
         $this->_referent = $referent;
     }
 
-    
+    public function get_idTheme()
+    {
+        return $this->_idTheme;
+    }
+
+    public function set_idTheme($_idTheme)
+    {
+        $this->_idTheme = $_idTheme;
+
+        return $this;
+    }
    /* DANS DAO THEME =  public function addTheme()
     {
 
@@ -114,4 +125,5 @@ class Theme
 
         return $this;
     }
+
 }

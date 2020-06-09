@@ -84,8 +84,11 @@ class CollabController extends MainController
       break;
       
       case 8:
+        $theme = (new ThemeDao())->getListTheme();
+        var_dump($theme);
         $testView = new ThemeView();
         $testView->run($content="");
+        
       break;
     }
   }

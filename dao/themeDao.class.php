@@ -4,22 +4,70 @@ class themeDao extends Dao {
 
     public function getListTheme()
     {
-        $sql = "SELECT `name` FROM theme ";
-        $exec = (Dao::getConnexion())->prepare($sql);
-        try {
-            $exec->execute();
-            return $exec;
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+            (
+                "SELECT activity.name, slotDateStart, slotDateEnd 
+                FROM `theme`
+                INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
+                INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
+                INNER JOIN host on activity.id_activity = host.id_activity
+                UNION
+                SELECT activity.name, slotDateStart, slotDateEnd 
+                FROM `theme`
+                INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
+                INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
+                INNER JOIN host on activity.id_activity = host.id_activity"
+                );
+         try{
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idTheme = $donnees['id_theme'];
+                $name = $donnees['name'];
+                $color = $donnees['color'];
+                $image = $donnees['image'];
+                $descriptionTheme = $donnees['description'];
+                $detailsDescriptionT = $donnees['detailedDescription'];
+                $idActivity = $donnees['id_activity'];
+                $name = $donnees['name'];
+                $descriptionActivity = $donnees['description'];
+                $detailedDescriptionA = $donnees['detailedDescription'];
+                $minNumberPerson = $donnees['minNumberPerson'];
+                $maxNumberPerson = $donnees['maxNumberPerson'];
+                $registrationDeadline = $donnees['registrationDeadline'];
+                $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
+                $idThemeA = $donnees['id_theme'];
+                $externalContributor = $donnees['externalContributor'];
+                $activity = new Activity($idActivity, $name, $descriptionActivity, $detailedDescriptionA, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idThemeA,$externalContributor);
+                $theme = new Theme($idTheme, $name, $color, $image, $descriptionTheme, $detailsDescriptionT ,$activity);
+                $list[] = $theme;
             }
-            catch (PDOException $e) {
-                throw new LisaeException("Erreur", 1);
-            }
+
+        } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        die();
+        }
+    return $list;
     }
 
     public function getThemeActivity() 
     {
-        $sql = "SELECT * FROM theme
-        INNER JOIN recurring_activity ON recurring_activity.id_theme = theme.id_theme
-        INNER JOIN activity ON activity.id_activity = recurring_activity.id_activity";
+        $sql = (
+            "SELECT activity.name, slotDateStart, slotDateEnd 
+            FROM `theme`
+            INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
+            INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
+            INNER JOIN host on activity.id_activity = host.id_activity
+            UNION
+            SELECT activity.name, slotDateStart, slotDateEnd 
+            FROM `theme`
+            INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
+            INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
+            INNER JOIN host on activity.id_activity = host.id_activity"
+            );
         $exec = (Dao::getConnexion())->prepare($sql);
         try {
             $exec->execute();
