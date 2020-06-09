@@ -14,7 +14,8 @@ class CollabController extends MainController
       "registration" => 5,
       "dashboard" => 6,
       "info" => 7,
-      "theme"=> 8
+      "softskill"=> 8,
+      "jobcible"=>9
     ];
     parent::__construct();
   }
@@ -88,8 +89,15 @@ class CollabController extends MainController
       
       case 8:
        
-        $testView = new ThemeView();
-        $testView->run($content="");
+        $softSkill = new SoftSkillView();
+        $softSkill->run($content="");
+        
+      break;
+
+      case 9:
+       
+        $jobCible = new JobCibleView();
+        $jobCible->run($content="");
         
       break;
     }
