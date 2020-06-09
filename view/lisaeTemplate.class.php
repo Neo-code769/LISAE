@@ -6,12 +6,13 @@ abstract class LisaeTemplate {
     }
 
     public function run($content, $errorMess="") {
-        $this->setHeader($errorMess);
+        $this->setHead($errorMess);
+        $this->setHeader();
         $this->setBody($content);
         $this->setFooter();
     }
 
-    public function setHeader($errorMess="") {
+    public function setHead($errorMess="") {
         echo <<<EOD
         <!DOCTYPE html >
             <html leng="en">
@@ -29,23 +30,6 @@ abstract class LisaeTemplate {
                     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
                     <title>LISAE - ELOCE</title>
                 </head>
-                <header>
-                    <div id="headerIMG">
-                        <figure>
-                            <img src="/images/header-logo.png" alt="logo AFPA-ELOCE" />
-                            <img src="/images/LISAE.png" alt="logo LISAE" />
-                        </figure>
-                    </div>
-                        <div id="log">
-                            <div id="link"><a href="./dashboard">Dashboard</a></div>
-                            <div id="link"><a href="../collab/info">Mon Compte</a></div>
-                            <div id="link"><a href="../password/logout">Déconnexion</a></div>
-                        </div>
-                    <figure>
-                        <img src="/images/Life-line.png" alt="Ligne de Vie" />
-                    </figure>
-                </header>
-                <body>
                 <p>$errorMess<p> 
         EOD;
     }
