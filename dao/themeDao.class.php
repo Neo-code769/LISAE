@@ -8,6 +8,96 @@ class themeDao extends Dao {
         $pdo = Dao::getConnexion();
 
         $requete = $pdo->prepare(
+                "SELECT * FROM `theme`"
+                );
+        try{
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                //THEME
+                $idTheme = $donnees['id_theme'];
+                $name = $donnees['name'];
+                $color = $donnees['color'];
+                $description = $donnees['description'];
+                $detailsDescription = $donnees['detailedDescription']; 
+
+                $activity = $this->getListActivity($idTheme);
+
+                $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
+                $list[] = $theme;
+            }
+
+        } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        die();
+        }
+    return $list;    
+    }
+    public function getListActivity($idTheme)
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+            "SELECT * FROM activity 
+            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity 
+            WHERE id_theme= $idTheme");
+            try{
+                $requete->execute();
+                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+                {
+                    $idActivity = $donnees['id_activity'];
+                    $name = $donnees['name'];
+                    $description = $donnees['description'];
+                    $detailedDescription = $donnees['detailedDescription'];
+                    $minNumberPerson = $donnees['minNumberPerson'];
+                    $maxNumberPerson = $donnees['maxNumberPerson'];
+                    $registrationDeadline = $donnees['registrationDeadline'];
+                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
+                    $slot = $this->getListSlot($idActivity);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    
+                    $list[] = $activity;
+                }
+            } catch (PDOException $e) {
+                echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $list;
+    }
+    public function getListSlot($idActivity)
+    {
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM host 
+        WHERE id_activity = $idActivity"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $registrationDeadLine=$donnees['registrationDeadline'];
+                $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
+                $place=$donnees['place'];
+                $information=$donnees['information'];
+                $slotDateTimeStart=$donnees['slotDateStart'];
+                $slotDateTimeEnd=$donnees['slotDateEnd'];
+                $slot = new Slot($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
+                $list[] = $slot;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+    public function getListTheme2()
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
             
                 "SELECT activity.name, slotDateStart, slotDateEnd 
                 FROM `theme`
@@ -80,9 +170,7 @@ class themeDao extends Dao {
             }
     }
 
-    public function getListSlot(){
-        
-    }
+   
 
     public function getList(): array{
         return $tab=[];

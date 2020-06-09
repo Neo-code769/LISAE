@@ -10,16 +10,14 @@ class Theme
     private $_detailsDescription;
     private $_activity = [];
 
-    public function __construct($idTheme, $name, $color, $image, $description, $detailsDescription, $activity)
+    public function __construct($idTheme, $name, $color, $description, $detailsDescription, $activity)
     {
+        $this->_activity = $activity;
         $this->_idTheme = $idTheme;
         $this->_name = $name;
         $this->_color = $color;
-        $this->_image = $image;
         $this->_description = $description;
         $this->_detailsDescription = $detailsDescription;
-        $this->_activity = $activity;
-        $this->_referent = $referent;
     }
 
     public function get_idTheme()

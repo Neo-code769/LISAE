@@ -11,8 +11,9 @@ class Activity{
     private $_unsubscribeDeadline;
     private $_slot = [];
 
-    function __construct($idActivity,$name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline, $unsubscribeDeadline)
+    function __construct($idActivity,$name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline, $unsubscribeDeadline,$slot)
     {
+        $this->_slot=$slot;
         $this->_idActivity=$idActivity;
         $this->_name=$name;
         $this->_description=$description;
