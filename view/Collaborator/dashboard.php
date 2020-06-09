@@ -1,6 +1,6 @@
 
     <div id="title" class="container">
-        <h3>Tableau de Bord</h3>
+        <h1>Tableau de Bord</h1>
     </div>
 
     <nav id="navigation" class="container-fluid">
@@ -18,6 +18,7 @@
         </div>
     </nav>
 
+    <h3>Mes Inscriptions</h3>
     <section id="dashboard">
         <article>
             <div>
