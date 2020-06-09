@@ -16,10 +16,7 @@
     <section id="dashboard">
         <article>
             <div>
-            <?php //echo $this->_themeList;?>
-                <ul>
-                    <?php echo $this->_eloce ?>
-                </ul>
+                <?php echo $this->_eloce ?>
             </div>
         </article>
         <br><br><br><br><br><br><br><br><br><br>
