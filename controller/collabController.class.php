@@ -15,7 +15,8 @@ class CollabController extends MainController
       "dashboard" => 6,
       "info" => 7,
       "softskill"=> 8,
-      "jobcible"=>9
+      "jobcible"=>9,
+      "eloce"=>10
     ];
     parent::__construct();
   }
@@ -56,27 +57,9 @@ class CollabController extends MainController
       //Liste Eloce
 
           //Appel de la fonction dao et instanciation des modéles des thèmes
-          /* $listTheme=(new ThemeDAO())->getListTheme();
-          
-          //Lié les themes avec les activités
-          foreach ($listTheme as $theme) {
-            $theme->setActivity((new ActivityDAO())->getListUniqueActivityForTheme($theme->getName()));
-          }
-
-          //Lié les activité avec les créneaux
-          foreach ($listTheme->getListActivity() as $activity) {
-            $activity->setSlot(new SlotDAO())->getListSlotForActivity($activity->getId());
-          } */
-
-        //Ou faire une fonction directement rempli dans le dao
-
 
       //Exemple test
       $collabView = new CollabView();
-      //$collabView->setSlot((new SlotDAO())->getListSlotForActivity(1));
-      //$collabView->setTheme((new ThemeDao())->getListSlot(1));
-      $collabView->setTheme((new ThemeDao())->getListTheme());
-      //$collabView->setTheme((new ThemeDao())->getListActivity(1));
       $collabView->run("dashboard");
       break;
       
@@ -99,6 +82,12 @@ class CollabController extends MainController
         $jobCible = new JobCibleView();
         $jobCible->run($content="");
         
+      break;
+
+      case 10:
+        $collabView = new CollabView();
+        $collabView->setTheme((new ThemeDao())->getListTheme());
+        $collabView->run($content="ListELOCE");
       break;
     }
   }

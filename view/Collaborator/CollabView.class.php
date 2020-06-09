@@ -4,7 +4,7 @@ class CollabView extends LisaeTemplateConnected {
 
     private $_infoUser;
     private $_sessionSlot;
-    private $_themeList;
+    private $_eloce;
 
     public function __construct()
     {
@@ -21,15 +21,22 @@ class CollabView extends LisaeTemplateConnected {
     }
 
     public function setTheme($themeList){
-        /* $result = "";
-        foreach ($slotList as $slot) {
-            $result .= "<li>".$slot->get_nameSession()."</li>";
-        } */
-        $result = var_dump($themeList);
+        //TEST
+        /* $result = var_dump($themeList);
         foreach ($themeList as $theme) {
             var_dump($theme->get_activity());
-        } 
-        $this->_themeList = $result;
+        }  */
+
+        //APP
+        $result = "";
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                    $result .="<div class='eloce' style='background-color:".$theme->get_color()."'>".$slot->get_slotDateTimeStart()."-".$slot->get_slotDateTimeEnd()." - ".$theme->get_name()." - ".$activity->get_name()."</div>";
+                }
+            }
+        }
+        $this->_eloce = $result;
     }
 
     public function setInfoUser($info){
@@ -51,6 +58,9 @@ class CollabView extends LisaeTemplateConnected {
 
             case "registration": include "registrationActivity.php";
             break; 
+
+            case "ListELOCE":include "ListELOCE.php";
+            break;
             
             case "infoUser": include "infoUser.phtml"; 
             break;
