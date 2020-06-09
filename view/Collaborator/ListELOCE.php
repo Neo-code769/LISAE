@@ -14,13 +14,8 @@
 
     <h3>Liste des créneaux</h3>
     <section id="dashboard">
-        <article>
-            <div>
-            <?php //echo $this->_themeList;?>
-                <ul>
+    <div>
                     <?php echo $this->_eloce ?>
-                </ul>
-            </div>
-        </article>
+                
         <br><br><br><br><br><br><br><br><br><br>
     </section>
