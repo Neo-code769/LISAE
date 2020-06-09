@@ -25,12 +25,15 @@ class themeDao extends Dao {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
+                //THEME
                 $idTheme = $donnees['id_theme'];
                 $name = $donnees['name'];
                 $color = $donnees['color'];
                 $image = $donnees['image'];
                 $descriptionTheme = $donnees['description'];
                 $detailsDescriptionT = $donnees['detailedDescription'];
+
+                //ACTIVITE
                 $idActivity = $donnees['id_activity'];
                 $name = $donnees['name'];
                 $descriptionActivity = $donnees['description'];
@@ -39,9 +42,8 @@ class themeDao extends Dao {
                 $maxNumberPerson = $donnees['maxNumberPerson'];
                 $registrationDeadline = $donnees['registrationDeadline'];
                 $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                $idThemeA = $donnees['id_theme'];
-                $externalContributor = $donnees['externalContributor'];
-                $activity = new Activity($idActivity, $name, $descriptionActivity, $detailedDescriptionA, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idThemeA,$externalContributor);
+                
+                $activity = new Activity($idActivity, $name, $descriptionActivity, $detailedDescriptionA, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline);
                 $theme = new Theme($idTheme, $name, $color, $image, $descriptionTheme, $detailsDescriptionT ,$activity);
                 $list[] = $theme;
             }
