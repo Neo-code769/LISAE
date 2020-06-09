@@ -21,7 +21,7 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
                 </div>
                     <div id="log">
                         <div id="link"><a href="./dashboard" style="text-decoration:none">Tableau de Bord</a></div>
-                        <div id="link"><a href="../collab/eloce">Calendrier ELOCE</a></div>
+                        <div id="link"><a href="../collab/eloce" style="text-decoration:none">Calendrier ELOCE</a></div>
                         <!--<div id="link"><a href="../collab/conference" style="text-decoration:none">Conférence</a></div> -->
                         <div id="link"><a href="../collab/softskill" style="text-decoration:none">Soft Skills</a></div>
                         <div id="link"><a href="../collab/jobcible" style="text-decoration:none">Job Cible 2.0</a></div>

@@ -5,7 +5,6 @@ class JobCibleView extends LisaeTemplateConnected {
 
     public function setBody($content) {
         echo <<<EOD
-                <h1> JOB CIBLE 2.0 </h1><br>
                 <div id="themeview">
                     <div id="list">
                         <button id="profil" class ="activity">Profil Perso/Pro</button>
@@ -23,7 +22,7 @@ class JobCibleView extends LisaeTemplateConnected {
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
             
-            <script type="text/javascript" src="/view/Activity/mainScript.js"></script>
+            <script type="text/javascript" src="/view/Activity/ScriptJC.js"></script>
         EOD;
     }
 
