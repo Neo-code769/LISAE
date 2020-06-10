@@ -21,21 +21,32 @@ class CollabView extends LisaeTemplateConnected {
     }
 
     public function setTheme($themeList){
-        //TEST
-        /* $result = var_dump($themeList);
-        foreach ($themeList as $theme) {
-            var_dump($theme->get_activity());
-        }  */
 
-        //APP
-        $result = "";
+        $arr = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
-                    $result .="<div class='eloce' style='background-color:".$theme->get_color()."'>".$slot->get_slotDateTimeStart()."-".$slot->get_slotDateTimeEnd()." - ".$theme->get_name()." - ".$activity->get_name()."</div>";
+                    $arr[]=["color" => $theme->get_color(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name()];
                 }
             }
+        } 
+
+        function date_sort($a, $b) {
+            return strtotime($a["dts"]) - strtotime($b["dts"]);
         }
+        usort($arr, "date_sort"); //Tri en ordre chronologique
+
+        $result = "";
+        foreach ($arr as $element) {
+            setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href=''><img src='../../images/signup.png' alt='S'inscrire a l'atelier'></a><div>";
+        }
+
         $this->_eloce = $result;
     }
 
@@ -59,7 +70,7 @@ class CollabView extends LisaeTemplateConnected {
             case "registration": include "registrationActivity.php";
             break; 
 
-            case "ListELOCE":include "ListELOCE.php";
+            case "ListELOCE":include "ListELOCE.phtml";
             break;
             
             case "infoUser": include "infoUser.phtml"; 

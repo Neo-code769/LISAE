@@ -208,6 +208,7 @@ form
 .eloce {
     display: flex;
     justify-content: center;
+    border: solid black;
     border-radius: 30px;
     margin:1%;
 }
@@ -247,3 +248,8 @@ form
   ::-webkit-scrollbar-thumb:hover {
     background: black; 
   }
+
+.signup{
+    width: -40%;
+    margin: 1%;
+}
