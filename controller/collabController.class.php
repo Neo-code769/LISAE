@@ -92,12 +92,10 @@ class CollabController extends MainController
         $collabView->run("ListELOCE");
       break;
 
-      case 21:
-        $collabView = new CollabView();
-        $collabView->setTheme((new ThemeDao())->registrationActivity($_SESSION["id_user"], ));
-        $collabView->run($content="ListELOCE");
       case 11:
-
+        $collabView = new CollabView();
+        //(new ThemeDao())->registrationActivity($_SESSION["id_user"], ));
+        $collabView->run($content="ListELOCE");
       break;
 
       case 12:
