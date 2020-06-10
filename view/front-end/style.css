@@ -42,7 +42,6 @@ tr {
 footer 
 {
     margin-top: 5%;
-    border-top: 6px solid rgba(69, 94, 207, 0.794);
     padding-top: 2%;
 }
 
@@ -64,7 +63,7 @@ p
 {
     display: flex;
     position: relative;
-    margin-left: 13%;
+    margin-left: 5%;
     margin-top: 1%;
 }
 
@@ -206,11 +205,46 @@ form
 }
 
 .eloce {
+    font-size: 26px;
     display: flex;
     justify-content: center;
     border: solid black;
     border-radius: 30px;
     margin:1%;
+}
+
+#infoslot
+{
+    width: 70%;
+    height: 50%;
+    justify-content: center;
+    margin-left: 15%;
+    margin-right: 25%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+#infodesc
+{
+    font-size: 24px;
+}
+
+#desc
+{
+    font-size: 18px;
+    border: 1px solid black;
+    margin-right: 60%;
+}
+
+#retour
+{
+    font-size: 16px;
+    margin-left: 10%;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    width: 8%;
+    border-width: 1px;
 }
 
 /********************/
