@@ -17,7 +17,7 @@ class CollabController extends MainController
       "softskill"=> 8,
       "jobcible"=>9,
       "eloce"=>10,
-      "signUpActivity"=>11,
+      "signUpSlot"=>11,
       "infoSlot"=>12
     ];
     parent::__construct();
@@ -94,7 +94,7 @@ class CollabController extends MainController
 
       case 11:
         $collabView = new CollabView();
-        //(new ThemeDao())->registrationActivity($_SESSION["id_user"], ));
+        //(new ThemeDao())->registrationActivity($_SESSION["id_user"],"","",$_GET["idSlot"] ));
         $collabView->run($content="ListELOCE");
       break;
 
