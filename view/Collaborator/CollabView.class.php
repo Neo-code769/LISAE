@@ -44,7 +44,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
-            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href=''><img src='../../images/signup.png' alt='S'inscrire a l'atelier'></a><div>";
+            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href=''><img src='../../images/signup.png' alt='S'inscrire a l'atelier'></a></div>";
         }
 
         $this->_eloce = $result;
