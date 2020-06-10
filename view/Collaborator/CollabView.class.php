@@ -35,35 +35,19 @@ class CollabView extends LisaeTemplateConnected {
             }
         } 
 
-        $data = array(
-            array(
-                "title" => "Another title",
-                "date"  => "Fri, 17 Jun 2011 08:55:57 +0200"
-            ),
-            array(
-                "title" => "My title",
-                "date"  => "Mon, 16 Jun 2010 06:55:57 +0200"
-            )
-        );
-
         function date_sort($a, $b) {
             return strtotime($a["dts"]) - strtotime($b["dts"]);
         }
-        usort($arr, "date_sort");
-        foreach ($arr as $x) {
+        usort($arr, "date_sort"); //Tri en ordre chronologique
+
+        $result = "";
+        foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            $y[] =strftime('%A %d %B %Y %H:%M', strtotime($x["dts"]));
+            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $result .="<div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>";
         }
-        //var_dump(strftime('%A %d %B %Y %H:%M', strtotime($arr[1]["dts"])));
-        var_dump($y);
-            //setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            //strftime('%A %d %B %Y %H:%M', strtotime($y["dts"]));
-        
-        //var_dump($arr);
 
-        /* $result .="<div class='eloce' style='background-color:".$theme->get_color()."'>".$slot->get_slotDateTimeStart()."-".$slot->get_slotDateTimeEnd()." - ".$theme->get_name()." - ".$activity->get_name()."</div>"; */
-
-        //$this->_eloce = $result;
+        $this->_eloce = $result;
     }
 
     public function setInfoUser($info){
