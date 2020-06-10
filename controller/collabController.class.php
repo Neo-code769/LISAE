@@ -17,7 +17,8 @@ class CollabController extends MainController
       "softskill"=> 8,
       "jobcible"=>9,
       "eloce"=>10,
-      "signUpActivity"=>11
+      "signUpActivity"=>11,
+      "infoActivity"=>12
     ];
     parent::__construct();
   }
@@ -92,6 +93,12 @@ class CollabController extends MainController
       break;
 
       case 11:
+
+      break;
+
+      case 12:
+        
+      break;
     }
   }
 }
