@@ -4,7 +4,7 @@
     </div>
 
     <h3>Mes Inscriptions</h3>
-    <section id="centre">
+    <section id="dashboard">
         <article>
             <div>
                 <table class="host">
