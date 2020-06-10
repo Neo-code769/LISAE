@@ -1,3 +1,29 @@
 <body>
+
+<div id="registration" class="container">
+    <form method="post">
+        <fieldset>
+            <label>Prenom :</label><br>
+            <?php /*$user->get_lastname();*/ ?>
+            <input type="text" name="firstname" pattern="[A-Z][a-z]+" title="Le prénom ne doit pas contenir de chiffres et doit commencer par une majuscule." required value="<?php if(isset($_POST['firstname'])){ echo $_POST['firstname']; }?>"><br>
+            <br>
+            <label>Nom :</label><br>
+            <input type="text" name="lastname" pattern="[A-Z][a-z]+" title="Le nom ne doit pas contenir de chiffres et doit commencer par une majuscule." required value="<?php if(isset($_POST['lastname'])){ echo $_POST['lastname']; }?>"><br>
+            <br>
+            <label>Date de naissance :</label><br>
+            <input type="date" name="birthdate"  required value="<?php if(isset($_POST['birthdate'])){ echo $_POST['birthdate']; }?>"><br>
+            <br>
+            <label>Numero de telephone :</label><br>
+            <input type="tel" name="phoneNumber" pattern="0[1-68]([-. ]?[0-9]{2}){4}" title="Le numero de téléphone doit contenir 10 chiffres." required value="<?php if(isset($_POST['phoneNumber'])){ echo $_POST['phoneNumber']; }?>"><br>
+            <br>
+            <label>E-mail :</label><br>
+            <input type="email" name="mail" required value="<?php if(isset($_POST['mail'])){ echo $_POST['mail']; }?>"><br>
+            <br>
+            <input id="button" type="submit" name="registration" value="Valider"><br><br>
+            <input id="button" type="reset" value="Annuler"><br>
+        
+        </fieldset><br><br>
+    </form>
+</div>
+
 <?php var_dump($this->_infoUser) ?>
-<p><a href="./dashboard">Dashboard</a></p>
