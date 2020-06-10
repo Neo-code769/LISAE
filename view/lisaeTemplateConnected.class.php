@@ -14,11 +14,7 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
         echo <<<EOD
             <header>
                 <div id="headerIMG">
-                    <figure>
-                        <img src="/images/header-logo.png" alt="logo AFPA-ELOCE" />
-                        <img src="/images/LISAE.png" alt="logo LISAE" />
-                    </figure>
-                </div>
+                    <img src="/images/LISAE.png" alt="logo LISAE" />
                     <div id="log">
                         <div id="link"><a href="./dashboard" style="text-decoration:none">Tableau de Bord</a></div>
                         <div id="link"><a href="../collab/eloce" style="text-decoration:none">Calendrier ELOCE</a></div>
@@ -28,10 +24,9 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
                         <div id="link"><a href="../collab/info" style="text-decoration:none">Mon Compte</a></div>
                         <div id="link"><a href="../password/logout" style="text-decoration:none">Déconnexion</a></div>
                     </div>
-                <figure>
-                    <img src="/images/Life-line.png" alt="Ligne de Vie" />
-                </figure>
+                </div>
             </header>
+            <div id="margin"></div>
             <body>
             EOD;
     }

@@ -28,9 +28,8 @@ abstract class LisaeTemplate {
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
                     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-                    <title>LISAE - ELOCE</title>
+                    <title>LISAE</title>
                 </head>
-                <p>$errorMess<p> 
         EOD;
     }
 
@@ -40,7 +39,7 @@ abstract class LisaeTemplate {
                 <figure id="figure">
                     <img src="/images/AFPA.jpg" alt="logo AFPA" />
                     <img src="/images/ELOCE.png" alt="logo ELOCE" />
-                    <img src="/images/LISAE.png" alt="logo LISAE" />
+                    <img src="/images/AFPA.jpg" alt="logo AFPA" />
                 </figure>
             </footer>
         </body>

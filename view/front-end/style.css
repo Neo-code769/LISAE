@@ -1,11 +1,27 @@
 @font-face { /* New Font Montserrat */
-    font-family: 'Montserrat-Regular';
+    /*font-family: 'Montserrat-Regular';
     src: url('Montserrat-Regular.ttf') format('truetype');
-    src: url('Montserrat-Bold.ttf') format('truetype');
+    src: url('Montserrat-Bold.ttf') format('truetype');*/
+    font-family: 'FredokaOne-Regular';
+    src: url('FredokaOne-Regular') format('truetype');
+
 }
 
 * { 
-    font-family: 'Montserrat-Regular', Verdana;
+    font-family: 'FredokaOne-Regular', Verdana;
+}
+
+body
+{
+    margin-top: 150px;
+}
+
+#LISAE
+{
+    font-family: 'FredokaOne-Regular', Verdana;
+    font-size: 40px;
+    margin-top: 12px;
+    margin-left: 12px;
 }
 
 #figure {
@@ -14,7 +30,7 @@
 }
 
 h1 {
-    font-family: 'Montserrat-Regular';
+    font-family: 'FredokaOne-Regular';
     font-weight: bold;
     text-align: center;
 }
@@ -33,26 +49,28 @@ tr {
     justify-content: space-around;
 }
 
-footer {
+footer 
+{
     margin-top: 75px;
 }
 
 p
 {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #headerIMG 
 {
-    float: left;
+    display: flex;
 }
 
 #log
 {
     display: flex;
+    position: absolute;
     float: right;
-    margin-top: 30px;
-    margin-right: 100px;
+    margin-left: 450px;
+    margin-top: 60px;
 }
 
 #link
@@ -85,7 +103,13 @@ p
 }
 
 #title {
+    padding-top: 40px;
     align-items: center;
+}
+
+#title.container
+{
+    border-top: 4px ridge rgba(69, 94, 207, 0.794);
 }
 
 #connexion {
@@ -152,6 +176,7 @@ form
 #themeview
 {
     display: flex;
+    margin-top: 50px;
 }
 
 #content
