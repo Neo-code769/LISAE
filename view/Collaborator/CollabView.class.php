@@ -26,7 +26,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
-                    $arr[]= ["idslot"=> $slot->get_idSlot(), "color" => $theme->get_color(),
+                    $arr[]= ["idSlot"=> $slot->get_idSlot(),"color" => $theme->get_color(),
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
@@ -44,7 +44,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
-            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href='../signUpActivity'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a></div>";
+            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href='..collab/signUpActivity?id=".$element["idSlot"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a></div>";
         }
 
         $this->_eloce = $result;

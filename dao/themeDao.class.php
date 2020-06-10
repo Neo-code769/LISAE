@@ -194,6 +194,23 @@ class themeDao extends Dao {
     public function update($obj ){
 
     }
-
+    public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
+        $sql = "INSERT INTO `participate` 
+        VALUES ( 
+            (SELECT id_user from users WHERE id_user = $idUser), 
+            (SELECT id_activity FROM activity WHERE id_activity = $idActivity ), 
+            (SELECT id_session FROM session WHERE id_session = $idSession), 
+            (SELECT slotDateStart from host WHERE id_slot = $idSlot), 
+            ?, 
+            (SELECT slotDateEnd from host where id_slot=$idSlot))";
+        $exec = (Dao::getConnexion())->prepare($sql);
+            try{
+                $exec->execute();
+            } 
+            catch (PDOException $e) {
+                throw new LisaeException("Erreur",1);
+            }
+    }
 }
+
 ?>
