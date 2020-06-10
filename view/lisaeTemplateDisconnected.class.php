@@ -24,16 +24,10 @@ abstract class LisaeTemplateDisconnected extends LisaeTemplate {
         echo <<<EOD
             <header>
                 <div id="headerIMG">
-                    <figure>
-                        <img src="/images/header-logo.png" alt="logo AFPA-ELOCE" />
-                        <img src="/images/LISAE.png" alt="logo LISAE" />
-                    </figure>
+                    <img src="/images/LISAE.png" alt="logo LISAE" />
                 </div>
-                <figure>
-                    <img src="/images/Life-line.png" alt="Ligne de Vie" />
-                </figure>
             </header>
-            <body>
+            <div id="margin"></div>
             EOD;
     }
 

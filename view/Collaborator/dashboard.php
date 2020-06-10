@@ -1,4 +1,4 @@
-
+<body>
     <div id="title" class="container">
         <h1>Tableau de Bord</h1><br>
     </div>
