@@ -11,7 +11,7 @@ class AnimController extends MainController
     $this->_listUseCases=
     [
       //Anim
-      "registration" => 11
+      "registration" => 21
     ];
     parent::__construct();
   }
@@ -20,7 +20,7 @@ class AnimController extends MainController
   {
     switch ($this->_case) {
 
-      case 11:  // registrationAnim
+      case 21:  // registrationAnim
         if (isset($_POST['registration'])){
           try {
             $userForm =new UserForm($_POST);

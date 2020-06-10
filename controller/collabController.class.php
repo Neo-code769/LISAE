@@ -16,7 +16,8 @@ class CollabController extends MainController
       "info" => 7,
       "softskill"=> 8,
       "jobcible"=>9,
-      "eloce"=>10
+      "eloce"=>10,
+      "signUpActivity"=>11
     ];
     parent::__construct();
   }
@@ -89,6 +90,8 @@ class CollabController extends MainController
         $collabView->setTheme((new ThemeDao())->getListTheme());
         $collabView->run($content="ListELOCE");
       break;
+
+      case 11:
     }
   }
 }
