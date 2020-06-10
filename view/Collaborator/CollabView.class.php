@@ -58,11 +58,11 @@ class CollabView extends LisaeTemplateConnected {
 
     public function setInfoSlot($element){
         $result = 
-        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dts"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>";
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dts"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
         $result .=
-        "<div><label>Information</label><p>".$element['information']."</p></div>";
+        "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
         $result .=
-        "<div><label>Lieu</label><p>".$element['place']."</p></div>";
+        "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
         $this->_infoSlot = $result;
     }
 
