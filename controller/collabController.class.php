@@ -18,7 +18,7 @@ class CollabController extends MainController
       "jobcible"=>9,
       "eloce"=>10,
       "signUpActivity"=>11,
-      "infoActivity"=>12
+      "infoSlot"=>12
     ];
     parent::__construct();
   }
@@ -75,21 +75,21 @@ class CollabController extends MainController
       case 8:
        
         $softSkill = new SoftSkillView();
-        $softSkill->run($content="");
+        $softSkill->run("");
         
       break;
 
       case 9:
        
         $jobCible = new JobCibleView();
-        $jobCible->run($content="");
+        $jobCible->run("");
         
       break;
 
       case 10:
         $collabView = new CollabView();
         $collabView->setTheme((new ThemeDao())->getListTheme());
-        $collabView->run($content="ListELOCE");
+        $collabView->run("ListELOCE");
       break;
 
       case 11:
@@ -97,7 +97,30 @@ class CollabController extends MainController
       break;
 
       case 12:
-        
+        $collabView = new CollabView();
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["idSlot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dts" => $slot->get_slotDateTimeStartFormat(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place()
+                    ]
+                    ;
+                  }
+                }
+            }
+        } 
+        $collabView->setInfoSlot($slotInfo);
+        $collabView->run("infoSlot");
       break;
     }
   }
