@@ -48,7 +48,7 @@ class sessionTrainingDao extends Dao{
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT session.session_name, id_session FROM session"
+        "SELECT session_name, id_session FROM session"
         );
         try {
             $requete->execute();

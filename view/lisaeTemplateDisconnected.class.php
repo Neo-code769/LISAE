@@ -20,7 +20,7 @@ abstract class LisaeTemplateDisconnected extends LisaeTemplate {
         }
     }
 
-    public function setHeader() {
+    public function setHeader($errorMess) {
         echo <<<EOD
             <header>
                 <div id="headerIMG">
@@ -29,6 +29,7 @@ abstract class LisaeTemplateDisconnected extends LisaeTemplate {
             </header>
             <div id="margin"></div>
             EOD;
+        echo "<p>".$errorMess."</p>";
     }
 
     abstract public function setBody($content);

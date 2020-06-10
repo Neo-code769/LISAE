@@ -6,13 +6,13 @@ abstract class LisaeTemplate {
     }
 
     public function run($content, $errorMess="") {
-        $this->setHead($errorMess);
-        $this->setHeader();
+        $this->setHead();
+        $this->setHeader($errorMess);
         $this->setBody($content);
         $this->setFooter();
     }
 
-    public function setHead($errorMess="") {
+    public function setHead() {
         echo <<<EOD
         <!DOCTYPE html >
             <html leng="en">
@@ -47,5 +47,7 @@ abstract class LisaeTemplate {
     }
 
     abstract public function setBody($content);
+
+    abstract public function setHeader($errorMess);
 
 }
