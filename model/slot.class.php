@@ -46,11 +46,20 @@ class Slot
         return $this->_slotDateTimeStart;
     }
 
-    /**
-     * Get the value of _slotDateTimeEnd
-     */ 
     public function get_slotDateTimeEnd()
     {
         return  strftime('%H:%M', strtotime($this->_slotDateTimeEnd));
+    }
+
+    public function get_idSlot()
+    {
+        return $this->_idSlot;
+    }
+
+    public function set_idSlot($_idSlot)
+    {
+        $this->_idSlot = $_idSlot;
+
+        return $this;
     }
 }
