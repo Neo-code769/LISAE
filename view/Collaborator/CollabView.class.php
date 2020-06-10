@@ -5,6 +5,7 @@ class CollabView extends LisaeTemplateConnected {
     private $_infoUser;
     private $_sessionSlot;
     private $_eloce;
+    private $_infoSlot;
 
     public function __construct()
     {
@@ -26,7 +27,8 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
-                    $arr[]= ["idslot"=> $slot->get_idSlot(), "color" => $theme->get_color(),
+                    $arr[]= ["idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
@@ -44,7 +46,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
-            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href='../signUpActivity'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a></div>";
+            $result .="<div class='row justify-content-center'> <div class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><a href='../signUpActivity'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a><a href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a></div>";
         }
 
         $this->_eloce = $result;
@@ -54,6 +56,16 @@ class CollabView extends LisaeTemplateConnected {
         $this->_infoUser = $info;
     }
 
+    public function setInfoSlot($element){
+        $result = 
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dts"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>";
+        $result .=
+        "<div><label>Information</label><p>".$element['information']."</p></div>";
+        $result .=
+        "<div><label>Lieu</label><p>".$element['place']."</p></div>";
+        $this->_infoSlot = $result;
+    }
+
     public function setBody($content) {
 
         switch ($content) {
@@ -61,7 +73,7 @@ class CollabView extends LisaeTemplateConnected {
             case "dashboard": include "dashboard.php";
             break;
 
-            case "infoActivity": include "infoActivity.php";
+            case "infoSlot": include "infoSlot.phtml";
             break;
 
             case "topics": include "topicsActivity.php";
