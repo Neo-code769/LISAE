@@ -77,13 +77,14 @@ class themeDao extends Dao {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
+                $idSlot=$donnees['id_slot'];
                 $registrationDeadLine=$donnees['registrationDeadline'];
                 $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
                 $place=$donnees['place'];
                 $information=$donnees['information'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
                 $list[] = $slot;
             }
         }
