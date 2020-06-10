@@ -66,7 +66,7 @@ class CollabController extends MainController
       break;
       
       case 7:
-      $user = (new userDao())->get($_SESSION["id_user"]);
+      $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
       $collabView->setInfoUser($user);
       $collabView->run("infoUser");
@@ -94,8 +94,8 @@ class CollabController extends MainController
 
       case 11:
         $collabView = new CollabView();
-        //(new ThemeDao())->registrationActivity($_SESSION["id_user"],"","",$_GET["idSlot"] ));
-        $collabView->run($content="ListELOCE");
+        (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
+        $collabView->run("ListELOCE");
       break;
 
       case 12:

@@ -54,8 +54,9 @@ class sessionTrainingDao extends Dao{
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
+                $idSession=$donnees['id_session'];
                 $sessionName=$donnees['session_name'];
-                $session = new SessionTraining($sessionName);
+                $session = new SessionTraining($idSession,$sessionName);
                 $list[] = $session;
             }
         }
@@ -64,7 +65,27 @@ class sessionTrainingDao extends Dao{
         }
         return $list;
     }
-    
+    public function getSession($user){
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT session.id_session, session.session_name FROM session
+        INNER JOIN tie on session.id_session = tie.id_session
+         where id_user = $user"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSession=$donnees['id_session'];
+                $sessionName=$donnees['session_name'];
+                $session = new SessionTraining($idSession, $sessionName);
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $session;
+    }
     // delete via son id
     public function delete(int $id ){
 
@@ -74,5 +95,5 @@ class sessionTrainingDao extends Dao{
     public function update($obj){
         
     } 
-
+  
 }

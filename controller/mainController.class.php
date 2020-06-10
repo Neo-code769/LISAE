@@ -40,7 +40,7 @@ class MainController
               $password = sha1($_POST["password"]);
               if (!empty($mail) and !empty($password)) {
                 $userDao = new UserDao();
-                $tab = $userDao->getSession($mail, $password);
+                $tab = $userDao->getSessionUser($mail, $password);
                 $checkMail = $userDao->getConfirmationMail($mail);
                     if ($tab['exist'] == 1) {
                         if ($checkMail == 1) {
@@ -48,6 +48,10 @@ class MainController
                             $_SESSION['mail'] = $tab['mail'];
                             $_SESSION['password'] = $tab['password'];
                             $_SESSION['role'] = $tab['role'];
+                           $promo= (new SessionTrainingDao())->getSessionUser($_SESSION['id_user']);
+                            $_SESSION['id_session'] = $promo->getIdSession(); 
+                            $_SESSION['session_name'] = $promo->get_nameSession(); 
+                            var_dump($promo);
                            if ($_SESSION['role'] == 'Collaborator')
                             {
                               header('Location:../../index.php/collab/dashboard');

@@ -2,14 +2,16 @@
 
 class SessionTraining
 {
+    private $_idSession;
     private $_nameSession;
     private $_startDateFormation;
     private $_endDateFormation;
     private $_startDatePae;
     private $_endDatePae;
 
-    public function __construct( $nameSession, $startDateFormation=null, $endDateFormation=null, $startDatePae=null, $endDatePae=null)
+    public function __construct( $idSession, $nameSession, $startDateFormation=null, $endDateFormation=null, $startDatePae=null, $endDatePae=null)
     {
+        $this->_idSession = $idSession;
         $this->_nameSession = $nameSession;
         $this->_startDateFormation = $startDateFormation;
         $this->_endDateFormation = $endDateFormation;
@@ -93,6 +95,18 @@ class SessionTraining
     public function set_nameSession($_nameSession)
     {
         $this->_nameSession = $_nameSession;
+
+        return $this;
+    }
+ 
+    public function getIdSession()
+    {
+        return $this->idSession;
+    }
+
+    public function setIdSession($idSession)
+    {
+        $this->idSession = $idSession;
 
         return $this;
     }

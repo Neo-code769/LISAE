@@ -92,59 +92,7 @@ class themeDao extends Dao {
             throw new LisaeException("Erreur requête", 1);
         }
         return $list;
-    }
-    public function getListTheme2()
-    {
-        $list = []; 
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare(
-            
-                "SELECT activity.name, slotDateStart, slotDateEnd 
-                FROM `theme`
-                INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
-                INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
-                INNER JOIN host on activity.id_activity = host.id_activity
-                UNION
-                SELECT activity.name, slotDateStart, slotDateEnd 
-                FROM `theme`
-                INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
-                INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
-                INNER JOIN host on activity.id_activity = host.id_activity"
-                );
-         try{
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-            {
-                //THEME
-                $idTheme = $donnees['id_theme'];
-                $name = $donnees['name'];
-                $color = $donnees['color'];
-                $image = $donnees['image'];
-                $descriptionTheme = $donnees['description'];
-                $detailsDescriptionT = $donnees['detailedDescription'];
-
-                //ACTIVITE
-                $idActivity = $donnees['id_activity'];
-                $name = $donnees['name'];
-                $descriptionActivity = $donnees['description'];
-                $detailedDescriptionA = $donnees['detailedDescription'];
-                $minNumberPerson = $donnees['minNumberPerson'];
-                $maxNumberPerson = $donnees['maxNumberPerson'];
-                $registrationDeadline = $donnees['registrationDeadline'];
-                $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                
-                $activity = new Activity($idActivity, $name, $descriptionActivity, $detailedDescriptionA, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline);
-                $theme = new Theme($idTheme, $name, $color, $image, $descriptionTheme, $detailsDescriptionT ,$activity);
-                $list[] = $theme;
-            }
-
-        } catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-        die();
-        }
-    return $list;
-    }
+    }    
 
     public function getThemeActivity() 
     {
@@ -197,11 +145,11 @@ class themeDao extends Dao {
     public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
         $sql = "INSERT INTO `participate` 
         VALUES ( 
-            (SELECT id_user from users WHERE id_user = $idUser), 
-            (SELECT id_activity FROM activity WHERE id_activity = $idActivity ), 
-            (SELECT id_session FROM session WHERE id_session = $idSession), 
+            $idUser, 
+            $idActivity, 
+            $idSession, 
             (SELECT slotDateStart from host WHERE id_slot = $idSlot), 
-            ?, 
+            null, 
             (SELECT slotDateEnd from host where id_slot=$idSlot))";
         $exec = (Dao::getConnexion())->prepare($sql);
             try{
@@ -211,6 +159,7 @@ class themeDao extends Dao {
                 throw new LisaeException("Erreur",1);
             }
     }
+  
 }
 
 ?>

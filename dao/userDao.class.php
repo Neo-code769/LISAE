@@ -4,8 +4,10 @@ class userDao extends Dao{
 
     public function getList(): array{
     }
+    public function get(int $id) {
 
-    public function get(int $id){
+    }
+    public function getInfo($id){
         $pdo = Dao::getConnexion();
 
         $requete = $pdo->prepare("SELECT * FROM users WHERE id_user= $id");
@@ -67,7 +69,7 @@ class userDao extends Dao{
         }
     }
 
-    public function getSession($mail, $password)
+    public function getSessionUser($mail, $password)
     {
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."' and password= '". $password."'");
