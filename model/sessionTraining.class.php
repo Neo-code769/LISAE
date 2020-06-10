@@ -101,7 +101,7 @@ class SessionTraining
  
     public function getIdSession()
     {
-        return $this->idSession;
+        return $this->_idSession;
     }
 
     public function setIdSession($idSession)

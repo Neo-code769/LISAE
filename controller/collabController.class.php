@@ -95,6 +95,7 @@ class CollabController extends MainController
       case 11:
         $collabView = new CollabView();
         (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
+        header('Location:../../index.php/collab/eloce');
         $collabView->run("ListELOCE");
       break;
 

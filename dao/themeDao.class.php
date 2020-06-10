@@ -148,15 +148,16 @@ class themeDao extends Dao {
             $idUser, 
             $idActivity, 
             $idSession, 
-            (SELECT slotDateStart from host WHERE id_slot = $idSlot), 
-            null, 
-            (SELECT slotDateEnd from host where id_slot=$idSlot))";
+            (SELECT slotDateStart from host WHERE id_slot = $idSlot),  
+            (SELECT slotDateEnd from host where id_slot=$idSlot),
+            null
+            )";
         $exec = (Dao::getConnexion())->prepare($sql);
             try{
                 $exec->execute();
             } 
             catch (PDOException $e) {
-                throw new LisaeException("Erreur",1);
+                throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
             }
     }
   
