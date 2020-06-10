@@ -3,6 +3,7 @@
 class userDao extends Dao{
 
     public function getList(): array{
+        return [];
     }
     public function get(int $id) {
 

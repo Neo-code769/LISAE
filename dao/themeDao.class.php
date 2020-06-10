@@ -157,7 +157,8 @@ class themeDao extends Dao {
                 $exec->execute();
             } 
             catch (PDOException $e) {
-                throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+                var_dump($e->getMessage());
+                //throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
             }
     }
   

@@ -91,7 +91,7 @@ class UserForm{
         $collab = null;
 
         if ($this->checkPassword() && $this->checkMail()) {
-            $collab = new Collaborator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+            $collab = new Collaborator(null, $this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
         }elseif($this->checkPassword() == false){
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
         }elseif($this->checkMail() == false){
@@ -107,7 +107,7 @@ class UserForm{
         {
             $anim = null;
             if ($this->checkPassword() && $this->checkMail() ) {
-                $anim = new Animator($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+                $anim = new Animator(null, $this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
             }elseif($this->checkPassword() == false){
                 throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
             }elseif($this->checkMail() == false){
@@ -123,7 +123,7 @@ class UserForm{
     {
         $admin = null;
         if ($this->checkPassword() && $this->checkMail() ) {
-            $admin = new Admin($this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
+            $admin = new Admin(null, $this->_lastname,$this->_firstname,$this->_birthdate,$this->_phoneNumber,$this->_mail,$this->_password);
         }elseif($this->checkPassword() == false){
             throw new LisaeException("Erreur, les mots de passe ne correspondent pas !");
         }elseif($this->checkMail() == false){

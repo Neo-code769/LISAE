@@ -33,6 +33,7 @@ class CollabController extends MainController
             try {
               $userForm =new UserForm($_POST);
               $collab =$userForm->createCollab();
+              //var_dump($collab);
               (new UserDao())->insert($collab);
               (new SessionTrainingDao())->insertForSession($_POST['training']);
               $userForm->sendMailConfirmation(); // Envoi du mail de confirmation
@@ -94,9 +95,12 @@ class CollabController extends MainController
 
       case 11:
         $collabView = new CollabView();
-        (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
-        header('Location:../../index.php/collab/eloce');
-        $collabView->run("ListELOCE");
+        try {
+          (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
+          header('Location:../../index.php/collab/eloce');
+        } catch (LisaeException $e) {
+          $collabView->run("ListELOCE",$e->render());
+        }
       break;
 
       case 12:
