@@ -175,7 +175,22 @@ class themeDao extends Dao {
             throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
         }
     }
-  
-}
 
+    public function checkSlotExist($idUser,$idActivity,$idSession,$idSlot)
+    {
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM participate 
+        WHERE id_user = $idUser AND id_activity = $idActivity AND id_session = $idSession AND slotDateStart = (SELECT slotDateStart from host WHERE id_slot = $idSlot)"
+        );
+        try {
+            $requete->execute();
+            $result = $requete->rowCount();
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $result;
+    }  
+}
 ?>

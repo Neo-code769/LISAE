@@ -99,6 +99,10 @@ class CollabController extends MainController
       case 11:
         $collabView = new CollabView();
         try {
+          //Test si la personne est déjà inscrite
+          if ((new ThemeDao())->checkSlotExist($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"])!=0) {
+            throw new LisaeException("Erreur vous êtes déjà inscrit a ce créneaux", 1);
+          }
           (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
           header('Location:../../index.php/collab/eloce');
         } catch (LisaeException $e) {
