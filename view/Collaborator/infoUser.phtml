@@ -11,10 +11,12 @@
             <label>Date de naissance : <?php $birthdate = $this->setInfoBirthdate($_SESSION["id_user"]); echo($birthdate); ?></label><br>
             <br>
             <label>Numero de telephone : <?php $phone = $this->setInfoPhone($_SESSION["id_user"]); echo('0'.$phone); ?></label><br>
+            <input type="tel" name="phoneNumber" value="Nouveau Numero" pattern="0[1-68]([-. ]?[0-9]{2}){4}" title="Le numero de téléphone doit contenir 10 chiffres."><br>
             <br>
             <label>E-mail : <?php $mail = $this->setInfoMail($_SESSION["id_user"]); echo($mail); ?></label><br>
-            <br>
-            <input id="button" type="submit" name="registration" value="Modifier"><br><br>
+            <input type="email" name="mail" value="Nouveau Mail"><br>
+            <br><br>
+            <input id="button" type="submit" name="modifAccount" value="Modifier"><br><br>
             <input id="button" type="reset" value="Annuler"><br>
         </fieldset><br><br>
     </form>
