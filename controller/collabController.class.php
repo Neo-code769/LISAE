@@ -137,11 +137,13 @@ class CollabController extends MainController
 
       break;
 
-// TO FIX WITH DAVID
+
       case 13:  // Modification du télephone
         if (isset($_POST['modifPhone'])){
           $user = new userDao;
-          $user->updatePhone();
+          $user->updatePhone($_POST["phoneNumber"], $_SESSION["id_user"]);
+          echo 'Votre numero de telephone à bien été modifié !';
+          header('Refresh:2;url=../index.php/collab/info');// TO FIX WITH DAVID
         }
 
       break;
@@ -149,7 +151,12 @@ class CollabController extends MainController
       case 14: // Modification mail
         if (isset($_POST['modifMail'])){
           $user = new userDao;
-          $user->updateMail();
+          $user->updateMail($_POST["mail"], $_SESSION["id_user"]);
+          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
+          header('Location:../../index.php');
+          // Envoi du mail de confirmation
+          $user->resetMail($_SESSION["id_user"]);  
+          $userForm->sendMailConfirmation($_POST["mail"]);
         }
 
       break;
@@ -163,7 +170,7 @@ class CollabController extends MainController
           //$collabView->run("ListELOCE",$e->render());
         }
         
-      
+      break;
 
     }
   }

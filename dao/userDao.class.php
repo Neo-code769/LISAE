@@ -163,23 +163,31 @@ class userDao extends Dao{
     } 
 
     // update d'un objet
-    public function updatePhone() {
+    public function updatePhone($phone, $user) {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($_POST[phoneNumber]) WHERE `id_user`= $_SESSION[id_user];");
+        $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($phone) WHERE `id_user`= $user;");
         try {
             $requete->execute();
-            echo 'Modification validé !';
           } catch (PDOException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
             }
     }
 
-    public function updateMail() {
+    public function updateMail($mail, $user) {
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("UPDATE `users` SET `mail`=($_POST[mail]) WHERE `id_user`= $_SESSION[id_user];");
+        $requete = $pdo->prepare("UPDATE `users` SET `mail`=('$mail') WHERE `id_user`= $user;");
         try {
             $requete->execute();
-            echo 'Modification validé !';
+          } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            }
+    }
+
+    public function resetMail($user) {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `users` SET `confirmMail`= 0 WHERE `id_user`= $user;");
+        try {
+            $requete->execute();
           } catch (PDOException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
             }
