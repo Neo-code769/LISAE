@@ -163,7 +163,7 @@ class CollabController extends MainController
       break;
 
       case 15 : //Désinscription créneaux
-        //$collabView = new CollabView();
+        $collabView = new CollabView();
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
           header('Location:../../index.php/collab/eloce');
