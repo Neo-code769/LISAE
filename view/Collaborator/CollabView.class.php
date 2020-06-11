@@ -62,7 +62,7 @@ class CollabView extends LisaeTemplateConnected {
         $this->_infoUser = $info;
     }
 
-    /****** REQUETE INFO USER ******/
+    /****** REQUETE INFO USER PIERRE BULLSHIT ******/
 
     public function setInfoLastname($id) {
         $pdo = Dao::getConnexion();
