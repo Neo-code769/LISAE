@@ -6,6 +6,7 @@ class CollabView extends LisaeTemplateConnected {
     private $_sessionSlot;
     private $_eloce;
     private $_infoSlot;
+    private $_infoSlotButton;
 
     public function __construct()
     {
@@ -58,9 +59,9 @@ class CollabView extends LisaeTemplateConnected {
         $this->_eloce = $result;
     }
 
-    public function setInfoUser($info){
-        $this->_infoUser = $info;
-    }
+    /* public function setInfoUser($user){
+        $this->_infoUser = "<p>".$user->get_lastname()."<p>";
+    } */
 
     /****** REQUETE INFO USER ******/
 
@@ -148,12 +149,20 @@ class CollabView extends LisaeTemplateConnected {
 
     public function setInfoSlot($element){
         $result = 
-        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dts"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
         $result .=
         "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
         $result .=
         "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
         $this->_infoSlot = $result;
+    }
+
+    public function setInfoSlotButton($element){
+        $result = 
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='http://www.lisae.fr:8081/index.php/collab/unsubscribe'>Inscription</a></button><br></br>";
+        $result .=
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/deregistrationSlot?dts=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
+        $this->_infoSlotButton = $result;
     }
 
     public function setBody($content) {
