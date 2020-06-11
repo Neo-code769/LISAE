@@ -19,7 +19,8 @@ class CollabController extends MainController
       "eloce"=>10,
       "signUpSlot"=>11,
       "infoSlot"=>12,
-      "modifAccount"=>13
+      "modifAccount"=>13,
+      "deregistrationSlot"=>14
     ];
     parent::__construct();
   }
@@ -70,7 +71,7 @@ class CollabController extends MainController
       case 7:
       $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
-      $collabView->setInfoUser($user);
+      //$collabView->setInfoUser($user);
       $collabView->run("infoUser");
       break;
       
@@ -115,12 +116,14 @@ class CollabController extends MainController
                     $slotInfo= [
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
-                    "dts" => $slot->get_slotDateTimeStartFormat(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name(),
                     "information" => $slot->get_information(),
-                    "place" => $slot->get_place()
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
                     ]
                     ;
                   }
@@ -128,9 +131,18 @@ class CollabController extends MainController
             }
         } 
         $collabView->setInfoSlot($slotInfo);
+        $collabView->setInfoSlotButton($slotInfo);
         $collabView->run("infoSlot");
       break;
 
+      case 14 : //Désinscription créneaux
+        //$collabView = new CollabView();
+        try {
+          (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
+          //header('Location:../../index.php/collab/eloce');
+        } catch (LisaeException $e) {
+          //$collabView->run("ListELOCE",$e->render());
+        }
       case 13:  // Modification du compte
         if (isset($_POST['modifAccount'])){
           /*$user = new User;
