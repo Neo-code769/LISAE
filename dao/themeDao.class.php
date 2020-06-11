@@ -224,7 +224,7 @@ class themeDao extends Dao {
             }
         return $list;
     }
-    public function getMyListSlot($idUser)
+    public function getMyListSlot($idUser, $idActivity)
     {
         $list = []; 
         $sql = Dao::getConnexion();
