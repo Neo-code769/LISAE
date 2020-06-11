@@ -98,7 +98,7 @@ class CollabController extends MainController
       case 11:
         $collabView = new CollabView();
         try {
-          (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
+          (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
           header('Location:../../index.php/collab/eloce');
         } catch (LisaeException $e) {
           $collabView->run("ListELOCE",$e->render());
@@ -126,6 +126,7 @@ class CollabController extends MainController
                     "idActivity" => $activity->get_idActivity()
                     ]
                     ;
+                    //var_dump($slotInfo);
                   }
                 }
             }
@@ -136,12 +137,12 @@ class CollabController extends MainController
       break;
 
       case 14 : //Désinscription créneaux
-        //$collabView = new CollabView();
+        $collabView = new CollabView();
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
-          //header('Location:../../index.php/collab/eloce');
+          header('Location:../../index.php/collab/eloce');
         } catch (LisaeException $e) {
-          //$collabView->run("ListELOCE",$e->render());
+          $collabView->run("ListELOCE",$e->render());
         }
       case 13:  // Modification du compte
         if (isset($_POST['modifAccount'])){
