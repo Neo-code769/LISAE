@@ -96,8 +96,15 @@ class CollabController extends MainController
       case 11:
         $collabView = new CollabView();
         try {
-          (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);
-          header('Location:../../index.php/collab/eloce');
+            //if ( ) {
+            (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);  
+            //header('Location:../../index.php/collab/eloce');
+            echo "<script>alert(\"Vous êtes bien inscrit a ce creaneau d'activité\")</script>";
+            //}else {
+              //header('Refresh:2;url=../../index.php/collab/eloce');
+              echo "<script>alert(\"Vous êtes DEJA inscrit a ce creaneau d'activité\")</script>";
+              //throw new LisaeException("Vous êtes deja inscrit a ce creneau d'activité");
+            //}
         } catch (LisaeException $e) {
           $collabView->run("ListELOCE",$e->render());
         }
