@@ -56,9 +56,6 @@ class CollabView extends LisaeTemplateConnected {
         }
 
         $this->_eloce = $result;
-        var_dump($_SESSION);
-      
-      
     }
 
     public function setInfoUser($info){
