@@ -137,7 +137,7 @@ class CollabController extends MainController
           $user->set_phoneNumber($_POST['phoneNumber']);
           $user->set_mail($_POST['mail']);*/
 
-          $pdo = Dao::getConnexion();
+          $pdo = Dao::getConnexion(); //Instancier class userDAO + Appeller fct requete
           $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($_POST[phoneNumber]),`mail`=($_POST[mail]) WHERE `id_user`= $_SESSION[id_user];");
           // TO FIX WITH DAVID
           try {
