@@ -18,7 +18,8 @@ class CollabController extends MainController
       "jobcible"=>9,
       "eloce"=>10,
       "signUpSlot"=>11,
-      "infoSlot"=>12
+      "infoSlot"=>12,
+      "modifAccount"=>13
     ];
     parent::__construct();
   }
@@ -129,6 +130,26 @@ class CollabController extends MainController
         $collabView->setInfoSlot($slotInfo);
         $collabView->run("infoSlot");
       break;
+
+      case 13:  // Modification du compte
+        if (isset($_POST['modifAccount'])){
+          /*$user = new User;
+          $user->set_phoneNumber($_POST['phoneNumber']);
+          $user->set_mail($_POST['mail']);*/
+
+          $pdo = Dao::getConnexion();
+          $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($_POST[phoneNumber]),`mail`=($_POST[mail]) WHERE `id_user`= $_SESSION[id_user];");
+          // TO FIX WITH DAVID
+          try {
+            $requete->execute();
+          } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        }
+
+      break;
+
     }
   }
 }
