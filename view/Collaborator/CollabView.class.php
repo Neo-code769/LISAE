@@ -62,6 +62,90 @@ class CollabView extends LisaeTemplateConnected {
         $this->_infoUser = $info;
     }
 
+    /****** REQUETE INFO USER ******/
+
+    public function setInfoLastname($id) {
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT lastname FROM users WHERE id_user=$id");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+                $result = $donnees['lastname'];
+            }
+        }   catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $result;
+    }
+
+    public function setInfoFirstname($id) {
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT firstname FROM users WHERE id_user=$id");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+                $result = $donnees['firstname'];
+            }
+        }   catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $result;
+    }
+
+    public function setInfoBirthdate($id) {
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT birthdate FROM users WHERE id_user=$id");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+                $result = $donnees['birthdate'];
+            }
+        }   catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $result;
+    }
+
+    public function setInfoPhone($id) {
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT PhoneNumber FROM users WHERE id_user=$id");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+                $result = $donnees['PhoneNumber'];
+            }
+        }   catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $result;
+    }
+
+    public function setInfoMail($id) {
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT mail FROM users WHERE id_user=$id");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+                $result = $donnees['mail'];
+            }
+        }   catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $result;
+    }
+
+    /******************************/
+
     public function setInfoSlot($element){
         $result = 
         "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dts"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";

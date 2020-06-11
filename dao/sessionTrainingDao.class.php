@@ -1,6 +1,6 @@
 <?php
 
-class sessionTrainingDao extends Dao{
+class SessionTrainingDao extends Dao{
 
     public function getList(): array{
 
