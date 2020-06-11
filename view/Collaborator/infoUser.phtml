@@ -8,7 +8,7 @@
                   $result = $user->get_lastname();
                   return $result*/ ?>
             <input type="text" name="firstname" pattern="[A-Z][a-z]+" title="Le prénom ne doit pas contenir de chiffres et doit commencer par une majuscule." required value="<?php if(isset($_POST['firstname'])){ echo $_POST['firstname']; }?>"><br>
-            <br>
+            <br>     
             <label>Nom :</label><br>
             <input type="text" name="lastname" pattern="[A-Z][a-z]+" title="Le nom ne doit pas contenir de chiffres et doit commencer par une majuscule." required value="<?php if(isset($_POST['lastname'])){ echo $_POST['lastname']; }?>"><br>
             <br>
