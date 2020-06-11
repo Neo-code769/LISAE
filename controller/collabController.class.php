@@ -18,7 +18,10 @@ class CollabController extends MainController
       "jobcible"=>9,
       "eloce"=>10,
       "signUpSlot"=>11,
-      "infoSlot"=>12
+      "infoSlot"=>12,
+      "modifPhone"=>13,
+      "modifMail"=>14,
+      "deregistrationSlot"=>15
     ];
     parent::__construct();
   }
@@ -69,7 +72,7 @@ class CollabController extends MainController
       case 7:
       $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
-      $collabView->setInfoUser($user);
+      //$collabView->setInfoUser($user);
       $collabView->run("infoUser");
       break;
       
@@ -96,15 +99,17 @@ class CollabController extends MainController
       case 11:
         $collabView = new CollabView();
         try {
-            //if ( ) {
+           /*  if ( ) {
             (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idSlot"]);  
             //header('Location:../../index.php/collab/eloce');
             echo "<script>alert(\"Vous êtes bien inscrit a ce creaneau d'activité\")</script>";
-            //}else {
+            }else {
               //header('Refresh:2;url=../../index.php/collab/eloce');
               echo "<script>alert(\"Vous êtes DEJA inscrit a ce creaneau d'activité\")</script>";
               //throw new LisaeException("Vous êtes deja inscrit a ce creneau d'activité");
-            //}
+            } */
+          (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
+          header('Location:../../index.php/collab/eloce');
         } catch (LisaeException $e) {
           $collabView->run("ListELOCE",$e->render());
         }
@@ -121,21 +126,62 @@ class CollabController extends MainController
                     $slotInfo= [
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
-                    "dts" => $slot->get_slotDateTimeStartFormat(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name(),
                     "information" => $slot->get_information(),
-                    "place" => $slot->get_place()
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
                     ]
                     ;
+                    //var_dump($slotInfo);
                   }
                 }
             }
         } 
         $collabView->setInfoSlot($slotInfo);
+        $collabView->setInfoSlotButton($slotInfo);
         $collabView->run("infoSlot");
+
       break;
+
+
+      case 13:  // Modification du télephone
+        if (isset($_POST['modifPhone'])){
+          $user = new userDao;
+          $user->updatePhone($_POST["phoneNumber"], $_SESSION["id_user"]);
+          echo 'Votre numero de telephone à bien été modifié !';
+          header('Refresh:2;url=../index.php/collab/info');// TO FIX WITH DAVID
+        }
+
+      break;
+
+      case 14: // Modification mail
+        if (isset($_POST['modifMail'])){
+          $user = new userDao;
+          $user->updateMail($_POST["mail"], $_SESSION["id_user"]);
+          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
+          header('Location:../../index.php');
+          // Envoi du mail de confirmation
+          $user->resetMail($_SESSION["id_user"]);  
+          $userForm->sendMailConfirmation($_POST["mail"]);
+        }
+
+      break;
+
+      case 15 : //Désinscription créneaux
+        $collabView = new CollabView();
+        try {
+          (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
+          header('Location:../../index.php/collab/eloce');
+        } catch (LisaeException $e) {
+          $collabView->run("ListELOCE",$e->render());
+        }
+        
+      break;
+
     }
   }
 }

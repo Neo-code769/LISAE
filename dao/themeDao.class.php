@@ -158,7 +158,7 @@ class themeDao extends Dao {
             } 
             catch (PDOException $e) {
                 var_dump($e->getMessage());
-                //throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+                throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
             }
     }
     public function getMyListTheme()
@@ -248,6 +248,19 @@ class themeDao extends Dao {
             throw new LisaeException("Erreur requête", 1);
         }
         return $list;
+    }
+    public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
+    {
+        $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
+        var_dump($sql);
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+        }
     }
   
 }
