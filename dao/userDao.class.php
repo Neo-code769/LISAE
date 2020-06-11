@@ -163,6 +163,28 @@ class userDao extends Dao{
     } 
 
     // update d'un objet
+    public function updatePhone() {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($_POST[phoneNumber]) WHERE `id_user`= $_SESSION[id_user];");
+        try {
+            $requete->execute();
+            echo 'Modification validé !';
+          } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            }
+    }
+
+    public function updateMail() {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `users` SET `mail`=($_POST[mail]) WHERE `id_user`= $_SESSION[id_user];");
+        try {
+            $requete->execute();
+            echo 'Modification validé !';
+          } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+            }
+    }
+
     public function update($obj){
         
     } 

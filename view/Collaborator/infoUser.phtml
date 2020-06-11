@@ -1,7 +1,6 @@
 <body>
 
 <div id="registration" class="container">
-    <form method="post">
         <fieldset>
             <h1> Mes Informations Personnels </h1><br>
             <label>Prenom : <?php $firstname = $this->setInfoFirstname($_SESSION["id_user"]); echo($firstname); ?></label><br>
@@ -10,14 +9,16 @@
             <br>
             <label>Date de naissance : <?php $birthdate = $this->setInfoBirthdate($_SESSION["id_user"]); echo($birthdate); ?></label><br>
             <br>
-            <label>Numero de telephone : <?php $phone = $this->setInfoPhone($_SESSION["id_user"]); echo('0'.$phone); ?></label><br>
+        <form method="post">
+            <label>Numero de telephone : <?php $phone = $this->setInfoPhone($_SESSION["id_user"]); echo('0'.$phone); ?></label><br><br>
             <input type="tel" name="phoneNumber" value="Nouveau Numero" pattern="0[1-68]([-. ]?[0-9]{2}){4}" title="Le numero de téléphone doit contenir 10 chiffres."><br>
-            <br>
-            <label>E-mail : <?php $mail = $this->setInfoMail($_SESSION["id_user"]); echo($mail); ?></label><br>
+            <input id="button" type="submit" name="modifPhone" value="Modifier"><br><br>
+        </form>
+        <form method="post">
+            <label>E-mail : <?php $mail = $this->setInfoMail($_SESSION["id_user"]); echo($mail); ?></label><br><br>
             <input type="email" name="mail" value="Nouveau Mail"><br>
-            <br><br>
-            <input id="button" type="submit" name="modifAccount" value="Modifier"><br><br>
-            <input id="button" type="reset" value="Annuler"><br>
+            <input id="button" type="submit" name="modifMail" value="Modifier"><br><br>
+            <br>
         </fieldset><br><br>
     </form>
 </div>

@@ -19,8 +19,9 @@ class CollabController extends MainController
       "eloce"=>10,
       "signUpSlot"=>11,
       "infoSlot"=>12,
-      "modifAccount"=>13,
-      "deregistrationSlot"=>14
+      "modifPhone"=>13,
+      "modifMail"=>14,
+      "deregistrationSlot"=>15
     ];
     parent::__construct();
   }
@@ -133,9 +134,27 @@ class CollabController extends MainController
         $collabView->setInfoSlot($slotInfo);
         $collabView->setInfoSlotButton($slotInfo);
         $collabView->run("infoSlot");
+
       break;
 
-      case 14 : //Désinscription créneaux
+// TO FIX WITH DAVID
+      case 13:  // Modification du télephone
+        if (isset($_POST['modifPhone'])){
+          $user = new userDao;
+          $user->updatePhone();
+        }
+
+      break;
+
+      case 14: // Modification mail
+        if (isset($_POST['modifMail'])){
+          $user = new userDao;
+          $user->updateMail();
+        }
+
+      break;
+
+      case 15 : //Désinscription créneaux
         //$collabView = new CollabView();
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
@@ -143,24 +162,8 @@ class CollabController extends MainController
         } catch (LisaeException $e) {
           //$collabView->run("ListELOCE",$e->render());
         }
-      case 13:  // Modification du compte
-        if (isset($_POST['modifAccount'])){
-          /*$user = new User;
-          $user->set_phoneNumber($_POST['phoneNumber']);
-          $user->set_mail($_POST['mail']);*/
-
-          $pdo = Dao::getConnexion(); //Instancier class userDAO + Appeller fct requete
-          $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($_POST[phoneNumber]),`mail`=($_POST[mail]) WHERE `id_user`= $_SESSION[id_user];");
-          // TO FIX WITH DAVID
-          try {
-            $requete->execute();
-          } catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        }
-
-      break;
+        
+      
 
     }
   }
