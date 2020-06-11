@@ -7,8 +7,7 @@
     <section id="dashboard">
         <article>
             <div>
-                <table class="host">
-                </table>
+                <?php echo $this->_eloce ?>
             </div>
         </article>
         <br><br><br><br><br><br><br><br><br><br>
