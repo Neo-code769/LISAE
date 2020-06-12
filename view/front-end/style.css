@@ -343,12 +343,12 @@ form
 }
 
 .btn-hover.color-2 {
-  background-image: linear-gradient(to right, #017939a1, #29be15a2, #2ad314a2, #2ad314a2);
+  background-image: linear-gradient(to right, #017939a1, #29be15a2, #44d431, #44d431);
   box-shadow: 0 2px 5px 0 rgba(83, 176, 57, 0.75);
 }
 
 .btn-hover.color-3 {
-  background-image: linear-gradient(to right, #0a6b95a8, #059ed1b2, #04c0feb2, #04c0feb2);
+  background-image: linear-gradient(to right, #0a6b95a8, #059ed1b2, #04c0fe, #04c0fe);
   box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.75);
 }
 
