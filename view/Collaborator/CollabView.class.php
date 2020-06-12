@@ -56,9 +56,9 @@ class CollabView extends LisaeTemplateConnected {
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
             $result .=
             "<div class='row justify-content-center'> 
-                <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>
-                <a  id='signup' href='../collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["id_activity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>
-                <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
+            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
+            <a  id='signup' href='../collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["id_activity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>
+            <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
             </div>";
         }
 
@@ -92,7 +92,7 @@ class CollabView extends LisaeTemplateConnected {
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
             $result .=
             "<div class='row justify-content-center'> 
-                <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>
+            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
                 <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
             </div>";
         }
@@ -107,90 +107,6 @@ class CollabView extends LisaeTemplateConnected {
         $this->_phoneNumber = $user->get_phoneNumber();
         $this->_mail = $user->get_mail();
     } 
-
-    /****** REQUETE INFO USER PIERRE BULLSHIT ******/
-/* 
-    public function setInfoLastname($id) {
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare("SELECT lastname FROM users WHERE id_user=$id");
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $result = $donnees['lastname'];
-            }
-        }   catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $result;
-    }
-
-    public function setInfoFirstname($id) {
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare("SELECT firstname FROM users WHERE id_user=$id");
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $result = $donnees['firstname'];
-            }
-        }   catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $result;
-    }
-
-    public function setInfoBirthdate($id) {
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare("SELECT birthdate FROM users WHERE id_user=$id");
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $result = $donnees['birthdate'];
-            }
-        }   catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $result;
-    }
-
-    public function setInfoPhone($id) {
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare("SELECT PhoneNumber FROM users WHERE id_user=$id");
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $result = $donnees['PhoneNumber'];
-            }
-        }   catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $result;
-    }
-
-    public function setInfoMail($id) {
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare("SELECT mail FROM users WHERE id_user=$id");
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $result = $donnees['mail'];
-            }
-        }   catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $result;
-    } */
-
-    /******************************/
 
     public function setInfoSlot($element){
         $result = 
