@@ -98,11 +98,12 @@ class CollabController extends MainController
             throw new LisaeException("Erreur vous êtes déjà inscrit à ce créneaux", 1);
           }
           (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
-          header('Location:../../index.php/collab/eloce');
+          echo "<html><script>window.alert('Vous vous êtes bien inscrit ce créneaux !');</script></html>";
+          header('Refresh:0;url=../../index.php/collab/eloce');
         } catch (LisaeException $e) {
-          echo "<script>alert(".$e->render().");<script>";
+          echo "<html><script>window.alert('Erreur vous êtes déjà inscrit a ce créneaux !');</script></html>";
           //$collabView->run("ListELOCE",$e->render());
-          header('Refresh:2;url=../../index.php/collab/eloce');
+          header('Refresh:0;url=../../index.php/collab/eloce');
         }
       break;
 
@@ -150,15 +151,14 @@ class CollabController extends MainController
       break;
 
       case 14: // Modification mail
-        if (isset($_POST['modifMail'])){
           $user = new userDao;
           $user->updateMail($_POST["mail"], $_SESSION["id_user"]);
-          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
-          header('Location:../../index.php');
           // Envoi du mail de confirmation
           $user->resetMail($_SESSION["id_user"]);  
-          $userForm->sendMailConfirmation($_POST["mail"]);
-        }
+          parent::sendMailConfirmation($_POST["mail"]);
+          //Redirection
+          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
+          header('Location:../../../../index.php/collab/dashboard');
 
       break;
 
@@ -166,7 +166,8 @@ class CollabController extends MainController
         $collabView = new CollabView();
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
-          header('Location:../../index.php/collab/eloce');
+          echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
+          header('Refresh:0;url=../../index.php/collab/eloce');
         } catch (LisaeException $e) {
           $collabView->run("ListELOCE",$e->render());
         }

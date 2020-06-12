@@ -255,7 +255,7 @@ class themeDao extends Dao {
     public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
     {
         $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
-        var_dump($sql);
+        //var_dump($sql);
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
             $exec->execute();
