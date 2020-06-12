@@ -58,59 +58,55 @@ class CollabController extends MainController
 
         break;
 
-      case 6: //connexion dashboard
+      case 6: //dashboard
 
-      //Liste Eloce
-
-          //Appel de la fonction dao et instanciation des modéles des thèmes
-
-      //Exemple test
       $collabView = new CollabView();
       $collabView->run("dashboard");
       break;
       
-      case 7:
+      case 7: //Mon compte
       $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
-      $collabView->setInfoUser($user);
+      //$collabView->setInfoLastname($user);
       $collabView->run("infoUser");
       break;
       
-      case 8:
-       
+      case 8://SoftSkill
         $softSkill = new SoftSkillView();
         $softSkill->run("");
         
       break;
 
-      case 9:
+      case 9://Job cible
        
         $jobCible = new JobCibleView();
         $jobCible->run("");
         
       break;
 
-      case 10:
+      case 10://Liste Eloce
         $collabView = new CollabView();
         $collabView->setTheme((new ThemeDao())->getListTheme());
         $collabView->run("ListELOCE");
       break;
 
-      case 11:
+      case 11: //inscription Créneaux
         $collabView = new CollabView();
         try {
           //Test si la personne est déjà inscrite
           if ((new ThemeDao())->checkSlotExist($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"])!=0) {
-            throw new LisaeException("Erreur vous êtes déjà inscrit a ce créneaux", 1);
+            throw new LisaeException("Erreur vous êtes déjà inscrit à ce créneaux", 1);
           }
           (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
           header('Location:../../index.php/collab/eloce');
         } catch (LisaeException $e) {
-          $collabView->run("ListELOCE",$e->render());
+          echo "<script>alert(".$e->render().");<script>";
+          //$collabView->run("ListELOCE",$e->render());
+          header('Refresh:2;url=../../index.php/collab/eloce');
         }
       break;
 
-      case 12:
+      case 12: //info Creneaux
         $collabView = new CollabView();
         $themeList = (new ThemeDao())->getListTheme();
         $arr = [];
