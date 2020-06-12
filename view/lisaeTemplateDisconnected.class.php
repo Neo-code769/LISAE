@@ -24,7 +24,7 @@ abstract class LisaeTemplateDisconnected extends LisaeTemplate {
         echo <<<EOD
             <header>
                 <div id="headerIMG">
-                    <img style="width: 10%; height: 10%; margin-left: 44.5%; margin-top:1%;" src="/images/LISAE.png" alt="logo LISAE" />
+                    <img style="width: 12%; height: 12%; margin-left: 44%; margin-top:1%;" src="/images/LISAE.png" alt="logo LISAE" />
                 </div>
             </header>
             EOD;

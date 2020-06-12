@@ -5,9 +5,6 @@ class LoginPageView extends LisaeTemplateDisconnected {
 
     public function setBody($content) {
         echo <<<EOD
-            <div id="title" class="container">
-                <h2>Portail LISAE</h2>
-            </div>
                 <div id="connexion" class="container">
                     <form method="post">
                         <fieldset id="login">

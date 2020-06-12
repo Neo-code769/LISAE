@@ -100,7 +100,7 @@ p
 /***** CONNEXION & INSCRIPTION *******/
 
 #connexion {
-    margin-top: 3%;
+    margin-top: 1%;
     margin-bottom: 3%;
     position: relative;
     text-align: center;
@@ -275,14 +275,14 @@ form
   
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px rgb(199, 199, 199); 
     border-radius: 10px;
     margin : 20px;
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: grey; 
+    background: rgb(226, 226, 226); 
     border-radius: 5px;
   }
   
@@ -309,7 +309,7 @@ form
 .btn-hover {
   width: 220px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 300;
   color: #fff;
   cursor: pointer;
   margin-top: 2%;
@@ -338,18 +338,18 @@ form
 }
 
 .btn-hover.color-1 {
-  background-image: linear-gradient(to right, #4481eb, #3fd32c, #3fd32c, #4481eb);
-  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+  background-image: linear-gradient(to right, #4481eba9, #40d32ca9, #40d32ca2, #4481ebab);
+  box-shadow: 0 2px 5px 0 rgba(49, 196, 190, 0.75);
 }
 
 .btn-hover.color-2 {
-  background-image: linear-gradient(to right, #017939, #3fd32c, #017939, #3fd32c);
-  box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+  background-image: linear-gradient(to right, #017939a1, #40d32ca2, #017939a2, #40d32ca1);
+  box-shadow: 0 2px 5px 0 rgba(83, 176, 57, 0.75);
 }
 
 .btn-hover.color-3 {
-  background-image: linear-gradient(to right, #0a6b95, #04befe, #04befe, #0a6b95);
-  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+  background-image: linear-gradient(to right, #0a6b95a8, #04c0feb2, #04c0fea9, #0a6b95a9);
+  box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.75);
 }
 
 /************************/
