@@ -7,7 +7,7 @@
     <section id="dashboard">
         <article>
             <div>
-                <?php echo $this->_eloce ?>
+                <?php echo $this->_mySlot ?>
             </div>
         </article>
         <br><br><br><br><br><br><br><br><br><br>

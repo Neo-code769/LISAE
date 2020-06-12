@@ -61,6 +61,7 @@ class CollabController extends MainController
       case 6: //dashboard
 
       $collabView = new CollabView();
+      $collabView->setMyTheme((new ThemeDao())->getMyListTheme());
       $collabView->run("dashboard");
       break;
       

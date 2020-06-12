@@ -231,8 +231,8 @@ class themeDao extends Dao {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT * FROM participate 
-        WHERE id_user = $idUser and id_activity = $idActivity"
+        "SELECT DISTINCT(host.id_slot), participate.id_user, participate.id_activity, participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_user = $idUser AND participate.id_activity = $idActivity AND participate.slotDateStart = host.slotDateStart
+        "
         );
         try {
             $requete->execute();
@@ -240,11 +240,11 @@ class themeDao extends Dao {
             {
                 $idUser=$donnees['id_user'];
                 $idActivity=$donnees['id_activity'];
-                $idSession=$donnees['id_session'];
+                $idSlot=$donnees['id_slot'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
-                $list[] = $donnees;
+                $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd);
+                $list[] = $slot;
             }
         }
         catch (PDOException $e) {
