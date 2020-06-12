@@ -130,7 +130,22 @@ class themeDao extends Dao {
     }	
     
     public function insert($obj) : void{
-
+        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_idTheme());
+        $exec->bindValue(2, $obj->get_name());
+        $exec->bindValue(3, $obj->get_color());
+        $exec->bindValue(4, $obj->get_description());
+        $exec->bindValue(5, $obj->get_detailsDescription());
+        //var_dump($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
     }
 
     // delete via son id
@@ -283,4 +298,5 @@ class themeDao extends Dao {
         return $result;
     }  
 }
+// essaie requete pour max nombre personner créneaux : select COUNT(id_user) from activity Inner join participate on activity.id_activity = participate.id_activity where activity.id_activity =1 group by maxNumberPerson HAVING max(maxNumberPerson)
 ?>
