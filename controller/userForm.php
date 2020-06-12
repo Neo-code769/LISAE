@@ -105,7 +105,7 @@ class UserForm{
     public function updateCollab()
     {
         $collab = $_SESSION["id_user"];
-        $collab->set_phoneNumber($POST["phoneNumber"]);
+        $collab->set_phoneNumber($_POST["phoneNumber"]);
     }
 
     ///////// Creation Animateur /////////////
