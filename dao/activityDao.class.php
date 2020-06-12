@@ -66,7 +66,7 @@ class ActivityDao extends Dao {
             }
         return $list;
     }
-    public function getList(): array
+    public function getList()
     {
 
     }		
@@ -75,10 +75,29 @@ class ActivityDao extends Dao {
     {
 
     }	
-    
-    public function insert($obj) : void	
-    {
+    public function insert($obj) : void	{
 
+    }
+    public function insertRecurringActivity($idTheme,$idActivity ) : void	
+    {
+        $sql = ("INSERT INTO `recurring_Activity` VALUES
+        ( (SELECT id_activity from activity where id_activity = $idActivity),
+         (SELECT id_theme from theme where id_theme = $idTheme))");
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $idTheme->get_idTheme());
+        $exec->bindValue(2, $idActivity->get_name());
+        $exec->bindValue(3, $idActivity->get_color());
+        $exec->bindValue(4, $idActivity->get_description());
+        $exec->bindValue(5, $idActivity->get_detailsDescription());
+        //var_dump($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
     }
     // delete via son id
     public function delete(int $id )
