@@ -7,6 +7,11 @@ class CollabView extends LisaeTemplateConnected {
     private $_eloce;
     private $_infoSlot;
     private $_infoSlotButton;
+    private $_lastName;
+    private $_firstName;
+    private $_birthDate;
+    private $_mail;
+    private $_phoneNumber;
 
     public function __construct()
     {
@@ -59,9 +64,14 @@ class CollabView extends LisaeTemplateConnected {
         $this->_eloce = $result;
     }
 
-    /* public function setInfoUser($user){
-        $this->_infoUser = "<p>".$user->get_lastname()."<p>";
-    } */
+    public function setInfoUser($user){
+        //$this->_infoUser = "<p>".$user->get_lastname()."<p>";
+        $this->_firstName = $user->get_firstname();
+        $this->_lastName = $user->get_lastname();
+        $this->_birthDate = $user->get_birthdate();
+        $this->_phoneNumber = $user->get_phoneNumber();
+        $this->_mail = $user->get_mail();
+    } 
 
     /****** REQUETE INFO USER PIERRE BULLSHIT ******/
 
