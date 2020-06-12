@@ -58,55 +58,57 @@ class CollabController extends MainController
 
         break;
 
-      case 6: //connexion dashboard
+      case 6: //dashboard
 
-      //Liste Eloce
-
-          //Appel de la fonction dao et instanciation des modéles des thèmes
-
-      //Exemple test
       $collabView = new CollabView();
+      $collabView->setMyTheme((new ThemeDao())->getMyListTheme());
       $collabView->run("dashboard");
       break;
       
-      case 7:
+      case 7: //Mon compte
       $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
-      //$collabView->setInfoUser($user);
+      $collabView->setInfoUser($user);
       $collabView->run("infoUser");
       break;
       
-      case 8:
-       
+      case 8://SoftSkill
         $softSkill = new SoftSkillView();
         $softSkill->run("");
         
       break;
 
-      case 9:
+      case 9://Job cible
        
         $jobCible = new JobCibleView();
         $jobCible->run("");
         
       break;
 
-      case 10:
+      case 10://Liste Eloce
         $collabView = new CollabView();
         $collabView->setTheme((new ThemeDao())->getListTheme());
         $collabView->run("ListELOCE");
       break;
 
-      case 11:
+      case 11: //inscription Créneaux
         $collabView = new CollabView();
         try {
+          //Test si la personne est déjà inscrite
+          if ((new ThemeDao())->checkSlotExist($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"])!=0) {
+            throw new LisaeException("Erreur vous êtes déjà inscrit à ce créneaux", 1);
+          }
           (new ThemeDao())->registrationActivity($_SESSION["id_user"],$_GET["idActivity"],$_SESSION["id_session"],$_GET["idSlot"]);
-          header('Location:../../index.php/collab/eloce');
+          echo "<html><script>window.alert('Vous vous êtes bien inscrit ce créneaux !');</script></html>";
+          header('Refresh:0;url=../../index.php/collab/eloce');
         } catch (LisaeException $e) {
-          $collabView->run("ListELOCE",$e->render());
+          echo "<html><script>window.alert('Erreur vous êtes déjà inscrit a ce créneaux !');</script></html>";
+          //$collabView->run("ListELOCE",$e->render());
+          header('Refresh:0;url=../../index.php/collab/eloce');
         }
       break;
 
-      case 12:
+      case 12: //info Creneaux
         $collabView = new CollabView();
         $themeList = (new ThemeDao())->getListTheme();
         $arr = [];
@@ -150,29 +152,29 @@ class CollabController extends MainController
       break;
 
       case 14: // Modification mail
-        if (isset($_POST['modifMail'])){
           $user = new userDao;
           $user->updateMail($_POST["mail"], $_SESSION["id_user"]);
-          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
-          header('Location:../../index.php');
           // Envoi du mail de confirmation
           $user->resetMail($_SESSION["id_user"]);  
-          $userForm->sendMailConfirmation($_POST["mail"]);
-        }
+          parent::sendMailConfirmation($_POST["mail"]);
+          //Redirection
+          echo 'Votre mail à bien été modifié, veuillez le confirmer en cliquant sur le lien recu par mail !';
+          header('Location:../../../../index.php/collab/dashboard');
 
       break;
 
       case 15 : //Désinscription créneaux
-        //$collabView = new CollabView();
+        $collabView = new CollabView();
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
-          header('Location:../../index.php/collab/eloce');
+          echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
+          header('Refresh:0;url=../../index.php/collab/dashboard');
         } catch (LisaeException $e) {
-          $collabView->run("ListELOCE",$e->render());
+          $collabView->run("dashboard",$e->render());
         }
         
       break;
-
+    
     }
   }
 }

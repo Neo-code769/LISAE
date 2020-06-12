@@ -4,11 +4,11 @@
     </div>
 
     <h3>Mes Inscriptions</h3>
-        <section id="dashboard" >
-            <article>
-                <div >
-                    <?php echo $this->_eloce ?>
-                </div>
-            </article>
-            <br><br><br><br><br><br><br><br><br><br>
-        </section>
+    <section id="dashboard">
+        <article>
+            <div>
+                <?php echo $this->_mySlot ?>
+            </div>
+        </article>
+        <br><br><br><br><br><br><br><br><br><br>
+    </section>
