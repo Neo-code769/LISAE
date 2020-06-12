@@ -74,7 +74,7 @@ class CollabView extends LisaeTemplateConnected {
     } 
 
     /****** REQUETE INFO USER PIERRE BULLSHIT ******/
-
+/* 
     public function setInfoLastname($id) {
         $pdo = Dao::getConnexion();
 
@@ -153,7 +153,7 @@ class CollabView extends LisaeTemplateConnected {
             die();
             }
         return $result;
-    }
+    } */
 
     /******************************/
 

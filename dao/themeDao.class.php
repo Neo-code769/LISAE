@@ -199,7 +199,8 @@ class themeDao extends Dao {
 
         $requete = $pdo->prepare(
             "SELECT * FROM activity 
-            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity 
+            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity
+            INNER JOIN host on activity.id_activity = host.id_activity 
             WHERE id_theme= $idTheme");
             try{
                 $requete->execute();
@@ -213,7 +214,8 @@ class themeDao extends Dao {
                     $maxNumberPerson = $donnees['maxNumberPerson'];
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                    $slot = $this->getMyListSlot($idActivity);
+                    $idUser = $donnees['id_user'];
+                    $slot = $this->getMyListSlot($idUser,$idActivity);
                     $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
@@ -230,7 +232,7 @@ class themeDao extends Dao {
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT * FROM participate 
-        WHERE id_user = $idUser"
+        WHERE id_user = $idUser and id_activity = $idActivity"
         );
         try {
             $requete->execute();
@@ -241,6 +243,7 @@ class themeDao extends Dao {
                 $idSession=$donnees['id_session'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
                 $list[] = $donnees;
             }
         }
