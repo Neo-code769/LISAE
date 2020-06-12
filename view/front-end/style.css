@@ -62,7 +62,7 @@ p
 .lifeline
 {
   padding-top: .4%;
-  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #25aae1);
+  background-image: linear-gradient(to right, #25a9e19f, #40e495a2, #30dd89ad, #25a9e1a4);
 }
 
 #link
@@ -319,18 +319,18 @@ form
   background-size: 300% 100%;
 
   border-radius: 50px;
-  -moz-transition: all .1s ease-in-out;
-  -o-transition: all .1s ease-in-out;
-  -webkit-transition: all .1s ease-in-out;
-  transition: all .1s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .btn-hover:hover {
   background-position: 100% 0;
-  -moz-transition: all .1s ease-in-out;
-  -o-transition: all .1s ease-in-out;
-  -webkit-transition: all .1s ease-in-out;
-  transition: all .1s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .btn-hover:focus {
@@ -343,12 +343,12 @@ form
 }
 
 .btn-hover.color-2 {
-  background-image: linear-gradient(to right, #017939a1, #40d32ca2, #017939a2, #40d32ca1);
+  background-image: linear-gradient(to right, #017939a1, #29be15a2, #2ad314a2, #2ad314a2);
   box-shadow: 0 2px 5px 0 rgba(83, 176, 57, 0.75);
 }
 
 .btn-hover.color-3 {
-  background-image: linear-gradient(to right, #0a6b95a8, #04c0feb2, #04c0fea9, #0a6b95a9);
+  background-image: linear-gradient(to right, #0a6b95a8, #059ed1b2, #04c0feb2, #04c0feb2);
   box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.75);
 }
 
