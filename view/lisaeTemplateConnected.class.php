@@ -15,16 +15,16 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
             <header>
                 <div id="headerIMG">
                     <img src="/images/LISAE.png" alt="logo LISAE" />
-                    <div id="log">
-                        <div id="link"><a href="./dashboard" style="text-decoration:none">Tableau de Bord</a></div>
-                        <div id="link"><a href="../collab/eloce" style="text-decoration:none">Calendrier ELOCE</a></div>
-                        <!--<div id="link"><a href="../collab/conference" style="text-decoration:none">Conférence</a></div> -->
-                        <div id="link"><a href="../collab/softskill" style="text-decoration:none">Soft Skills</a></div>
-                        <div id="link"><a href="../collab/jobcible" style="text-decoration:none">Job Cible 2.0</a></div>
-                        <div id="link"><a href="../collab/info" style="text-decoration:none">Mon Compte</a></div>
-                        <div id="link"><a href="../password/logout" style="text-decoration:none">Déconnexion</a></div>
-                    </div>
+                        <div class="buttons">
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="./dashboard">Tableau de Bord</a></button>
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="../collab/eloce">Calendrier ELOCE</a></button>
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="../collab/softskill">Soft Skills</a></button>
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="../collab/jobcible">Job Cible</a></button>
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="../collab/info">Mon Compte</a></button>
+                            <button class="btn-hover color-1"><a style="text-decoration: none; color: white; font-size: 22px;" href="../password/logout">Déconnection</a></button>
+                        </div>
                 </div>
+                <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
             <body>

@@ -6,78 +6,78 @@
      /****** Soft Skills *******/
 
     function apprendre() {
-        $('div#description').load('/view/Activity/softskill/apprendre.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/apprendre.html');
     };
 
     function memoire() {
-        $('div#description').load('/view/Activity/softskill/memoire.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/memoire.html');
     };
 
     function confiance() {
-        $('div#description').load('/view/Activity/softskill/confiance.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/confiance.html');
     };
 
     function mindmapping() {
-        $('div#description').load('/view/Activity/softskill/mindmapping.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/mindmapping.html');
     };
 
     function mindmapping2() {
-        $('div#description').load('/view/Activity/softskill/mindmapping2.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/mindmapping2.html');
     };
 
     function mindmapping3() {
-        $('div#description').load('/view/Activity/softskill/mindmapping3.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/mindmapping3.html');
     };
 
     function mindmapping4() {
-        $('div#description').load('/view/Activity/softskill/mindmapping4.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/mindmapping4.html');
     };
 
     function mindmapping5() {
-        $('div#description').load('/view/Activity/softskill/mindmapping5.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/mindmapping5.html');
     };
 
     function parole() {
-        $('div#description').load('/view/Activity/softskill/prisedeparole.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/prisedeparole.html');
     };
 
     function parole2() {
-        $('div#description').load('/view/Activity/softskill/prisedeparole2.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/prisedeparole2.html');
     };
 
     function gestionStress() {
-        $('div#description').load('/view/Activity/softskill/stress.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/stress.html');
     };
 
     function gestionStress2() {
-        $('div#description').load('/view/Activity/softskill/stress2.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/stress2.html');
     };
 
     function empathie() {
-        $('div#description').load('/view/Activity/softskill/empathie.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/empathie.html');
     };
 
     function communication() {
-        $('div#description').load('/view/Activity/softskill/communication.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/communication.html');
     };
 
     function communication2() {
-        $('div#description').load('/view/Activity/softskill/communication2.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/communication2.html');
     };
 
     function comportement() {
-        $('div#description').load('/view/Activity/softskill/comportement.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/comportement.html');
     };
 
     function image() {
-        $('div#description').load('/view/Activity/softskill/image.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/image.html');
     };
 
     function cognitive() {
-        $('div#description').load('/view/Activity/softskill/cognitive.html');
+        $('div#descriptionSS').load('/view/Activity/softskill/cognitive.html');
     };
 
-    $('div#description').load('/view/Activity/softskill/softskill.html')
+    $('div#descriptionSS').load('/view/Activity/softskill/softskill.html')
     $("#apprendre").on("click",apprendre);
     $("#memoire").on("click",memoire);
     $("#confiance").on("click",confiance);
