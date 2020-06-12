@@ -31,7 +31,7 @@ abstract class Dao {
             //echo "<p>Deconnexion</>";
             self::$_conn = null;
         }
-    abstract public function getList(): array;		
+    abstract public function getList();		
     
     abstract public function get(int $id);	
     
