@@ -72,7 +72,7 @@ class CollabController extends MainController
       case 7:
       $user = (new userDao())->getInfo($_SESSION["id_user"]);
       $collabView = new CollabView();
-      //$collabView->setInfoUser($user);
+      $collabView->setInfoUser($user);
       $collabView->run("infoUser");
       break;
       
