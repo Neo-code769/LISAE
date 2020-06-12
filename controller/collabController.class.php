@@ -168,13 +168,13 @@ class CollabController extends MainController
         try {
           (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
           echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
-          header('Refresh:0;url=../../index.php/collab/eloce');
+          header('Refresh:0;url=../../index.php/collab/dashboard');
         } catch (LisaeException $e) {
-          $collabView->run("ListELOCE",$e->render());
+          $collabView->run("dashboard",$e->render());
         }
         
       break;
-
+    
     }
   }
 }
