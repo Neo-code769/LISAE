@@ -64,23 +64,24 @@ class CollabView extends LisaeTemplateConnected {
 
         $this->_eloce = $result;
     }
-    public function setMyTheme($themeList){
-
+    public function setMyTheme($themeList)
+{
         $arr = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
                     $arr[]= ["id_activity"=> $activity->get_idActivity(), 
                     "idslot"=> $slot->get_idSlot(),
+                    "id_user"=> $activity->get_idUser(),
                     "color" => $theme->get_color(),
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name()];
+                    }
                 }
-            }
-        } 
-
+            } 
+        
         function date_sort2($a, $b) {
             return strtotime($a["dts"]) - strtotime($b["dts"]);
         }
@@ -92,7 +93,7 @@ class CollabView extends LisaeTemplateConnected {
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
             $result .=
             "<div class='row justify-content-center'> 
-            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
+            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."&id_user=".$element["id_user"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
                 <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
             </div>";
         }
