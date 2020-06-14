@@ -13,6 +13,8 @@ class CollabView extends LisaeTemplateConnected {
     private $_mail;
     private $_phoneNumber;
     private $_mySlot;
+    private $_session;
+    private $_listActivity;
 
     public function __construct()
     {
@@ -100,12 +102,12 @@ class CollabView extends LisaeTemplateConnected {
         $this->_mySlot = $result;
     }
     public function setInfoUser($user){
-        //$this->_infoUser = "<p>".$user->get_lastname()."<p>";
         $this->_firstName = $user->get_firstname();
         $this->_lastName = $user->get_lastname();
         $this->_birthDate = $user->get_birthdate();
         $this->_phoneNumber = $user->get_phoneNumber();
         $this->_mail = $user->get_mail();
+        $this->_session = $_SESSION["session_name"];
     } 
 
     public function setInfoSlot($element){
@@ -117,7 +119,14 @@ class CollabView extends LisaeTemplateConnected {
         "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
         $this->_infoSlot = $result;
     }
-
+     public function setListForActivity($element) {
+        setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+        $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+        $result = 
+        "<div id='listActivity' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div>";
+        $this->_listActivity = $result;
+        /*  <a  id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a> */
+    } 
     public function setInfoSlotButton($element){
         $result =
         "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
@@ -146,6 +155,9 @@ class CollabView extends LisaeTemplateConnected {
             break;
             
             case "infoUser": include "infoUser.phtml"; 
+            break;
+
+            case "listActivity": include "listActivity.phtml"; 
             break;
 
             default: include "dashboard.php";

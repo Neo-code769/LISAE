@@ -21,7 +21,8 @@ class CollabController extends MainController
       "infoSlot"=>12,
       "modifPhone"=>13,
       "modifMail"=>14,
-      "deregistrationSlot"=>15
+      "deregistrationSlot"=>15,
+      "listActivity"=>16
     ];
     parent::__construct();
   }
@@ -175,6 +176,35 @@ class CollabController extends MainController
         
       break;
     
+      case 16 : //tri par activité
+        $collabView = new CollabView();
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($activity->get_idActivity() == $_GET["id_activity"]) {
+                    $listActivity= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($listActivity);
+                  }
+                }
+            }
+         
+          }
+          $collabView->setListForActivity($listActivity);
+          $collabView->run("listActivity");
     }
   }
 }
