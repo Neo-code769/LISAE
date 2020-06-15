@@ -98,8 +98,8 @@ class themeDao extends Dao {
         return $list;
     }    
 
-    /***********************Recupération de la liste des activités personneles d'Eloce *******************/
-    public function getMyListTheme($idUser)
+    /***********************Recupération de la liste des activités personneles d'Eloce d'un collaborateur *******************/
+    public function getMyListThemeCollab($idUser)
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -118,7 +118,7 @@ class themeDao extends Dao {
                 $description = $donnees['description'];
                 $detailsDescription = $donnees['detailedDescription']; 
 
-                $activity = $this->getMyListActivity($idTheme, $idUser);
+                $activity = $this->getMyListActivityCollab($idTheme, $idUser);
 
                 $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
                 $list[] = $theme;
@@ -130,7 +130,7 @@ class themeDao extends Dao {
         }
     return $list;    
     }
-    public function getMyListActivity($idTheme, $idUser)
+    public function getMyListActivityCollab($idTheme, $idUser)
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -151,7 +151,7 @@ class themeDao extends Dao {
                     $maxNumberPerson = $donnees['maxNumberPerson'];
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                    $slot = $this->getMyListSlot($idActivity, $idUser);
+                    $slot = $this->getMyListSlotCollab($idActivity, $idUser);
                     $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
@@ -162,7 +162,7 @@ class themeDao extends Dao {
             }
         return $list;
     }
-    public function getMyListSlot($idActivity, $idUser)
+    public function getMyListSlotCollab($idActivity, $idUser)
     {
         $list = []; 
         $sql = Dao::getConnexion();
@@ -178,6 +178,97 @@ class themeDao extends Dao {
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
                 $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd);
+                $list[] = $slot;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+    /***********************Recupération de la liste des activités personneles d'Eloce d'un animateur *******************/
+    public function getMyListThemeAnim($idUser)
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+                "SELECT * FROM `theme`"
+                );
+        try{
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                //THEME
+                $idTheme = $donnees['id_theme'];
+                $name = $donnees['name'];
+                $color = $donnees['color'];
+                $description = $donnees['description'];
+                $detailsDescription = $donnees['detailedDescription']; 
+
+                $activity = $this->getMyListActivityAnim($idTheme, $idUser);
+
+                $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
+                $list[] = $theme;
+            }
+
+        } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        die();
+        }
+    return $list;    
+    }
+    public function getMyListActivityAnim($idTheme, $idUser)
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+            "SELECT * FROM activity 
+            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity 
+            WHERE id_theme= $idTheme");
+            try{
+                $requete->execute();
+                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+                {
+                    $idActivity = $donnees['id_activity'];
+                    $name = $donnees['name'];
+                    $description = $donnees['description'];
+                    $detailedDescription = $donnees['detailedDescription'];
+                    $minNumberPerson = $donnees['minNumberPerson'];
+                    $maxNumberPerson = $donnees['maxNumberPerson'];
+                    $registrationDeadline = $donnees['registrationDeadline'];
+                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
+                    $slot = $this->getMyListSlotAnim($idActivity, $idUser);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    
+                    $list[] = $activity;
+                }
+            } catch (PDOException $e) {
+                echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $list;
+    }
+    public function getMyListSlotAnim($idActivity, $idUser)
+    {
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM host WHERE id_activity = $idActivity AND id_user = $idUser"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSlot=$donnees['id_slot'];
+                $registrationDeadLine=$donnees['registrationDeadline'];
+                $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
+                $place=$donnees['place'];
+                $information=$donnees['information'];
+                $slotDateTimeStart=$donnees['slotDateStart'];
+                $slotDateTimeEnd=$donnees['slotDateEnd'];
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
                 $list[] = $slot;
             }
         }

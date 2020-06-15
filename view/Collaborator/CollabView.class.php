@@ -42,7 +42,8 @@ class CollabView extends LisaeTemplateConnected {
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
-                    "nActivity" => $activity->get_name()];
+                    "nActivity" => $activity->get_name(),
+                    "maxNumberPerson"=>$activity->get_maxNumberPerson()];
                 }
             }
         } 
