@@ -62,7 +62,7 @@ class CollabController extends MainController
       case 6: //dashboard
 
       $collabView = new CollabView();
-      $collabView->setMyTheme((new ThemeDao())->getMyListTheme());
+      $collabView->setMyTheme((new ThemeDao())->getMyListTheme($_SESSION["id_user"]));
       $collabView->run("dashboard");
       break;
       
@@ -200,12 +200,12 @@ class CollabController extends MainController
       case 16 : //tri par activité
         $collabView = new CollabView();
         $themeList = (new ThemeDao())->getListTheme();
-        $arr = [];
+        $listActivity = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
                   if ($activity->get_idActivity() == $_GET["id_activity"]) {
-                    $listActivity= [
+                    $activityList= [
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
                     "dtsf" => $slot->get_slotDateTimeStartFormat(),
@@ -218,14 +218,17 @@ class CollabController extends MainController
                     "idActivity" => $activity->get_idActivity()
                     ]
                     ;
-                    //var_dump($listActivity);
+                    $listActivity[] = $activityList;
                   }
                 }
             }
          
           }
+          //var_dump($listActivity);
           $collabView->setListForActivity($listActivity);
           $collabView->run("listActivity");
+          
+                 
     }
   }
 }

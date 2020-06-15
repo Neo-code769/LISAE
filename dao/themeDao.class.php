@@ -2,6 +2,8 @@
 
 class themeDao extends Dao {
 
+    /*********************Recuperation de la liste des activités ELOCE********************/
+
     public function getListTheme()
     {
         $list = []; 
@@ -72,6 +74,8 @@ class themeDao extends Dao {
         $requete = $sql->prepare(
         "SELECT * FROM host 
         WHERE id_activity = $idActivity"
+       
+      
         );
         try {
             $requete->execute();
@@ -94,6 +98,94 @@ class themeDao extends Dao {
         return $list;
     }    
 
+    /***********************Recupération de la liste des activités personneles d'Eloce *******************/
+    public function getMyListTheme($idUser)
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+                "SELECT * FROM `theme`"
+                );
+        try{
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                //THEME
+                $idTheme = $donnees['id_theme'];
+                $name = $donnees['name'];
+                $color = $donnees['color'];
+                $description = $donnees['description'];
+                $detailsDescription = $donnees['detailedDescription']; 
+
+                $activity = $this->getMyListActivity($idTheme, $idUser);
+
+                $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
+                $list[] = $theme;
+            }
+
+        } catch (PDOException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        die();
+        }
+    return $list;    
+    }
+    public function getMyListActivity($idTheme, $idUser)
+    {
+        $list = []; 
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare(
+            "SELECT * FROM activity 
+            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity 
+            WHERE id_theme= $idTheme");
+            try{
+                $requete->execute();
+                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+                {
+                    $idActivity = $donnees['id_activity'];
+                    $name = $donnees['name'];
+                    $description = $donnees['description'];
+                    $detailedDescription = $donnees['detailedDescription'];
+                    $minNumberPerson = $donnees['minNumberPerson'];
+                    $maxNumberPerson = $donnees['maxNumberPerson'];
+                    $registrationDeadline = $donnees['registrationDeadline'];
+                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
+                    $slot = $this->getMyListSlot($idActivity, $idUser);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    
+                    $list[] = $activity;
+                }
+            } catch (PDOException $e) {
+                echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $list;
+    }
+    public function getMyListSlot($idActivity, $idUser)
+    {
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
+        "
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSlot=$donnees['id_slot'];
+                $slotDateTimeStart=$donnees['slotDateStart'];
+                $slotDateTimeEnd=$donnees['slotDateEnd'];
+                $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd);
+                $list[] = $slot;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
     public function getThemeActivity() 
     {
         $sql = (
@@ -157,6 +249,7 @@ class themeDao extends Dao {
     public function update($obj ){
 
     }
+    //requete d'inscription d'un collaborateur à un créneau d'activité
     public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
         $sql = "INSERT INTO `participate` 
         VALUES ( 
@@ -176,93 +269,8 @@ class themeDao extends Dao {
                 throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
             }
     }
-    public function getMyListTheme()
-    {
-        $list = []; 
-        $pdo = Dao::getConnexion();
 
-        $requete = $pdo->prepare(
-                "SELECT * FROM `theme`"
-                );
-        try{
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-            {
-                //THEME
-                $idTheme = $donnees['id_theme'];
-                $name = $donnees['name'];
-                $color = $donnees['color'];
-                $description = $donnees['description'];
-                $detailsDescription = $donnees['detailedDescription']; 
-
-                $activity = $this->getMyListActivity($idTheme);
-
-                $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
-                $list[] = $theme;
-            }
-
-        } catch (PDOException $e) {
-            echo " ERREUR REQUETE : " . $e->getMessage();
-        die();
-        }
-    return $list;    
-    }
-    public function getMyListActivity($idTheme)
-    {
-        $list = []; 
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare(
-            "SELECT * FROM activity 
-            INNER JOIN recurring_activity on activity.id_activity = recurring_activity.id_activity 
-            WHERE id_theme= $idTheme");
-            try{
-                $requete->execute();
-                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-                {
-                    $idActivity = $donnees['id_activity'];
-                    $name = $donnees['name'];
-                    $description = $donnees['description'];
-                    $detailedDescription = $donnees['detailedDescription'];
-                    $minNumberPerson = $donnees['minNumberPerson'];
-                    $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                    $slot = $this->getMyListSlot($idActivity);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
-                    
-                    $list[] = $activity;
-                }
-            } catch (PDOException $e) {
-                echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $list;
-    }
-    public function getMyListSlot($idActivity)
-    {
-        $list = []; 
-        $sql = Dao::getConnexion();
-        $requete = $sql->prepare(
-        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_activity = $idActivity AND participate.slotDateStart = host.slotDateStart
-        "
-        );
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-            {
-                $idSlot=$donnees['id_slot'];
-                $slotDateTimeStart=$donnees['slotDateStart'];
-                $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd);
-                $list[] = $slot;
-            }
-        }
-        catch (PDOException $e) {
-            throw new LisaeException("Erreur requête", 1);
-        }
-        return $list;
-    }
+    // requete de désinscription d'un collaborateur à un créneau d'activité
     public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
     {
         $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
@@ -277,6 +285,7 @@ class themeDao extends Dao {
         }
     }
 
+    // requete pour vérifier que le collaborateur n'est pas deja inscrit à un créneau d'activité
     public function checkSlotExist($idUser,$idActivity,$idSession,$idSlot)
     {
         $sql = Dao::getConnexion();
