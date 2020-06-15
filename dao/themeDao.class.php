@@ -147,12 +147,10 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $minNumberPerson = $donnees['minNumberPerson'];
-                    $maxNumberPerson = $donnees['maxNumberPerson'];
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotCollab($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
                 }
@@ -177,7 +175,9 @@ class themeDao extends Dao {
                 $idSlot=$donnees['id_slot'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd);
+                $minNumberPerson = $donnees['minNumberPerson'];
+                $maxNumberPerson = $donnees['maxNumberPerson'];
+                $slot = new Slot($idSlot,null, null, null, null, $slotDateTimeStart,$slotDateTimeEnd, $minNumberPerson, $maxNumberPerson);
                 $list[] = $slot;
             }
         }
@@ -235,12 +235,10 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $minNumberPerson = $donnees['minNumberPerson'];
-                    $maxNumberPerson = $donnees['maxNumberPerson'];
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotAnim($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,  $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
                 }
@@ -268,7 +266,9 @@ class themeDao extends Dao {
                 $information=$donnees['information'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
+                $minNumberPerson = $donnees['minNumberPerson'];
+                $maxNumberPerson = $donnees['maxNumberPerson'];
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd,$minNumberPerson, $maxNumberPerson,);
                 $list[] = $slot;
             }
         }

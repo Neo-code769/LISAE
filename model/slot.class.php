@@ -9,10 +9,12 @@ class Slot
     private $_information;
     private $_slotDateTimeStart;
     private $_slotDateTimeEnd;
+    private $_minNumberPerson;
+    private $_maxNumberPerson;
     private $_collabRegistered =[];
     private $_collabPresent= [];
 
-    public function __construct($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd)
+    public function __construct($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd, $minNumberPerson, $maxNumberPerson)
     {
         $this->_idSlot = $idSlot;
         $this->_registrationDeadLine = $registrationDeadLine;
@@ -21,6 +23,8 @@ class Slot
         $this->_information = $information;
         $this->_slotDateTimeStart = $slotDateTimeStart;
         $this->_slotDateTimeEnd = $slotDateTimeEnd;
+        $this->_minNumberPerson=$minNumberPerson;
+        $this->_maxNumberPerson=$maxNumberPerson;
     }
 
     public function addCollabRegister() {
@@ -82,4 +86,15 @@ class Slot
     {
         return $this->_place;
     }
+    
+    public function get_minNumberPerson()
+    {
+        return $this->_minNumberPerson;
+    }
+
+    public function get_maxNumberPerson()
+    {
+        return $this->_maxNumberPerson;
+    }
+
 }

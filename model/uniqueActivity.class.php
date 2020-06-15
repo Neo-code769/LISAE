@@ -3,11 +3,11 @@
 class UniqueActivity extends Activity{
     private $_idTheme;
     private $_externalContributor;
-    function __construct($idTheme, $externalContributor,$idActivity,$name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline, $unsubscribeDeadline)
+    function __construct($idTheme, $externalContributor,$idActivity,$name, $description, $detailedDescription,  $registrationDeadline, $unsubscribeDeadline,$slot)
     {
         $this->_idTheme= $idTheme;
         $this->_externatalContributor= $externalContributor;
-        parent::__construct($idActivity,$name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline, $unsubscribeDeadline);
+        parent::__construct($idActivity,$name, $description, $detailedDescription, $registrationDeadline, $unsubscribeDeadline, $slot);
     }
 
     

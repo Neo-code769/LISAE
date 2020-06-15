@@ -4,22 +4,18 @@ class Activity{
     private $_name;
     private $_description;
     private $_detailedDescription;
-    private $_minNumberPerson;
-    private $_maxNumberPerson;
     private $_image;
     private $_registrationDeadline;
     private $_unsubscribeDeadline;
     private $_slot = [];
 
-    function __construct($idActivity,$name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline, $unsubscribeDeadline,$slot)
+    function __construct($idActivity,$name, $description, $detailedDescription, $registrationDeadline, $unsubscribeDeadline,$slot)
     {
         $this->_slot=$slot;
         $this->_idActivity=$idActivity;
         $this->_name=$name;
         $this->_description=$description;
         $this->_detailedDescription=$detailedDescription;
-        $this->_minNumberPerson=$minNumberPerson;
-        $this->_maxNumberPerson=$maxNumberPerson;
         $this->_image=null;
         $this->_registrationDeadline=$registrationDeadline;
         $this->_unsubscribeDeadline=$unsubscribeDeadline;
@@ -43,16 +39,6 @@ class Activity{
     public function get_detailedDescription()
     {
         return $this->_detailedDescription;
-    }
-
-    public function get_minNumberPerson()
-    {
-        return $this->_minNumberPerson;
-    }
-
-    public function get_maxNumberPerson()
-    {
-        return $this->_maxNumberPerson;
     }
 
     public function get_image()
