@@ -14,7 +14,8 @@ class AnimController extends MainController
       "registration" => 21,
       "dashboard" => 22,
       "info" => 23,
-      "eloce"=>24
+      "eloce"=>24,
+      "export"=>26,
     ];
     parent::__construct();
   }
@@ -98,6 +99,25 @@ class AnimController extends MainController
         $animView->setTheme($arr);
 
         $animView->run("ListELOCE");
+      break;
+
+      case 26:
+
+        $chemin="";
+        $chemin="./listes/presence.csv";
+        $nomFichier="presence.csv";
+        $fichier = fopen($chemin, "w");
+
+        $export = new PresenceDao();
+        $export->getPresence();
+
+        fwrite($fichier,$ligneFichier);
+        fwrite($fichier,"Atelier;Date;Nom;Prénom;Tel;E-mail;Presence;\n");
+        fclose($fichier);
+        header("Content-Type: application/force-download");
+        header("Content-disposition: attachment; filename=$nomFichier");
+        readfile($chemin);
+
       break;
     }
   }
