@@ -39,7 +39,6 @@ require_once 'view/lisaeTemplateConnected.class.php';
 require_once 'view/Activity/jobCibleView.php';
 require_once 'view/Activity/softSkillView.php';
 require_once 'view/loginPageView.class.php';
-require_once 'view/registration/registrationView.class.php';
 require_once 'view/Collaborator/CollabView.class.php';
 require_once 'view/forgotPasswordView.class.php';
 require_once 'view/changePasswordView.class.php';

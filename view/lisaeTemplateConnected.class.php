@@ -21,7 +21,7 @@ abstract class LisaeTemplateConnected extends LisaeTemplate {
                             <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Atelier Soft Skills</button></a>
                             <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Atelier Job Cible</button></a>
                             <a href="../collab/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Mon Compte</button></a>
-                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnection</button></a>
+                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
                 </div>
                 <div class="lifeline"></div>

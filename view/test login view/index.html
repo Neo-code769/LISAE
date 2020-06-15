@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html leng="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="LISAE" content="SoftWare Manage Registration to Activity ELOCE AFPA">
+        <meta name="author" content="Emma SCHURRER, Nathan LEBON, Pierre TRUBLEREAU">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" >
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <title>Test Login View</title>
+    </head>
+
+<body>
+    <div class="panel">
+        <ul class="panel__menu" id="menu">
+            <hr>
+            <li id="signIn">
+            <a href="#">Connexion</a>
+            </li>
+            <hr>
+            <li id="signUp">
+            <a href="#">Inscription</a>
+            </li>
+        </ul>
+    
+        <div class="panel__wrap">
+            <div class="panel__box" class="active" id="signInBox">
+                <label> Email </label>
+                    <input type="email">
+                <label>Mot de passe </label> 
+                    <input type="password">
+                <input type="submit" value="Connexion">
+            </div>
+
+            <div class="panel__box" id="signUpBox">
+                <label> Prenom </label>
+                    <input type="text">
+                <label> Nom </label>
+                    <input type="text">
+                <label> Date de Naissance </label>
+                    <input type="date">
+                <label> Numero de télephone </label>
+                    <input type="tel">
+                <label> Email </label>
+                    <input type="email">
+                <label> Mot de passe </label>
+                    <input type="password">
+                <label> Confirmer Mot de passe </label>
+                    <input type="password">
+                <input type="submit" value="Inscription"><br>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

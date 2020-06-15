@@ -87,7 +87,36 @@ class MainController
         (new LoginPageView())->run("");
         //header('Location:../index.php');
         }
+
+        // registrationCollab
+          // On se place sur le bon formulaire grâce au "name" de la balise "input"
+          if (isset($_POST['registration'])){
+            try {
+              $userForm =new UserForm($_POST);
+              $collab =$userForm->createCollab();
+              //var_dump($collab);
+              (new UserDao())->insert($collab);
+              (new SessionTrainingDao())->insertForSession($_POST['training']);
+              $userForm->sendMailConfirmation(); // Envoi du mail de confirmation
+              echo "Inscription réussie.. Redirection vers la page de connexion, veuillez patienter";
+              header('Refresh:2;url=../../index.php');
+              exit();
+            } catch (LisaeException $e) {
+              $errorMess = $e->render();
+              $regView = new LoginPageView();
+              // var_dump(((new SessionTrainingDao())->getSessionTrainingList()));
+              $regView->setSessionList((new SessionTrainingDao())->getSessionTrainingList());
+              $regView->run("", $errorMess); 
+              exit();
+            }
+          }else {
+            $regView = new LoginPageView();
+            $regView->setSessionList((new SessionTrainingDao())->getSessionTrainingList());
+            $regView->run(""); 
+          }
+
         break;
+        
       case 2:
         (new forgotPasswordView())->run($content="");
         break;

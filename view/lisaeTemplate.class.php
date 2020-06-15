@@ -36,12 +36,13 @@ abstract class LisaeTemplate {
     public function setFooter() {
         echo <<<EOD
             <footer> 
-                <figure id="figure">
+                <!--<figure id="figure">
                     <img src="/images/AFPA.jpg" alt="logo AFPA" />
                     <img src="/images/ELOCE.png" alt="logo ELOCE" />
                     <img src="/images/AFPA.jpg" alt="logo AFPA" />
-                </figure>
+                </figure>-->
             </footer>
+            <script type="text/javascript" src="/view/script.js"></script>
         </body>
         EOD;
     }
