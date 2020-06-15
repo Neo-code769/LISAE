@@ -165,7 +165,7 @@ class themeDao extends Dao {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
+        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd, host.minNumberPerson, host.maxNumberPerson FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
         "
         );
         try {
