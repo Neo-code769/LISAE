@@ -62,7 +62,23 @@ class CollabController extends MainController
       case 6: //dashboard
 
       $collabView = new CollabView();
-      $collabView->setMyTheme((new ThemeDao())->getMyListThemeCollab($_SESSION["id_user"]));
+      $themeDao = new themeDao;
+      $themeList = $themeDao->getMyListThemeCollab($_SESSION["id_user"]);
+      $arr = [];
+      foreach ($themeList as $theme) {
+          foreach ($theme->get_activity() as $activity) {
+              foreach($activity->get_slot() as $slot){
+                    $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name()];             
+              }
+          }
+      }
+      $collabView->setMyTheme($arr);
       $collabView->run("dashboard");
       break;
       
