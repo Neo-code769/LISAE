@@ -72,6 +72,8 @@ class themeDao extends Dao {
         $requete = $sql->prepare(
         "SELECT * FROM host 
         WHERE id_activity = $idActivity"
+       
+      
         );
         try {
             $requete->execute();
@@ -176,7 +178,7 @@ class themeDao extends Dao {
                 throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
             }
     }
-    public function getMyListTheme()
+    public function getMyListTheme($idUser)
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -195,7 +197,7 @@ class themeDao extends Dao {
                 $description = $donnees['description'];
                 $detailsDescription = $donnees['detailedDescription']; 
 
-                $activity = $this->getMyListActivity($idTheme);
+                $activity = $this->getMyListActivity($idTheme, $idUser);
 
                 $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
                 $list[] = $theme;
@@ -207,7 +209,7 @@ class themeDao extends Dao {
         }
     return $list;    
     }
-    public function getMyListActivity($idTheme)
+    public function getMyListActivity($idTheme, $idUser)
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -228,7 +230,7 @@ class themeDao extends Dao {
                     $maxNumberPerson = $donnees['maxNumberPerson'];
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
-                    $slot = $this->getMyListSlot($idActivity);
+                    $slot = $this->getMyListSlot($idActivity, $idUser);
                     $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
@@ -239,12 +241,12 @@ class themeDao extends Dao {
             }
         return $list;
     }
-    public function getMyListSlot($idActivity)
+    public function getMyListSlot($idActivity, $idUser)
     {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_activity = $idActivity AND participate.slotDateStart = host.slotDateStart
+        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
         "
         );
         try {
