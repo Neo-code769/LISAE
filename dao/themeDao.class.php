@@ -55,7 +55,7 @@ class themeDao extends Dao {
                     $registrationDeadline = $donnees['registrationDeadline'];
                     $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getListSlot($idActivity);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
                     
                     $list[] = $activity;
                 }
