@@ -86,9 +86,30 @@ class CollabController extends MainController
         
       break;
 
-      case 10://Liste Eloce
+      case 10://Liste Eloce 
         $collabView = new CollabView();
-        $collabView->setTheme((new ThemeDao())->getListTheme());
+
+        $themeDao = new themeDao;
+        $themeList = $themeDao->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                    $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity());
+                    if ($participateNumber < $activity->get_maxNumberPerson()) {
+                      $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+                      "idslot"=> $slot->get_idSlot(),
+                      "color" => $theme->get_color(),
+                      "dts" => $slot->get_slotDateTimeStart(),
+                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "nTheme" => $theme->get_name(),
+                      "nActivity" => $activity->get_name()];
+                    }
+                }
+            }
+        }
+        $collabView->setTheme($arr);
+
         $collabView->run("ListELOCE");
       break;
 

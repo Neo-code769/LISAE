@@ -293,6 +293,25 @@ class themeDao extends Dao {
         }
         return $result;
     }  
+
+    public function getListParticipate($slotDateStart,$idActivity)
+    {
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+            "SELECT id_user from participate
+            where `slotDateStart`= '$slotDateStart'
+            and `id_activity`= $idActivity
+            ");
+        //var_dump($requete);
+        try {
+            $requete->execute();
+            $result = $requete->rowCount();
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $result;
+    }
 }
 // essaie requete pour max nombre personner créneaux : select COUNT(id_user) from activity Inner join participate on activity.id_activity = participate.id_activity where activity.id_activity =1 group by maxNumberPerson HAVING max(maxNumberPerson)
 ?>
