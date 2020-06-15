@@ -54,22 +54,8 @@ class CollabView extends LisaeTemplateConnected {
 
         $this->_eloce = $result;
     }
-    public function setMyTheme($themeList)
-{
-        $arr = [];
-        foreach ($themeList as $theme) {
-            foreach ($theme->get_activity() as $activity) {
-                foreach($activity->get_slot() as $slot){
-                    $arr[]= ["id_activity"=> $activity->get_idActivity(), 
-                    "idslot"=> $slot->get_idSlot(),
-                    "color" => $theme->get_color(),
-                    "dts" => $slot->get_slotDateTimeStart(),
-                    "dte" => $slot->get_slotDateTimeEnd(),
-                    "nTheme" => $theme->get_name(),
-                    "nActivity" => $activity->get_name()];
-                    }
-                }
-            } 
+    public function setMyTheme($arr)
+    {
         function date_sort2($a, $b) {
             return strtotime($a["dts"]) - strtotime($b["dts"]);
         }
