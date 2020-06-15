@@ -14,7 +14,9 @@ class AnimController extends MainController
       "registration" => 21,
       "dashboard" => 22,
       "info" => 23,
-      "eloce"=>24
+      "eloce"=>24,
+      "export"=>26,
+      "createSlot" => 25
     ];
     parent::__construct();
   }
@@ -66,6 +68,7 @@ class AnimController extends MainController
         $animView->run("dashboard");
       break;
 
+    
       case 23:
         $user = (new userDao())->getInfo($_SESSION["id_user"]);
         $animView = new AnimatorView();
@@ -99,6 +102,30 @@ class AnimController extends MainController
 
         $animView->run("ListELOCE");
       break;
+
+      case 26:
+
+        $chemin="";
+        $chemin="./listes/presence.csv";
+        $nomFichier="presence.csv";
+        $fichier = fopen($chemin, "w");
+
+        $export = new PresenceDao();
+        $export->getPresence();
+
+        fwrite($fichier,$ligneFichier);
+        fwrite($fichier,"Atelier;Date;Nom;Prénom;Tel;E-mail;Presence;\n");
+        fclose($fichier);
+        header("Content-Type: application/force-download");
+        header("Content-disposition: attachment; filename=$nomFichier");
+        readfile($chemin);
+
+      break;
+      case 25: //creation d'un créneau
+        $animView = new AnimatorView();
+        $createslot = [];
+        (new SlotDao())->insert($createslot);
+        $animView->run("createSlot");
     }
   }
 }

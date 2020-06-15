@@ -28,6 +28,8 @@ class AnimatorView extends LisaeTemplateConnected {
             case "ListELOCE": include "listELOCE.phtml";
             break;
 
+            case "createSlot": include "createSlot.phtml";
+
             default: include "dashboard.phtml";
 
         }

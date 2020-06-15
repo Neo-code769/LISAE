@@ -22,13 +22,16 @@ class SlotDao extends Dao {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
+                $idSlot=$donnees['id_slot'];
                 $registrationDeadLine=$donnees['registrationDeadline'];
                 $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
                 $place=$donnees['place'];
                 $information=$donnees['information'];
                 $slotDateTimeStart=$donnees['slotDateStart'];
                 $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $slot = new Slot($registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd);
+                $minNumberPerson = $donnees['minNumberPerson'];
+                $maxNumberPerson = $donnees['maxNumberPerson'];
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd,$minNumberPerson, $maxNumberPerson);
                 $list[] = $slot;
             }
         }
@@ -43,7 +46,24 @@ class SlotDao extends Dao {
     }	
     
     public function insert($obj) : void{
-
+        $sql = "INSERT INTO host (`id_slot`, `id_user`, `id_activity`, `registrationDeadline`, `unsubscribeDeadline`, `place`, `information`, `slotDateStart`, `slotDateEnd`, `minNumberPerson`, `maxNumberPerson`) VALUES (null,null,null, ?, ?, ?, ?, ?,?,?,?)";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_registrationDeadLine());
+        $exec->bindValue(2, $obj->get_unsubscribeDeadLine());
+        $exec->bindValue(3, $obj->get_place());
+        $exec->bindValue(4, $obj->get_information());
+        $exec->bindValue(5, $obj->get_slotDateTimeStart());
+        $exec->bindValue(6, $obj->get_slotDateTimeEnd());
+        $exec->bindValue(7, $obj->get_minNumberPerson());
+        $exec->bindValue(8, $obj->get_maxNumberPerson());
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
     }
 
     // delete via son id
