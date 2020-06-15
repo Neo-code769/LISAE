@@ -43,9 +43,25 @@ class AnimController extends MainController
       break;
 
       case 22: //Dashboard
-      $animatorView = new AnimatorView();
-      //$animatorView->setMyTheme((new ThemeDao())->getMyListTheme($_SESSION["id_user"]));
-      $animatorView->run("dashboard");
+        $animView = new AnimatorView();
+        $themeDao = new themeDao;
+        $themeList = $themeDao->getMyListThemeAnim($_SESSION["id_user"]);
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                      $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+                      "idslot"=> $slot->get_idSlot(),
+                      "color" => $theme->get_color(),
+                      "dts" => $slot->get_slotDateTimeStart(),
+                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "nTheme" => $theme->get_name(),
+                      "nActivity" => $activity->get_name()];             
+                }
+            }
+        }
+        $animView->setMyTheme($arr);
+        $animView->run("dashboard");
       break;
     }
   }
