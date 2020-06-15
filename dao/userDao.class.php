@@ -8,6 +8,7 @@ class userDao extends Dao{
     public function get(int $id) {
 
     }
+    //requete pour récupérer les informations d'un utilisateur
     public function getInfo($id){
         $pdo = Dao::getConnexion();
 
@@ -32,7 +33,7 @@ class userDao extends Dao{
             }
         return $user;
     }
-    
+    //requete pour ajouter un utilisateur
     public function insert($obj) :void
     {
         $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`) VALUES (null, ?, ?, ?, ?, ?, ?,?);";
@@ -54,7 +55,7 @@ class userDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }
-
+    
     public function select() : void 
     {
         $sql = "SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
@@ -69,7 +70,7 @@ class userDao extends Dao{
             throw new LisaeException("Erreur", 1);
         }
     }
-
+    
     public function getSessionUser($mail, $password)
     {
         $pdo = Dao::getConnexion();

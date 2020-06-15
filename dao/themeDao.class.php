@@ -2,6 +2,8 @@
 
 class themeDao extends Dao {
 
+    /*********************Recuperation de la liste des activités ELOCE********************/
+
     public function getListTheme()
     {
         $list = []; 
@@ -96,88 +98,7 @@ class themeDao extends Dao {
         return $list;
     }    
 
-    public function getThemeActivity() 
-    {
-        $sql = (
-            "SELECT activity.name, slotDateStart, slotDateEnd 
-            FROM `theme`
-            INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
-            INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
-            INNER JOIN host on activity.id_activity = host.id_activity
-            UNION
-            SELECT activity.name, slotDateStart, slotDateEnd 
-            FROM `theme`
-            INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
-            INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
-            INNER JOIN host on activity.id_activity = host.id_activity"
-            );
-        $exec = (Dao::getConnexion())->prepare($sql);
-        try {
-            $exec->execute();
-            return $exec;
-            }
-            catch (PDOException $e) {
-                throw new LisaeException("Erreur", 1);
-            }
-    }
-
-   
-
-    public function getList(): array{
-        return $tab=[];
-    }	
-    
-    public function get(int $id) {
-        return $tab=[];
-    }	
-    
-    public function insert($obj) : void{
-        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
-        $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $obj->get_idTheme());
-        $exec->bindValue(2, $obj->get_name());
-        $exec->bindValue(3, $obj->get_color());
-        $exec->bindValue(4, $obj->get_description());
-        $exec->bindValue(5, $obj->get_detailsDescription());
-        //var_dump($sql);
-        try{
-        $exec->execute();
-        } 
-        catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
-            throw new LisaeException("Erreur",1);
-        }
-    }
-
-    // delete via son id
-    public function delete(int $id ){
-
-    }
-
-    // update d'un objet
-    public function update($obj ){
-
-    }
-    public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
-        $sql = "INSERT INTO `participate` 
-        VALUES ( 
-            $idUser, 
-            $idActivity, 
-            $idSession, 
-            (SELECT slotDateStart from host WHERE id_slot = $idSlot),  
-            (SELECT slotDateEnd from host where id_slot=$idSlot),
-            null
-            )";
-        $exec = (Dao::getConnexion())->prepare($sql);
-            try{
-                $exec->execute();
-            } 
-            catch (PDOException $e) {
-                var_dump($e->getMessage());
-                throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
-            }
-    }
+    /***********************Recupération de la liste des activités personneles d'Eloce *******************/
     public function getMyListTheme($idUser)
     {
         $list = []; 
@@ -265,6 +186,91 @@ class themeDao extends Dao {
         }
         return $list;
     }
+    public function getThemeActivity() 
+    {
+        $sql = (
+            "SELECT activity.name, slotDateStart, slotDateEnd 
+            FROM `theme`
+            INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
+            INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
+            INNER JOIN host on activity.id_activity = host.id_activity
+            UNION
+            SELECT activity.name, slotDateStart, slotDateEnd 
+            FROM `theme`
+            INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
+            INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
+            INNER JOIN host on activity.id_activity = host.id_activity"
+            );
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try {
+            $exec->execute();
+            return $exec;
+            }
+            catch (PDOException $e) {
+                throw new LisaeException("Erreur", 1);
+            }
+    }
+
+   
+
+    public function getList(): array{
+        return $tab=[];
+    }	
+    
+    public function get(int $id) {
+        return $tab=[];
+    }	
+    
+    public function insert($obj) : void{
+        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_idTheme());
+        $exec->bindValue(2, $obj->get_name());
+        $exec->bindValue(3, $obj->get_color());
+        $exec->bindValue(4, $obj->get_description());
+        $exec->bindValue(5, $obj->get_detailsDescription());
+        //var_dump($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    // delete via son id
+    public function delete(int $id ){
+
+    }
+
+    // update d'un objet
+    public function update($obj ){
+
+    }
+    //requete d'inscription d'un collaborateur à un créneau d'activité
+    public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
+        $sql = "INSERT INTO `participate` 
+        VALUES ( 
+            $idUser, 
+            $idActivity, 
+            $idSession, 
+            (SELECT slotDateStart from host WHERE id_slot = $idSlot),  
+            (SELECT slotDateEnd from host where id_slot=$idSlot),
+            null
+            )";
+        $exec = (Dao::getConnexion())->prepare($sql);
+            try{
+                $exec->execute();
+            } 
+            catch (PDOException $e) {
+                var_dump($e->getMessage());
+                throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+            }
+    }
+
+    // requete de désinscription d'un collaborateur à un créneau d'activité
     public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
     {
         $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
@@ -279,6 +285,7 @@ class themeDao extends Dao {
         }
     }
 
+    // requete pour vérifier que le collaborateur n'est pas deja inscrit à un créneau d'activité
     public function checkSlotExist($idUser,$idActivity,$idSession,$idSlot)
     {
         $sql = Dao::getConnexion();
