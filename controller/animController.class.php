@@ -11,7 +11,8 @@ class AnimController extends MainController
     $this->_listUseCases=
     [
       //Anim
-      "registration" => 21
+      "registration" => 21,
+      "dashboard" => 22
     ];
     parent::__construct();
   }
@@ -39,6 +40,12 @@ class AnimController extends MainController
           (new RegistrationView())->run("anim");
         }
 
+      break;
+
+      case 22: //Dashboard
+      $animatorView = new AnimatorView();
+      //$animatorView->setMyTheme((new ThemeDao())->getMyListTheme($_SESSION["id_user"]));
+      $animatorView->run("dashboard");
       break;
     }
   }

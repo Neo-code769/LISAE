@@ -11,21 +11,10 @@ class AnimatorView extends LisaeTemplateConnected {
 
         switch ($content) {
 
-            case "dashboard": $include = "dashboardAnimateur.php";
+            case "dashboard": include "dashboard.phtml";
             break;
 
-            case "manage": $include = "manageActivity.php";
-            break;
-
-            case "createActivity": $include = "createActivity.php";
-            break;
-
-            case "review": $include = "reviewActivity.php";
-            break;
-
-            case "details": $include = "detailsActivity.php";
-
-            default: $include = "dashboardAnimateur.php";
+            default: include "dashboard.phtml";
 
         }
     }

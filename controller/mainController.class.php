@@ -48,11 +48,11 @@ class MainController
                             $_SESSION['mail'] = $tab['mail'];
                             $_SESSION['password'] = $tab['password'];
                             $_SESSION['role'] = $tab['role'];
-                            $promo= (new SessionTrainingDao())->getSession($_SESSION['id_user']);
-                            $_SESSION['id_session'] = $promo->getIdSession(); 
-                            $_SESSION['session_name'] = $promo->get_nameSession(); 
                            if ($_SESSION['role'] == 'Collaborator')
                             {
+                              $promo= (new SessionTrainingDao())->getSession($_SESSION['id_user']);
+                              $_SESSION['id_session'] = $promo->getIdSession(); 
+                              $_SESSION['session_name'] = $promo->get_nameSession(); 
                               header('Location:../../index.php/collab/dashboard');
                               exit();
                             } elseif ($_SESSION['role'] == 'Animator')
