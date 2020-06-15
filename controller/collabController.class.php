@@ -111,16 +111,22 @@ class CollabController extends MainController
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
                 foreach($activity->get_slot() as $slot){
-                    $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity());
-                    if ($participateNumber < $slot->get_maxNumberPerson()) {
-                      $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+
+                  $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity());
+                  if ($participateNumber < $slot->get_maxNumberPerson()) {
+                    $complete = true;
+                  }else {
+                    $complete = false;
+                  }
+
+                  $arr[]= ["id_activity"=> $activity->get_idActivity(), 
                       "idslot"=> $slot->get_idSlot(),
                       "color" => $theme->get_color(),
                       "dts" => $slot->get_slotDateTimeStart(),
                       "dte" => $slot->get_slotDateTimeEnd(),
                       "nTheme" => $theme->get_name(),
-                      "nActivity" => $activity->get_name()];
-                    }
+                      "nActivity" => $activity->get_name(),
+                      "complete" => $complete];
                 }
             }
         }
