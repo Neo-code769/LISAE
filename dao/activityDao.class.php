@@ -76,7 +76,22 @@ class ActivityDao extends Dao {
 
     }	
     public function insert($obj) : void	{
-
+        $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?, ?,?);";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_idTheme());
+        $exec->bindValue(2, $obj->get_name());
+        $exec->bindValue(3, $obj->get_color());
+        $exec->bindValue(4, $obj->get_description());
+        $exec->bindValue(5, $obj->get_detailsDescription());
+        //var_dump($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }
     }
     public function insertRecurringActivity($idTheme,$idActivity ) : void	
     {

@@ -12,7 +12,8 @@ class AnimController extends MainController
     [
       //Anim
       "registration" => 21,
-      "dashboard" => 22
+      "dashboard" => 22,
+      "createSlot" => 23
     ];
     parent::__construct();
   }
@@ -63,6 +64,12 @@ class AnimController extends MainController
         $animView->setMyTheme($arr);
         $animView->run("dashboard");
       break;
+
+      case 23: //creation d'un créneau
+        $animView = new AnimatorView();
+        $createslot = [];
+        (new SlotDao())->insert($createslot);
+        $animView->run("createSlot");
     }
   }
 }
