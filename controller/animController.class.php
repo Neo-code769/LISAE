@@ -13,12 +13,9 @@ class AnimController extends MainController
       //Anim
       "registration" => 21,
       "dashboard" => 22,
-<<<<<<< HEAD
-      "createSlot" => 23
-=======
       "info" => 23,
-      "eloce"=>24
->>>>>>> 95f4158369fd0a39a145e0c2167b0718e2c72fe8
+      "eloce"=>24,
+      "createSlot" => 25
     ];
     parent::__construct();
   }
@@ -70,11 +67,7 @@ class AnimController extends MainController
         $animView->run("dashboard");
       break;
 
-      case 23: //creation d'un créneau
-        $animView = new AnimatorView();
-        $createslot = [];
-        (new SlotDao())->insert($createslot);
-        $animView->run("createSlot");
+    
       case 23:
         $user = (new userDao())->getInfo($_SESSION["id_user"]);
         $animView = new AnimatorView();
@@ -108,6 +101,11 @@ class AnimController extends MainController
 
         $animView->run("ListELOCE");
       break;
+      case 25: //creation d'un créneau
+        $animView = new AnimatorView();
+        $createslot = [];
+        (new SlotDao())->insert($createslot);
+        $animView->run("createSlot");
     }
   }
 }
