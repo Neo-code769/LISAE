@@ -72,8 +72,6 @@ class themeDao extends Dao {
         $requete = $sql->prepare(
         "SELECT * FROM host 
         WHERE id_activity = $idActivity"
-       
-      
         );
         try {
             $requete->execute();

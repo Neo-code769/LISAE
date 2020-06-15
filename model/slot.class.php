@@ -97,4 +97,14 @@ class Slot
         return $this->_maxNumberPerson;
     }
 
+
+    public function get_registrationDeadLine()
+    {
+        return $this->_registrationDeadLine;
+    }
+
+    public function get_unsubscribeDeadLine()
+    {
+        return $this->_unsubscribeDeadLine;
+    }
 }

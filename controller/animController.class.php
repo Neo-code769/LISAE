@@ -16,6 +16,7 @@ class AnimController extends MainController
       "info" => 23,
       "eloce"=>24,
       "export"=>26,
+      "createSlot" => 25
     ];
     parent::__construct();
   }
@@ -67,6 +68,7 @@ class AnimController extends MainController
         $animView->run("dashboard");
       break;
 
+    
       case 23:
         $user = (new userDao())->getInfo($_SESSION["id_user"]);
         $animView = new AnimatorView();
@@ -119,6 +121,11 @@ class AnimController extends MainController
         readfile($chemin);
 
       break;
+      case 25: //creation d'un créneau
+        $animView = new AnimatorView();
+        $createslot = [];
+        (new SlotDao())->insert($createslot);
+        $animView->run("createSlot");
     }
   }
 }
