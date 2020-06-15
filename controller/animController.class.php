@@ -13,7 +13,12 @@ class AnimController extends MainController
       //Anim
       "registration" => 21,
       "dashboard" => 22,
+<<<<<<< HEAD
       "createSlot" => 23
+=======
+      "info" => 23,
+      "eloce"=>24
+>>>>>>> 95f4158369fd0a39a145e0c2167b0718e2c72fe8
     ];
     parent::__construct();
   }
@@ -70,6 +75,39 @@ class AnimController extends MainController
         $createslot = [];
         (new SlotDao())->insert($createslot);
         $animView->run("createSlot");
+      case 23:
+        $user = (new userDao())->getInfo($_SESSION["id_user"]);
+        $animView = new AnimatorView();
+        $animView->setInfoUser($user);
+        $animView->run("infoUser");
+        break;
+
+      case 24://Liste Eloce 
+        $animView = new AnimatorView();
+
+        $themeDao = new themeDao;
+        $themeList = $themeDao->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                    $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity());
+                    if ($participateNumber < $slot->get_maxNumberPerson()) {
+                      $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+                      "idslot"=> $slot->get_idSlot(),
+                      "color" => $theme->get_color(),
+                      "dts" => $slot->get_slotDateTimeStart(),
+                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "nTheme" => $theme->get_name(),
+                      "nActivity" => $activity->get_name()];
+                    }
+                }
+            }
+        }
+        $animView->setTheme($arr);
+
+        $animView->run("ListELOCE");
+      break;
     }
   }
 }
