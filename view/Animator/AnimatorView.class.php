@@ -126,7 +126,11 @@ class AnimatorView extends LisaeTemplateConnected {
         $this->_birthDate = $user->get_birthdate();
         $this->_phoneNumber = $user->get_phoneNumber();
         $this->_mail = $user->get_mail();
-        $this->_myTheme = $_SESSION['NameTheme'];
+        if (array_key_exists('NameTheme',$_SESSION)) {
+            $this->_myTheme = $_SESSION['NameTheme'];
+        }else {
+            $this->_myTheme = "Vous n'êtes réferent.e d'aucun théme";
+        }
     } 
 
     public function setInfoSlot($element){
