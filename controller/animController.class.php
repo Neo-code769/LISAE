@@ -115,11 +115,16 @@ class AnimController extends MainController
       case 25: //creation d'un créneau
          if (isset($_POST['createSlot'])){
           try {
-            $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
-            (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
-            echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
-           header('Refresh:2;url=../../index.php/anim/dashboard');
-          } catch  (LisaeException $e) {
+            if ((new ThemeDao())->checkSlotExistAnim($_POST["activityName"], $_POST["slotDateStart"])!=0) {
+              throw new LisaeException("Erreur vous avez déjà crée ce créneaux d'activité", 1);
+            } elseif ($_POST["slotDateStart"] > $_POST["slotDateEnd"] ) {
+              throw new LisaeException("Erreur dates incorrectes", 1);
+            } else { $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
+              (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
+              echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
+              //header('Refresh:2;url=../../index.php/anim/dashboard');
+            }
+          } catch (LisaeException $e) {
             $errorMess = $e->render();
             $animView = new AnimatorView();
             $animView->setActivityList((new ActivityDao())->getActivityList());

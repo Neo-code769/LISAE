@@ -385,6 +385,24 @@ class themeDao extends Dao {
         }
         return $result;
     }  
+  // requete pour vérifier que l'animateur n'a pas deja créé le meme créneau d'activité
+  public function checkSlotExistAnim($nameActivity,$slotdateStart)
+  {
+      $sql = Dao::getConnexion();
+      $requete = $sql->prepare(
+      "SELECT * FROM host 
+       WHERE slotDateStart = '$slotdateStart' AND
+      (SELECT id_activity from activity where name = '$nameActivity')"
+      );
+      try {
+          $requete->execute();
+          $result = $requete->rowCount();
+      }
+      catch (PDOException $e) {
+          throw new LisaeException("Erreur requête", 1);
+      }
+      return $result;
+  }  
 
     public function getListParticipate($slotDateStart,$idActivity)
     {
