@@ -15,8 +15,8 @@ class AnimController extends MainController
       "dashboard" => 22,
       "info" => 23,
       "eloce"=>24,
-      "export"=>26,
-      "createSlot" => 25
+      "createSlot" => 25,
+      "export"=>26
     ];
     parent::__construct();
   }
@@ -103,6 +103,28 @@ class AnimController extends MainController
         $animView->run("ListELOCE");
       break;
 
+      case 25: //creation d'un créneau
+         if (isset($_POST['createSlot'])){
+          try {
+            $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
+            (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
+            echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
+           // header('Refresh:2;url=../../index.php/anim/dashboard');
+          } catch  (LisaeException $e) {
+            $errorMess = $e->render();
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot", $errorMess); 
+            exit();
+          }  
+        }else {
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot");
+      }
+      
+      break;
+
       case 26:
 
         $chemin="";
@@ -113,7 +135,7 @@ class AnimController extends MainController
         $export = new PresenceDao();
         $export->getPresence();
 
-        fwrite($fichier,$ligneFichier);
+        //fwrite($fichier,$ligneFichier);
         fwrite($fichier,"Atelier;Date;Nom;Prénom;Tel;E-mail;Presence;\n");
         fclose($fichier);
         header("Content-Type: application/force-download");
@@ -121,11 +143,6 @@ class AnimController extends MainController
         readfile($chemin);
 
       break;
-      case 25: //creation d'un créneau
-        $animView = new AnimatorView();
-        $createslot = [];
-        (new SlotDao())->insert($createslot);
-        $animView->run("createSlot");
     }
   }
 }

@@ -1,0 +1,41 @@
+<body>
+    <div id="title" class="container">
+    <h2>Création d'un créneau d'activité</h2>
+    </div>
+
+<div id="registration" class="container">
+    <form method="post">
+        <fieldset>
+            <label>Nom de l'activité :</label>
+            <select name="activityName">
+                <?php echo $this->_activityList;?>
+            </select>
+            <label>Date de début :</label>
+            <input type="datetime-local" name="slotDateStart" required>
+
+            <label>Date de fin :</label>
+            <input type="datetime-local" name="slotDateEnd" required>
+
+            <label>Nombre minimum de participants :</label>
+            <input type="number" name="minNumberPerson" required>
+
+            <label>Nombre maximum de participants :</label>
+            <input type="number" name="maxNumberPerson" required>
+
+            <label>Délais minimum d'inscription</label>
+            <input type="number" name="registrationDeadline" value="3" required >
+
+            <label>Délais minimum de désinscription :</label>
+            <input type="number" name="unsubscribeDeadline" value="3" required >
+
+            <label>Le lieu :</label>
+            <input type="text" name="place" required>
+
+            <label>Informations Utiles :</label>
+            <input type="text" name="information">
+
+            <input id="button" type="submit" name="createSlot" value="Valider">
+            <input id="button" type="reset" value="Annuler">
+        </fieldset>
+    </form>
+</div>

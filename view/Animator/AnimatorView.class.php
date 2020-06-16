@@ -30,7 +30,7 @@ class AnimatorView extends LisaeTemplateConnected {
 
             case "createSlot": include "createSlot.phtml";
 
-            default: include "dashboard.phtml";
+            
 
         }
     }
@@ -43,6 +43,7 @@ class AnimatorView extends LisaeTemplateConnected {
                         <div class="buttons">
                             <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Tableau de Bord</button></a>
                             <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Calendrier ELOCE</button></a>
+                            <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Nouveau Créneau</button></a>
                             <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Mon Compte</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
@@ -54,7 +55,15 @@ class AnimatorView extends LisaeTemplateConnected {
             EOD;
         echo "<p>".$errorMess."</p>";
     }
+    private $_activityList = null;
 
+    public function setActivityList($activityList){
+        $result = "";
+        foreach ($activityList as $activity) {
+            $result .= "<option value='".$activity->get_name()."'>".$activity->get_name()."</option>";
+        }
+        $this->_activityList = $result;
+    }
     public function setMyTheme($arr)
     {
         function date_sort2($a, $b) {
