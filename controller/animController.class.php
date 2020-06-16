@@ -127,22 +127,23 @@ class AnimController extends MainController
 
       case 26:
 
-        $chemin="";
-        $chemin="./listes/presence.csv";
+        $chemin="PHP://output";
         $nomFichier="presence.csv";
+          header("Content-Type: text/csv"); //application/force-download
+          header("Content-disposition: attachment; filename=$nomFichier");
         $fichier = fopen($chemin, "w");
 
+            // Insert the UTF-8 BOM in the file
+            fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+
+        $activity = 
         $export = new PresenceDao();
-        $export->getPresence();
+        $export->getPresence($activity);
 
-        //fwrite($fichier,$ligneFichier);
-        fwrite($fichier,"Atelier;Date;Nom;Prénom;Tel;E-mail;Presence;\n");
+        fwrite($fichier,$ligneFichier);
         fclose($fichier);
-        header("Content-Type: application/force-download");
-        header("Content-disposition: attachment; filename=$nomFichier");
+        
         readfile($chemin);
-
-      break;
     }
   }
 }
