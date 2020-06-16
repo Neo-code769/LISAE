@@ -103,6 +103,13 @@ class AnimController extends MainController
         $animView->run("ListELOCE");
       break;
 
+      case 25: //creation d'un créneau
+              $animView = new AnimatorView();
+              $createslot = [];
+              (new SlotDao())->insert($createslot);
+              $animView->run("createSlot");
+      break;
+
       case 26:
 
         $chemin="";
@@ -119,13 +126,6 @@ class AnimController extends MainController
         header("Content-Type: application/force-download");
         header("Content-disposition: attachment; filename=$nomFichier");
         readfile($chemin);
-
-      break;
-      case 25: //creation d'un créneau
-        $animView = new AnimatorView();
-        $createslot = [];
-        (new SlotDao())->insert($createslot);
-        $animView->run("createSlot");
     }
   }
 }
