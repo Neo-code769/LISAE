@@ -16,7 +16,8 @@ class AnimController extends MainController
       "info" => 23,
       "eloce"=>24,
       "createSlot" => 25,
-      "export"=>26
+      "export"=>26,
+      "infoSlot"=>27
     ];
     parent::__construct();
   }
@@ -154,6 +155,38 @@ class AnimController extends MainController
         fclose($fichier);
         
         readfile($chemin);
+      break;
+
+      case 27: //infoSlot
+        $animView = new AnimatorView();
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["idSlot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($slotInfo);
+                  }
+                }
+            }
+        } 
+        $animView->setInfoSlot($slotInfo);
+        $animView->setInfoSlotButton($slotInfo);
+        $animView->run("infoSlot");
+        break;
     }
   }
 }
