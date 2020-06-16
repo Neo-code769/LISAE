@@ -112,6 +112,21 @@ class AnimController extends MainController
 
       case 26:
 
+        /*$conn = new mysqli(host: "localhost", username: "root" , password: "", dbname:"lisae");
+        $allData =  "";
+        $sql = $conn->query("SELECT `name`, `participate.slotDateStart`, `Lastname`, `Firstname`, `PhoneNumber`, `presence` FROM activity 
+        INNER JOIN participate ON activity.id_activity = participate.id_activity 
+        INNER JOIN users ON participate.id_user = users.id_user 
+        INNER JOIN host ON users.id_user = host.id_user");
+
+        while($data = $sql->fetch_assoc())
+          $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . "," . $data['PhoneNumber']. "," . $data['presence'] . "\n";
+
+        $response = "data:text/csv;charset=utf-8,NAME,SLOTDATE,LASTNAME,FIRSTNAME,PHONE,PRESENCE\n";
+        $response .= $allData;
+
+        echo '<a href="'.$response.'" download="presence.csv">Download</a>';*/
+
         $chemin="PHP://output";
         $nomFichier="presence.csv";
           header("Content-Type: text/csv"); //application/force-download
@@ -121,11 +136,10 @@ class AnimController extends MainController
             // Insert the UTF-8 BOM in the file
             fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
-        $activity = 
         $export = new PresenceDao();
-        $export->getPresence($activity);
+        $allData = $export->getPresence();
 
-        fwrite($fichier,$ligneFichier);
+        fwrite($fichier,$allData);
         fclose($fichier);
         
         readfile($chemin);
