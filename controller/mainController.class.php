@@ -57,9 +57,11 @@ class MainController
                               exit();
                             } elseif ($_SESSION['role'] == 'Animator')
                             {
-                             // $theme=(new ThemeDao())->getThemeForAnimator($_SESSION['id_user']);
-                              //$_SESSION['IdTheme'] = $theme->get_idTheme();
-                              //$_SESSION['NameTheme'] = $theme->get_name();
+                              $theme=(new ThemeDao())->getThemeForAnimator($_SESSION['id_user']);
+                              if ($theme[1]>0) {
+                                $_SESSION['IdTheme'] = $theme[0]->get_idTheme();
+                                $_SESSION['NameTheme'] = $theme[0]->get_name();
+                              }
                               header('Location:../../index.php/anim/dashboard');
                               exit();
                             }
