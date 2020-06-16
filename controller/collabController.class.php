@@ -72,7 +72,7 @@ class CollabController extends MainController
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
                     "dts" => $slot->get_slotDateTimeStart(),
-                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "dte" => $slot->get_slotDateTimeEndFormat(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name()];             
               }
@@ -123,7 +123,7 @@ class CollabController extends MainController
                       "idslot"=> $slot->get_idSlot(),
                       "color" => $theme->get_color(),
                       "dts" => $slot->get_slotDateTimeStart(),
-                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "dte" => $slot->get_slotDateTimeEndFormat(),
                       "nTheme" => $theme->get_name(),
                       "nActivity" => $activity->get_name(),
                       "complete" => $complete];

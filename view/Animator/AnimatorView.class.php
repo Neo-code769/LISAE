@@ -85,11 +85,25 @@ class AnimatorView extends LisaeTemplateConnected {
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
-            $result .=
-            "<div class='row justify-content-center'> 
-            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."&id_activity=".$element["id_activity"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
-                <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
-            </div>";
+            
+            if ($element["complete"]== true){
+                $result .=
+                "<div class='row justify-content-center'> 
+                    <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."&id_activity=".$element["id_activity"]."'>
+                    <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."
+                    </a></div>
+                    <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
+                </div>";
+                }
+                else {
+                    $result .=
+                    "<div class='row justify-content-center'> 
+                        <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."&id_activity=".$element["id_activity"]."'>
+                        <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."
+                        </a><div style='margin-left:4%'> COMPLET</div></div>
+                        <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='S'inscrire a l'atelier'></a>
+                    </div>";
+                }
         }
 
         $this->_mySlot = $result;
