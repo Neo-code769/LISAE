@@ -20,11 +20,9 @@ class ActivityDao extends Dao {
                     $detailedDescription = $donnees['detailedDescription'];
                     $minNumberPerson = $donnees['minNumberPerson'];
                     $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $idTheme = $donnees['id_theme'];
                     $externalContributor = $donnees['externalContributor'];
-                    $activity = new UniqueActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idTheme,$externalContributor);
+                    $activity = new UniqueActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $idTheme,$externalContributor);
                     $list[] = $activity;
                 }
 
@@ -53,10 +51,8 @@ class ActivityDao extends Dao {
                     $detailedDescription = $donnees['detailedDescription'];
                     $minNumberPerson = $donnees['minNumberPerson'];
                     $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $idTheme = $donnees['id_theme'];
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idTheme);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson,$idTheme);
                     $list[] = $activity;
                 }
 
@@ -136,7 +132,7 @@ class ActivityDao extends Dao {
             {
                 $idActivity=$donnees['id_activity'];
                 $name=$donnees['name'];
-                $activity = new Activity($idActivity,$name, null, null,null, null, null);
+                $activity = new Activity($idActivity,$name, null, null,null);
                 $list[] = $activity;
             }
         }

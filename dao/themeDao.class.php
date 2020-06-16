@@ -52,10 +52,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getListSlot($idActivity);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
                     
                     $list[] = $activity;
                 }
@@ -145,10 +143,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotCollab($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,$slot);
                     
                     $list[] = $activity;
                 }
@@ -233,10 +229,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotAnim($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,  $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
                     
                     $list[] = $activity;
                 }
