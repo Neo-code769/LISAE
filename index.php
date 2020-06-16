@@ -24,6 +24,7 @@ require_once 'dao/sessionTrainingDao.class.php';
 require_once 'dao/themeDao.class.php';
 require_once 'dao/slotDao.class.php';
 require_once 'dao/activityDao.class.php';
+require_once 'dao/presenceDao.class.php';
 
 require_once 'controller/mainController.class.php';
 require_once 'controller/userForm.php';
