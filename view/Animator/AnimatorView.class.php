@@ -99,9 +99,9 @@ class AnimatorView extends LisaeTemplateConnected {
             $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
             $result .=
             "<div class='row justify-content-center'> 
-            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
-            <a  id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
-            <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='info d'un créneau'></a>
+            <a style='text-decoration: none;' href='../anim/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
+            <a  id='listActivity' href='../anim/listActivity?id_activity=".$element["id_activity"]."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+            <a  id='info' href='../anim/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
 
@@ -136,9 +136,9 @@ class AnimatorView extends LisaeTemplateConnected {
     } 
     public function setInfoSlotButton($element){
         $result =
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
         $result .=
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
         $this->_infoSlotButton = $result;
     }
 }   

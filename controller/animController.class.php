@@ -121,8 +121,9 @@ class AnimController extends MainController
             // Insert the UTF-8 BOM in the file
             fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
+        $activity = 
         $export = new PresenceDao();
-        $export->getPresence();
+        $export->getPresence($activity);
 
         fwrite($fichier,$ligneFichier);
         fclose($fichier);
