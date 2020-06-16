@@ -126,6 +126,7 @@ class AnimatorView extends LisaeTemplateConnected {
         $this->_birthDate = $user->get_birthdate();
         $this->_phoneNumber = $user->get_phoneNumber();
         $this->_mail = $user->get_mail();
+        $this->_myTheme = $_SESSION['NameTheme'];
     } 
 
     public function setInfoSlot($element){
