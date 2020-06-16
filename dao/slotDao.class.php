@@ -44,9 +44,11 @@ class SlotDao extends Dao {
     public function get(int $id) {
         return $tab=[];
     }	
-    
     public function insert($obj) : void{
-        $sql = "INSERT INTO host (`id_slot`, `id_user`, `id_activity`, `registrationDeadline`, `unsubscribeDeadline`, `place`, `information`, `slotDateStart`, `slotDateEnd`, `minNumberPerson`, `maxNumberPerson`) VALUES (null,null,null, ?, ?, ?, ?, ?,?,?,?)";
+
+    }
+    public function insertSlot($obj,$idUser,$name) : void{
+        $sql = "INSERT INTO host (`id_slot`, `id_user`, `id_activity`, `registrationDeadline`, `unsubscribeDeadline`, `place`, `information`, `slotDateStart`, `slotDateEnd`, `minNumberPerson`, `maxNumberPerson`) VALUES (null,$idUser,(select id_activity from activity where name = '$name'),?,?, ?, ?, ?, ?,?,?);";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_registrationDeadLine());
         $exec->bindValue(2, $obj->get_unsubscribeDeadLine());
@@ -56,8 +58,10 @@ class SlotDao extends Dao {
         $exec->bindValue(6, $obj->get_slotDateTimeEnd());
         $exec->bindValue(7, $obj->get_minNumberPerson());
         $exec->bindValue(8, $obj->get_maxNumberPerson());
+       
         try{
         $exec->execute();
+        var_dump($exec);
         } 
         catch (PDOException $e) {
             //echo " echec lors de la création : " . $e->getMessage();
@@ -65,6 +69,7 @@ class SlotDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
+    
 
     // delete via son id
     public function delete(int $id ){

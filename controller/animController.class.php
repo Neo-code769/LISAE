@@ -15,8 +15,8 @@ class AnimController extends MainController
       "dashboard" => 22,
       "info" => 23,
       "eloce"=>24,
-      "export"=>26,
-      "createSlot" => 25
+      "createSlot" => 25,
+      "export"=>26
     ];
     parent::__construct();
   }
@@ -113,10 +113,25 @@ class AnimController extends MainController
       break;
 
       case 25: //creation d'un créneau
-              $animView = new AnimatorView();
-              $createslot = [];
-              (new SlotDao())->insert($createslot);
-              $animView->run("createSlot");
+         if (isset($_POST['createSlot'])){
+          try {
+            $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
+            (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
+            echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
+           // header('Refresh:2;url=../../index.php/anim/dashboard');
+          } catch  (LisaeException $e) {
+            $errorMess = $e->render();
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot", $errorMess); 
+            exit();
+          }  
+        }else {
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot");
+      }
+      
       break;
 
       case 26:
