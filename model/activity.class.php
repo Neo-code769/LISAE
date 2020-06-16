@@ -5,11 +5,9 @@ class Activity{
     private $_description;
     private $_detailedDescription;
     private $_image;
-    private $_registrationDeadline;
-    private $_unsubscribeDeadline;
     private $_slot = [];
 
-    function __construct($idActivity,$name, $description, $detailedDescription, $registrationDeadline, $unsubscribeDeadline,$slot)
+    function __construct($idActivity,$name, $description, $detailedDescription, $slot)
     {
         $this->_slot=$slot;
         $this->_idActivity=$idActivity;
@@ -17,8 +15,6 @@ class Activity{
         $this->_description=$description;
         $this->_detailedDescription=$detailedDescription;
         $this->_image=null;
-        $this->_registrationDeadline=$registrationDeadline;
-        $this->_unsubscribeDeadline=$unsubscribeDeadline;
     }
 
     public function get_idActivity()

@@ -20,11 +20,9 @@ class ActivityDao extends Dao {
                     $detailedDescription = $donnees['detailedDescription'];
                     $minNumberPerson = $donnees['minNumberPerson'];
                     $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $idTheme = $donnees['id_theme'];
                     $externalContributor = $donnees['externalContributor'];
-                    $activity = new UniqueActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idTheme,$externalContributor);
+                    $activity = new UniqueActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $idTheme,$externalContributor);
                     $list[] = $activity;
                 }
 
@@ -53,10 +51,8 @@ class ActivityDao extends Dao {
                     $detailedDescription = $donnees['detailedDescription'];
                     $minNumberPerson = $donnees['minNumberPerson'];
                     $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $idTheme = $donnees['id_theme'];
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $registrationDeadline,$unsubscribeDeadline,$idTheme);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson,$idTheme);
                     $list[] = $activity;
                 }
 
@@ -124,6 +120,28 @@ class ActivityDao extends Dao {
     {
 
     }
+    public function getActivityList() : array 
+    {
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT name, id_activity FROM activity");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idActivity=$donnees['id_activity'];
+                $name=$donnees['name'];
+                $activity = new Activity($idActivity,$name, null, null,null);
+                $list[] = $activity;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+    
 }
 
 

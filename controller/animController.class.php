@@ -15,8 +15,9 @@ class AnimController extends MainController
       "dashboard" => 22,
       "info" => 23,
       "eloce"=>24,
+      "createSlot" => 25,
       "export"=>26,
-      "createSlot" => 25
+      "infoSlot"=>27
     ];
     parent::__construct();
   }
@@ -53,15 +54,20 @@ class AnimController extends MainController
         $arr = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
-                foreach($activity->get_slot() as $slot){
-                      $arr[]= ["id_activity"=> $activity->get_idActivity(), 
-                      "idslot"=> $slot->get_idSlot(),
-                      "color" => $theme->get_color(),
-                      "dts" => $slot->get_slotDateTimeStart(),
-                      "dte" => $slot->get_slotDateTimeEnd(),
-                      "nTheme" => $theme->get_name(),
-                      "nActivity" => $activity->get_name()];             
-                }
+              foreach($activity->get_slot() as $slot){
+
+                $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity())."/".$slot->get_maxNumberPerson();
+                
+
+                $arr[]= ["id_activity"=> $activity->get_idActivity(), 
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEndFormat(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "participateNumber" => $participateNumber];
+              }
             }
         }
         $animView->setMyTheme($arr);
@@ -91,7 +97,7 @@ class AnimController extends MainController
                       "idslot"=> $slot->get_idSlot(),
                       "color" => $theme->get_color(),
                       "dts" => $slot->get_slotDateTimeStart(),
-                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "dte" => $slot->get_slotDateTimeEndFormat(),
                       "nTheme" => $theme->get_name(),
                       "nActivity" => $activity->get_name()];
                     }
@@ -104,10 +110,30 @@ class AnimController extends MainController
       break;
 
       case 25: //creation d'un créneau
-              $animView = new AnimatorView();
-              $createslot = [];
-              (new SlotDao())->insert($createslot);
-              $animView->run("createSlot");
+         if (isset($_POST['createSlot'])){
+          try {
+            if ((new ThemeDao())->checkSlotExistAnim($_POST["activityName"], $_POST["slotDateStart"])!=0) {
+              throw new LisaeException("Erreur vous avez déjà crée ce créneaux d'activité", 1);
+            } elseif ($_POST["slotDateStart"] > $_POST["slotDateEnd"] ) {
+              throw new LisaeException("Erreur dates incorrectes", 1);
+            } else { $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
+              (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
+              echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
+              //header('Refresh:2;url=../../index.php/anim/dashboard');
+            }
+          } catch (LisaeException $e) {
+            $errorMess = $e->render();
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot", $errorMess); 
+            exit();
+          }  
+        }else {
+            $animView = new AnimatorView();
+            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->run("createSlot");
+      }
+      
       break;
 
       case 26:
@@ -143,6 +169,38 @@ class AnimController extends MainController
         fclose($fichier);
         
         readfile($chemin);
+      break;
+
+      case 27: //infoSlot
+        $animView = new AnimatorView();
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["idSlot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($slotInfo);
+                  }
+                }
+            }
+        } 
+        $animView->setInfoSlot($slotInfo);
+        $animView->setInfoSlotButton($slotInfo);
+        $animView->run("infoSlot");
+        break;
     }
   }
 }

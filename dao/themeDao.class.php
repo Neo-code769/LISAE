@@ -52,10 +52,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getListSlot($idActivity);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
                     
                     $list[] = $activity;
                 }
@@ -145,10 +143,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotCollab($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,$slot);
                     
                     $list[] = $activity;
                 }
@@ -233,10 +229,8 @@ class themeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
-                    $registrationDeadline = $donnees['registrationDeadline'];
-                    $unsubscribeDeadline = $donnees['unsubscribeDeadline'];
                     $slot = $this->getMyListSlotAnim($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,  $registrationDeadline,$unsubscribeDeadline, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
                     
                     $list[] = $activity;
                 }
@@ -391,6 +385,24 @@ class themeDao extends Dao {
         }
         return $result;
     }  
+  // requete pour vérifier que l'animateur n'a pas deja créé le meme créneau d'activité
+  public function checkSlotExistAnim($nameActivity,$slotdateStart)
+  {
+      $sql = Dao::getConnexion();
+      $requete = $sql->prepare(
+      "SELECT * FROM host 
+       WHERE slotDateStart = '$slotdateStart' AND
+      (SELECT id_activity from activity where name = '$nameActivity')"
+      );
+      try {
+          $requete->execute();
+          $result = $requete->rowCount();
+      }
+      catch (PDOException $e) {
+          throw new LisaeException("Erreur requête", 1);
+      }
+      return $result;
+  }  
 
     public function getListParticipate($slotDateStart,$idActivity)
     {
@@ -409,6 +421,28 @@ class themeDao extends Dao {
             throw new LisaeException("Erreur requête", 1);
         }
         return $result;
+    }
+
+    public function getThemeForAnimator($idUser)
+    {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare (
+            "SELECT theme.id_theme, theme.name FROM referto 
+            INNER JOIN theme ON theme.id_theme = referto.id_theme
+            WHERE id_user = $idUser");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSession=$donnees['id_session'];
+                $sessionName=$donnees['session_name'];
+                $session = new theme($donnees['id_theme'], $donnees['name'],null,null,null,null);
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $session;
     }
 }
 // essaie requete pour max nombre personner créneaux : select COUNT(id_user) from activity Inner join participate on activity.id_activity = participate.id_activity where activity.id_activity =1 group by maxNumberPerson HAVING max(maxNumberPerson)
