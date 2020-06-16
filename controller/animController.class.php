@@ -165,7 +165,7 @@ class AnimController extends MainController
         $export = new PresenceDao();
         //$allData = $export->getPresence($_GET['id_slot']);
 
-        var_dump($export->getPresence($_GET['id_slot']));
+        //var_dump($export->getPresence($_GET['id_slot']));
 
 
         /* fwrite($fichier,$allData);
