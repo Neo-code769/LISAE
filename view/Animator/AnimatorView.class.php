@@ -132,7 +132,7 @@ class AnimatorView extends LisaeTemplateConnected {
         if (array_key_exists('NameTheme',$_SESSION)) {
             $this->_myTheme = $_SESSION['NameTheme'];
         }else {
-            $this->_myTheme = "Vous n'êtes réferent.e d'aucun théme";
+            $this->_myTheme = "Vous n'êtes réferent.e d'aucun thème";
         }
     } 
 
