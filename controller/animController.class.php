@@ -163,7 +163,7 @@ class AnimController extends MainController
             fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
         $export = new PresenceDao();
-        $allData = $export->getPresence();
+        $allData = $export->getPresence($_GET['idSlot']);
 
         fwrite($fichier,$allData);
         fclose($fichier);

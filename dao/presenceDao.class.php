@@ -14,21 +14,17 @@ class PresenceDao extends Dao {
 
                 try{
                     $requete->execute();
-                    $resImprimer=requete($requete);
                     $allData = "";
 
-                    while($data = $sql->fetch_assoc()) {
+                    while($data = $pdo->fetch_assoc()) {
                         $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . "," . $data['PhoneNumber']. "," . $data['presence'] . "\n";
-
-                    }catch (PDOException $e) {
-                        echo " ERREUR REQUETE : " . $e->getMessage();
-                    die();
                     }
+                }catch (PDOException $e) {
+                    echo " ERREUR REQUETE : " . $e->getMessage();
+                die();
                 }
                 return $allData;
     }
 
 }
-
-
 ?>
