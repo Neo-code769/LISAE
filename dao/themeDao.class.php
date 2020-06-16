@@ -422,6 +422,28 @@ class themeDao extends Dao {
         }
         return $result;
     }
+
+    public function getThemeForAnimator($idUser)
+    {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare (
+            "SELECT theme.id_theme, theme.name FROM referto 
+            INNER JOIN theme ON theme.id_theme = referto.id_theme
+            WHERE id_user = $idUser");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSession=$donnees['id_session'];
+                $sessionName=$donnees['session_name'];
+                $session = new theme($donnees['id_theme'], $donnees['name'],null,null,null,null);
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $session;
+    }
 }
 // essaie requete pour max nombre personner créneaux : select COUNT(id_user) from activity Inner join participate on activity.id_activity = participate.id_activity where activity.id_activity =1 group by maxNumberPerson HAVING max(maxNumberPerson)
 ?>
