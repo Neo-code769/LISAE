@@ -1,6 +1,6 @@
 <?php
 
-class themeDao extends Dao {
+class ThemeDao extends Dao {
 
     /*********************Recuperation de la liste des activités ELOCE********************/
 

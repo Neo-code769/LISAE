@@ -1,6 +1,6 @@
 <?php
 
-class userDao extends Dao{
+class UserDao extends Dao{
 
     public function getList(): array{
         return [];
