@@ -55,21 +55,17 @@ class AnimController extends MainController
             foreach ($theme->get_activity() as $activity) {
               foreach($activity->get_slot() as $slot){
 
-                $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity());
-                if ($participateNumber < $slot->get_maxNumberPerson()) {
-                  $complete = true;
-                }else {
-                  $complete = false;
-                }
+                $participateNumber = $themeDao->getListParticipate($slot->get_slotDateTimeStart(),$activity->get_idActivity())."/".$slot->get_maxNumberPerson();
+                
 
                 $arr[]= ["id_activity"=> $activity->get_idActivity(), 
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
                     "dts" => $slot->get_slotDateTimeStart(),
-                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "dte" => $slot->get_slotDateTimeEndFormat(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name(),
-                    "complete" => $complete];
+                    "participateNumber" => $participateNumber];
               }
             }
         }
@@ -100,7 +96,7 @@ class AnimController extends MainController
                       "idslot"=> $slot->get_idSlot(),
                       "color" => $theme->get_color(),
                       "dts" => $slot->get_slotDateTimeStart(),
-                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "dte" => $slot->get_slotDateTimeEndFormat(),
                       "nTheme" => $theme->get_name(),
                       "nActivity" => $activity->get_name()];
                     }
@@ -118,7 +114,7 @@ class AnimController extends MainController
             $slot = new Slot(null,$_POST["registrationDeadline"], $_POST["unsubscribeDeadline"], $_POST["place"], $_POST["information"], $_POST["slotDateStart"],$_POST["slotDateEnd"], $_POST["minNumberPerson"], $_POST["maxNumberPerson"]);
             (new SlotDao())->insertSlot($slot,$_SESSION["id_user"], $_POST["activityName"]);
             echo "Création réussie.. Redirection vers la page de connexion, veuillez patienter";
-           header('Refresh:2;url=../../index.php/anim/dashboard');
+           // header('Refresh:2;url=../../index.php/anim/dashboard');
           } catch  (LisaeException $e) {
             $errorMess = $e->render();
             $animView = new AnimatorView();
