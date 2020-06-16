@@ -39,7 +39,10 @@ class AnimatorView extends LisaeTemplateConnected {
             break;
 
             case "createSlot": include "createSlot.phtml";
+        break;
 
+        default: include "dashboard.phptml";
+        
             
 
         }
