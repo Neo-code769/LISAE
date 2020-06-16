@@ -13,9 +13,9 @@ class PresenceDao extends Dao {
 
                 try{
                     $requete->execute();
-                    $resImprimer=requete($reqImprimer);
+                    $resImprimer=requete($requete);
 
-                    while($ligneImprimer=mysql_fetch_assoc($resImprimer)) {
+                    while($ligneImprimer=mysql_fetch_assoc($requete)) {
                         $atelier=$ligneImprimer['name'];
                         $date=$ligneImprimer['slotDateStart'];
                         $nom=$ligneImprimer['Lastname'];
@@ -23,7 +23,8 @@ class PresenceDao extends Dao {
                         $mobile=$ligneImprimer['PhoneNumber'];
                         $presence=$ligneImprimer['presence'];
 
-                        $ligneFichier="$atelier;$date;$nom;$prenom;$mobile;$presence;\n";
+                        $ligneFichier="$atelier;$date;$nom;$prenom;$mobile;$presence;";
+
                     } catch (PDOException $e) {
                         echo " ERREUR REQUETE : " . $e->getMessage();
                     die();

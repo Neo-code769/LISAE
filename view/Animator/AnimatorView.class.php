@@ -2,13 +2,20 @@
 
 class AnimatorView extends LisaeTemplateConnected {
 
-    private $_mySlot;
+    private $_infoUser;
+    private $_sessionSlot;
+    private $_eloce;
+    private $_infoSlot;
+    private $_infoSlotButton;
+    private $_lastname;
     private $_firstName;
     private $_birthDate;
     private $_mail;
     private $_phoneNumber;
+    private $_mySlot;
     private $_session;
-    private $_eloce;
+    private $_listActivity;
+    
 
     public function __construct()
     {
@@ -20,6 +27,9 @@ class AnimatorView extends LisaeTemplateConnected {
         switch ($content) {
 
             case "dashboard": include "dashboard.phtml";
+            break;
+
+            case "infoSlot": include "infoSlot.phtml";
             break;
 
             case "infoUser": include "infoUser.phtml";
@@ -105,6 +115,32 @@ class AnimatorView extends LisaeTemplateConnected {
         $this->_phoneNumber = $user->get_phoneNumber();
         $this->_mail = $user->get_mail();
     } 
+
+    public function setInfoSlot($element){
+        $result = 
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
+        $result .=
+        "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
+        $result .=
+        "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
+        $this->_infoSlot = $result;
+    }
+     public function setListForActivity($element) {
+        setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+        $result = "";
+        foreach ($element as $activity) {
+            $result .= 
+                "<div id='listELOCE' class='eloce' style='background-color:".$activity["color"]."'>".strftime('%A %d %B %Y %H:%M', strtotime($activity["dts"]))."-".$activity["dte"]." - ".$activity["nTheme"]." - ".$activity["nActivity"]."</div> <a  id='signups' href='../collab/signUpSlot?idSlot=".$activity["idslot"]."&idActivity=".$activity["idActivity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>"; 
+                }
+        $this->_listActivity = $result;
+    } 
+    public function setInfoSlotButton($element){
+        $result =
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
+        $result .=
+        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
+        $this->_infoSlotButton = $result;
+    }
 }   
 
 ?>
