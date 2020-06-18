@@ -288,18 +288,35 @@ class AnimController extends MainController
         } 
         $animView->setInfoSlot($slotInfo);
 
+        $presenceDao= new PresenceDao();
         //Pour Affichage du tableau de présence
-        $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+        $animView->setPresence($presenceDao->getTabPresence($_GET["id_slot"]));
 
         //Pour update la table participate et valider les présents
-        $presenceDao= new PresenceDao();
 
         if (isset($_POST['checkPresence'])){
-          foreach($_POST['check'] as $id_user){
-            $presenceDao->updatePresence($id_user, $_GET['id_slot']);
-          }
-        }
 
+          $users=$presenceDao->getTabPresence($_GET["id_slot"]);
+          foreach ($users as $user) {
+            $idUsers[] = $user['id_user'];
+          }
+          if(!isset($_POST['check'])){
+            $idUsersNoCheck=$idUsers;
+          }else{$idUsersNoCheck = array_diff($idUsers,$_POST['check']);}            
+          
+          var_dump($idUsersNoCheck);
+
+          if(isset($_POST['check'])){
+            foreach($_POST['check'] as $idUser){
+              $presenceDao->updatePresence($idUser, $_GET['id_slot']);
+            }
+          }
+          foreach($idUsersNoCheck as $idUser){
+            $presenceDao->updatePresenceNo($idUser, $_GET['id_slot']);
+          }
+          
+        }
+        
         $animView->run("presence");
         break;
     }

@@ -92,5 +92,20 @@ class PresenceDao extends Dao {
            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
        }
     }
+
+    public function updatePresenceNo($idUser,$idSlot) {
+        $sql = 
+        "UPDATE `participate` SET `presence`=0 
+        WHERE id_user= $idUser
+        AND participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot) ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+       try{
+           $exec->execute();
+       } 
+       catch (PDOException $e) {
+           var_dump($e->getMessage());
+           throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+       }
+    }
 }
 ?>
