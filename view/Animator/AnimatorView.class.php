@@ -168,8 +168,8 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setPresence($listUser){
-
-
+        
+        $this->_presence=var_dump($listUser);
     }
 }   
 
