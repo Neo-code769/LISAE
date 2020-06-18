@@ -61,7 +61,6 @@ class SlotDao extends Dao {
        
         try{
         $exec->execute();
-        var_dump($exec);
         } 
         catch (PDOException $e) {
             //echo " echec lors de la création : " . $e->getMessage();
