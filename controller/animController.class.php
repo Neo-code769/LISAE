@@ -139,24 +139,9 @@ class AnimController extends MainController
 
       case 26:
 
-        /*$conn = new mysqli(host: "localhost", username: "root" , password: "", dbname:"lisae");
-        $allData =  "";
-        $sql = $conn->query("SELECT `name`, `participate.slotDateStart`, `Lastname`, `Firstname`, `PhoneNumber`, `presence` FROM activity 
-        INNER JOIN participate ON activity.id_activity = participate.id_activity 
-        INNER JOIN users ON participate.id_user = users.id_user 
-        INNER JOIN host ON users.id_user = host.id_user");
-
-        while($data = $sql->fetch_assoc())
-          $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . "," . $data['PhoneNumber']. "," . $data['presence'] . "\n";
-
-        $response = "data:text/csv;charset=utf-8,NAME,SLOTDATE,LASTNAME,FIRSTNAME,PHONE,PRESENCE\n";
-        $response .= $allData;
-
-        echo '<a href="'.$response.'" download="presence.csv">Download</a>';*/
-
         $chemin="output/presence.csv";
         $nomFichier="presence.csv";
-          header("Content-Type: text/csv"); //application/force-download
+          header("Content-Type: text/csv"); 
           header("Content-disposition: attachment; filename=$nomFichier");
         $fichier = fopen($chemin, "w"); 
 
@@ -164,9 +149,9 @@ class AnimController extends MainController
             fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
         $export = new PresenceDao();
-        $allData = $export->getPresence($_GET['idSlot'], $_GET['slotDateStart']); // TO FIX $_GET
+        $allData = $export->getPresence($_GET['idSlot']); // TO FIX $_GET
 
-        //var_dump($export->getPresence($_GET['id_slot']));
+        var_dump($allData);
 
         fwrite($fichier,$allData);
         fclose($fichier);

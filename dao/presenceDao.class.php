@@ -26,7 +26,7 @@ class PresenceDao extends Dao {
         
     } 
 
-    public function getPresence($slotDateStart,$id_activity) {
+    public function getPresence($idSlot) {
 
         $pdo = Dao::getConnexion();
 
