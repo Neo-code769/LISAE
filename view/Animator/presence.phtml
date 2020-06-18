@@ -2,14 +2,14 @@
     <div id="infodesc"><?php echo $this->_infoSlot1 ?></div>
 <div><br></br>
 
-<form method="POST">
+<form method="post" enctype="multipart/form-data" multiple>
     <table id="presence">
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
             <th>N° de téléphone</th>
             <th>Formation</th>
-            <th>Presence</th>
+            <th>Presence <input type="checkbox" id="check_all"></th>
         </tr>
         <?php echo $this->_presence; ?>
     </table>
@@ -18,3 +18,16 @@
     <input type = "button" value = "Retour"  onclick = "history.back()">
 </form>
 
+<!-- Jquery -->
+<script>
+$(document).ready(function(){
+    var cc = document.getElementById('check_all');
+    $(cc).on('click', function(){
+        if (cc.checked){
+            $('input[type=checkbox]').prop('checked', true);
+        } else {
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    });
+});
+</script>

@@ -5,16 +5,13 @@ abstract class LisaeTemplateDisconnected extends LisaeTemplate {
         if(ISSET($_SESSION['id_user']))
         {
             if ($_SESSION['role']=='Collaborator') {
-                echo "Erreur, vous ne pouvez pas accéder a cette page !";
-                header('Refresh:2;url=../../index.php/collab/dashboard');
+                header('Location:../../index.php/collab/dashboard');
                 exit();
             }elseif ($_SESSION['role']=='Animator') {
-                echo "Erreur, vous ne pouvez pas accéder a cette page !";
-                header('Refresh:2;url=../../index.php/Animator/dashboard');
+                header('Location:../../index.php/anim/dashboard');
                 exit();
             }elseif ($_SESSION['role']=='Admin') {
-                echo "Erreur, vous ne pouvez pas accéder a cette page !";
-                header('Refresh:2;url=../../index.php/Admin/dashboard');
+                header('Location:../../index.php/Admin/dashboard');
                 exit();
             }
         }

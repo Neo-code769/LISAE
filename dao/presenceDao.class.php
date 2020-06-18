@@ -78,8 +78,11 @@ class PresenceDao extends Dao {
         }
         return $list;
     }
-    public function updatePresence($idUser) {
-        $sql = " UPDATE `participate` SET `presence`=1 WHERE id_user= $idUser";
+    public function updatePresence($idUser,$idSlot) {
+        $sql = 
+        "UPDATE `participate` SET `presence`=1 
+        WHERE id_user= $idUser
+        AND participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot) ";
         $exec = (Dao::getConnexion())->prepare($sql);
        try{
            $exec->execute();

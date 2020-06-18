@@ -177,14 +177,18 @@ class AnimatorView extends LisaeTemplateConnected {
     public function setPresence($listUser){
         //var_dump($listUser);
         $result ="";
+        $check="";
         foreach ($listUser as $user) {
+            if ($user['presence']==1) {
+                $check = "checked";
+            }
             $result .="
             <tr>
                 <td>".$user['Firstname']."</td>
                 <td>".$user['Lastname']."</td>
                 <td>".$user['PhoneNumber']."</td>
                 <td>".$user['session_name']."</td>
-                <td><input type='checkbox' name='check[]' value=".$user['id_user']."></td>
+                <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass' $check ></td>
             </tr>";
         }
         $this->_presence=$result;

@@ -260,9 +260,11 @@ class AnimController extends MainController
         $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
 
         //Pour update la table participate et valider les présents
+        $presenceDao= new PresenceDao();
+
         if (isset($_POST['checkPresence'])){
           foreach($_POST['check'] as $id_user){
-            updatePresence($id_user);
+            $presenceDao->updatePresence($id_user, $_GET['id_slot']);
           }
         }
 
