@@ -1,27 +1,20 @@
 <div id="infoslot">
     <div id="infodesc"><?php echo $this->_infoSlot1 ?></div>
 <div><br></br>
-<table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Prenom</th>
-                                    <th scope="col">N° de téléphone</th>
-                                    <th scope="col">Formation</th>
-                                    <th scope="col">Presence</th>
-                                </tr>
-                            </thead>
-                            <?php echo $this->_presence; ?>
-                            </table>
-<table>
-    <tr>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>N° de téléphone</th>
-        <th>Formation</th>
-        <th>Presence</th>
-    </tr>
-    <?php echo $this->_presence; ?>
-</table>
 
-<input type = "button" value = "Retour!"  onclick = "history.back()">
+<form method="POST">
+    <table id="presence">
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>N° de téléphone</th>
+            <th>Formation</th>
+            <th>Presence</th>
+        </tr>
+        <?php echo $this->_presence; ?>
+    </table>
+    <br>
+    <input type = "submit" value = "Valider" name="checkPresence">
+    <input type = "button" value = "Retour"  onclick = "history.back()">
+</form>
+

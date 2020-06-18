@@ -59,7 +59,7 @@ class PresenceDao extends Dao {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-           " SELECT Lastname, Firstname, PhoneNumber, session_name, presence FROM users
+           " SELECT users.id_user, Lastname, Firstname, PhoneNumber, session_name, presence FROM users
             INNER JOIN participate ON participate.id_user = users.id_user
             INNER JOIN activity ON activity.id_activity = participate.id_activity
             INNER JOIN session on participate.id_session = session.id_session
@@ -69,7 +69,7 @@ class PresenceDao extends Dao {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                $list[] = ['Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"],'PhoneNumber'=> $donnees["PhoneNumber"],'session_name'=> $donnees["session_name"],'presence'=> $donnees["presence"]
+                $list[] = ['id_user'=> $donnees["id_user"],'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"],'PhoneNumber'=> $donnees["PhoneNumber"],'session_name'=> $donnees["session_name"],'presence'=> $donnees["presence"]
                 ];
             }
         }
@@ -78,6 +78,16 @@ class PresenceDao extends Dao {
         }
         return $list;
     }
-    
+    public function updatePresence($idUser) {
+        $sql = " UPDATE `participate` SET `presence`=1 WHERE id_user= $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+       try{
+           $exec->execute();
+       } 
+       catch (PDOException $e) {
+           var_dump($e->getMessage());
+           throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+       }
+    }
 }
 ?>
