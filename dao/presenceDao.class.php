@@ -60,7 +60,7 @@ class PresenceDao extends Dao {
         
         return $allData;
     }
-    public function getListPresence($idSlot) {
+    public function getTabPresence($idSlot) {
         
         $list = []; 
         $sql = Dao::getConnexion();
@@ -74,15 +74,8 @@ class PresenceDao extends Dao {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                
-                $Lastname=$donnees['Lastname'];
-                $Firstname=$donnees['Firstname'];
-                $name=$donnees['name'];
-                $slotDateTimeStart=$donnees['slotDateStart'];
-                $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $presence = $donnees['presence'];
-                $idSlot=$donnees['id_slot'];
-                $list[] = $donnees;
+                $list[] = ['Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"],'name'=> $donnees["name"],'slotDateStart'=> $donnees["slotDateStart"],'slotDateEnd'=> $donnees["slotDateEnd"],'presence'=> $donnees["presence"]
+                ];
             }
         }
         catch (PDOException $e) {
