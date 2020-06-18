@@ -17,6 +17,7 @@ class AnimatorView extends LisaeTemplateConnected {
     private $_session;
     private $_listActivity;
     private $_presence;
+    private $_emargement;
     
 
     public function __construct()
