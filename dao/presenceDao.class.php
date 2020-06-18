@@ -45,7 +45,7 @@ class PresenceDao extends Dao {
             $allData = "";
 
             while($data = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . ",0" . $data['PhoneNumber'] . "," . $data['session_name'] . "," . $data['presence'] . "\n";
+                $allData .= $data['Lastname'] . "," . $data['Firstname'] . ",0" . $data['PhoneNumber'] . "," . $data['session_name'] . "," . $data['presence'] . "\n";
             }
         }catch (PDOException $e) {
                 echo " ERREUR REQUETE : " . $e->getMessage();
