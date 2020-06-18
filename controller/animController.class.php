@@ -308,9 +308,9 @@ class AnimController extends MainController
           foreach ($users as $user) {
             $idUsers[] = $user['id_user'];
           }
-          if(!isset($_POST['check'])){
-            $idUsersNoCheck=$idUsers;
-          }else{$idUsersNoCheck = array_diff($idUsers,$_POST['check']);}            
+          if(isset($_POST['check'])){
+            $idUsersNoCheck = array_diff($idUsers,$_POST['check']);
+          }else{$idUsersNoCheck=$idUsers;}            
           
           var_dump($idUsersNoCheck);
 
@@ -322,7 +322,7 @@ class AnimController extends MainController
           foreach($idUsersNoCheck as $idUser){
             $presenceDao->updatePresenceNo($idUser, $_GET['id_slot']);
           }
-          
+          header("Refresh:0;");
         }
         
         $animView->run("presence");
