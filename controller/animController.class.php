@@ -208,9 +208,7 @@ class AnimController extends MainController
 
       case 28: //Presence
         $animView = new AnimatorView();
-
-        $animView->setPresence(["hey","hey"]);
-
+       $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
         $animView->run("presence");
         break;
     }

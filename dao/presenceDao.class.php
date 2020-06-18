@@ -60,6 +60,29 @@ class PresenceDao extends Dao {
         
         return $allData;
     }
-
+    public function getTabPresence($idSlot) {
+        
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+           " SELECT Lastname, Firstname, name, participate.slotDateStart, slotDateEnd, presence FROM users
+            INNER JOIN participate ON participate.id_user = users.id_user
+            INNER JOIN activity ON activity.id_activity = participate.id_activity
+            WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $list[] = ['Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"],'name'=> $donnees["name"],'slotDateStart'=> $donnees["slotDateStart"],'slotDateEnd'=> $donnees["slotDateEnd"],'presence'=> $donnees["presence"]
+                ];
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+    
 }
 ?>
