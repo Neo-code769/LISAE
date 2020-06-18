@@ -17,7 +17,8 @@ class AnimController extends MainController
       "eloce"=>24,
       "createSlot" => 25,
       "export"=>26,
-      "infoSlot"=>27
+      "infoSlot"=>27,
+      "presence"=>28
     ];
     parent::__construct();
   }
@@ -153,25 +154,25 @@ class AnimController extends MainController
 
         echo '<a href="'.$response.'" download="presence.csv">Download</a>';*/
 
-        /* $chemin="PHP://output";
+        $chemin="output/presence.csv";
         $nomFichier="presence.csv";
           header("Content-Type: text/csv"); //application/force-download
           header("Content-disposition: attachment; filename=$nomFichier");
-        $fichier = fopen($chemin, "w"); */
+        $fichier = fopen($chemin, "w"); 
 
             // Insert the UTF-8 BOM in the file
-            //fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
         $export = new PresenceDao();
-        //$allData = $export->getPresence($_GET['id_slot']);
+        $allData = $export->getPresence($_GET['idSlot'], $_GET['slotDateStart']); // TO FIX $_GET
 
         //var_dump($export->getPresence($_GET['id_slot']));
 
-
-        /* fwrite($fichier,$allData);
+        fwrite($fichier,$allData);
         fclose($fichier);
         
-        readfile($chemin); */
+        readfile($chemin);
+
       break;
 
       case 27: //infoSlot
@@ -203,6 +204,14 @@ class AnimController extends MainController
         $animView->setInfoSlot($slotInfo);
         $animView->setInfoSlotButton($slotInfo);
         $animView->run("infoSlot");
+        break;
+
+      case 28: //Presence
+        $animView = new AnimatorView();
+
+        $animView->setPresence(["hey","hey"]);
+
+        $animView->run("presence");
         break;
     }
   }
