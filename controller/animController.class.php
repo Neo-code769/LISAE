@@ -145,13 +145,13 @@ class AnimController extends MainController
           header("Content-disposition: attachment; filename=$nomFichier");
         $fichier = fopen($chemin, "w"); 
 
-            // Insert the UTF-8 BOM in the file
-            fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+        // Insert the UTF-8 BOM in the file
+        fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
         $export = new PresenceDao();
-        $allData = $export->getPresence($_GET['idSlot']); // TO FIX $_GET
+        $allData = $export->getPresence($_GET['id_slot']); // TO FIX $_GET
 
-        var_dump($allData);
+        //var_dump($allData);
 
         fwrite($fichier,$allData);
         fclose($fichier);
