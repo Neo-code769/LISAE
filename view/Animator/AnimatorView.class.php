@@ -17,6 +17,7 @@ class AnimatorView extends LisaeTemplateConnected {
     private $_session;
     private $_listActivity;
     private $_presence;
+    private $_emargement;
     
 
     public function __construct()
@@ -47,6 +48,9 @@ class AnimatorView extends LisaeTemplateConnected {
             break;
 
             case "presence": include "presence.phtml";
+            break;
+
+            case "emargement": include "emargement.phtml";
             break;
 
         default: include "dashboard.phtml";
@@ -193,6 +197,23 @@ class AnimatorView extends LisaeTemplateConnected {
             </tr>";
         }
         $this->_presence=$result;
+    }
+
+    public function setEmargement($listUser){
+        $result ="";
+        foreach ($listUser as $user) {
+            if ($user['presence']==1) {
+            }
+            $result .="
+            <tr>
+                <td>".$user['Firstname']."</td>
+                <td>".$user['Lastname']."</td>
+                <td>".$user['PhoneNumber']."</td>
+                <td>".$user['session_name']."</td>
+                <td> Emargement </td>
+            </tr>";
+        }
+        $this->_emargement=$result;
     }
 }   
 

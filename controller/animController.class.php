@@ -19,7 +19,8 @@ class AnimController extends MainController
       "export"=>26,
       "infoSlot"=>27,
       "infoSlotEloce"=>28,
-      "presence"=>29
+      "presence"=>29, 
+      "emargement"=>30
     ];
     parent::__construct();
   }
@@ -308,6 +309,45 @@ class AnimController extends MainController
         }
 
         $animView->run("presence");
+        break;
+
+        case 30: // Feuille d'emargement
+
+          $animView = new AnimatorView();
+
+          //Pour l'affichage de l'info
+          $themeList = (new ThemeDao())->getListTheme();
+          $arr = [];
+          foreach ($themeList as $theme) {
+              foreach ($theme->get_activity() as $activity) {
+                  foreach($activity->get_slot() as $slot){
+                    if ($slot->get_idSlot() == $_GET["id_slot"]) {
+                      $slotInfo= [
+                      "idslot"=> $slot->get_idSlot(),
+                      "color" => $theme->get_color(),
+                      "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                      "dtef" => $slot->get_slotDateTimeEndFormat(),
+                      "dts" => $slot->get_slotDateTimeStart(),
+                      "dte" => $slot->get_slotDateTimeEnd(),
+                      "nTheme" => $theme->get_name(),
+                      "nActivity" => $activity->get_name(),
+                      "information" => $slot->get_information(),
+                      "place" => $slot->get_place(),
+                      "idActivity" => $activity->get_idActivity()
+                      ]
+                      ;
+                      //var_dump($slotInfo);
+                    }
+                  }
+              }
+          } 
+          $animView->setInfoSlot($slotInfo);
+
+          //Pour Affichage du tableau de présence
+          $animView->setEmargement((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+
+          $animView->run("emargement");
+
         break;
     }
   }
