@@ -143,7 +143,7 @@ class AnimatorView extends LisaeTemplateConnected {
 
     public function setInfoSlot($element){
         $result1 = 
-        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
         $result2 =
         "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
         $result2 .=
@@ -170,8 +170,19 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setPresence($listUser){
-        
-        $this->_presence=var_dump($listUser);
+        var_dump($listUser);
+        $result ="";
+        foreach ($listUser as $user) {
+            $result .="
+            <tr>
+                <td>".$user['Firstname']."</td>
+                <td>".$user['Lastname']."</td>
+                <td>".$user['PhoneNumber']."</td>
+                <td>".$user['session_name']."</td>
+                <td>".$user['presence']."</td>
+            </tr>";
+        }
+        $this->_presence=$result;
     }
 }   
 

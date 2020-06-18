@@ -164,6 +164,7 @@ class CollabController extends MainController
                     "idslot"=> $slot->get_idSlot(),
                     "color" => $theme->get_color(),
                     "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dtef" => $slot->get_slotDateTimeEndFormat(),
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
