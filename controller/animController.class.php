@@ -18,7 +18,8 @@ class AnimController extends MainController
       "createSlot" => 25,
       "export"=>26,
       "infoSlot"=>27,
-      "presence"=>28
+      "infoSlotEloce"=>28,
+      "presence"=>29
     ];
     parent::__construct();
   }
@@ -192,7 +193,39 @@ class AnimController extends MainController
         $animView->run("infoSlot");
         break;
 
-      case 28: //Presence
+      case 28 : // infoSlotEloce
+        $animView = new AnimatorView();
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["idSlot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dtef" => $slot->get_slotDateTimeEndFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($slotInfo);
+                  }
+                }
+            }
+        } 
+        $animView->setInfoSlot($slotInfo);
+        $animView->setInfoSlotButton($slotInfo);
+        $animView->run("infoSlotEloce");
+        break;
+
+      case 29: //Presence
         $animView = new AnimatorView();
 
         $themeList = (new ThemeDao())->getListTheme();
