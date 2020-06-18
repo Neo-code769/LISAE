@@ -5,7 +5,8 @@ class AnimatorView extends LisaeTemplateConnected {
     private $_infoUser;
     private $_sessionSlot;
     private $_eloce;
-    private $_infoSlot;
+    private $_infoSlot1;
+    private $_infoSlot2;
     private $_infoSlotButton;
     private $_lastname;
     private $_firstName;
@@ -141,13 +142,14 @@ class AnimatorView extends LisaeTemplateConnected {
     } 
 
     public function setInfoSlot($element){
-        $result = 
+        $result1 = 
         "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
-        $result .=
+        $result2 =
         "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
-        $result .=
+        $result2 .=
         "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
-        $this->_infoSlot = $result;
+        $this->_infoSlot1 = $result1;
+        $this->_infoSlot2 = $result2;
     }
      public function setListForActivity($element) {
         setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
@@ -168,8 +170,8 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setPresence($listUser){
-
-
+        
+        $this->_presence=var_dump($listUser);
     }
 }   
 
