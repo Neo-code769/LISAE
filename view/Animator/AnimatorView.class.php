@@ -15,6 +15,7 @@ class AnimatorView extends LisaeTemplateConnected {
     private $_mySlot;
     private $_session;
     private $_listActivity;
+    private $_presence;
     
 
     public function __construct()
@@ -39,7 +40,10 @@ class AnimatorView extends LisaeTemplateConnected {
             break;
 
             case "createSlot": include "createSlot.phtml";
-        break;
+            break;
+
+            case "presence": include "presence.phtml";
+            break;
 
         default: include "dashboard.phptml";
         
@@ -161,6 +165,10 @@ class AnimatorView extends LisaeTemplateConnected {
         $result .=
         "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
          */$this->_infoSlotButton = $result;
+    }
+
+    public function setPresence($listUser){
+        $this->_presence=var_dump($listUser);
     }
 }   
 
