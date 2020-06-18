@@ -208,7 +208,34 @@ class AnimController extends MainController
 
       case 28: //Presence
         $animView = new AnimatorView();
-       $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["id_slot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($slotInfo);
+                  }
+                }
+            }
+        } 
+        $animView->setInfoSlot($slotInfo);
+        $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+
         $animView->run("presence");
         break;
     }
