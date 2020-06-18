@@ -6,8 +6,10 @@
 <button id="retour"><a id="retour" style="text-decoration: none;" href="http://www.lisae.fr:8081/index.php/collab/unsubscribe">Desinscription</a></button><br></br> -->
 <?php echo $this->_infoSlotButton ?>
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"><button id="retour"> Imprimer Feuille de Présence </button></a>
+<a id="retour" style="text-decoration: none;" href="../../index.php/emargement?id_slot=<?=$_GET['idSlot']?>"><button id="retour"> Imprimer Feuille d'Emargement </button></a>
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"><button id="retour"> Visualiser et cocher les présents </button></a>
+<a id="retour" style="text-decoration: none;" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"><button id="retour"> Cocher les présences </button></a>
+
+<a id="retour" style="text-decoration: none;" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"><button id="retour"> Imprimer Feuille de Présence </button></a><br><br></br>
 
 <a id="retour" style="text-decoration: none;" href="../../index.php/anim/dashboard"><button id="retour"> Retour </button></a>
