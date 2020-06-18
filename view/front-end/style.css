@@ -176,10 +176,9 @@ form
     /*background-image: linear-gradient(to right, #009245, #3fd32c, #7ac500, #D9E021);
     color: white;*/
     border: 6px ridge #009245;
-    margin-left: 12%;
+    margin-left: 10%;
     margin-right: 12%;
-    margin-top: 1%;
-    max-height: 70%;
+    max-height: 80%;
 }
 
 #descriptionJC 
@@ -188,10 +187,9 @@ form
     /*background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     color: white;*/
     border: 6px ridge #22aae1;
-    margin-left: 12%;
+    margin-left: 10%;
     margin-right: 12%;
-    margin-top: 1%;
-    max-height: 70%;
+    max-height: 80%;
 }
 
 #themeview
@@ -209,7 +207,6 @@ form
     float: left;
     margin-left: 4%;
     margin-right: 4%;
-    padding-left: 3%;
 }
 
 #list
@@ -316,7 +313,7 @@ form
   font-weight: 200;
   color: #fff;
   cursor: pointer;
-  margin-top: 2%;
+  margin-top: .5%;
   height: 55px;
   text-align:center;
   border: none;
