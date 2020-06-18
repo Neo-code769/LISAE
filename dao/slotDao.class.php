@@ -71,10 +71,61 @@ class SlotDao extends Dao {
     
 
     // delete via son id
-    public function delete(int $id ){
-
+    public function deleteSlotHost($idSlot){
+        $sql = 
+        "DELETE from host WHERE id_slot =$idSlot";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+        }
+    
+    }
+    public function deleteSlotParticipate($idSlot){
+        $sql = 
+        "DELETE from participate WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot) ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+        }
+    
+    }
+    public function updateSlotHost($slotDateStart,$slotDateEnd) {
+        $sql = 
+        "UPDATE `host` SET slotDateStart = $slotDateStart, slotDateEnd = $slotDateEnd";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+        }
+    }
+    public function updateSlotParticipate($slotDateStart,$slotDateEnd) {
+        $sql = 
+        "UPDATE participate SET slotDateStart = $slotDateStart, slotDateEnd = $slotDateEnd";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+        }
     }
 
+
+    public function delete(int $id ) {
+
+    }
     // update d'un objet
     public function update($obj ){
 
