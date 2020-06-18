@@ -78,6 +78,16 @@ class PresenceDao extends Dao {
         }
         return $list;
     }
-    
+    public function updatePresence($idUser) {
+        $sql = " UPDATE `participate` SET `presence`=1 WHERE id_user= $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+       try{
+           $exec->execute();
+       } 
+       catch (PDOException $e) {
+           var_dump($e->getMessage());
+           throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+       }
+    }
 }
 ?>
