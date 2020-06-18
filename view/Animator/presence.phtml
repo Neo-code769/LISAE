@@ -2,6 +2,15 @@
     <div id="infodesc"><?php echo $this->_infoSlot1 ?></div>
 <div><br></br>
 
-<p><?php $this->_presence; ?></p>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>N° de téléphone</th>
+        <th>Formation</th>
+        <th>Presence</th>
+    </tr>
+    <?php echo $this->_presence; ?>
+</table>
 
 <input type = "button" value = "Retour!"  onclick = "history.back()">
