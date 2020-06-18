@@ -30,19 +30,12 @@ class PresenceDao extends Dao {
 
         $pdo = Dao::getConnexion();
 
-        /* $requete = $pdo->prepare("SELECT `name`, `participate.slotDateStart`, `Lastname`, `Firstname`, `PhoneNumber`, `presence` FROM activity 
-                        INNER JOIN participate ON activity.id_activity = participate.id_activity 
-                        INNER JOIN users ON participate.id_user = users.id_user 
-                        INNER JOIN host ON users.id_user = host.id_user
-                        WHERE id_slot = $id_slot"); */
-
         $requete = $pdo->prepare(
-            "SELECT activity.name, participate.slotDateStart, users.Lastname, users.Firstname, users.PhoneNumber, participate.presence 
-            FROM activity 
-            INNER JOIN participate ON activity.id_activity = participate.id_activity 
-            INNER JOIN users ON participate.id_user = users.id_user 
-            INNER JOIN host ON host.slotDateStart = participate.slotDateStart
-            WHERE slotDateStart ='2020-06-09 13:00:00' AND activity.id_activity = 1");
+            "SELECT Lastname, Firstname, name, participate.slotDateStart, slotDateEnd, presence FROM users
+            INNER JOIN participate ON participate.id_user = users.id_user
+            INNER JOIN activity ON activity.id_activity = participate.id_activity
+            WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)"
+        );
 
         var_dump($requete);
 
