@@ -142,18 +142,50 @@ class AnimController extends MainController
 
         $chemin="output/presence.csv";
         $nomFichier="presence.csv";
+        $headers1 = ["AFPA", "BALMA"];
+        $blank = [""];
+        $headers2 = ["THEME", "ACTIVITE", "DATE", "\n"];
+        $user = ["NOM", "PRENOM", "TELEPHONE", "SESSION", "PRESENCE"];
           header("Content-Type: text/csv"); 
           header("Content-disposition: attachment; filename=$nomFichier");
         $fichier = fopen($chemin, "w"); 
-
-        // Insert the UTF-8 BOM in the file
-        fputs($fichier, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
-
+        
+        $themeList = (new ThemeDao())->getListTheme();
+        $arr = [];
+        foreach ($themeList as $theme) {
+            foreach ($theme->get_activity() as $activity) {
+                foreach($activity->get_slot() as $slot){
+                  if ($slot->get_idSlot() == $_GET["id_slot"]) {
+                    $slotInfo= [
+                    "idslot"=> $slot->get_idSlot(),
+                    "color" => $theme->get_color(),
+                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                    "dtef" => $slot->get_slotDateTimeEndFormat(),
+                    "dts" => $slot->get_slotDateTimeStart(),
+                    "dte" => $slot->get_slotDateTimeEnd(),
+                    "nTheme" => $theme->get_name(),
+                    "nActivity" => $activity->get_name(),
+                    "information" => $slot->get_information(),
+                    "place" => $slot->get_place(),
+                    "idActivity" => $activity->get_idActivity()
+                    ]
+                    ;
+                    //var_dump($slotInfo);
+                  }
+                }
+            }
+        } 
+        
         $export = new PresenceDao();
-        $allData = $export->getPresence($_GET['id_slot']); // TO FIX $_GET
+        $allData = $export->getPresence($_GET['id_slot']);
 
-        //var_dump($allData);
-
+        fputcsv($fichier, $headers1);
+        fputcsv($fichier, $headers2);
+        fwrite($fichier,$slotInfo["nTheme"]. ",");
+        fwrite($fichier,$slotInfo["nActivity"] . ",");
+        fwrite($fichier, $slotInfo['dts'] . "\n");
+        fputcsv($fichier, $blank);
+        fputcsv($fichier, $user);
         fwrite($fichier,$allData);
         fclose($fichier);
         

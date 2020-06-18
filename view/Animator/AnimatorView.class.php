@@ -76,6 +76,7 @@ class AnimatorView extends LisaeTemplateConnected {
             EOD;
         echo "<p>".$errorMess."</p>";
     }
+    
     private $_activityList = null;
 
     public function setActivityList($activityList){
