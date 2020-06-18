@@ -17,7 +17,8 @@ class AnimController extends MainController
       "eloce"=>24,
       "createSlot" => 25,
       "export"=>26,
-      "infoSlot"=>27
+      "infoSlot"=>27,
+      "presence"=>28
     ];
     parent::__construct();
   }
@@ -203,6 +204,14 @@ class AnimController extends MainController
         $animView->setInfoSlot($slotInfo);
         $animView->setInfoSlotButton($slotInfo);
         $animView->run("infoSlot");
+        break;
+
+      case 28: //Presence
+        $animView = new AnimatorView();
+
+        $animView->setPresence(["hey","hey"]);
+
+        $animView->run("presence");
         break;
     }
   }
