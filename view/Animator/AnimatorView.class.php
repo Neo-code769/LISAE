@@ -170,7 +170,7 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setPresence($listUser){
-        var_dump($listUser);
+        //var_dump($listUser);
         $result ="";
         foreach ($listUser as $user) {
             $result .="
@@ -179,7 +179,7 @@ class AnimatorView extends LisaeTemplateConnected {
                 <td>".$user['Lastname']."</td>
                 <td>".$user['PhoneNumber']."</td>
                 <td>".$user['session_name']."</td>
-                <td>".$user['presence']."</td>
+                <td><input type='checkbox' name='check[]' value=".$user['id_user']."></td>
             </tr>";
         }
         $this->_presence=$result;
