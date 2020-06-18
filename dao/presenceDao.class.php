@@ -42,9 +42,10 @@ class PresenceDao extends Dao {
             INNER JOIN participate ON activity.id_activity = participate.id_activity 
             INNER JOIN users ON participate.id_user = users.id_user 
             INNER JOIN host ON host.slotDateStart = participate.slotDateStart
-            /* WHERE slotDateStart ='2020-06-09 13:00:00' AND activity.id_activity = 1 */
-        ");
+            WHERE slotDateStart ='2020-06-09 13:00:00' AND activity.id_activity = 1");
+
         var_dump($requete);
+
         try{
             $requete->execute();
             $allData = "";
