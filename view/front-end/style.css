@@ -396,3 +396,13 @@ form
 .block:after {
   filter: blur(10px);
 }
+
+table {
+    border: solid;
+    width: 100%;
+    text-align: center;
+    }
+td, th {
+    border: solid;
+    width: 50%;
+    }
