@@ -31,20 +31,21 @@ class PresenceDao extends Dao {
         $pdo = Dao::getConnexion();
 
         $requete = $pdo->prepare(
-            "SELECT Lastname, Firstname, name, participate.slotDateStart, slotDateEnd, presence FROM users
+            "SELECT Lastname, Firstname, session_name, name, PhoneNumber, participate.slotDateStart, slotDateEnd, presence FROM users
             INNER JOIN participate ON participate.id_user = users.id_user
             INNER JOIN activity ON activity.id_activity = participate.id_activity
-            WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)"
+            INNER JOIN session on participate.id_session = session.id_session
+            WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)"     // Ajouter presence
         );
 
-        var_dump($requete);
+        //var_dump($requete);
 
         try{
             $requete->execute();
             $allData = "";
 
             while($data = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . "," . $data['PhoneNumber']. "," . $data['presence'] . "\n";
+                $allData .= $data['name'] . ',' . $data['slotDateStart'] . "," . $data['Lastname'] . "," . $data['Firstname'] . ",0" . $data['PhoneNumber'] . "," . $data['session_name'] . "," . $data['presence'] . "\n";
             }
         }catch (PDOException $e) {
                 echo " ERREUR REQUETE : " . $e->getMessage();
