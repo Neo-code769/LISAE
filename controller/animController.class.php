@@ -195,6 +195,7 @@ class AnimController extends MainController
       case 28: //Presence
         $animView = new AnimatorView();
 
+        //Pour l'affichage de l'info
         $themeList = (new ThemeDao())->getListTheme();
         $arr = [];
         foreach ($themeList as $theme) {
@@ -221,7 +222,16 @@ class AnimController extends MainController
             }
         } 
         $animView->setInfoSlot($slotInfo);
+
+        //Pour Affichage du tableau de présence
         $animView->setPresence((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+
+        //Pour update la table participate et valider les présents
+        if (isset($_POST['checkPresence'])){
+          foreach($_POST['check'] as $id_user){
+            updatePresence($id_user);
+          }
+        }
 
         $animView->run("presence");
         break;
