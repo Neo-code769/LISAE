@@ -35,6 +35,7 @@ class ThemeDao extends Dao {
         }
     return $list;    
     }
+    
     public function getListActivity($idTheme)
     {
         $list = []; 
@@ -95,6 +96,7 @@ class ThemeDao extends Dao {
     }    
 
     /***********************Recupération de la liste des activités personneles d'Eloce d'un collaborateur *******************/
+
     public function getMyListThemeCollab($idUser)
     {
         $list = []; 
@@ -126,6 +128,7 @@ class ThemeDao extends Dao {
         }
     return $list;    
     }
+
     public function getMyListActivityCollab($idTheme, $idUser)
     {
         $list = []; 
@@ -154,6 +157,7 @@ class ThemeDao extends Dao {
             }
         return $list;
     }
+
     public function getMyListSlotCollab($idActivity, $idUser)
     {
         $list = []; 
@@ -180,7 +184,9 @@ class ThemeDao extends Dao {
         }
         return $list;
     }
-    /***********************Recupération de la liste des activités personneles d'Eloce d'un animateur *******************/
+
+    /***********************Recupération de la liste des activités personnelles d'un animateur *******************/
+
     public function getMyListThemeAnim($idUser)
     {
         $list = []; 
@@ -212,6 +218,7 @@ class ThemeDao extends Dao {
         }
     return $list;    
     }
+
     public function getMyListActivityAnim($idTheme, $idUser)
     {
         $list = []; 
@@ -240,6 +247,7 @@ class ThemeDao extends Dao {
             }
         return $list;
     }
+
     public function getMyListSlotAnim($idActivity, $idUser)
     {
         $list = []; 
@@ -269,41 +277,9 @@ class ThemeDao extends Dao {
         }
         return $list;
     }
-    public function getThemeActivity() 
-    {
-        $sql = (
-            "SELECT activity.name, slotDateStart, slotDateEnd 
-            FROM `theme`
-            INNER JOIN recurring_activity on theme.id_theme = recurring_activity.id_theme
-            INNER JOIN activity ON recurring_activity.id_activity = activity.id_activity
-            INNER JOIN host on activity.id_activity = host.id_activity
-            UNION
-            SELECT activity.name, slotDateStart, slotDateEnd 
-            FROM `theme`
-            INNER JOIN unique_activity on theme.id_theme = unique_activity.id_theme
-            INNER JOIN activity ON unique_activity.id_activity = activity.id_activity
-            INNER JOIN host on activity.id_activity = host.id_activity"
-            );
-        $exec = (Dao::getConnexion())->prepare($sql);
-        try {
-            $exec->execute();
-            return $exec;
-            }
-            catch (PDOException $e) {
-                throw new LisaeException("Erreur", 1);
-            }
-    }
+ 
+    // requete pour créer un nouveau thème 
 
-   
-
-    public function getList(): array{
-        return $tab=[];
-    }	
-    
-    public function get(int $id) {
-        return $tab=[];
-    }	
-    
     public function insert($obj) : void{
         $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -323,16 +299,8 @@ class ThemeDao extends Dao {
         }
     }
 
-    // delete via son id
-    public function delete(int $id ){
-
-    }
-
-    // update d'un objet
-    public function update($obj ){
-
-    }
     //requete d'inscription d'un collaborateur à un créneau d'activité
+
     public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {
         $sql = "INSERT INTO `participate` 
         VALUES ( 
@@ -354,6 +322,7 @@ class ThemeDao extends Dao {
     }
 
     // requete de désinscription d'un collaborateur à un créneau d'activité
+
     public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
     {
         $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
@@ -369,6 +338,7 @@ class ThemeDao extends Dao {
     }
 
     // requete pour vérifier que le collaborateur n'est pas deja inscrit à un créneau d'activité
+
     public function checkSlotExist($idUser,$idActivity,$idSession,$idSlot)
     {
         $sql = Dao::getConnexion();
@@ -385,24 +355,28 @@ class ThemeDao extends Dao {
         }
         return $result;
     }  
+
   // requete pour vérifier que l'animateur n'a pas deja créé le meme créneau d'activité
-  public function checkSlotExistAnim($nameActivity,$slotdateStart)
-  {
-      $sql = Dao::getConnexion();
-      $requete = $sql->prepare(
-      "SELECT * FROM host 
-       WHERE slotDateStart = '$slotdateStart' AND
-      (SELECT id_activity from activity where name = '$nameActivity')"
-      );
-      try {
-          $requete->execute();
-          $result = $requete->rowCount();
-      }
-      catch (PDOException $e) {
-          throw new LisaeException("Erreur requête", 1);
-      }
-      return $result;
-  }  
+
+    public function checkSlotExistAnim($nameActivity,$slotdateStart)
+    {
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM host 
+        WHERE slotDateStart = '$slotdateStart' AND
+        (SELECT id_activity from activity where name = '$nameActivity')"
+        );
+        try {
+            $requete->execute();
+            $result = $requete->rowCount();
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $result;
+    }  
+
+    // requete pour recupérer le nombre de participants à une activité
 
     public function getListParticipate($slotDateStart,$idActivity)
     {
@@ -410,9 +384,7 @@ class ThemeDao extends Dao {
         $requete = $sql->prepare(
             "SELECT id_user from participate
             where `slotDateStart`= '$slotDateStart'
-            and `id_activity`= $idActivity
-            ");
-        //var_dump($requete);
+            and `id_activity`= $idActivity");
         try {
             $requete->execute();
             $result = $requete->rowCount();
@@ -422,6 +394,8 @@ class ThemeDao extends Dao {
         }
         return $result;
     }
+
+    // requete pour récupérer sur quel theme l'animateur est référent
 
     public function getThemeForAnimator($idUser)
     {
@@ -444,6 +418,24 @@ class ThemeDao extends Dao {
         }
         return $list[]=[$theme,$requete->rowCount()];
     }
+
+    public function getList(): array{
+        return $tab=[];
+    }	
+    
+    public function get(int $id) {
+        return $tab=[];
+    }	
+    
+    // delete via son id
+    public function delete(int $id ){
+
+    }
+
+    // update d'un objet
+    public function update($obj ){
+
+    }
 }
-// essaie requete pour max nombre personner créneaux : select COUNT(id_user) from activity Inner join participate on activity.id_activity = participate.id_activity where activity.id_activity =1 group by maxNumberPerson HAVING max(maxNumberPerson)
+
 ?>

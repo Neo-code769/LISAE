@@ -2,19 +2,7 @@
 
 class SessionTrainingDao extends Dao{
 
-    public function getList(): array{
-
-        return [];
-    }
-
-    
-    public function get(int $id) {
-        return [];
-    }
-    
-    public function insert($obj) :void
-    {
-    }
+    // requete pour attribuer une session de formation à un utilsateur
 
     public function insertForSession($obj/*le nom de la formation + numéro formation ex : "DWWM3"*/) :void
     {
@@ -38,11 +26,8 @@ class SessionTrainingDao extends Dao{
         }
     }
 
-    public function select() : void 
-    {
-
-    }
-
+    //requete pour recuperer la liste des noms de sessions
+    
     public function getSessionTrainingList() : array 
     {
         $list = []; 
@@ -65,6 +50,9 @@ class SessionTrainingDao extends Dao{
         }
         return $list;
     }
+
+    // requete pour recuperer la session et le nom de session d'un utilisateur
+
     public function getSession($user){
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
@@ -86,11 +74,26 @@ class SessionTrainingDao extends Dao{
         }
         return $session;
     }
+    
+    public function getList(): array{
+
+        return [];
+    }
+
+    
+    public function get(int $id) {
+        return [];
+    }  
+    public function insert($obj) :void{
+     
+    }
+    public function select() : void {
+
+    }
     // delete via son id
     public function delete(int $id ){
 
     } 
-
     // update d'un objet
     public function update($obj){
         
