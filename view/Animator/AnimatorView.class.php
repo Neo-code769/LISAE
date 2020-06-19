@@ -61,6 +61,10 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setHeader($errorMess) {
+        if ($_SESSION['role']!='Animator') {
+            echo "Vous ne pouvez pas accéder a cette page !";
+            header("Refresh:2;url=http://www.lisae.fr:8081/index.php");
+        }
         echo <<<EOD
             <header>
                 <div id="headerIMG">
@@ -169,15 +173,6 @@ class AnimatorView extends LisaeTemplateConnected {
                 }
         $this->_listActivity = $result;
     } 
-    
-    public function setInfoSlotButton($element){
-        $result = "";
-        /* $result =
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
-        $result .=
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
-         */$this->_infoSlotButton = $result;
-    }
 
     public function setPresence($listUser){
         //var_dump($listUser);
