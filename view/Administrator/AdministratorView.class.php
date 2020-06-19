@@ -1,6 +1,6 @@
 <?php
 
-class AnimatorView extends LisaeTemplateConnected {
+class AdministratorView extends LisaeTemplateConnected {
 
     public function __construct()
     {
@@ -11,9 +11,13 @@ class AnimatorView extends LisaeTemplateConnected {
 
         switch ($content) {
 
-            // TODO switch case
+            case "dashboard": include "dashboard.php";
+            break;
 
-            default: $include = "dashboardAdministrator.php";
+            case "createTheme": include "createTheme.phtml";
+            break;
+
+            default: include "dashboard.php";
 
         }
     }

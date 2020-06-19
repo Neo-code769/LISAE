@@ -42,16 +42,6 @@ class Activity{
         return $this->_image;
     }
 
-    public function get_registrationDeadline()
-    {
-        return $this->_registrationDeadline;
-    }
-
-    public function get_unsubscribeDeadline()
-    {
-        return $this->_unsubscribeDeadline;
-    }
-
     public function get_slot()
     {
         return $this->_slot;

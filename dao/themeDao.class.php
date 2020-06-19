@@ -35,7 +35,7 @@ class ThemeDao extends Dao {
         }
     return $list;    
     }
-    
+
     public function getListActivity($idTheme)
     {
         $list = []; 
@@ -281,24 +281,28 @@ class ThemeDao extends Dao {
     // requete pour créer un nouveau thème 
 
     public function insert($obj) : void{
-        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
+        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, ?, ?, ?);";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_idTheme());
         $exec->bindValue(2, $obj->get_name());
         $exec->bindValue(3, $obj->get_color());
+        $exec->bindValue(3, $obj->get_image());
         $exec->bindValue(4, $obj->get_description());
         $exec->bindValue(5, $obj->get_detailsDescription());
-        //var_dump($sql);
         try{
         $exec->execute();
-        } 
-        catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
+        } catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
     }
+    // requete pour modifier un thème
 
+
+
+    // requete pour supprimer un thème
+
+
+    
     //requete d'inscription d'un collaborateur à un créneau d'activité
 
     public function registrationActivity($idUser,$idActivity,$idSession,$idSlot) {

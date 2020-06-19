@@ -10,7 +10,8 @@ class AdminController extends MainController
   {
     $this->_listUseCases=
     [
-      "registration" => 31
+      "registration" => 31,
+      "createTheme" => 32
     ];
     parent::__construct();
   }
@@ -42,6 +43,13 @@ class AdminController extends MainController
       default:
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");
+      break;
+
+      // creation d'un theme
+      case 32: 
+        $adminview = new AdministratorView();
+        $adminview->run("createTheme");
     }
+
   }
 }

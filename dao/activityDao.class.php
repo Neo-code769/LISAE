@@ -2,93 +2,26 @@
 
 class ActivityDao extends Dao {
 
-    public function getListActivityUniqueForTheme($idTheme){
-        $list = []; 
-        $pdo = Dao::getConnexion();
+    // requete création d'une activity(brouillon)
 
-        $requete = $pdo->prepare(
-            "SELECT * FROM unique_activity 
-            inner join activity ON unique_activity.id_activity = activity.id_activity 
-            WHERE unique_activity.id_theme = $idTheme");
-            try{
-                $requete->execute();
-                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-                {
-                    $idActivity = $donnees['id_activity'];
-                    $name = $donnees['name'];
-                    $description = $donnees['description'];
-                    $detailedDescription = $donnees['detailedDescription'];
-                    $minNumberPerson = $donnees['minNumberPerson'];
-                    $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $idTheme = $donnees['id_theme'];
-                    $externalContributor = $donnees['externalContributor'];
-                    $activity = new UniqueActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson, $idTheme,$externalContributor);
-                    $list[] = $activity;
-                }
-
-            } catch (PDOException $e) {
-                echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $list;
-    }
-
-    public function getListActivityRecurringForTheme($idTheme){
-        $list = []; 
-        $pdo = Dao::getConnexion();
-
-        $requete = $pdo->prepare(
-            "SELECT * FROM recurring_activity 
-            inner join activity ON recurring_activity.id_activity = activity.id_activity 
-            WHERE recurring_activity.id_theme = $idTheme");
-            try{
-                $requete->execute();
-                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-                {
-                    $idActivity = $donnees['id_activity'];
-                    $name = $donnees['name'];
-                    $description = $donnees['description'];
-                    $detailedDescription = $donnees['detailedDescription'];
-                    $minNumberPerson = $donnees['minNumberPerson'];
-                    $maxNumberPerson = $donnees['maxNumberPerson'];
-                    $idTheme = $donnees['id_theme'];
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $minNumberPerson, $maxNumberPerson,$idTheme);
-                    $list[] = $activity;
-                }
-
-            } catch (PDOException $e) {
-                echo " ERREUR REQUETE : " . $e->getMessage();
-            die();
-            }
-        return $list;
-    }
-    public function getList()
-    {
-
-    }		
-    
-    public function get(int $id)
-    {
-
-    }	
     public function insert($obj) : void	{
         $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?, ?,?);";
         $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $obj->get_idTheme());
+        $exec->bindValue(1, $obj->get_idActivity());
         $exec->bindValue(2, $obj->get_name());
-        $exec->bindValue(3, $obj->get_color());
         $exec->bindValue(4, $obj->get_description());
         $exec->bindValue(5, $obj->get_detailsDescription());
-        //var_dump($sql);
+        $exec->bindValue(3, $obj->get_image());
         try{
         $exec->execute();
         } 
         catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
             throw new LisaeException("Erreur",1);
         }
     }
+
+    // requete création d'une recurring activity avec les données d'une activity(brouillon)
+
     public function insertRecurringActivity($idTheme,$idActivity ) : void	
     {
         $sql = ("INSERT INTO `recurring_Activity` VALUES
@@ -96,30 +29,24 @@ class ActivityDao extends Dao {
          (SELECT id_theme from theme where id_theme = $idTheme))");
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $idTheme->get_idTheme());
-        $exec->bindValue(2, $idActivity->get_name());
-        $exec->bindValue(3, $idActivity->get_color());
-        $exec->bindValue(4, $idActivity->get_description());
-        $exec->bindValue(5, $idActivity->get_detailsDescription());
-        //var_dump($sql);
+        $exec->bindValue(2, $idActivity->get_idActivity());
         try{
         $exec->execute();
         } 
         catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
             throw new LisaeException("Erreur",1);
         }
     }
-    // delete via son id
-    public function delete(int $id )
-    {
+    // requete pour modifier une activity
 
-    }
-    // update d'un objet
-    public function update($obj ) 
-    {
 
-    }
+
+    // requete pour supprimer un activity
+
+
+    
+    // requete pour recuperer le nom et l'id des activités pour faire l'insert d'un créneau d'activité (partie anim)
+
     public function getActivityList() : array 
     {
         $list = []; 
@@ -141,7 +68,20 @@ class ActivityDao extends Dao {
         }
         return $list;
     }
-    
+    public function getList() {
+
+    }		 
+    public function get(int $id){
+
+    }     
+    // delete via son id
+    public function delete(int $id) {
+
+    }
+    // update d'un objet
+    public function update($obj) {
+
+    }
 }
 
 
