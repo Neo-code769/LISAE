@@ -289,18 +289,31 @@ class ThemeDao extends Dao {
         $exec->bindValue(4, $obj->get_detailsDescription());
         try{
         $exec->execute();
-        var_dump($exec);
         } catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
     }
     // requete pour modifier un thème
-
-
+    public function update($idTheme) : void{
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `theme` SET `id_theme`=?,`name`=?,`color`=?,`image`=?,`description`=?,`detailedDescription`=? WHERE id_theme= $idTheme");
+        try {
+            $requete->execute();
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
 
     // requete pour supprimer un thème
-
-
+    public function delete($idTheme) : void{
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `theme` SET `id_theme`=?,`name`=?,`color`=?,`image`=?,`description`=?,`detailedDescription`=? WHERE id_theme= $idTheme");
+        try {
+            $requete->execute();
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
     
     //requete d'inscription d'un collaborateur à un créneau d'activité
 
@@ -435,10 +448,6 @@ class ThemeDao extends Dao {
 
     }
 
-    // update d'un objet
-    public function update($obj ){
-
-    }
 }
 
 ?>

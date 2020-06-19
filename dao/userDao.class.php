@@ -212,12 +212,12 @@ class UserDao extends Dao{
         }
         return $list;
     }
-    public function insertReferToTheme($idUser, $idTheme){
+    public function insertReferToTheme($idUser){
         $sql = 
         "INSERT INTO `referto`
             VALUES(
-            (SELECT id_theme from theme where id_theme = $idUser),
-            (SELECT id_user from users where id_user = $idTheme))
+            (SELECT MAX(id_theme) from theme),
+            (SELECT id_user from users where id_user = $idUser))
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
