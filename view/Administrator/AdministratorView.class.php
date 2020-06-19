@@ -42,6 +42,9 @@ class AdministratorView extends LisaeTemplateConnected {
             case "createTheme": include "createTheme.phtml";
             break;
 
+            case "createActivity": include "createActivity.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }
