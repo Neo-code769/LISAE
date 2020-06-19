@@ -2,30 +2,8 @@
 
 class PresenceDao extends Dao {
 
-    public function getList(): array{
-
-        return [];
-    }
-
+    // requete pour recupérer le tableau des collab présent à un créneau d'activité et l'exporter en csv
     
-    public function get(int $id) {
-        return [];
-    }
-    
-    public function insert($obj) :void
-    {
-    }
-
-    // delete via son id
-    public function delete(int $id ){
-
-    } 
-
-    // update d'un objet
-    public function update($obj){
-        
-    } 
-
     public function getPresence($idSlot) {
 
         $pdo = Dao::getConnexion();
@@ -45,7 +23,7 @@ class PresenceDao extends Dao {
             $allData = "";
 
             while($data = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $allData .= $data['Lastname'] . "," . $data['Firstname'] . ",0" . $data['PhoneNumber'] . "," . $data['session_name'] . "," . $data['presence'] . "\n";
+                $allData .= $data['Lastname'] . ";" . $data['Firstname'] . ";0" . $data['PhoneNumber'] . ";" . $data['session_name'] . ";" . $data['presence'] . "\n";
             }
         }catch (PDOException $e) {
                 echo " ERREUR REQUETE : " . $e->getMessage();
@@ -54,6 +32,9 @@ class PresenceDao extends Dao {
         
         return $allData;
     }
+
+    //requete pour recupérer le tableau des collab presents à un créneau d'activité
+
     public function getTabPresence($idSlot) {
         
         $list = []; 
@@ -78,6 +59,9 @@ class PresenceDao extends Dao {
         }
         return $list;
     }
+
+    //requete pour modifier la présence d'un collab à un créneau s'il est présent
+
     public function updatePresence($idUser,$idSlot) {
         $sql = 
         "UPDATE `participate` SET `presence`=1 
@@ -93,6 +77,8 @@ class PresenceDao extends Dao {
        }
     }
 
+    //requete pour modifier la présence d'un collab à un créneau s'il n'est pas présent
+
     public function updatePresenceNo($idUser,$idSlot) {
         $sql = 
         "UPDATE `participate` SET `presence`= NULL
@@ -107,5 +93,24 @@ class PresenceDao extends Dao {
            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
        }
     }
+    
+    public function getList(): array{
+
+        return [];
+    }   
+    public function get(int $id) {
+        return [];
+    }   
+    public function insert($obj) :void{
+
+    }
+    // delete via son id
+    public function delete(int $id ){
+
+    } 
+    // update d'un objet
+    public function update($obj){
+        
+    } 
 }
 ?>

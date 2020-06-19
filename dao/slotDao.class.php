@@ -2,51 +2,8 @@
 
 class SlotDao extends Dao {
 
-    public function getListSlot(){
-        
-    }
+    // requete pour inserer un nouveau creneau d'activité
 
-    public function getList(): array{
-        return $tab=[];
-    }	
-    
-    public function getListSlotForActivity($idActivity)
-    {
-        $list = []; 
-        $sql = Dao::getConnexion();
-        $requete = $sql->prepare(
-        "SELECT * FROM host 
-        WHERE id_activity = $idActivity"
-        );
-        try {
-            $requete->execute();
-            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
-            {
-                $idSlot=$donnees['id_slot'];
-                $registrationDeadLine=$donnees['registrationDeadline'];
-                $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
-                $place=$donnees['place'];
-                $information=$donnees['information'];
-                $slotDateTimeStart=$donnees['slotDateStart'];
-                $slotDateTimeEnd=$donnees['slotDateEnd'];
-                $minNumberPerson = $donnees['minNumberPerson'];
-                $maxNumberPerson = $donnees['maxNumberPerson'];
-                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd,$minNumberPerson, $maxNumberPerson);
-                $list[] = $slot;
-            }
-        }
-        catch (PDOException $e) {
-            throw new LisaeException("Erreur requête", 1);
-        }
-        return $list;
-    }
-    
-    public function get(int $id) {
-        return $tab=[];
-    }	
-    public function insert($obj) : void{
-
-    }
     public function insertSlot($obj,$idUser,$name) : void{
         $sql = "INSERT INTO host (`id_slot`, `id_user`, `id_activity`, `registrationDeadline`, `unsubscribeDeadline`, `place`, `information`, `slotDateStart`, `slotDateEnd`, `minNumberPerson`, `maxNumberPerson`) VALUES (null,$idUser,(select id_activity from activity where name = '$name'),?,?, ?, ?, ?, ?,?,?);";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -69,8 +26,8 @@ class SlotDao extends Dao {
         }
     }
     
+    // Suppression d'un créneau d'une activité(table participate)
 
-    // delete via son id
     public function deleteSlotHost($idSlot){
         $sql = 
         "DELETE from host WHERE id_slot =$idSlot";
@@ -81,9 +38,11 @@ class SlotDao extends Dao {
         catch (PDOException $e) {
             var_dump($e->getMessage());
             throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
-        }
-    
+        } 
     }
+
+    // Suppression d'un créneau d'une activité(table participate)
+
     public function deleteSlotParticipate($idSlot){
         $sql = 
         "DELETE from participate WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot) ";
@@ -97,6 +56,9 @@ class SlotDao extends Dao {
         }
     
     }
+
+     // modification d'un créneau d'une activité(table host)
+
     public function updateSlotHost($slotDateStart,$slotDateEnd) {
         $sql = 
         "UPDATE `host` SET slotDateStart = $slotDateStart, slotDateEnd = $slotDateEnd";
@@ -109,6 +71,9 @@ class SlotDao extends Dao {
             throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
         }
     }
+
+    // modification d'un créneau d'une activité(table participate)
+
     public function updateSlotParticipate($slotDateStart,$slotDateEnd) {
         $sql = 
         "UPDATE participate SET slotDateStart = $slotDateStart, slotDateEnd = $slotDateEnd";
@@ -122,7 +87,15 @@ class SlotDao extends Dao {
         }
     }
 
+    public function get(int $id) {
+        return $tab=[];
+    }	
+    public function insert($obj) : void{
 
+    }
+    public function getList(): array{
+        return $tab=[];
+    }	  
     public function delete(int $id ) {
 
     }
@@ -131,6 +104,5 @@ class SlotDao extends Dao {
 
     }
 }
-
 
 ?>
