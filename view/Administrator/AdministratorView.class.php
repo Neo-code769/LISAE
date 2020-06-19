@@ -1,6 +1,6 @@
 <?php
 
-class AdministratorView extends LisaeTemplateConnected {
+class AdminView extends LisaeTemplateConnected {
 
     public function __construct()
     {

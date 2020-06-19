@@ -45,6 +45,7 @@ require_once 'view/Collaborator/CollabView.class.php';
 require_once 'view/forgotPasswordView.class.php';
 require_once 'view/changePasswordView.class.php';
 require_once 'view/Animator/AnimatorView.class.php';
+require_once 'view/Admin/AdminView.class.php';
 
 // PHPmailer
 use PHPMailer\PHPMailer\PHPMailer;

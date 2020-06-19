@@ -47,7 +47,7 @@ class AdminController extends MainController
 
       // creation d'un theme
       case 32: 
-        $adminview = new AdministratorView();
+        $adminview = new AdminView();
         $adminview->run("createTheme");
     }
 
