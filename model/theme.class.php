@@ -15,7 +15,7 @@ class Theme
         $this->_activity = $activity;
         $this->_idTheme = $idTheme;
         $this->_name = $name;
-        $this->_color = $color;
+        $this->color = $color;
         $this->_description = $description;
         $this->_detailsDescription = $detailsDescription;
     }

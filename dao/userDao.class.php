@@ -25,7 +25,7 @@ class UserDao extends Dao{
                     $phoneNumber=$donnees['PhoneNumber'];
                     $mail=$donnees['mail'];
                     $password=$donnees['password'];
-                    $user = new Collaborator($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
+                    $user = new Collaborator($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password, null);
                 }
 
             }  catch (PDOException $e) {
@@ -190,4 +190,26 @@ class UserDao extends Dao{
         
     } 
 
+    public function listAnim(){
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT id_user, LastName, FirstName FROM users where role='Animator' ");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $lastName = $donnees["LastName"];
+                $firstName = $donnees["FirstName"];
+                $idUser = $donnees["id_user"];
+                $user = new Animator( $idUser,$lastName,$firstName, null, null, null,null);
+                $list[]=$user;
+                
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
 }

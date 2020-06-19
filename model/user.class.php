@@ -103,19 +103,11 @@
 
         abstract public function get_role();
 
-        /**
-         * Get the value of _idUser
-         */ 
         public function get_idUser()
         {
                 return $this->_idUser;
         }
 
-        /**
-         * Set the value of _idUser
-         *
-         * @return  self
-         */ 
         public function set_idUser($_idUser)
         {
                 $this->_idUser = $_idUser;

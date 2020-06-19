@@ -1,7 +1,7 @@
 <?php
 
 class AdminView extends LisaeTemplateConnected {
-
+    private $_userList;
     public function __construct()
     {
         parent::__construct();
@@ -47,6 +47,14 @@ class AdminView extends LisaeTemplateConnected {
             default: include "dashboard.php";
 
         }
+    }
+  
+    public function setUserList($userList){
+        $result = "";
+        foreach ($userList as $user) {
+            $result .= "<option value='".$user->get_idUser()."'>".$user->get_lastname()." ".$user->get_firstname()."</option>";
+        }
+        $this->_userList = $result;
     }
 }   
 
