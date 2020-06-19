@@ -54,7 +54,7 @@ class AdminController extends MainController
 
       // creation d'une activité
       case 32: 
-        $adminview = new AdministratorView();
+        $adminview = new AdminView();
         $adminview->run("createActivity");
       break;
     }
