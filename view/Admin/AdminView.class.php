@@ -44,6 +44,12 @@ class AdminView extends LisaeTemplateConnected {
             case "createActivity": include "createActivity.phtml";
             break;
 
+            case "createFormation": include "createFormation.phtml";
+            break;
+
+            case "createSession": include "createSession.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }
