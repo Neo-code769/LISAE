@@ -14,7 +14,6 @@ class AdminController extends MainController
       "createTheme" => 32,
       "createActivity"=>33,
       "dashboard"=>34
-      
     ];
     parent::__construct();
   }
@@ -50,7 +49,6 @@ class AdminController extends MainController
         $adminview->run("createTheme");
       break;
 
-      // creation d'une activité
       case 33: 
         $adminview = new AdminView();
         $adminview->run("createActivity");

@@ -17,14 +17,16 @@ class AdminView extends LisaeTemplateConnected {
                 <div id="headerIMG">
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
-                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Tableau de Bord</button></a>
+                            <a href="../admin/createTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer un Thème</button></a>
+                            <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer une Activité</button></a>
+                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Sortir de la console</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
                 </div>
                 <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
-            <body>
+            <body id="admin">
             EOD;
         echo "<p>".$errorMess."</p>";
     }
