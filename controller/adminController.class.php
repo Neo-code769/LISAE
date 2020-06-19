@@ -54,6 +54,7 @@ class AdminController extends MainController
           $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
           var_dump($theme);
           (new ThemeDao())->insert($theme);
+
           
         } else {
           $adminview = new AdminView();
@@ -64,8 +65,35 @@ class AdminController extends MainController
 
       //Creation d'activité
       case 33: 
-        $adminview = new AdminView();
-        $adminview->run("createActivity");
+        if (isset($_POST['createActivity'])){
+          $activity = new Activity(null,$_POST['name'],$_POST['description'],$_POST['detailedDescription'],null);
+
+          //Traitement image 
+          //Recupération de fichier
+          /* $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+        
+          $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
+        
+            $cheminUpload="./upload/$fichierUpload";
+        
+          if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
+          {
+            $destinationImg="./images/$fichierUpload";
+                copy($cheminUpload,$destinationImg);
+                unlink($cheminUpload);
+          }
+
+          $activity->set_image($destinationImg);
+           */
+          //var_dump($activity);
+          (new ActivityDao())->insert($activity);
+          (new ActivityDao())->insertRecurringActivity($_POST['nTheme']);
+          
+        } else {
+          $adminview = new AdminView();
+          $adminview->setThemeList((new ThemeDao())->getListTheme());
+          $adminview->run("createActivity");
+        }
       break;
 
       //Creation de formation
