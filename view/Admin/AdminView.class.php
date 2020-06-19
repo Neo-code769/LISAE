@@ -70,7 +70,6 @@ class AdminView extends LisaeTemplateConnected {
 
         }
     }
-<<<<<<< HEAD
   
     public function setUserList($userList){
         $result = "";
@@ -79,7 +78,6 @@ class AdminView extends LisaeTemplateConnected {
         }
         $this->_userList = $result;
     }
-=======
 
     public function getListCollab() {
         // TODO
@@ -91,7 +89,6 @@ class AdminView extends LisaeTemplateConnected {
         // SELECT * FROM users WHERE `role` = "Animator"
     }
 
->>>>>>> 79e0fcca2ee6729f0d13a4975f426e961269ae19
 }   
 
 ?>

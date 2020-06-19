@@ -212,4 +212,21 @@ class UserDao extends Dao{
         }
         return $list;
     }
+    public function insertReferToTheme($idUser, $idTheme){
+        $sql = 
+        "INSERT INTO `referto`
+            VALUES(
+            (SELECT id_theme from theme where id_theme = $idUser),
+            (SELECT id_user from users where id_user = $idTheme))
+        ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }   
+    }
 }
