@@ -1,0 +1,28 @@
+<body>
+    <div id="title" class="container">
+    <h2>Création d'une Session de formation</h2>
+    </div>
+
+<div id="registration" class="container">
+    <form method="post">
+        <fieldset>
+            <label>Nom de la Session :</label> 
+            <input type="text" name="name" required><br><br>
+
+            <label>Date de Début de Formation :</label>
+            <input type="date" name="startDateFormation" required><br><br>
+
+            <label>Date de Fin de Formation :</label>
+            <input type="date" name="endDateFormation" required><br><br>
+
+            <label>Date de Début de PAE :</label>
+            <input class="date" name="startDatePAE" required><br><br>            
+            
+            <label> Date de Fin de PAE :</label>
+            <input type="date" name="endDatePAE" required><br><br>
+
+            <input id="button" type="submit" name="createSession" value="Valider"><br><br>
+            <input id="button" type="reset" value="Annuler">
+        </fieldset>
+    </form>
+</div>

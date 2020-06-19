@@ -56,6 +56,7 @@ class AdminController extends MainController
         $adminview->run("createActivity");
       break;
 
+      // Tableau de bord
       case 34: 
         $adminview = new AdminView();
         $adminview->run("dashboard");
