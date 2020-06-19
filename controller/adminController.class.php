@@ -11,7 +11,8 @@ class AdminController extends MainController
     $this->_listUseCases=
     [
       "registration" => 31,
-      "createTheme" => 32
+      "createTheme" => 32,
+      "createActivity"=>33
     ];
     parent::__construct();
   }
@@ -49,6 +50,13 @@ class AdminController extends MainController
       case 32: 
         $adminview = new AdminView();
         $adminview->run("createTheme");
+      break;
+
+      // creation d'une activité
+      case 32: 
+        $adminview = new AdministratorView();
+        $adminview->run("createActivity");
+      break;
     }
 
   }

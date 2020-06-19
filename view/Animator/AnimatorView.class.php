@@ -132,7 +132,6 @@ class AnimatorView extends LisaeTemplateConnected {
             $result .=
             "<div class='row justify-content-center'> 
             <a style='text-decoration: none;' href='../anim/infoSlotEloce?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
-            <a  id='listActivity' href='../anim/listActivity?id_activity=".$element["id_activity"]."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
             <a  id='info' href='../anim/infoSlotEloce?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
