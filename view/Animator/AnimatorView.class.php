@@ -61,6 +61,10 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setHeader($errorMess) {
+        if ($_SESSION['role']!='Animator') {
+            echo "Vous ne pouvez pas accéder a cette page !";
+            header("Refresh:2;url=http://www.lisae.fr:8081/index.php");
+        }
         echo <<<EOD
             <header>
                 <div id="headerIMG">

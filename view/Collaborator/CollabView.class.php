@@ -22,6 +22,10 @@ class CollabView extends LisaeTemplateConnected {
     } 
 
     public function setHeader($errorMess) {
+        if ($_SESSION['role']!='Collaborator') {
+            echo "Vous ne pouvez pas accéder a cette page !";
+            header("Location:http://www.lisae.fr:8081/index.php");
+        }
         echo <<<EOD
             <header>
                 <div id="headerIMG">
