@@ -21,6 +21,7 @@ class AdminView extends LisaeTemplateConnected {
                             <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Activité</button></a>
                             <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Formation</button></a>
                             <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Session</button></a>
+                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Gestion Compte</button></a>
                             <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Mode Animateur</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
@@ -50,6 +51,15 @@ class AdminView extends LisaeTemplateConnected {
             break;
 
             case "createSession": include "createSession.phtml";
+            break;
+
+            case "accountManagement": include "accountManagement.phtml";
+            break;
+
+            case "collabManagement": include "collabManagement.phtml";
+            break;
+
+            case "animManagement": include "animManagement.phtml";
             break;
 
             default: include "dashboard.php";

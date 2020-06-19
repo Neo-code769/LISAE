@@ -15,7 +15,10 @@ class AdminController extends MainController
       "createActivity"=>33,
       "createFormation"=>34,
       "createSession"=>35,
-      "dashboard"=>36
+      "accountManagement"=>36,
+      "collabManagement"=>37,
+      "animManagement"=>38,
+      "dashboard"=>39
     ];
     parent::__construct();
   }
@@ -69,8 +72,26 @@ class AdminController extends MainController
         $adminview->run("createSession");
       break;
 
-      // Tableau de bord
+      //Gestion des comptes utilisateurs
       case 36: 
+        $adminview = new AdminView();
+        $adminview->run("accountManagement");
+      break;
+
+      //Gestion des comptes collaborateur
+      case 37: 
+        $adminview = new AdminView();
+        $adminview->run("collabManagement");
+      break;
+
+      //Gestion des comptes animateur
+      case 38: 
+        $adminview = new AdminView();
+        $adminview->run("animManagement");
+      break;
+
+      // Tableau de bord
+      case 39: 
         $adminview = new AdminView();
         $adminview->run("dashboard");
       break;
