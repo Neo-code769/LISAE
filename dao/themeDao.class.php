@@ -442,11 +442,6 @@ class ThemeDao extends Dao {
     public function get(int $id) {
         return $tab=[];
     }	
-    
-    // delete via son id
-    public function delete(int $id ){
-
-    }
 
 }
 

@@ -67,9 +67,10 @@ class AdminController extends MainController
         if (isset($_POST['createActivity'])){
           $activity = new Activity(null,$_POST['name'],$_POST['description'],$_POST['detailedDescription'],null);
 
+
           //Traitement image 
           //Recupération de fichier
-          /* $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
         
           $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
         
@@ -81,13 +82,15 @@ class AdminController extends MainController
                 copy($cheminUpload,$destinationImg);
                 unlink($cheminUpload);
           }
-
           $activity->set_image($destinationImg);
-           */
+          
           //var_dump($activity);
           (new ActivityDao())->insert($activity);
           (new ActivityDao())->insertRecurringActivity($_POST['nTheme']);
           
+          //Redirection
+          header("Location:../../admin/Dashboard");
+
         } else {
           $adminview = new AdminView();
           $adminview->setThemeList((new ThemeDao())->getListTheme());

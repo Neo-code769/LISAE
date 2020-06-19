@@ -5,13 +5,13 @@ class ActivityDao extends Dao {
     // requete création d'une activity(brouillon)
 
     public function insert($obj) : void	{
-        $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, null);";
+        $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?);";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_name());
         $exec->bindValue(2, $obj->get_description());
         $exec->bindValue(3, $obj->get_detailedDescription());
-        //$exec->bindValue(4, $obj->get_image());
-        var_dump($exec);
+        $exec->bindValue(4, $obj->get_image());
+        //var_dump($exec);
         try{
         $exec->execute();
         } 
