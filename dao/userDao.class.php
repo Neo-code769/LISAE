@@ -186,6 +186,35 @@ class UserDao extends Dao{
             }
     }
 
+    // Recupere tous les collaborateurs
+    public function getCollab() {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
+        try {
+            $requete->execute();
+            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+            }
+        } catch (PdoException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        }
+        return $list;
+    }
+
+    // Recupere tous les animateurs
+    public function getAnim() {
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Animator'");
+        try {
+            $requete->execute();
+            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+            }
+        } catch (PdoException $e) {
+            echo " ERREUR REQUETE : " . $e->getMessage();
+        }
+    }
+
     public function update($obj){
         
     } 
