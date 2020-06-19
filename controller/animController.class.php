@@ -312,7 +312,7 @@ class AnimController extends MainController
             $idUsersNoCheck = array_diff($idUsers,$_POST['check']);
           }else{$idUsersNoCheck=$idUsers;}            
           
-          var_dump($idUsersNoCheck);
+          //var_dump($idUsersNoCheck);
 
           if(isset($_POST['check'])){
             foreach($_POST['check'] as $idUser){
