@@ -2,6 +2,10 @@
 
 class AdminView extends LisaeTemplateConnected {
     private $_userList;
+
+    private $_listCollab;
+    private $_listAnim;
+
     public function __construct()
     {
         parent::__construct();
@@ -17,10 +21,13 @@ class AdminView extends LisaeTemplateConnected {
                 <div id="headerIMG">
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
-                            <a href="../admin/createTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer un Thème</button></a>
-                            <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer une Activité</button></a>
-                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Sortir de la console</button></a>
+                            <a href="../admin/createTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Thème</button></a>
+                            <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Activité</button></a>
+                            <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Formation</button></a>
+                            <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Session</button></a>
+                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Mode Animateur</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
+                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Gestion Compte</button></a>
                         </div>
                 </div>
                 <div class="lifeline"></div>
@@ -44,10 +51,26 @@ class AdminView extends LisaeTemplateConnected {
             case "createActivity": include "createActivity.phtml";
             break;
 
+            case "createFormation": include "createFormation.phtml";
+            break;
+
+            case "createSession": include "createSession.phtml";
+            break;
+
+            case "accountManagement": include "accountManagement.phtml";
+            break;
+
+            case "collabManagement": include "collabManagement.phtml";
+            break;
+
+            case "animManagement": include "animManagement.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }
     }
+<<<<<<< HEAD
   
     public function setUserList($userList){
         $result = "";
@@ -56,6 +79,19 @@ class AdminView extends LisaeTemplateConnected {
         }
         $this->_userList = $result;
     }
+=======
+
+    public function getListCollab() {
+        // TODO
+        // SELECT * FROM users WHERE `role` = "Collaborator"
+    }
+
+    public function getListAnim() {
+        // TODO
+        // SELECT * FROM users WHERE `role` = "Animator"
+    }
+
+>>>>>>> 79e0fcca2ee6729f0d13a4975f426e961269ae19
 }   
 
 ?>

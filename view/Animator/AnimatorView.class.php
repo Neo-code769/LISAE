@@ -76,7 +76,7 @@ class AnimatorView extends LisaeTemplateConnected {
                             <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Mon Compte</button></a>
         EOD;
         if ($_SESSION['role']=='Admin') {
-            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'>Console Admin</button></a>";
+            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'> Mode Admin</button></a>";
         }
         echo <<<EOD
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
