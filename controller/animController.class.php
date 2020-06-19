@@ -180,13 +180,13 @@ class AnimController extends MainController
         $export = new PresenceDao();
         $allData = $export->getPresence($_GET['id_slot']);
 
-        fputcsv($fichier, $headers1);
-        fputcsv($fichier, $headers2);
-        fwrite($fichier,$slotInfo["nTheme"]. ",");
-        fwrite($fichier,$slotInfo["nActivity"] . ",");
+        fputcsv($fichier, $headers1,";");
+        fputcsv($fichier, $headers2,";");
+        fwrite($fichier,$slotInfo["nTheme"]. ";");
+        fwrite($fichier,$slotInfo["nActivity"] . ";");
         fwrite($fichier, $slotInfo['dts'] . "\n");
-        fputcsv($fichier, $blank);
-        fputcsv($fichier, $user);
+        fputcsv($fichier, $blank,";");
+        fputcsv($fichier, $user,";");
         fwrite($fichier,$allData);
         fclose($fichier);
         
@@ -312,7 +312,7 @@ class AnimController extends MainController
             $idUsersNoCheck = array_diff($idUsers,$_POST['check']);
           }else{$idUsersNoCheck=$idUsers;}            
           
-          var_dump($idUsersNoCheck);
+          //var_dump($idUsersNoCheck);
 
           if(isset($_POST['check'])){
             foreach($_POST['check'] as $idUser){
