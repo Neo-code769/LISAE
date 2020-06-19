@@ -139,7 +139,7 @@ class AnimController extends MainController
       
       break;
 
-      case 26:
+      case 26: //Export
 
         $chemin="output/presence.csv";
         $nomFichier="presence.csv";
@@ -147,8 +147,8 @@ class AnimController extends MainController
         $blank = [""];
         $headers2 = ["THEME", "ACTIVITE", "DATE", "\n"];
         $user = ["NOM", "PRENOM", "TELEPHONE", "SESSION", "PRESENCE"];
-          header("Content-Type: text/csv"); 
-          header("Content-disposition: attachment; filename=$nomFichier");
+        header("Content-Type: text/csv"); 
+        header("Content-disposition: attachment; filename=$nomFichier");
         $fichier = fopen($chemin, "w"); 
         
         $themeList = (new ThemeDao())->getListTheme();
@@ -158,20 +158,11 @@ class AnimController extends MainController
                 foreach($activity->get_slot() as $slot){
                   if ($slot->get_idSlot() == $_GET["id_slot"]) {
                     $slotInfo= [
-                    "idslot"=> $slot->get_idSlot(),
-                    "color" => $theme->get_color(),
-                    "dtsf" => $slot->get_slotDateTimeStartFormat(),
-                    "dtef" => $slot->get_slotDateTimeEndFormat(),
                     "dts" => $slot->get_slotDateTimeStart(),
-                    "dte" => $slot->get_slotDateTimeEnd(),
                     "nTheme" => $theme->get_name(),
-                    "nActivity" => $activity->get_name(),
-                    "information" => $slot->get_information(),
-                    "place" => $slot->get_place(),
-                    "idActivity" => $activity->get_idActivity()
+                    "nActivity" => $activity->get_name()
                     ]
                     ;
-                    //var_dump($slotInfo);
                   }
                 }
             }
@@ -228,7 +219,6 @@ class AnimController extends MainController
           }
           
         $animView->setInfoSlot($slotInfo);
-        $animView->setInfoSlotButton($slotInfo);
         $animView->run("infoSlot");
       }
       break;
@@ -261,7 +251,6 @@ class AnimController extends MainController
             }
         } 
         $animView->setInfoSlot($slotInfo);
-        $animView->setInfoSlotButton($slotInfo);
         $animView->run("infoSlotEloce");
         break;
 

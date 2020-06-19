@@ -173,15 +173,6 @@ class AnimatorView extends LisaeTemplateConnected {
                 }
         $this->_listActivity = $result;
     } 
-    
-    public function setInfoSlotButton($element){
-        $result = "";
-        /* $result =
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
-        $result .=
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/anim/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
-         */$this->_infoSlotButton = $result;
-    }
 
     public function setPresence($listUser){
         //var_dump($listUser);
