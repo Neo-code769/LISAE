@@ -74,6 +74,11 @@ class AnimatorView extends LisaeTemplateConnected {
                             <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Calendrier ELOCE</button></a>
                             <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Nouveau Créneau</button></a>
                             <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Mon Compte</button></a>
+        EOD;
+        if ($_SESSION['role']=='Admin') {
+            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'>Console Admin</button></a>";
+        }
+        echo <<<EOD
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
                 </div>
@@ -83,10 +88,8 @@ class AnimatorView extends LisaeTemplateConnected {
             <body>
             EOD;
         echo "<p>".$errorMess."</p>";
-        if ($_SESSION['role']=='Admin') {
-            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'>Console Admin</button></a>";
-        }
-        var_dump($_SESSION,$_POST);
+        
+        //var_dump($_SESSION,$_POST);
     }
     
     private $_activityList = null;
