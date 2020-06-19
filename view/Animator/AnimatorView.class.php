@@ -182,8 +182,8 @@ class AnimatorView extends LisaeTemplateConnected {
     public function setPresence($listUser){
         //var_dump($listUser);
         $result ="";
-        $check="";
         foreach ($listUser as $user) {
+            $check="";
             if ($user['presence']==1) {
                 $check = "checked";
             }

@@ -95,7 +95,7 @@ class PresenceDao extends Dao {
 
     public function updatePresenceNo($idUser,$idSlot) {
         $sql = 
-        "UPDATE `participate` SET `presence`=0 
+        "UPDATE `participate` SET `presence`= NULL
         WHERE id_user= $idUser
         AND participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot) ";
         $exec = (Dao::getConnexion())->prepare($sql);
