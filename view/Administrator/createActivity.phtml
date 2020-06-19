@@ -1,0 +1,34 @@
+<body>
+    <div id="title" class="container">
+    <h2>Création d'une Activité</h2>
+    </div>
+
+<div id="registration" class="container">
+    <form method="post">
+        <fieldset>
+            <label>Nom de l'activité :</label> 
+            <input type="text" name="name" required><br><br>
+
+            <label>Description :</label>
+            <input type="text" name="description" required><br><br>
+
+            <label>Description détaillée :</label>
+            <input type="text" name="detailedDescription" required><br><br>
+
+            <label>Image :</label>
+            <input class="upload" type="file" name="image" required><br><br>            
+            
+            <label> Limite d'inscription :</label>
+            <input type="number" name="registrationDeadline" required><br><br>
+
+            <label> Limite de désinscription :</label>
+            <input type="number" name="unsubscribeDeadline" required><br><br>
+
+            <label> Animateur de l'activité :</label>
+            <input type="text" name="refAnimator" required><br><br>
+
+            <input id="button" type="submit" name="createActivity" value="Valider"><br><br>
+            <input id="button" type="reset" value="Annuler">
+        </fieldset>
+    </form>
+</div>

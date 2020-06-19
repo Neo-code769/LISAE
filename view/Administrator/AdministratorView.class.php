@@ -1,6 +1,6 @@
 <?php
 
-class AdministratorView extends LisaeTemplateConnected {
+class AdminView extends LisaeTemplateConnected {
 
     public function __construct()
     {
@@ -37,6 +37,9 @@ class AdministratorView extends LisaeTemplateConnected {
             break;
 
             case "createTheme": include "createTheme.phtml";
+            break;
+
+            case "createActivity": include "createActivity.phtml";
             break;
 
             default: include "dashboard.php";

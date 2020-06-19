@@ -12,7 +12,8 @@ class AdminController extends MainController
     [
       "registration" => 31,
       "createTheme" => 32,
-      "dashboard"=>33
+      "dashboard"=>34,
+      "createActivity"=>33
     ];
     parent::__construct();
   }
@@ -44,12 +45,17 @@ class AdminController extends MainController
 
       // creation d'un theme
       case 32: 
-        $adminview = new AdministratorView();
+        $adminview = new AdminView();
         $adminview->run("createTheme");
       break;
 
-      case 33: 
-        $adminview = new AdministratorView();
+      case 32: 
+        $adminview = new AdminView();
+        $adminview->run("createActivity");
+      break;
+
+      case 34: 
+        $adminview = new AdminView();
         $adminview->run("dashboard");
       break;
 
