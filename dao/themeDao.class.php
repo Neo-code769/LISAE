@@ -281,16 +281,15 @@ class ThemeDao extends Dao {
     // requete pour créer un nouveau thème 
 
     public function insert($obj) : void{
-        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO `theme` (`id_theme`,`name`, `color`, `image`, `description`, `detailedDescription`) VALUES (null, ?, ?, null, ?, ?);";
         $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $obj->get_idTheme());
-        $exec->bindValue(2, $obj->get_name());
-        $exec->bindValue(3, $obj->get_color());
-        $exec->bindValue(3, $obj->get_image());
-        $exec->bindValue(4, $obj->get_description());
-        $exec->bindValue(5, $obj->get_detailsDescription());
+        $exec->bindValue(1, $obj->get_name());
+        $exec->bindValue(2, $obj->get_color());
+        $exec->bindValue(3, $obj->get_description());
+        $exec->bindValue(4, $obj->get_detailsDescription());
         try{
         $exec->execute();
+        var_dump($exec);
         } catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }

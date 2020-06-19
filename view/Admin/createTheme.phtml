@@ -12,9 +12,6 @@
             <label>Choix de la couleur du thème :</label>
             <input type="color" value="#fad345" name="color" required><br><br>
 
-            <label>Image :</label>
-            <input class="upload" type="file" name="image" required><br><br>
-
             <label>Description :</label>
             <input type="text" name="description" required><br><br>
 
@@ -23,7 +20,7 @@
 
             <label>Animateur du thème</label>
             <select name="referAnimator"><br><br>
-                <?php echo $this->_referAnimator;?>
+                <?php echo $this->_userList;?>
             </select><br><br>
 
             <input id="button" type="submit" name="createTheme" value="Valider"><br><br>

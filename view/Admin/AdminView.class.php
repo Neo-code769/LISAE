@@ -1,6 +1,7 @@
 <?php
 
 class AdminView extends LisaeTemplateConnected {
+    private $_userList;
 
     private $_listCollab;
     private $_listAnim;
@@ -68,6 +69,14 @@ class AdminView extends LisaeTemplateConnected {
             default: include "dashboard.php";
 
         }
+    }
+  
+    public function setUserList($userList){
+        $result = "";
+        foreach ($userList as $user) {
+            $result .= "<option value='".$user->get_idUser()."'>".$user->get_lastname()." ".$user->get_firstname()."</option>";
+        }
+        $this->_userList = $result;
     }
 
     public function getListCollab($list) {

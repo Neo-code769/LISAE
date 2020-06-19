@@ -50,8 +50,16 @@ class AdminController extends MainController
 
       // creation d'un theme
       case 32: 
-        $adminview = new AdminView();
-        $adminview->run("createTheme");
+        if (isset($_POST['createTheme'])){
+          $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
+          var_dump($theme);
+          (new ThemeDao())->insert($theme);
+          
+        } else {
+          $adminview = new AdminView();
+          $adminview->setUserList((new UserDao())->listAnim());
+          $adminview->run("createTheme");
+        }
       break;
 
       //Creation d'activité
