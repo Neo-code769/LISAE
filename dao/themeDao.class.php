@@ -443,7 +443,6 @@ class ThemeDao extends Dao {
         return $tab=[];
     }	
 
-
 }
 
 ?>

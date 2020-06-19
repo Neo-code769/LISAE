@@ -78,7 +78,7 @@ class AnimController extends MainController
       break;
 
     
-      case 23:
+      case 23://InfoUser
         $user = (new userDao())->getInfo($_SESSION["id_user"]);
         $animView = new AnimatorView();
         $animView->setInfoUser($user);

@@ -2,7 +2,7 @@
 
 class AdminView extends LisaeTemplateConnected {
     private $_userList;
-
+    private $_themeList;
     private $_listCollab;
     private $_listAnim;
 
@@ -77,6 +77,14 @@ class AdminView extends LisaeTemplateConnected {
             $result .= "<option value='".$user->get_idUser()."'>".$user->get_lastname()." ".$user->get_firstname()."</option>";
         }
         $this->_userList = $result;
+    }
+
+    public function setThemeList($themeList){
+        $result ="";
+        foreach ($themeList as $theme) {
+            $result .="<option value='".$theme->get_idTheme()."'>".$theme->get_name()."</option>";
+        }
+        $this->_themeList = $result;
     }
 
     public function getListCollab($list) {

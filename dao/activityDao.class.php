@@ -5,13 +5,13 @@ class ActivityDao extends Dao {
     // requete création d'une activity(brouillon)
 
     public function insert($obj) : void	{
-        $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?, ?,?);";
+        $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?);";
         $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $obj->get_idActivity());
-        $exec->bindValue(2, $obj->get_name());
-        $exec->bindValue(4, $obj->get_description());
-        $exec->bindValue(5, $obj->get_detailsDescription());
-        $exec->bindValue(3, $obj->get_image());
+        $exec->bindValue(1, $obj->get_name());
+        $exec->bindValue(2, $obj->get_description());
+        $exec->bindValue(3, $obj->get_detailedDescription());
+        $exec->bindValue(4, $obj->get_image());
+        //var_dump($exec);
         try{
         $exec->execute();
         } 
@@ -22,14 +22,12 @@ class ActivityDao extends Dao {
 
     // requete création d'une recurring activity avec les données d'une activity(brouillon)
 
-    public function insertRecurringActivity($idTheme,$idActivity ) : void	
+    public function insertRecurringActivity($idTheme) : void	
     {
         $sql = ("INSERT INTO `recurring_Activity` VALUES
-        ( (SELECT id_activity from activity where id_activity = $idActivity),
+        ( (SELECT MAX(id_activity) from activity),
          (SELECT id_theme from theme where id_theme = $idTheme))");
         $exec = (Dao::getConnexion())->prepare($sql);
-        $exec->bindValue(1, $idTheme->get_idTheme());
-        $exec->bindValue(2, $idActivity->get_idActivity());
         try{
         $exec->execute();
         } 
