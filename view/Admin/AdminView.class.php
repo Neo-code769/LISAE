@@ -26,7 +26,7 @@ class AdminView extends LisaeTemplateConnected {
                 <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
-            <body>
+            <body id="admin">
             EOD;
         echo "<p>".$errorMess."</p>";
     }
