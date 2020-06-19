@@ -2,6 +2,9 @@
 
 class AdminView extends LisaeTemplateConnected {
 
+    private $_listCollab;
+    private $_listAnim;
+
     public function __construct()
     {
         parent::__construct();
@@ -66,6 +69,17 @@ class AdminView extends LisaeTemplateConnected {
 
         }
     }
+
+    public function getListCollab() {
+        // TODO
+        // SELECT * FROM users WHERE `role` = "Collaborator"
+    }
+
+    public function getListAnim() {
+        // TODO
+        // SELECT * FROM users WHERE `role` = "Animator"
+    }
+
 }   
 
 ?>
