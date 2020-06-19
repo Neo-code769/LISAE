@@ -61,7 +61,7 @@ class AnimatorView extends LisaeTemplateConnected {
     }
 
     public function setHeader($errorMess) {
-        if ($_SESSION['role']!='Animator') {
+        if ($_SESSION['role']!='Animator' && $_SESSION['role']!='Admin') {
             echo "Vous ne pouvez pas accéder a cette page !";
             header("Refresh:2;url=http://www.lisae.fr:8081/index.php");
         }
@@ -83,6 +83,10 @@ class AnimatorView extends LisaeTemplateConnected {
             <body>
             EOD;
         echo "<p>".$errorMess."</p>";
+        if ($_SESSION['role']=='Admin') {
+            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'>Console Admin</button></a>";
+        }
+        var_dump($_SESSION,$_POST);
     }
     
     private $_activityList = null;

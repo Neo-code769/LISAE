@@ -11,7 +11,8 @@ class AdminController extends MainController
     $this->_listUseCases=
     [
       "registration" => 31,
-      "createTheme" => 32
+      "createTheme" => 32,
+      "dashboard"=>33
     ];
     parent::__construct();
   }
@@ -39,16 +40,23 @@ class AdminController extends MainController
         }else {
           (new RegistrationView())->run("admin");
         }
-
-      default:
-      (new LoginPageView())->run($content="");
-        throw new LisaeException("Erreur");
       break;
 
       // creation d'un theme
       case 32: 
         $adminview = new AdministratorView();
         $adminview->run("createTheme");
+      break;
+
+      case 33: 
+        $adminview = new AdministratorView();
+        $adminview->run("dashboard");
+      break;
+
+      default:
+      (new LoginPageView())->run($content="");
+        throw new LisaeException("Erreur");
+      break;
     }
 
   }

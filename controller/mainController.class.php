@@ -67,7 +67,7 @@ class MainController
                             }
                             elseif ($_SESSION['role'] == 'Admin');
                             {
-                              header('Location:../../index.php/admin/dashboard');
+                              header('Location:../../index.php/anim/dashboard');
                               exit();
                             } 
                         } else {
