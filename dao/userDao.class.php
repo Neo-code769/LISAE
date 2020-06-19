@@ -9,6 +9,7 @@ class UserDao extends Dao{
 
     }
     //requete pour récupérer les informations d'un utilisateur
+
     public function getInfo($id){
         $pdo = Dao::getConnexion();
 
@@ -33,7 +34,9 @@ class UserDao extends Dao{
             }
         return $user;
     }
+
     //requete pour ajouter un utilisateur
+
     public function insert($obj) :void
     {
         $sql = "INSERT INTO `users` (`id_user`,`FirstName`, `LastName`, `birthDate`, `PhoneNumber`, `mail`, `role`, `password`) VALUES (null, ?, ?, ?, ?, ?, ?,?);";
@@ -56,33 +59,16 @@ class UserDao extends Dao{
         }
     }
     
-    public function select() : void 
-    {
-        $sql = "SELECT `host.slotDate`, `activity.name`, `host.slotHour` 
-                FROM `activity` INNER JOIN `host` ON `activity.id_activity` = `host.id_activity`
-                                INNER JOIN `users` ON `host.id_user` = `users.id_user` 
-                WHERE `users.id_user` = `host.id_user` ";
-        $exec = (Dao::getConnexion())->prepare($sql);
-        try {
-        $exec->execute();
-        }
-        catch (PDOException $e) {
-            throw new LisaeException("Erreur", 1);
-        }
-    }
-    
+    // requete pour recuperer la mail et le password d'un users (pour variable session)
+
     public function getSessionUser($mail, $password)
     {
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."' and password= '". $password."'");
         try {
             $requete->execute();
-            //var_dump($requete);
             $session = $requete->fetch(PDO::FETCH_ASSOC);
-            //var_dump($session['mail']);
         }catch (PDOException $e) {
-            //throw new Exception("Requête vers la base de données éronnée");
-            //die();
             throw new LisaeException("Erreur",1);
         }
 
@@ -94,32 +80,30 @@ class UserDao extends Dao{
             "role" => $session['role']
             ];
 
-        //var_dump($result);
         return $result;
-
     }
+
+    // requete pour recupérer le mail d'un user
+
     public function getMail($mail)
     {
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare ("SELECT * FROM users where mail= '".$mail ."'");
         try {
             $requete->execute();
-            //var_dump($requete);
             $listMail = $requete->fetch(PDO::FETCH_ASSOC);
         }catch (PDOException $e) {
-            //throw new Exception("Requête vers la base de données éronnée");
-            //die();
             throw new LisaeException("Erreur",1);
         }
-
         $result = [
             "exist" => $requete->rowCount(),
             "mail" => $listMail['mail']
             ];
 
-        //var_dump($result);
         return $result;
     }
+
+    // requete pour recuperer si le mail a été confirmer
 
     public function getConfirmationMail($mail) 
     {
@@ -134,6 +118,8 @@ class UserDao extends Dao{
         return $confirmMail['confirmMail'];
     }
 
+    // requete pour modifier l'user si le mail a été confirmer
+
     public function setConfirmationMail($mail)
     {
         $pdo = Dao::getConnexion();
@@ -145,6 +131,8 @@ class UserDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }
+
+    // requete pour modifier le password si oublié
 
     public function changePassword($password, $mail)
     {
@@ -163,7 +151,8 @@ class UserDao extends Dao{
 
     } 
 
-    // update d'un objet
+    // update numéro de téléphone (dans mon compte)
+    
     public function updatePhone($phone, $user) {
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare("UPDATE `users` SET `PhoneNumber`=($phone) WHERE `id_user`= $user;");
@@ -173,6 +162,8 @@ class UserDao extends Dao{
             echo " ERREUR REQUETE : " . $e->getMessage();
             }
     }
+
+    // update mail (dans mon compte)
 
     public function updateMail($mail, $user) {
         $pdo = Dao::getConnexion();
@@ -184,6 +175,7 @@ class UserDao extends Dao{
             }
     }
 
+    
     public function resetMail($user) {
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare("UPDATE `users` SET `confirmMail`= 0 WHERE `id_user`= $user;");
