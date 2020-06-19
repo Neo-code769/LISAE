@@ -192,7 +192,7 @@ class UserDao extends Dao{
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
         try {
             $requete->execute();
-            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
                 $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
@@ -207,7 +207,7 @@ class UserDao extends Dao{
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Animator'");
         try {
             $requete->execute();
-            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
                 $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
