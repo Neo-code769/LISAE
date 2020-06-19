@@ -37,6 +37,11 @@ h3 {
 tr {
     display: flex;
     justify-content: space-around;
+    font-size: 22px;
+}
+
+td {
+    font-size: 20px;
 }
 
 footer 
@@ -127,11 +132,16 @@ p
     text-align: center;
 }
 
-form
+#form1
 {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#form2
+{
+    width: 80%;
 }
 
 /******* TABLEAU DE BORD ********/
@@ -264,7 +274,6 @@ form
     cursor: pointer;
     width: 10%;
     border-width: 1px;
-    margin-left: 5%;
 }
 
 /********************/
