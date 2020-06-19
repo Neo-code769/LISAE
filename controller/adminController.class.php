@@ -54,8 +54,7 @@ class AdminController extends MainController
           $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
           var_dump($theme);
           (new ThemeDao())->insert($theme);
-
-          
+          (new UserDao())->insertReferToTheme($_POST['referAnimator']);
         } else {
           $adminview = new AdminView();
           $adminview->setUserList((new UserDao())->listAnim());

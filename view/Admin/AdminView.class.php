@@ -87,14 +87,34 @@ class AdminView extends LisaeTemplateConnected {
         $this->_themeList = $result;
     }
 
-    public function getListCollab() {
+    public function getListCollab($list) {
         // TODO
-        // SELECT * FROM users WHERE `role` = "Collaborator"
+        $result ="";
+        foreach ($list as $user) {
+            $result .="
+        <tr>
+            <td>".$user['Firstname']."</td>
+            <td>".$user['Lastname']."</td>
+            <td>".$user['PhoneNumber']."</td>
+            <td>".$user['mail']."</td>
+        </tr>";
+        }
+        $this->_listCollab = $result;
     }
 
-    public function getListAnim() {
+    public function getListAnim($list) {
         // TODO
-        // SELECT * FROM users WHERE `role` = "Animator"
+        $result ="";
+        foreach ($list as $user) {
+            $result .="
+        <tr>
+            <td>".$user['Firstname']."</td>
+            <td>".$user['Lastname']."</td>
+            <td>".$user['PhoneNumber']."</td>
+            <td>".$user['mail']."</td>
+        </tr>";
+        }
+        $this->_listAnim = $result;
     }
 
 }   
