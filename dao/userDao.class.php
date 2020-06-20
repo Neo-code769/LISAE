@@ -8,9 +8,9 @@ class UserDao extends Dao{
     public function get(int $id) {
 
     }
-    //requete pour récupérer les informations d'un utilisateur
+    //requete pour récupérer les informations d'un Collaborateur
 
-    public function getInfo($id){
+    public function getInfoCollab($id){
         $pdo = Dao::getConnexion();
 
         $requete = $pdo->prepare("SELECT * FROM users WHERE id_user= $id");
@@ -35,6 +35,32 @@ class UserDao extends Dao{
         return $user;
     }
 
+    //requete pour récupérer les informations d'un Animateur
+
+    public function getInfoAnim($id){
+        $pdo = Dao::getConnexion();
+
+        $requete = $pdo->prepare("SELECT * FROM users WHERE id_user= $id");
+            try{
+                $requete->execute();
+                while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+                {
+                    $idUser=$donnees['id_user'];
+                    $lastname=$donnees['LastName'];
+                    $firstname=$donnees['FirstName'];
+                    $birthdate=$donnees['birthDate'];
+                    $phoneNumber=$donnees['PhoneNumber'];
+                    $mail=$donnees['mail'];
+                    $password=$donnees['password'];
+                    $user = new Animator($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
+                }
+
+            }  catch (PDOException $e) {
+                echo " ERREUR REQUETE : " . $e->getMessage();
+            die();
+            }
+        return $user;
+    }
     //requete pour ajouter un utilisateur
 
     public function insert($obj) :void
@@ -51,10 +77,8 @@ class UserDao extends Dao{
         //var_dump($sql);
         try{
         $exec->execute();
-        } 
+        }
         catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
             throw new LisaeException("Erreur",1);
         }
     }
@@ -147,8 +171,16 @@ class UserDao extends Dao{
     }
 
     // delete via son id
-    public function delete(int $id ){
-
+    public function delete(int $idUser){
+        $sql = 
+        "DELETE FROM `users` WHERE id_user = $idUser)";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
     } 
 
     // update numéro de téléphone (dans mon compte)
@@ -219,6 +251,7 @@ class UserDao extends Dao{
         
     } 
 
+    // requete pour recuperer le nom et prenom de l'animateur pour la liste déroulante de la création d'un thème
     public function listAnim(){
         $list = []; 
         $sql = Dao::getConnexion();
@@ -241,6 +274,8 @@ class UserDao extends Dao{
         }
         return $list;
     }
+
+    //requete pour ajouter un référent d'un thème aprés la création d'un thème 
     public function insertReferToTheme($idUser){
         $sql = 
         "INSERT INTO `referto`
@@ -253,8 +288,6 @@ class UserDao extends Dao{
         $exec->execute();
         } 
         catch (PDOException $e) {
-            //echo " echec lors de la création : " . $e->getMessage();
-            //die();
             throw new LisaeException("Erreur",1);
         }   
     }

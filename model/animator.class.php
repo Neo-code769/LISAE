@@ -1,7 +1,12 @@
 <?php
 
     class Animator extends User {
-        
+
+        public function __construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password)
+        {
+            parent::__construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
+
+        }
         public function createSlot() {
             //TODO
         }

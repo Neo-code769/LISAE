@@ -9,7 +9,7 @@ class SessionTraining
     private $_startDatePae;
     private $_endDatePae;
 
-    public function __construct( $idSession, $nameSession, $startDateFormation=null, $endDateFormation=null, $startDatePae=null, $endDatePae=null)
+    public function __construct( $idSession, $nameSession, $startDateFormation, $endDateFormation, $startDatePae, $endDatePae)
     {
         $this->_idSession = $idSession;
         $this->_nameSession = $nameSession;
