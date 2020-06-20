@@ -192,7 +192,7 @@ class UserDao extends Dao{
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
         try {
             $requete->execute();
-            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
                 $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
@@ -207,7 +207,7 @@ class UserDao extends Dao{
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Animator'");
         try {
             $requete->execute();
-            while($donnees = $requere->fetch(PDO::FETCH_ASSOC)) {
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
                 $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
@@ -240,5 +240,22 @@ class UserDao extends Dao{
             throw new LisaeException("Erreur requête", 1);
         }
         return $list;
+    }
+    public function insertReferToTheme($idUser){
+        $sql = 
+        "INSERT INTO `referto`
+            VALUES(
+            (SELECT MAX(id_theme) from theme),
+            (SELECT id_user from users where id_user = $idUser))
+        ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            //echo " echec lors de la création : " . $e->getMessage();
+            //die();
+            throw new LisaeException("Erreur",1);
+        }   
     }
 }

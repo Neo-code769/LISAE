@@ -41,6 +41,10 @@ class Activity{
     {
         return $this->_image;
     }
+    public function set_image($image)
+    {
+        $this->_image=$image;
+    }
 
     public function get_slot()
     {
