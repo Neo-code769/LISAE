@@ -2,14 +2,14 @@
     <div id="infodesc"><?php echo $this->_infoSlot1;echo $this->_infoSlot2; ?></div>
 <div><br></br>
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/emargement?id_slot=<?=$_GET['idSlot']?>"><button id="retour"> Imprimer Feuille d'Emargement </button></a>
+<!--<a id="inputSubmit" href="../../index.php/anim/emargement?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille d'Emargement </a><br><br>-->
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"><button id="retour"> Cocher les présences </button></a>
+<a id="inputSubmit" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"> Cocher les présences </a><br><br>
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"><button id="retour"> Imprimer Feuille de Présence </button></a><br><br></br>
+<a id="inputSubmit" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille de Présence </a><br><br>
 
-<a id="retour" style="text-decoration: none;" href="../../index.php/anim/dashboard"><button id="retour"> Retour </button></a>
+<a id="inputSubmit" href="../../index.php/anim/dashboard"> Retour </a><br><br>
 
 <form method="post">
-    <input type="submit" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette activité?')" name="deleteSlot" value = "Supprimer l'Activité">
+    <input id="inputSubmit" style="background-color:red;" type="submit" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette activité?')" name="deleteSlot" value = "Supprimer l'Activité">
 </form>

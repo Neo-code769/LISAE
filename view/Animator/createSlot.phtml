@@ -6,36 +6,36 @@
 <div id="registration" class="container">
     <form method="post">
         <fieldset>
-            <label>Nom de l'activité :</label>
+            <label>Nom de l'activité :</label><br>
             <select name="activityName"><br><br>
                 <?php echo $this->_activityList;?>
             </select><br><br>
-            <label>Date de début :</label>
+            <label>Date de début :</label><br>
             <input type="datetime-local" name="slotDateStart" required><br><br>
 
-            <label>Date de fin :</label>
+            <label>Date de fin :</label><br>
             <input type="datetime-local" name="slotDateEnd" required><br><br>
 
-            <label>Nombre minimum de participants :</label>
+            <label>Nombre minimum de participants :</label><br>
             <input type="number" name="minNumberPerson" required><br><br>
 
-            <label>Nombre maximum de participants :</label>
+            <label>Nombre maximum de participants :</label><br>
             <input type="number" name="maxNumberPerson" required><br><br>
 
-            <label>Délais minimum d'inscription</label>
+            <label>Délais minimum d'inscription</label><br>
             <input type="number" name="registrationDeadline" value="3" required ><br><br>
 
-            <label>Délais minimum de désinscription :</label>
+            <label>Délais minimum de désinscription :</label><br>
             <input type="number" name="unsubscribeDeadline" value="3" required ><br><br>
 
-            <label>Le lieu :</label>
+            <label>Le lieu :</label><br>
             <input type="text" name="place" required><br><br>
 
-            <label>Informations Utiles :</label>
+            <label>Informations Utiles :</label><br>
             <input type="text" name="information"><br><br>
 
-            <input id="button" type="submit" name="createSlot" value="Valider"><br><br>
-            <input id="button" type="reset" value="Annuler">
+            <input id="inputSubmit" style="width: 20%;" type="submit" name="createSlot" value="Valider"><br><br>
+            <input id="inputSubmit" style="width: 20%;" type="reset" value="Annuler">
         </fieldset>
     </form>
 </div>

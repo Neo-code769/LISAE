@@ -5,21 +5,30 @@ class LoginPageView extends LisaeTemplateDisconnected {
 
     public function setBody($content) {
         echo <<<EOD
-                <div id="connexion" class="container">
+            <div id="menu">
+                <ul>
+                    <hr>
+                    <li id="signIn">
+                    <a href="/index.php">Connexion</a>
+                    </li>
+                    <hr>
+                    <li id="signUp">
+                    <a href="/index.php/collab/registration">Inscription</a>
+                    </li>
+                </ul>
+                </div>
+                <div id="connexion">
                     <form method="post">
                         <fieldset id="login">
-                        
                             <label for="email">E-mail:</label><br>
                             <input type="email" id="email" name="mail" required><br><br>
                             <label for="mdp">Mot de passe:</label><br>
                             <input type="password" id="mdp" name="password" required><br><br>
-                            <input id="retour" type="submit" name="checkConnection" value="Connexion"><br><br>
-                        
-                        <button id="retour" value="Inscription"><a id="button" href="/index.php/collab/registration"> Inscription </a></button><br><br>
+                            <input id="inputSubmit" type="submit" name="checkConnection" value="Connexion"><br>
                         </fieldset><br>  
                     </form>
                         <div>
-                            <p style="font-size: 14px;"><a href="/index.php/password/reset"> Mot de passe oublié </a></p>
+                            <p style="font-size: 14px; text-align: center;"><a href="/index.php/password/reset"> Mot de passe oublié </a></p>
                         </div>
             </div>
         EOD;

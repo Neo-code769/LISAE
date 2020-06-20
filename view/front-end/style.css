@@ -46,8 +46,7 @@ td {
 
 footer 
 {
-    margin-top: 2%;
-    padding-top: 2%;
+    margin-top: 1%;
 }
 
 p
@@ -105,30 +104,52 @@ p
 /***** CONNEXION & INSCRIPTION *******/
 
 #connexion {
-    margin-top: 1%;
-    margin-bottom: 3%;
-    position: relative;
-    text-align: center;
-    align-items: center;
-}
-
-#login 
-{
-  border: 3px rgba(80, 92, 255, 0.377) solid;
-  border-radius: 10px;
-  background-color: rgba(80, 92, 255, 0.377);
+  width: 23%;
+  float: center;
+  z-index: 1;
+  background: white;
+  position: relative;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 4px;
+  margin-left: 39%;
 }
 
 #registration {
-    border: 3px rgba(80, 92, 255, 0.377) solid;
     border-radius: 10px;
-    padding-top: 2%;
     padding-bottom: 2%;;
-    margin-top: 3%;
+    margin-top: 2%;
     margin-left: 18%;
     margin-right: 18%;
     position: relative;
     align-items: center;
+    text-align: center;
+}
+
+input {
+    margin-top: 10px;
+    width: 75%;
+    float: center;
+    background: #EEF9FE;
+    border: 1px solid #CDDBEF;
+    border-radius: 3px;
+    padding: 7px 10px;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+#inputSubmit {
+    width: 50%;
+    float: center;
+    cursor: pointer;
+    border: none;
+    padding: 11px 40px;
+    background: #A5E434;
+    border-radius: 30px;
+    color: #fff;
+}
+
+#login {
     text-align: center;
 }
 
@@ -142,6 +163,58 @@ p
 #form2
 {
     width: 80%;
+}
+
+#menu ul{
+    display: flex;
+}
+
+#menu li {
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+  }
+  
+#menu li a {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+    width: 50%;
+    padding-bottom: 5px;
+    border-bottom: 1px inset black;
+  }
+
+#menu hr {
+    position: absolute;
+    top: 100%;
+    width: 20%;
+    -webkit-transform: translateX(75%);
+            transform: translateX(75%);
+    border: none;
+    background: #C8DFED;
+    height: 1px;
+    margin: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  #signIn
+  {
+      padding-left: 34%;
+      padding-bottom: .5%;
+  }
+
+  #signUp
+  {
+      padding-right: 38%;
+      padding-bottom: .5%;
+  }
+
+#registration input
+{
+    width: 33%;
+    margin-bottom: 1%;
 }
 
 /******* TABLEAU DE BORD ********/
