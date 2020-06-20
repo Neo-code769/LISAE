@@ -13,9 +13,9 @@ class LoginPageView extends LisaeTemplateDisconnected {
                             <input type="email" id="email" name="mail" required><br><br>
                             <label for="mdp">Mot de passe:</label><br>
                             <input type="password" id="mdp" name="password" required><br><br>
-                            <input id="button" type="submit" name="checkConnection" value="Connexion"><br><br>
+                            <input id="retour" type="submit" name="checkConnection" value="Connexion"><br><br>
                         
-                        <button id="button" value="Inscription"><a id="button" href="/index.php/collab/registration"> Inscription </a></button><br><br>
+                        <button id="retour" value="Inscription"><a id="button" href="/index.php/collab/registration"> Inscription </a></button><br><br>
                         </fieldset><br>  
                     </form>
                         <div>
