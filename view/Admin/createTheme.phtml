@@ -1,9 +1,9 @@
 <body>
-    <div id="title" class="container">
+    <div id="title">
     <h2>Création d'un Thème</h2>
     </div>
 
-<div id="registration" class="container">
+<div id="registration">
     <form method="post">
         <fieldset>
             <label>Nom du thème :</label> 
@@ -23,8 +23,8 @@
                 <?php echo $this->_userList;?>
             </select><br><br>
 
-            <input id="button" type="submit" name="createTheme" value="Valider"><br><br>
-            <input id="button" type="reset" value="Annuler">
+            <input id="inputSubmit" style="width: 20%;" type="submit" name="createTheme" value="Valider"><br><br>
+            <input id="inputSubmit" style="width: 20%;" type="reset" value="Annuler">
         </fieldset>
     </form>
 </div>

@@ -10,10 +10,6 @@ font-family: 'FredokaOne-Regular';
     font-family: 'FredokaOne-Regular', Verdana;
 }
 
-body{
-    margin-top: 15%;
-}
-
 #figure {
     align-items: center;
     text-align: center;
@@ -110,9 +106,8 @@ p
   background: white;
   position: relative;
   padding: 20px;
-  background: #ffffff;
   border-radius: 4px;
-  margin-left: 39%;
+  margin-left: 38%;
 }
 
 #registration {

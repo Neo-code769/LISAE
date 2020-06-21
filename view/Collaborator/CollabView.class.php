@@ -141,9 +141,9 @@ class CollabView extends LisaeTemplateConnected {
     } 
     public function setInfoSlotButton($element){
         $result =
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a></button><br></br>";
+        "<a id='inputSubmit' style='text-decoration: none;' href='../../index.php/collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["idActivity"]."'>Inscription</a><br></br><br>";
         $result .=
-        "<button id='retour'><a id='retour' style='text-decoration: none;' href='../../index.php/collab/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a></button><br></br>";
+        "<a id='inputSubmit' style='background-color: red; text-decoration: none;' href='../../index.php/collab/deregistrationSlot?idslot=".$element['idslot']."&idActivity=".$element["idActivity"]."'>Désinscription</a><br></br><br>";
         $this->_infoSlotButton = $result;
     }
 
