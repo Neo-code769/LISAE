@@ -1,7 +1,12 @@
 <?php
 
     class Admin extends Animator {
+        
+        public function __construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password)
+        {
+            parent::__construct($idUser,$lastname, $firstname, $birthdate, $phoneNumber, $mail, $password);
 
+        }
         // Fonction CREATE
         
         public function createTraining() {

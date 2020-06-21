@@ -79,7 +79,7 @@ class AnimController extends MainController
 
     
       case 23://InfoUser
-        $user = (new userDao())->getInfo($_SESSION["id_user"]);
+        $user = (new userDao())->getInfoAnim($_SESSION["id_user"]);
         $animView = new AnimatorView();
         $animView->setInfoUser($user);
         $animView->run("infoUser");

@@ -83,7 +83,7 @@ class CollabController extends MainController
       break;
       
       case 7: //Mon compte
-      $user = (new userDao())->getInfo($_SESSION["id_user"]);
+      $user = (new userDao())->getInfoCollab($_SESSION["id_user"]);
       $collabView = new CollabView();
       $collabView->setInfoUser($user);
       $collabView->run("infoUser");
@@ -234,6 +234,7 @@ class CollabController extends MainController
                     "dtsf" => $slot->get_slotDateTimeStartFormat(),
                     "dts" => $slot->get_slotDateTimeStart(),
                     "dte" => $slot->get_slotDateTimeEnd(),
+                    "dtef" => $slot->get_slotDateTimeEndFormat(),
                     "nTheme" => $theme->get_name(),
                     "nActivity" => $activity->get_name(),
                     "information" => $slot->get_information(),

@@ -2,7 +2,7 @@
 
 class ActivityDao extends Dao {
 
-    // requete création d'une activity(brouillon)
+    // requete création d'une activity
 
     public function insert($obj) : void	{
         $sql = "INSERT INTO activity VALUES (null, ?, ?, ?, ?);";
@@ -20,7 +20,7 @@ class ActivityDao extends Dao {
         }
     }
 
-    // requete création d'une recurring activity avec les données d'une activity(brouillon)
+    // requete création d'une recurring activity avec les données d'une activity
 
     public function insertRecurringActivity($idTheme) : void	
     {
@@ -35,12 +35,29 @@ class ActivityDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
-    // requete pour modifier une activity
+    // requete pour modifier une activity d'un thème
+    public function update($idTheme) {
+        $sql = "UPDATE `activity` SET `id_activity`=?,`name`=?,`description`=?,`detailedDescription`=?,`image`=? WHERE id_theme = $idTheme";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
 
 
-
-    // requete pour supprimer un activity
-
+    // requete pour supprimer un activity d'un thème
+    public function delete($idTheme) : void{
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("UPDATE `activity` SET `id_activity`=?,`name`=?,`description`=?,`detailedDescription`=?,`image`=? WHERE id_theme= $idTheme");
+        try {
+            $requete->execute();
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
 
     
     // requete pour recuperer le nom et l'id des activités pour faire l'insert d'un créneau d'activité (partie anim)
@@ -72,14 +89,7 @@ class ActivityDao extends Dao {
     public function get(int $id){
 
     }     
-    // delete via son id
-    public function delete(int $id) {
 
-    }
-    // update d'un objet
-    public function update($obj) {
-
-    }
 }
 
 
