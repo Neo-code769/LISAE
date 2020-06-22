@@ -181,6 +181,25 @@ class AdminView extends LisaeTemplateConnected {
         $this->_nameTheme = $nameTheme;
     }
 
+    public function setInfoActivity($theme, $activity){
+        $result =
+        "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                    ".$theme->get_name()."
+                </div>
+        </div>";
+        $result .=
+        "<div style='margin-left: 5%;'><label>Nom</label>".$theme->get_name()."</div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'><label>Color</label><input type='color' name='color' value='".$theme->get_color()."'></div><br>";    
+        $result .=
+            "<div style='margin-left: 5%;'><label>Description</label><input type='text' name='description' value='".$theme->get_description()."'</div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
+    
+    $this->_infoTheme = $result;
+}
+
 }   
 
 ?>

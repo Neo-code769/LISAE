@@ -208,8 +208,24 @@ class AdminController extends MainController
 
       //infoActivity
       case 45:
-        
-        //echo "hey";
+        if (isset($_POST['updateTheme'])){ 
+          (new ThemeDao())->update($_GET["idTheme"]);
+          //header('Location:../../index.php/admin/dashboard');
+        }else{
+          $adminview = new AdminView();
+          $themeDao = new ThemeDao;
+          $listTheme = $themeDao->getListTheme();
+          foreach( $listTheme as $theme) {
+            foreach( $theme->get_activity() as $activity) {
+              if ($activity -> get_idActivity() == $_GET['idActivity']){
+                $infoActivity = $activity;
+                $infoTheme = $activity;
+              }
+            }
+          }
+          $adminview->setInfoActivity($infoTheme, $infoActivity);
+          $adminview->run("infoTheme");
+        }
       break;
 
       default:
