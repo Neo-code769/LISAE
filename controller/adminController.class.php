@@ -18,7 +18,9 @@ class AdminController extends MainController
       "accountManagement"=>36,
       "collabManagement"=>37,
       "animManagement"=>38,
-      "dashboard"=>39
+      "dashboard"=>39,
+      "deleteCollab"=>40,
+      "deleteAnim"=>41
     ];
     parent::__construct();
   }
@@ -119,16 +121,22 @@ class AdminController extends MainController
       //Gestion des comptes collaborateur
       case 37: 
         $adminview = new AdminView();
-        $user = new UserDao;
-        $collabList = $user->getCollab();
+        $userDao = new UserDao;
+        $collabList = $userDao->getCollab();
         $result = $adminview->getListCollab($collabList);
 
-        if (isset($_POST['deleteUser'])){
-          foreach($_POST['check'] as $user['id_user']){
-            $user->delete($user['id_user']);
+        /*if (isset($_POST['deleteUser'])){
+          $users= $userDao->getCollab();
+            foreach ($users as $user) {
+              $idUsers[] = $user['id_user'];
+            }
+          if(isset($_POST['check'])) {
+            foreach($_POST['check'] as $idUser){
+              $userDao->delete($user);
+            } 
           }
           header("Refresh:0;");
-        }
+        }*/
         
         $adminview->run("collabManagement");
       break;
@@ -159,6 +167,29 @@ class AdminController extends MainController
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");
       break;
+
+      // Suppression Collaborateur
+      case 40:
+        $user = new UserDao;
+        $user->deleteParticipate($_GET['idUser']);
+        $user->deleteTie($_GET['idUser']);
+        $user->delete($_GET['idUser']);
+        echo 'Collaborateur Supprimer';
+        header("Location:../admin/accountManagement");
+
+      break;
+
+      // Suppression Animateur
+      case 41:
+        $user = new UserDao;
+        $user->deleteReferto($_GET['idUser']);
+        $user->deleteHost($_GET['idUser']);
+        $user->delete($_GET['idUser']);
+        echo 'Animateur Supprimer';
+        header("Location:../admin/accountManagement");
+
+      break;
+
     }
 
   }
