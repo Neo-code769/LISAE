@@ -170,10 +170,62 @@ class UserDao extends Dao{
         }
     }
 
-    // delete via son id
+    /******* DELETE COLLABORATEUR ********/
+
+    public function deleteTie($idUser) {
+        $sql = 
+        "DELETE FROM `tie` WHERE id_user = $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    public function deleteParticipate($idUser) {
+        $sql = 
+        "DELETE FROM `participate` WHERE id_user = $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    /********** DELETE ANIMATEUR ************/
+
+    public function deleteReferto($idUser) {
+        $sql = 
+        "DELETE FROM `referto` WHERE id_user = $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    public function deleteHost($idUser) {
+        $sql = 
+        "DELETE FROM `host` WHERE id_user = $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    /********** DELETE UTILISATEUR ***********/
     public function delete(int $idUser){
         $sql = 
-        "DELETE FROM `users` WHERE id_user = $idUser)";
+        "DELETE FROM `users` WHERE id_user = $idUser";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
