@@ -90,14 +90,13 @@ class AdminController extends MainController
           
           //var_dump($activity);
           (new ActivityDao())->insert($activity);
-          (new ActivityDao())->insertRecurringActivity($_POST['nTheme']);
+          (new ActivityDao())->insertRecurringActivity($_GET['idTheme']);
           
           //Redirection
           header("Location:../../admin/Dashboard");
 
         } else {
           $adminview = new AdminView();
-          $adminview->setThemeList((new ThemeDao())->getListTheme());
           $adminview->run("createActivity");
         }
       break;
@@ -164,8 +163,6 @@ class AdminController extends MainController
         $adminview = new AdminView();
         $adminview->run("dashboard");
       break;
-
-      
 
       // Suppression Collaborateur
       case 40:

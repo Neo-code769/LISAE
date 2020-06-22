@@ -7,9 +7,7 @@
     <form method="post" enctype="multipart/form-data">
         <fieldset>
             <label>Thème associé :</label> 
-            <select name="nTheme"><br><br>
-                <?php echo $this->_themeList;?>
-            </select><br><br>
+            <?php echo $_GET['nTheme'];?><br><br>
 
             <label>Nom de l'activité :</label> 
             <input type="text" name="name" required><br><br>

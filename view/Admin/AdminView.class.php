@@ -26,9 +26,7 @@ class AdminView extends LisaeTemplateConnected {
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
                         
-                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Liste des Thèmes</button></a>
-                            <a href="../admin/createTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Thème</button></a>
-                            <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Activité</button></a>
+                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Thèmes</button></a>
                             <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Formation</button></a>
                             <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Session</button></a>
                             <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Mode Animateur</button></a>
