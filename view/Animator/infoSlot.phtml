@@ -1,10 +1,14 @@
 <div id="infoslot">
-    <div id="infodesc"><?php echo $this->_infoSlot1;echo $this->_infoSlot2; ?></div>
+    
 <div><br></br>
 
-<!--<a id="inputSubmit" href="../../index.php/anim/emargement?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille d'Emargement </a><br><br>-->
+        <form method='post' id='form1'>
+            <div id="infodesc"><?php echo $this->_infoSlot1;echo $this->_infoSlot2; ?></div>
 
-<a id="inputSubmit" href="../../index.php/anim/updateSlot?id_slot=<?=$_GET['idSlot']?>"> Modifier </a><br></br>
+            <input id='inputSubmit' style='width:20%;' type='submit' name='updateSlot' value='Modifier'>
+        </form>
+
+<!--<a id="inputSubmit" href="../../index.php/anim/emargement?id_slot=<"?"=$_GET['idSlot']?>"> Imprimer Feuille d'Emargement </a><br><br>-->
 
 <a id="inputSubmit" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"> Cocher les présences </a><br><br>
 
