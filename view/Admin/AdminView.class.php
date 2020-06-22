@@ -95,13 +95,15 @@ class AdminView extends LisaeTemplateConnected {
 
     public function setListTheme($listTheme){
         $result ="";
-        var_dump($listTheme);
+        //var_dump($listTheme);
         foreach ($listTheme as $theme) {
             $result .=
             "<div class='row justify-content-center'> 
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
+                    <a  id='listActivity' href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+                    <a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
         $this->_listTheme = $result;
