@@ -34,9 +34,12 @@ class ActivityDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
+    public function update($id){
+        
+    }
     // requete pour modifier une activity d'un thème
-    public function update($idTheme) {
-        $sql = "UPDATE `activity` SET `id_activity`=?,`name`=?,`description`=?,`detailedDescription`=?,`image`=? WHERE id_theme = $idTheme";
+    public function updateActivity($name,$description,$detailedDescription, $image,$idTheme) {
+        $sql = "UPDATE `activity` SET `name`='$name',`description`='$description',`detailedDescription`='$detailedDescription',`image`='$image' WHERE id_theme = $idTheme";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
