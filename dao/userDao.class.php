@@ -226,7 +226,7 @@ class UserDao extends Dao{
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
@@ -241,7 +241,7 @@ class UserDao extends Dao{
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();

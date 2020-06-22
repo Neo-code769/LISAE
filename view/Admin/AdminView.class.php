@@ -96,6 +96,7 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
+            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
         }
         $this->_listCollab = $result;
@@ -110,6 +111,7 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
+            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
         }
         $this->_listAnim = $result;
