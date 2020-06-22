@@ -82,7 +82,6 @@ class AnimatorView extends LisaeTemplateConnected {
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
                         </div>
                 </div>
-                <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
             <body>

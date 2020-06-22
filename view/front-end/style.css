@@ -56,7 +56,6 @@ p
 {
     display: flex;
     /*border-bottom: 4px solid rgba(69, 94, 207, 0.794);*/
-    padding-bottom: 2%;
 }
 
 .lifeline
@@ -93,7 +92,7 @@ p
 }
 
 #title {
-    padding-top: 1%;
+    padding-top: .5%;
     align-items: center;
 }
 
@@ -419,7 +418,7 @@ input {
 .btn-hover.color-1 {
   background-image: linear-gradient(to right, #a6e434, #a6e434, #ffffff, #ffffff);
   border: 5px solid #a6e434;
-  
+
 }
 
 .btn-hover.color-2 {

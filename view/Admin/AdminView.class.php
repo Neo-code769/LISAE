@@ -31,12 +31,11 @@ class AdminView extends LisaeTemplateConnected {
                         <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
                             <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Formation</button></a>
                             <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Session</button></a>
+                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
                             <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Mode Animateur</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
-                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
                         </div>
                 </div>
-                <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
             <body id="admin">
