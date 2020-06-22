@@ -377,4 +377,14 @@ class UserDao extends Dao{
             throw new LisaeException("Erreur",1);
         }   
     }
+    public function deleteThemeReferTo($idTheme) : void{
+        $sql = "DELETE FROM `referto` WHERE id_theme= $idTheme";
+        $exec = (Dao::getConnexion())->prepare($sql);
+         try {
+             $exec->execute();
+             var_dump($sql);
+         }catch (PDOException $e) {
+             throw new LisaeException("Erreur",1);
+         }
+     }
 }

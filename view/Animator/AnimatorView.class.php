@@ -35,9 +35,6 @@ class AnimatorView extends LisaeTemplateConnected {
             case "infoSlot": include "infoSlot.phtml";
             break;
 
-            case "updateSlot": include "updateSlot.phtml";
-            break;
-
             case "infoSlotEloce": include "infoSlotEloce.phtml";
             break;
 
@@ -164,27 +161,13 @@ class AnimatorView extends LisaeTemplateConnected {
 
     public function setInfoSlot($element){
         $result1 = 
-        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br><br>";
         $result2 =
-        "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
-        $result2 .=
-        "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
+        "<div style='margin-left: 5%;'><label>Information</label><input type='text' name='information' style='width:40%;' value='".$element["information"]."'><br><br></div><br>
+        <div style='margin-left: 5%;'><label>Lieu</label><input type='text' name='place' style='width:40%;' value='".$element["place"]."'><br><br></div>";
+        
         $this->_infoSlot1 = $result1;
         $this->_infoSlot2 = $result2;
-    }
-
-    public function setUpdateSlot($element) {
-        $result =
-        "<form method='post' id='form1'>
-            <label>Informations :</label><br>
-            <input type='text' name='information' style='width:40%;'><br><br>
-            <label>Lieu :</label><br>
-            <input type='text' name='place' style='width:40%;'><br><br>
-
-            <input id='inputSubmit' style='width:20%;' type='submit' name='updateSlot' value='Modifier'>
-        </form>
-        ";
-        $this->_updateSlot = $result;
     }
 
      public function setListForActivity($element) {

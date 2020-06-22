@@ -162,8 +162,10 @@ class AdminController extends MainController
        (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
        header('Location:../../index.php/admin/listTheme');
       } elseif (isset($_POST['deleteTheme'])) {
-
-      
+        (new ThemeDao())->delete($_GET["idTheme"]);
+        (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
+        (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
+        header('Location:../../index.php/admin/listTheme');    
      } else {
        $adminview = new AdminView();
        $themeDao = new ThemeDao;
