@@ -35,7 +35,7 @@ class ActivityDao extends Dao {
         }
     }
     public function update($id){
-        
+
     }
     // requete pour modifier une activity d'un thème
     public function updateActivity($name,$description,$detailedDescription, $image,$idTheme) {
@@ -50,8 +50,8 @@ class ActivityDao extends Dao {
     }
     // requete pour modifier une activity recurrente d'un thème
 
-    public function updateRecurringActivity($idTheme) {
-        $sql = "UPDATE `activity` SET `id_activity`=(SELECT MAX(id_activity) from activity), id_theme =(SELECT id_theme from theme where id_theme = $idTheme)";
+    public function updateRecurringActivity($idActivity) {
+        $sql = "UPDATE `activity` SET `id_activity`=(SELECT MAX(id_activity) from activity), id_theme =(SELECT id_theme from theme where id_activity = $idActivity)";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
@@ -62,9 +62,9 @@ class ActivityDao extends Dao {
     }
 
     // requete pour supprimer un activity d'un thème
-    public function delete($idTheme) : void{
+    public function delete($idActivity) : void{
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("DELETE FROM `activity` WHERE id_theme= $idTheme");
+        $requete = $pdo->prepare("DELETE FROM `activity` WHERE id_activity= $idActivity");
         try {
             $requete->execute();
         }catch (PDOException $e) {
