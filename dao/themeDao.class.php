@@ -300,7 +300,6 @@ class ThemeDao extends Dao {
         $exec = (Dao::getConnexion())->prepare($sql);
         try {
             $exec->execute();
-            var_dump($sql);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
@@ -308,12 +307,14 @@ class ThemeDao extends Dao {
     }
     public function update($id) : void{
     }
+
     // requete pour supprimer un thème
     public function delete($idTheme) : void{
-        $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("DELETE FROM `theme` WHERE id_theme= $idTheme");
+       $sql = "DELETE FROM `theme` WHERE id_theme= $idTheme";
+       $exec = (Dao::getConnexion())->prepare($sql);
         try {
-            $requete->execute();
+            $exec->execute();
+            var_dump($sql);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }

@@ -109,7 +109,16 @@ class ActivityDao extends Dao {
     public function get(int $id){
 
     }     
-
+    public function deleteThemeActivity($idTheme) : void{
+        $sql = "DELETE FROM `recurring_activity` WHERE id_theme= $idTheme";
+        $exec = (Dao::getConnexion())->prepare($sql);
+         try {
+             $exec->execute();
+             var_dump($sql);
+         }catch (PDOException $e) {
+             throw new LisaeException("Erreur",1);
+         }
+     }
 }
 
 
