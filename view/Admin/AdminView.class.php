@@ -10,6 +10,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_listActivity;
     private $_nameTheme;
     private $_colorTheme;
+    private $_infoActivity;
 
     public function __construct()
     {
@@ -78,6 +79,9 @@ class AdminView extends LisaeTemplateConnected {
             break;
             
             case "listActivity": include "listActivity.phtml";
+            break;
+
+            case "infoActivity": include "infoActivity.phtml";
             break;
 
             default: include "dashboard.php";
@@ -187,17 +191,23 @@ class AdminView extends LisaeTemplateConnected {
                 <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                     ".$theme->get_name()."
                 </div>
-        </div>";
+        </div><br>";
         $result .=
-        "<div style='margin-left: 5%;'><label>Nom</label>".$theme->get_name()."</div><br>";
+            "<div style='margin-left: 5%;'>
+                <label>Nom</label>
+                <input type='text' name='name' value='".$activity->get_name()."'>
+            </div><br>";
         $result .=
-            "<div style='margin-left: 5%;'><label>Color</label><input type='color' name='color' value='".$theme->get_color()."'></div><br>";    
+            "<div style='margin-left: 5%;'>
+                <label>Description</label>
+                <input type='text' name='description' value='".$activity->get_description()."'>
+            </div><br>";
         $result .=
-            "<div style='margin-left: 5%;'><label>Description</label><input type='text' name='description' value='".$theme->get_description()."'</div><br>";
-        $result .=
-            "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
-    
-    $this->_infoTheme = $result;
+            "<div style='margin-left: 5%;'>
+                <label>Description détaillée</label>
+                <input type='text' name='detailedDescription' value='".$activity->get_detailedDescription()."'>
+            </div><br>";   
+    $this->_infoActivity = $result;
 }
 
 }   

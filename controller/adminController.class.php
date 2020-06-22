@@ -23,7 +23,8 @@ class AdminController extends MainController
       "infoTheme" => 41,
       "deleteCollab"=>42,
       "deleteAnim"=>43,
-      "listActivity"=>44
+      "listActivity"=>44,
+      "infoActivity"=>45
     ];
     parent::__construct();
   }
@@ -213,7 +214,7 @@ class AdminController extends MainController
       //infoActivity
       case 45:
         if (isset($_POST['updateTheme'])){ 
-          (new ThemeDao())->update($_GET["idTheme"]);
+          //(new ThemeDao())->update($_GET["idTheme"]);
           //header('Location:../../index.php/admin/dashboard');
         }else{
           $adminview = new AdminView();
@@ -221,14 +222,15 @@ class AdminController extends MainController
           $listTheme = $themeDao->getListTheme();
           foreach( $listTheme as $theme) {
             foreach( $theme->get_activity() as $activity) {
-              if ($activity -> get_idActivity() == $_GET['idActivity']){
+              if ($activity->get_idActivity() == $_GET['idActivity']){
                 $infoActivity = $activity;
-                $infoTheme = $activity;
+                $infoTheme = $theme;
               }
             }
           }
+          //var_dump($infoTheme, $infoActivity);
           $adminview->setInfoActivity($infoTheme, $infoActivity);
-          $adminview->run("infoTheme");
+          $adminview->run("infoActivity");
         }
       break;
 
