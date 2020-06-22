@@ -25,8 +25,7 @@ class ActivityDao extends Dao {
     public function insertRecurringActivity($idTheme) : void	
     {
         $sql = ("INSERT INTO `recurring_Activity` VALUES
-        ( (SELECT MAX(id_activity) from activity),
-         (SELECT id_theme from theme where id_theme = $idTheme))");
+        ((SELECT MAX(id_activity) from activity),$idTheme)");
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
