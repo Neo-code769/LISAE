@@ -437,6 +437,8 @@ input {
   filter: blur(10px);
 }
 
+/*****************************/
+
 table {
     border: solid;
     width: 100%;
@@ -449,4 +451,11 @@ td, th {
 
 #admin{
     border: red solid 5px;
+}
+
+#listUser
+{
+    margin-left: 39%;
+    margin-top: 2%;
+    margin-bottom: 15%;
 }
