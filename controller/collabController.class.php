@@ -171,7 +171,10 @@ class CollabController extends MainController
                     "nActivity" => $activity->get_name(),
                     "information" => $slot->get_information(),
                     "place" => $slot->get_place(),
-                    "idActivity" => $activity->get_idActivity()
+                    "idActivity" => $activity->get_idActivity(),
+                    "image" => $activity->get_image(),
+                    "description"=> $activity->get_description(),
+                    "detailedDescription"=>$activity->get_detailedDescription()
                     ]
                     ;
                     //var_dump($slotInfo);

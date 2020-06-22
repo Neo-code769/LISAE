@@ -122,9 +122,16 @@ class CollabView extends LisaeTemplateConnected {
         $result = 
         "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
         $result .=
+        "<div style='margin-left: 5%;'><label></label><img src='".$element['image']."'</img></div>";
+        $result .=
+        "<div style='margin-left: 5%;'><label>Description</label><p id='desc'>".$element['description']."</p></div>";
+        $result .=
+        "<div style='margin-left: 5%;'><label>Description détaillée</label><p id='desc'>".$element['detailedDescription']."</p></div>";
+        $result .=
         "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
         $result .=
         "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$element['place']."</p></div>";
+      
         $this->_infoSlot = $result;
     }
      public function setListForActivity($element) {

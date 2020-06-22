@@ -83,7 +83,7 @@ class AdminController extends MainController
         
           if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
           {
-            $destinationImg="./images/$fichierUpload";
+            $destinationImg="/images/$fichierUpload";
                 copy($cheminUpload,$destinationImg);
                 unlink($cheminUpload);
           }

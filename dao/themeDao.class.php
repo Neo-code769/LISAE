@@ -53,15 +53,17 @@ class ThemeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
+                    $image = $donnees['image'];
                     $slot = $this->getListSlot($idActivity);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
-                    
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot, $image);
+                   
                     $list[] = $activity;
                 }
             } catch (PDOException $e) {
                 echo " ERREUR REQUETE : " . $e->getMessage();
             die();
             }
+           
         return $list;
     }
     public function getListSlot($idActivity)
@@ -146,8 +148,9 @@ class ThemeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
+                    $image = $donnees['image'];
                     $slot = $this->getMyListSlotCollab($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,$slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription,$slot,$image);
                     
                     $list[] = $activity;
                 }
@@ -236,8 +239,9 @@ class ThemeDao extends Dao {
                     $name = $donnees['name'];
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
+                    $image = $donnees['image'];
                     $slot = $this->getMyListSlotAnim($idActivity, $idUser);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot);
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot, $image);
                     
                     $list[] = $activity;
                 }
