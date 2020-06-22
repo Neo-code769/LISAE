@@ -87,6 +87,19 @@ class SlotDao extends Dao {
         }
     }
 
+    public function updateSlotInfo($info, $place) {
+        $sql = 
+        "UPDATE host SET information = $info, lieu = $place";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            var_dump($e->getMessage());
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
     public function get(int $id) {
         return $tab=[];
     }	

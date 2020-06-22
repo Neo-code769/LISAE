@@ -126,18 +126,6 @@ class AdminController extends MainController
         $collabList = $userDao->getCollab();
         $result = $adminview->getListCollab($collabList);
 
-        /*if (isset($_POST['deleteUser'])){
-          $users= $userDao->getCollab();
-            foreach ($users as $user) {
-              $idUsers[] = $user['id_user'];
-            }
-          if(isset($_POST['check'])) {
-            foreach($_POST['check'] as $idUser){
-              $userDao->delete($user);
-            } 
-          }
-          header("Refresh:0;");
-        }*/
         
         $adminview->run("collabManagement");
       break;
@@ -148,13 +136,6 @@ class AdminController extends MainController
         $user = new UserDao;
         $animList = $user->getAnim();
         $result = $adminview->getListAnim($animList);
-
-        if (isset($_POST['deleteUser'])){
-          foreach($_POST['check'] as $user['id_user']){
-            $user->delete($user['id_user']);
-          }
-        }
-
         $adminview->run("animManagement");
       break;
 
@@ -163,8 +144,6 @@ class AdminController extends MainController
         $adminview = new AdminView();
         $adminview->run("dashboard");
       break;
-
-      
 
       // Suppression Collaborateur
       case 40:

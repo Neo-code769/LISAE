@@ -157,7 +157,7 @@ input {
 
 #form2
 {
-    width: 80%;
+    width: 95%;
 }
 
 #menu ul{
@@ -417,8 +417,7 @@ input {
 }
 
 .btn-hover.color-1 {
-  background-image: linear-gradient(to right, #4481ebc2, #40d32ccc, #40d32cc9, #4481ebc9);
-  box-shadow: 0 2px 5px 0 rgba(49, 196, 190, 0.75);
+  background-image: linear-gradient(to right, #44d431, #d5eea5);
 }
 
 .btn-hover.color-2 {

@@ -20,7 +20,8 @@ class AnimController extends MainController
       "infoSlot"=>27,
       "infoSlotEloce"=>28,
       "presence"=>29, 
-      "emargement"=>30
+      "emargement"=>30,
+      "updateSlot"=>31
     ];
     parent::__construct();
   }
@@ -355,6 +356,45 @@ class AnimController extends MainController
           $animView->run("emargement");
 
         break;
+
+        case 31:  // Modifier un créneaux d'activité
+          if (isset($_POST["updateSlot"])) {
+            (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place']);
+            header('Location:../../index.php/anim/infoSlot');
+          } else {
+              $animView = new AnimatorView();
+              //Pour l'affichage de l'info
+              $themeList = (new ThemeDao())->getListTheme();
+              $arr = [];
+              foreach ($themeList as $theme) {
+                  foreach ($theme->get_activity() as $activity) {
+                      foreach($activity->get_slot() as $slot){
+                        if ($slot->get_idSlot() == $_GET["id_slot"]) {
+                          $slotInfo= [
+                          "idslot"=> $slot->get_idSlot(),
+                          "color" => $theme->get_color(),
+                          "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                          "dtef" => $slot->get_slotDateTimeEndFormat(),
+                          "dts" => $slot->get_slotDateTimeStart(),
+                          "dte" => $slot->get_slotDateTimeEnd(),
+                          "nTheme" => $theme->get_name(),
+                          "nActivity" => $activity->get_name(),
+                          "information" => $slot->get_information(),
+                          "place" => $slot->get_place(),
+                          "idActivity" => $activity->get_idActivity()
+                          ]
+                          ;
+                          //var_dump($slotInfo);
+                        }
+                      }
+                  }
+              } 
+
+              $animView->setUpdateSlot($slotInfo);
+              $animView->run("updateSlot");
+          }
+        break;
+
     }
   }
 }
