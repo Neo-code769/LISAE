@@ -274,11 +274,14 @@ class UserDao extends Dao{
     public function getCollab() {
         $list = [];
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
+        $requete = $pdo->prepare("SELECT users.id_user, LastName, FirstName, PhoneNumber, mail, session_name 
+        FROM `users` INNER JOIN `tie` ON users.id_user = tie.id_user 
+        INNER JOIN `session` ON tie.id_session = session.id_session
+        WHERE `role` = 'Collaborator'");
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"], 'session'=> $donnees["session_name"]];
             }
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();

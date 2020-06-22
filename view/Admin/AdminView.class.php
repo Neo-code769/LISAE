@@ -10,6 +10,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_listActivity;
     private $_nameTheme;
     private $_colorTheme;
+    private $_infoActivity;
 
     public function __construct()
     {
@@ -27,15 +28,14 @@ class AdminView extends LisaeTemplateConnected {
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
                         
-                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Thèmes</button></a>
-                            <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Formation</button></a>
-                            <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Session</button></a>
-                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Mode Animateur</button></a>
-                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
-                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Gestion Compte</button></a>
+                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
+                            <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Formation</button></a>
+                            <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Session</button></a>
+                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
+                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Mode Animateur</button></a>
+                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
                         </div>
                 </div>
-                <div class="lifeline"></div>
             </header>
             <div id="margin"></div>
             <body id="admin">
@@ -78,6 +78,9 @@ class AdminView extends LisaeTemplateConnected {
             break;
             
             case "listActivity": include "listActivity.phtml";
+            break;
+
+            case "infoActivity": include "infoActivity.phtml";
             break;
 
             default: include "dashboard.php";
@@ -180,6 +183,31 @@ class AdminView extends LisaeTemplateConnected {
         $this->_listActivity = $result;
         $this->_nameTheme = $nameTheme;
     }
+
+    public function setInfoActivity($theme, $activity){
+        $result =
+        "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                    ".$theme->get_name()."
+                </div>
+        </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Nom</label>
+                <input type='text' name='name' value='".$activity->get_name()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Description</label>
+                <input type='text' name='description' value='".$activity->get_description()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Description détaillée</label>
+                <input type='text' name='detailedDescription' value='".$activity->get_detailedDescription()."'>
+            </div><br>";   
+    $this->_infoActivity = $result;
+}
 
 }   
 
