@@ -20,7 +20,10 @@ class AdminController extends MainController
       "animManagement"=>38,
       "dashboard"=>39,
       "listTheme" => 40,
-      "infoTheme" => 41
+      "infoTheme" => 41,
+      "deleteCollab"=>42,
+      "deleteAnim"=>43,
+      "listActivity"=>44
     ];
     parent::__construct();
   }
@@ -88,14 +91,13 @@ class AdminController extends MainController
           
           //var_dump($activity);
           (new ActivityDao())->insert($activity);
-          (new ActivityDao())->insertRecurringActivity($_POST['nTheme']);
+          (new ActivityDao())->insertRecurringActivity($_GET['idTheme']);
           
           //Redirection
           header("Location:../../admin/Dashboard");
 
         } else {
           $adminview = new AdminView();
-          $adminview->setThemeList((new ThemeDao())->getListTheme());
           $adminview->run("createActivity");
         }
       break;
@@ -121,16 +123,10 @@ class AdminController extends MainController
       //Gestion des comptes collaborateur
       case 37: 
         $adminview = new AdminView();
-        $user = new UserDao;
-        $collabList = $user->getCollab();
+        $userDao = new UserDao;
+        $collabList = $userDao->getCollab();
         $result = $adminview->getListCollab($collabList);
 
-        if (isset($_POST['deleteUser'])){
-          foreach($_POST['check'] as $user['id_user']){
-            $user->delete($user['id_user']);
-          }
-          header("Refresh:0;");
-        }
         
         $adminview->run("collabManagement");
       break;
@@ -141,13 +137,6 @@ class AdminController extends MainController
         $user = new UserDao;
         $animList = $user->getAnim();
         $result = $adminview->getListAnim($animList);
-
-        if (isset($_POST['deleteUser'])){
-          foreach($_POST['check'] as $user['id_user']){
-            $user->delete($user['id_user']);
-          }
-        }
-
         $adminview->run("animManagement");
       break;
 
@@ -165,30 +154,62 @@ class AdminController extends MainController
         $adminview->setListTheme($themeList);
         $adminview->run("listTheme");
       break;
-    
+         
     //info theme
     case 41:
-       if (isset($_POST['updateTheme'])){ 
-        (new ThemeDao())->update($_GET["idTheme"]);
-        //header('Location:../../index.php/admin/dashboard');
-      } 
+      if (isset($_POST['updateTheme'])){ 
+       (new ThemeDao())->update($_GET["idTheme"]);
+       //header('Location:../../index.php/admin/dashboard');
+     } 
+       $adminview = new AdminView();
+       $themeDao = new ThemeDao;
+       $listTheme = $themeDao->getListTheme();
+       foreach( $listTheme as $theme) {
+         if ($theme -> get_idTheme() == $_GET['idTheme']){
+           $infoTheme = $theme;
+         }
+       }
+       $adminview->setInfoTheme($infoTheme);
+       $adminview->run("infoTheme");
+     
+     break;
+
+      // Suppression Collaborateur
+      case 42:
+        $user = new UserDao;
+        $user->deleteParticipate($_GET['idUser']);
+        $user->deleteTie($_GET['idUser']);
+        $user->delete($_GET['idUser']);
+        echo 'Collaborateur Supprimer';
+        header("Location:../admin/accountManagement");
+
+      break;
+
+      // Suppression Animateur
+      case 43:
+        $user = new UserDao;
+        $user->deleteReferto($_GET['idUser']);
+        $user->deleteHost($_GET['idUser']);
+        $user->delete($_GET['idUser']);
+        echo 'Animateur Supprimer';
+        header("Location:../admin/accountManagement");
+
+      break;
+
+
+      //listActivity
+      case 44:
+        $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
         $adminview = new AdminView();
-        $themeDao = new ThemeDao;
-        $listTheme = $themeDao->getListTheme();
-        foreach( $listTheme as $theme) {
-          if ($theme -> get_idTheme() == $_GET['idTheme']){
-            $infoTheme = $theme;
-          }
-        }
-        $adminview->setInfoTheme($infoTheme);
-        $adminview->run("infoTheme");
-      
-    break;
+        $adminview->setListActivity($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
+        $adminview->run("listActivity");
+        //echo "hey";
+      break;
 
     default:
     (new LoginPageView())->run($content="");
       throw new LisaeException("Erreur");
     break;
   }
-  }
+}
 }

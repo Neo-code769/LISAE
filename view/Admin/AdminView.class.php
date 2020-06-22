@@ -7,6 +7,9 @@ class AdminView extends LisaeTemplateConnected {
     private $_listAnim;
     private $_listTheme;
     private $_infoTheme;
+    private $_listActivity;
+    private $_nameTheme;
+    private $_colorTheme;
 
     public function __construct()
     {
@@ -24,9 +27,7 @@ class AdminView extends LisaeTemplateConnected {
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
                         
-                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Liste des Thèmes</button></a>
-                            <a href="../admin/createTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Thème</button></a>
-                            <a href="../admin/createActivity"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Activité</button></a>
+                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Thèmes</button></a>
                             <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Formation</button></a>
                             <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Créer Session</button></a>
                             <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Mode Animateur</button></a>
@@ -75,6 +76,9 @@ class AdminView extends LisaeTemplateConnected {
 
             case "infoTheme": include "infoTheme.phtml";
             break;
+            
+            case "listActivity": include "listActivity.phtml";
+            break;
 
             default: include "dashboard.php";
 
@@ -106,9 +110,9 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
-                    <a  id='listActivity' 'href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
-                    <a  id='info' href='../admin/infoTheme?idTheme=".$theme->get_idTheme()."'><img src='../../images/info.png' alt='info d'un thème'></a>
-
+                    
+                    <a  id='listActivity' href='./listActivity?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+                    <a  id='info' href='../admin/infoTheme?idTheme=".$theme->get_idTheme()."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
         $this->_listTheme = $result;
@@ -122,7 +126,8 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
-            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
+            <td>".$user['session']."</td>
+            <td><a style='color: red;' href='../admin/deleteCollab?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
         }
         $this->_listCollab = $result;
@@ -137,7 +142,7 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
-            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
+            <td><a style='color: red;' href='../admin/deleteAnim?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
         }
         $this->_listAnim = $result;
@@ -159,6 +164,21 @@ class AdminView extends LisaeTemplateConnected {
                 "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
         
         $this->_infoTheme = $result;
+    }
+
+    public function setListActivity($nameTheme,$listActivity,$colorTheme){
+        $result ="";
+        //var_dump($listActivity);
+        foreach ($listActivity as $activity) {
+            $result .=
+            "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
+                    ".$activity->get_name()."
+                </div><a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
+            </div>";
+        }
+        $this->_listActivity = $result;
+        $this->_nameTheme = $nameTheme;
     }
 
 }   
