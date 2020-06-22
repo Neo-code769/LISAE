@@ -220,12 +220,13 @@ class UserDao extends Dao{
 
     // Recupere tous les collaborateurs
     public function getCollab() {
+        $list = [];
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
@@ -240,11 +241,12 @@ class UserDao extends Dao{
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
-                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["Lastname"], 'Firstname'=> $donnees["Firstname"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
+                $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
         }
+        return $list;
     }
 
     public function update($obj){

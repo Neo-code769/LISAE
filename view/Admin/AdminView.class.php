@@ -107,7 +107,6 @@ class AdminView extends LisaeTemplateConnected {
         $this->_listTheme = $result;
     }
     public function getListCollab($list) {
-        // TODO
         $result ="";
         foreach ($list as $user) {
             $result .="
@@ -116,13 +115,13 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
+            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
         }
         $this->_listCollab = $result;
     }
 
     public function getListAnim($list) {
-        // TODO
         $result ="";
         foreach ($list as $user) {
             $result .="
@@ -131,6 +130,7 @@ class AdminView extends LisaeTemplateConnected {
             <td>".$user['Lastname']."</td>
             <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
+            <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
         }
         $this->_listAnim = $result;

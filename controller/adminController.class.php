@@ -120,12 +120,33 @@ class AdminController extends MainController
       //Gestion des comptes collaborateur
       case 37: 
         $adminview = new AdminView();
+        $user = new UserDao;
+        $collabList = $user->getCollab();
+        $result = $adminview->getListCollab($collabList);
+
+        if (isset($_POST['deleteUser'])){
+          foreach($_POST['check'] as $user['id_user']){
+            $user->delete($user['id_user']);
+          }
+          header("Refresh:0;");
+        }
+        
         $adminview->run("collabManagement");
       break;
 
       //Gestion des comptes animateur
       case 38: 
         $adminview = new AdminView();
+        $user = new UserDao;
+        $animList = $user->getAnim();
+        $result = $adminview->getListAnim($animList);
+
+        if (isset($_POST['deleteUser'])){
+          foreach($_POST['check'] as $user['id_user']){
+            $user->delete($user['id_user']);
+          }
+        }
+
         $adminview->run("animManagement");
       break;
 
