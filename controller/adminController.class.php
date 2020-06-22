@@ -19,7 +19,8 @@ class AdminController extends MainController
       "collabManagement"=>37,
       "animManagement"=>38,
       "dashboard"=>39,
-      "listTheme" => 40
+      "listTheme" => 40,
+      "infoTheme" => 41
     ];
     parent::__construct();
   }
@@ -164,13 +165,30 @@ class AdminController extends MainController
         $adminview->setListTheme($themeList);
         $adminview->run("listTheme");
       break;
-      default:
-      (new LoginPageView())->run($content="");
-        throw new LisaeException("Erreur");
-      break;
-    }
+    
+    //info theme
+    case 41:
+       if (isset($_POST['updateTheme'])){ 
+        (new ThemeDao())->update($_GET["idTheme"]);
+        //header('Location:../../index.php/admin/dashboard');
+      } 
+        $adminview = new AdminView();
+        $themeDao = new ThemeDao;
+        $listTheme = $themeDao->getListTheme();
+        foreach( $listTheme as $theme) {
+          if ($theme -> get_idTheme() == $_GET['idTheme']){
+            $infoTheme = $theme;
+          }
+        }
+        $adminview->setInfoTheme($infoTheme);
+        $adminview->run("infoTheme");
+      
+    break;
 
-    //
-
+    default:
+    (new LoginPageView())->run($content="");
+      throw new LisaeException("Erreur");
+    break;
+  }
   }
 }

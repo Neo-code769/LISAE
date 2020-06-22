@@ -73,6 +73,9 @@ class AdminView extends LisaeTemplateConnected {
             case "listTheme": include "listTheme.phtml";
             break;
 
+            case "infoTheme": include "infoTheme.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }
@@ -96,12 +99,16 @@ class AdminView extends LisaeTemplateConnected {
 
     public function setListTheme($listTheme){
         $result ="";
+        //var_dump($listTheme);
         foreach ($listTheme as $theme) {
             $result .=
             "<div class='row justify-content-center'> 
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
+                    <a  id='listActivity' 'href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+                    <a  id='info' href='../admin/infoTheme?idTheme=".$theme->get_idTheme()."'><img src='../../images/info.png' alt='info d'un thème'></a>
+
             </div>";
         }
         $this->_listTheme = $result;
@@ -113,7 +120,7 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>".$user['PhoneNumber']."</td>
+            <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
@@ -128,15 +135,14 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>".$user['PhoneNumber']."</td>
+            <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass'></td>
         </tr>";
         }
         $this->_listAnim = $result;
     }
-    public function setInfoTheme($infoTheme){
-        foreach ($infoTheme as $theme) {
+    public function setInfoTheme($theme){
             $result =
             "<div class='row justify-content-center'> 
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
@@ -144,17 +150,17 @@ class AdminView extends LisaeTemplateConnected {
                     </div>
             </div>";
             $result .=
-                "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$theme->get_color()."</p></div><br>";
+            "<div style='margin-left: 5%;'><label>Nom</label><input type='text' name='name' value='".$theme->get_name()."'></div><br>";
             $result .=
-                "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$theme->get_name()."</p></div>";
+                "<div style='margin-left: 5%;'><label>Color</label><input type='color' name='color' value='".$theme->get_color()."'></div><br>";    
             $result .=
-                "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$theme->get_description()."</p></div><br>";
+                "<div style='margin-left: 5%;'><label>Description</label><input type='text' name='description' value='".$theme->get_description()."'</div><br>";
             $result .=
-                "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$theme->get_detailsDescription()."</p></div>";
-            
-        }
+                "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
+        
         $this->_infoTheme = $result;
     }
+
 }   
 
 ?>

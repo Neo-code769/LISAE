@@ -293,15 +293,17 @@ class ThemeDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
+
     // requete pour modifier un thème
     public function update($idTheme) : void{
-        $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("UPDATE `theme` SET `id_theme`=?,`name`=?,`color`=?,`image`=?,`description`=?,`detailedDescription`=? WHERE id_theme= $idTheme");
+        $sql = "UPDATE `theme` SET id_theme=?, `name`=?,`color`=?,`description`=?,`detailedDescription`=? WHERE id_theme= $idTheme";
+        $exec = (Dao::getConnexion())->prepare($sql);
         try {
-            $requete->execute();
+            $exec->execute();
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
+        
     }
 
     // requete pour supprimer un thème
