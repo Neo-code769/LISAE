@@ -161,11 +161,11 @@ class AnimatorView extends LisaeTemplateConnected {
 
     public function setInfoSlot($element){
         $result1 = 
-        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br>";
+        "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br><br>";
         $result2 =
-        "<div style='margin-left: 5%;'><label>Information</label><input type='text' name='information' style='width:40%;' value='".$element["information"]."'><br><br></div><br>";
-        $result2 .=
-        "<div style='margin-left: 5%;'><label>Lieu</label><input type='text' name='place' style='width:40%; value='".$element["place"]."'><br><br></div>";
+        "<div style='margin-left: 5%;'><label>Information</label><input type='text' name='information' style='width:40%;' value='".$element["information"]."'><br><br></div><br>
+        <div style='margin-left: 5%;'><label>Lieu</label><input type='text' name='place' style='width:40%;' value='".$element["place"]."'><br><br></div>";
+        
         $this->_infoSlot1 = $result1;
         $this->_infoSlot2 = $result2;
     }

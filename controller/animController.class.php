@@ -191,8 +191,8 @@ class AnimController extends MainController
           (new SlotDao())->deleteSlotHost($_GET["idSlot"]);
           header('Location:../../index.php/anim/infoSlot');
         }elseif(isset($_POST["updateSlot"])){
-            (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['id_slot']);
-            header('Location:../../index.php/anim/dashboard');
+            (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['idSlot']);
+            header('Refresh: 0');
         } else {
           $animView = new AnimatorView();
           $themeList = (new ThemeDao())->getListTheme();
@@ -215,7 +215,7 @@ class AnimController extends MainController
                       "idActivity" => $activity->get_idActivity()
                       ]
                       ;
-                      //var_dump($slotInfo);
+                      // var_dump($slotInfo);
                     }
                   }
               }
