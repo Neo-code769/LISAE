@@ -35,6 +35,9 @@ class AnimatorView extends LisaeTemplateConnected {
             case "infoSlot": include "infoSlot.phtml";
             break;
 
+            case "updateSlot": include "updateSlot.phtml";
+            break;
+
             case "infoSlotEloce": include "infoSlotEloce.phtml";
             break;
 
@@ -170,6 +173,20 @@ class AnimatorView extends LisaeTemplateConnected {
         $this->_infoSlot2 = $result2;
     }
 
+    public function setUpdateSlot($element) {
+        $result =
+        "<form method='post' id='form1'>
+            <label>Informations :</label><br>
+            <input type='text' name='information' style='width:40%;'><br><br>
+            <label>Lieu :</label><br>
+            <input type='text' name='place' style='width:40%;'><br><br>
+
+            <input id='inputSubmit' style='width:20%;' type='submit' name='updateSlot' value='Modifier'>
+        </form>
+        ";
+        $this->_updateSlot = $result;
+    }
+
      public function setListForActivity($element) {
         setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
         $result = "";
@@ -193,6 +210,7 @@ class AnimatorView extends LisaeTemplateConnected {
                 <td>".$user['Firstname']."</td>
                 <td>".$user['Lastname']."</td>
                 <td>".$user['PhoneNumber']."</td>
+                <td>".$user['mail']."</td>
                 <td>".$user['session_name']."</td>
                 <td><input type='checkbox' name='check[]' value=".$user['id_user']." class='checkClass' $check ></td>
             </tr>";
