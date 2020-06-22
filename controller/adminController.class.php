@@ -215,9 +215,9 @@ class AdminController extends MainController
 
       //infoActivity
       case 45:
-        if (isset($_POST['updateTheme'])){ 
-          //(new ThemeDao())->update($_GET["idTheme"]);
-          //header('Location:../../index.php/admin/dashboard');
+        if (isset($_POST['updateActivity'])){ 
+          (new ActivityDao())->updateActivity($_POST["name"],$_POST["description"],$_POST["detailedDescription"], null,$_GET['idActivity']);
+          header("refresh:0");
         }else{
           $adminview = new AdminView();
           $themeDao = new ThemeDao;
