@@ -6,6 +6,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_listCollab;
     private $_listAnim;
     private $_listTheme;
+    private $_infoTheme;
 
     public function __construct()
     {
@@ -95,7 +96,6 @@ class AdminView extends LisaeTemplateConnected {
 
     public function setListTheme($listTheme){
         $result ="";
-        var_dump($listTheme);
         foreach ($listTheme as $theme) {
             $result .=
             "<div class='row justify-content-center'> 
@@ -135,7 +135,26 @@ class AdminView extends LisaeTemplateConnected {
         }
         $this->_listAnim = $result;
     }
-
+    public function setInfoTheme($infoTheme){
+        foreach ($infoTheme as $theme) {
+            $result =
+            "<div class='row justify-content-center'> 
+                    <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                        ".$theme->get_name()."
+                    </div>
+            </div>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$theme->get_color()."</p></div><br>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$theme->get_name()."</p></div>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$theme->get_description()."</p></div><br>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Lieu</label><p id='desc'>".$theme->get_detailsDescription()."</p></div>";
+            
+        }
+        $this->_infoTheme = $result;
+    }
 }   
 
 ?>
