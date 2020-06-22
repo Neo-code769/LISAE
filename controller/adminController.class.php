@@ -22,7 +22,8 @@ class AdminController extends MainController
       "deleteCollab"=>40,
       "deleteAnim"=>41,
       "listTheme" => 42,
-      "listActivity"=>43
+      "listActivity"=>43,
+      "infoActivity"=>44
     ];
     parent::__construct();
   }
@@ -204,6 +205,14 @@ class AdminController extends MainController
         //echo "hey";
       break;
 
+      //infoActivity
+      case 44:
+        $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
+        $adminview = new AdminView();
+        $adminview->setListActivity($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
+        $adminview->run("listActivity");
+        //echo "hey";
+      break;
 
       default:
       (new LoginPageView())->run($content="");
