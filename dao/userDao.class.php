@@ -220,6 +220,7 @@ class UserDao extends Dao{
 
     // Recupere tous les collaborateurs
     public function getCollab() {
+        $list = [];
         $pdo = Dao::getConnexion();
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Collaborator'");
         try {
@@ -245,6 +246,7 @@ class UserDao extends Dao{
         } catch (PdoException $e) {
             echo " ERREUR REQUETE : " . $e->getMessage();
         }
+        return $list;
     }
 
     public function update($obj){

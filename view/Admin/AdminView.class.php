@@ -88,7 +88,6 @@ class AdminView extends LisaeTemplateConnected {
     }
 
     public function getListCollab($list) {
-        // TODO
         $result ="";
         foreach ($list as $user) {
             $result .="
@@ -103,7 +102,6 @@ class AdminView extends LisaeTemplateConnected {
     }
 
     public function getListAnim($list) {
-        // TODO
         $result ="";
         foreach ($list as $user) {
             $result .="

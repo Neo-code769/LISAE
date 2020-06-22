@@ -119,6 +119,12 @@ class AdminController extends MainController
       //Gestion des comptes collaborateur
       case 37: 
         $adminview = new AdminView();
+        $user = new UserDao;
+        $collabList = $user->getCollab();
+        $result = $adminview->getListCollab($collabList);
+        echo $result;
+
+        
         $adminview->run("collabManagement");
       break;
 
