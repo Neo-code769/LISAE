@@ -10,6 +10,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_listActivity;
     private $_nameTheme;
     private $_colorTheme;
+    private $_infoActivity;
 
     public function __construct()
     {
@@ -78,6 +79,9 @@ class AdminView extends LisaeTemplateConnected {
             break;
             
             case "listActivity": include "listActivity.phtml";
+            break;
+
+            case "infoActivity": include "infoActivity.phtml";
             break;
 
             default: include "dashboard.php";
@@ -180,6 +184,31 @@ class AdminView extends LisaeTemplateConnected {
         $this->_listActivity = $result;
         $this->_nameTheme = $nameTheme;
     }
+
+    public function setInfoActivity($theme, $activity){
+        $result =
+        "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                    ".$theme->get_name()."
+                </div>
+        </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Nom</label>
+                <input type='text' name='name' value='".$activity->get_name()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Description</label>
+                <input type='text' name='description' value='".$activity->get_description()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Description détaillée</label>
+                <input type='text' name='detailedDescription' value='".$activity->get_detailedDescription()."'>
+            </div><br>";   
+    $this->_infoActivity = $result;
+}
 
 }   
 
