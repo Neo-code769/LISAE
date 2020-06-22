@@ -6,6 +6,9 @@ class AdminView extends LisaeTemplateConnected {
     private $_listCollab;
     private $_listAnim;
     private $_listTheme;
+    private $_listActivity;
+    private $_nameTheme;
+    private $_colorTheme;
 
     public function __construct()
     {
@@ -72,6 +75,9 @@ class AdminView extends LisaeTemplateConnected {
             case "listTheme": include "listTheme.phtml";
             break;
 
+            case "listActivity": include "listActivity.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }
@@ -102,7 +108,7 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
-                    <a  id='listActivity' href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+                    <a  id='listActivity' href='./listActivity?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
                     <a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
@@ -136,6 +142,21 @@ class AdminView extends LisaeTemplateConnected {
         </tr>";
         }
         $this->_listAnim = $result;
+    }
+
+    public function setListActivity($nameTheme,$listActivity,$colorTheme){
+        $result ="";
+        //var_dump($listActivity);
+        foreach ($listActivity as $activity) {
+            $result .=
+            "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
+                    ".$activity->get_name()."
+                </div><a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
+            </div>";
+        }
+        $this->_listActivity = $result;
+        $this->_nameTheme = $nameTheme;
     }
 
 }   

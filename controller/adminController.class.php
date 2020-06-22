@@ -19,7 +19,8 @@ class AdminController extends MainController
       "collabManagement"=>37,
       "animManagement"=>38,
       "dashboard"=>39,
-      "listTheme" => 40
+      "listTheme" => 40,
+      "listActivity"=>42
     ];
     parent::__construct();
   }
@@ -164,6 +165,17 @@ class AdminController extends MainController
         $adminview->setListTheme($themeList);
         $adminview->run("listTheme");
       break;
+
+      //listActivity
+      case 42:
+        $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
+        $adminview = new AdminView();
+        $adminview->setListActivity($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
+        $adminview->run("listActivity");
+        //echo "hey";
+      break;
+
+
       default:
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");
