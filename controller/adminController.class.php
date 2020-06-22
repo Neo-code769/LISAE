@@ -20,7 +20,8 @@ class AdminController extends MainController
       "animManagement"=>38,
       "dashboard"=>39,
       "deleteCollab"=>40,
-      "deleteAnim"=>41
+      "deleteAnim"=>41,
+      "listTheme" => 42
     ];
     parent::__construct();
   }
@@ -163,10 +164,7 @@ class AdminController extends MainController
         $adminview->run("dashboard");
       break;
 
-      default:
-      (new LoginPageView())->run($content="");
-        throw new LisaeException("Erreur");
-      break;
+      
 
       // Suppression Collaborateur
       case 40:
@@ -189,7 +187,19 @@ class AdminController extends MainController
         header("Location:../admin/accountManagement");
 
       break;
-
+      
+      // liste des thèmes
+      case 42:
+        $adminview = new AdminView();
+        $themeDao = new ThemeDao();
+        $themeList = $themeDao->getListTheme();
+        $adminview->setListTheme($themeList);
+        $adminview->run("listTheme");
+      break;
+      default:
+      (new LoginPageView())->run($content="");
+        throw new LisaeException("Erreur");
+      break;
     }
 
   }
