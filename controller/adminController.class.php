@@ -158,9 +158,12 @@ class AdminController extends MainController
     //info theme
     case 41:
       if (isset($_POST['updateTheme'])){ 
-       (new ThemeDao())->update($_GET["idTheme"]);
-       //header('Location:../../index.php/admin/dashboard');
-     } 
+       (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
+       header('Location:../../index.php/admin/listTheme');
+      } elseif (isset($_POST['deleteTheme'])) {
+
+      
+     } else {
        $adminview = new AdminView();
        $themeDao = new ThemeDao;
        $listTheme = $themeDao->getListTheme();
@@ -169,9 +172,10 @@ class AdminController extends MainController
            $infoTheme = $theme;
          }
        }
+      
        $adminview->setInfoTheme($infoTheme);
        $adminview->run("infoTheme");
-     
+      }
      break;
 
       // Suppression Collaborateur
