@@ -7,7 +7,9 @@
     <form method="post" enctype="multipart/form-data">
         <fieldset>
             <label>Thème associé :</label> 
-            <?php echo $_GET['nTheme'];?><br><br>
+            <div style="background-color:<?php echo $_GET['colorTheme'];?>;border-radius:5px;width:20%;margin-left:40%">
+                <?php echo $_GET['nTheme'];?>
+            </div><br>
 
             <label>Nom de l'activité :</label> 
             <input type="text" name="name" required><br><br>
@@ -23,6 +25,7 @@
 
             <input id="inputSubmit" style="width: 20%;" type="submit" name="createActivity" value="Valider"><br><br>
             <input id="inputSubmit" style="width: 20%;" type="reset" value="Annuler">
+            <a href="javascript:history.back()"><input id="inputSubmit" style="width: 20%;" value="Retour"></a>
         </fieldset>
     </form>
 </div>

@@ -6,6 +6,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_listCollab;
     private $_listAnim;
     private $_listTheme;
+    private $_infoTheme;
     private $_listActivity;
     private $_nameTheme;
     private $_colorTheme;
@@ -73,6 +74,9 @@ class AdminView extends LisaeTemplateConnected {
             case "listTheme": include "listTheme.phtml";
             break;
 
+            case "infoTheme": include "infoTheme.phtml";
+            break;
+            
             case "listActivity": include "listActivity.phtml";
             break;
 
@@ -106,8 +110,9 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
+                    
                     <a  id='listActivity' href='./listActivity?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
-                    <a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
+                    <a  id='info' href='../admin/infoTheme?idTheme=".$theme->get_idTheme()."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
         $this->_listTheme = $result;
@@ -119,7 +124,7 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>".$user['PhoneNumber']."</td>
+            <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td>".$user['session']."</td>
             <td><a style='color: red;' href='../admin/deleteCollab?idUser=".$user['id_user']."'> X </a></td>
@@ -135,12 +140,30 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>".$user['PhoneNumber']."</td>
+            <td>0".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td><a style='color: red;' href='../admin/deleteAnim?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
         }
         $this->_listAnim = $result;
+    }
+    public function setInfoTheme($theme){
+            $result =
+            "<div class='row justify-content-center'> 
+                    <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                        ".$theme->get_name()."
+                    </div>
+            </div>";
+            $result .=
+            "<div style='margin-left: 5%;'><label>Nom</label><input type='text' name='name' value='".$theme->get_name()."'></div><br>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Color</label><input type='color' name='color' value='".$theme->get_color()."'></div><br>";    
+            $result .=
+                "<div style='margin-left: 5%;'><label>Description</label><input type='text' name='description' value='".$theme->get_description()."'</div><br>";
+            $result .=
+                "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
+        
+        $this->_infoTheme = $result;
     }
 
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
@@ -151,7 +174,7 @@ class AdminView extends LisaeTemplateConnected {
             "<div class='row justify-content-center'> 
                 <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
                     ".$activity->get_name()."
-                </div><a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
+                </div><a  id='info' href='./infoActivity?idActivity=".$activity->get_idActivity()."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
         }
         $this->_listActivity = $result;

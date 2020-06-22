@@ -19,10 +19,11 @@ class AdminController extends MainController
       "collabManagement"=>37,
       "animManagement"=>38,
       "dashboard"=>39,
-      "deleteCollab"=>40,
-      "deleteAnim"=>41,
-      "listTheme" => 42,
-      "listActivity"=>43
+      "listTheme" => 40,
+      "infoTheme" => 41,
+      "deleteCollab"=>42,
+      "deleteAnim"=>43,
+      "listActivity"=>44
     ];
     parent::__construct();
   }
@@ -145,8 +146,40 @@ class AdminController extends MainController
         $adminview->run("dashboard");
       break;
 
-      // Suppression Collaborateur
+      // liste des thèmes
       case 40:
+        $adminview = new AdminView();
+        $themeDao = new ThemeDao();
+        $themeList = $themeDao->getListTheme();
+        $adminview->setListTheme($themeList);
+        $adminview->run("listTheme");
+      break;
+         
+    //info theme
+    case 41:
+      if (isset($_POST['updateTheme'])){ 
+       (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
+       header('Location:../../index.php/admin/listTheme');
+      } elseif (isset($_POST['deleteTheme'])) {
+
+      
+     } else {
+       $adminview = new AdminView();
+       $themeDao = new ThemeDao;
+       $listTheme = $themeDao->getListTheme();
+       foreach( $listTheme as $theme) {
+         if ($theme -> get_idTheme() == $_GET['idTheme']){
+           $infoTheme = $theme;
+         }
+       }
+      
+       $adminview->setInfoTheme($infoTheme);
+       $adminview->run("infoTheme");
+      }
+     break;
+
+      // Suppression Collaborateur
+      case 42:
         $user = new UserDao;
         $user->deleteParticipate($_GET['idUser']);
         $user->deleteTie($_GET['idUser']);
@@ -157,7 +190,7 @@ class AdminController extends MainController
       break;
 
       // Suppression Animateur
-      case 41:
+      case 43:
         $user = new UserDao;
         $user->deleteReferto($_GET['idUser']);
         $user->deleteHost($_GET['idUser']);
@@ -166,18 +199,10 @@ class AdminController extends MainController
         header("Location:../admin/accountManagement");
 
       break;
-      
-      // liste des thèmes
-      case 42:
-        $adminview = new AdminView();
-        $themeDao = new ThemeDao();
-        $themeList = $themeDao->getListTheme();
-        $adminview->setListTheme($themeList);
-        $adminview->run("listTheme");
-      break;
+
 
       //listActivity
-      case 43:
+      case 44:
         $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
         $adminview = new AdminView();
         $adminview->setListActivity($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
@@ -185,12 +210,16 @@ class AdminController extends MainController
         //echo "hey";
       break;
 
+      //infoActivity
+      case 45:
+        
+        //echo "hey";
+      break;
 
       default:
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");
       break;
     }
-
   }
 }
