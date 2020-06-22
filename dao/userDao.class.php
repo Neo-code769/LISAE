@@ -291,4 +291,36 @@ class UserDao extends Dao{
             throw new LisaeException("Erreur",1);
         }   
     }
+
+    //requete pour modifier un référent d'un thème aprés la modification d'un thème 
+
+    public function updateReferToTheme($idUser){
+        $sql = 
+        "UPDATE `referto` SET
+           `id_theme`= (SELECT MAX(id_theme) from theme),
+           `id_user`= (SELECT id_user from users where id_user = $idUser))
+        ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }   
+    }
+
+    //requete pour supprimer un référent d'un thème aprés la suppression d'un thème 
+
+    public function deleteReferToTheme($idUser){
+        $sql = 
+        "DELETE FROM `referto` WHERE (MAX)id_user = $idUser))
+        ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }   
+    }
 }

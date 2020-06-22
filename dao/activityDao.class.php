@@ -46,12 +46,23 @@ class ActivityDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
+    // requete pour modifier une activity recurrente d'un thème
 
+    public function updateRecurringActivity($idTheme) {
+        $sql = "UPDATE `activity` SET `id_activity`=(SELECT MAX(id_activity) from activity), id_theme =(SELECT id_theme from theme where id_theme = $idTheme)";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
 
     // requete pour supprimer un activity d'un thème
     public function delete($idTheme) : void{
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("UPDATE `activity` SET `id_activity`=?,`name`=?,`description`=?,`detailedDescription`=?,`image`=? WHERE id_theme= $idTheme");
+        $requete = $pdo->prepare("DELETE FROM `activity` WHERE id_theme= $idTheme");
         try {
             $requete->execute();
         }catch (PDOException $e) {
@@ -59,6 +70,16 @@ class ActivityDao extends Dao {
         }
     }
 
+    // requete pour supprimer un activity recurring activity d'un thème
+    public function deleteRecurringActivity($idTheme) : void{
+        $pdo = Dao::getConnexion();
+        $requete = $pdo->prepare("DELETE FROM `referto` WHERE (MAX)id_theme = $idTheme)");
+        try {
+            $requete->execute();
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
     
     // requete pour recuperer le nom et l'id des activités pour faire l'insert d'un créneau d'activité (partie anim)
 

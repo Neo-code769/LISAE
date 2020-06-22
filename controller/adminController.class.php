@@ -18,7 +18,8 @@ class AdminController extends MainController
       "accountManagement"=>36,
       "collabManagement"=>37,
       "animManagement"=>38,
-      "dashboard"=>39
+      "dashboard"=>39,
+      "listTheme" => 40
     ];
     parent::__construct();
   }
@@ -134,6 +135,14 @@ class AdminController extends MainController
         $adminview->run("dashboard");
       break;
 
+      // liste des thèmes
+      case 40:
+        $adminview = new AdminView();
+        $themeDao = new ThemeDao();
+        $themeList = $themeDao->getListTheme();
+        $adminview->setListTheme($themeList);
+        $adminview->run("listTheme");
+      break;
       default:
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");

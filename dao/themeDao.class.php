@@ -307,7 +307,7 @@ class ThemeDao extends Dao {
     // requete pour supprimer un thème
     public function delete($idTheme) : void{
         $pdo = Dao::getConnexion();
-        $requete = $pdo->prepare("UPDATE `theme` SET `id_theme`=?,`name`=?,`color`=?,`image`=?,`description`=?,`detailedDescription`=? WHERE id_theme= $idTheme");
+        $requete = $pdo->prepare("DELETE FROM `theme` WHERE id_theme= $idTheme");
         try {
             $requete->execute();
         }catch (PDOException $e) {
