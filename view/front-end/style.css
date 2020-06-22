@@ -417,7 +417,9 @@ input {
 }
 
 .btn-hover.color-1 {
-  background-image: linear-gradient(to right, #44d431, #d5eea5);
+  background-image: linear-gradient(to right, #a6e434, #a6e434, #ffffff, #ffffff);
+  border: 5px solid #a6e434;
+  
 }
 
 .btn-hover.color-2 {

@@ -70,13 +70,13 @@ class AnimatorView extends LisaeTemplateConnected {
                 <div id="headerIMG">
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
-                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Tableau de Bord</button></a>
-                            <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;"> Calendrier ELOCE</button></a>
-                            <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Nouveau Créneau</button></a>
-                            <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Mon Compte</button></a>
+                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Tableau de Bord</button></a>
+                            <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Calendrier ELOCE</button></a>
+                            <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Nouveau Créneau</button></a>
+                            <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Mon Compte</button></a>
         EOD;
         if ($_SESSION['role']=='Admin') {
-            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 24px;'> Mode Admin</button></a>";
+            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 22px;'> Mode Admin</button></a>";
         }
         echo <<<EOD
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
