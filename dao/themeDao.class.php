@@ -353,8 +353,7 @@ class ThemeDao extends Dao {
         WHERE `participate`.`id_user` = $id_user 
         AND `participate`.`id_activity` = $idActivity 
         AND `participate`.`id_session` = $id_session 
-        AND `participate`.`slotDateStart`
-        AND WHERE datediff(slotDateStart, now()) > unsubscribeDeadline = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
+        AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
         //var_dump($sql);
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
