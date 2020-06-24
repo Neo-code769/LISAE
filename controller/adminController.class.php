@@ -215,7 +215,7 @@ class AdminController extends MainController
 
       //infoActivity
       case 45:
-        if (isset($_POST['updateActivity'])){ 
+        if (isset($_POST['updateActivity'])){ //Bouton de modification
           //Traitement image 
           //Recupération de fichier
           $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
@@ -236,6 +236,11 @@ class AdminController extends MainController
           (new ActivityDao())->updateActivity($activity);
           echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
           header("refresh:0");
+        } elseif (isset($_POST['deleteTraining'])) { //Bouton de suppression 
+          (new ThemeDao())->delete($_GET["idTheme"]);
+          (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
+          (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
+          header('Location:../../index.php/admin/listTheme');  
         }else{
           $adminview = new AdminView();
           $themeDao = new ThemeDao;
