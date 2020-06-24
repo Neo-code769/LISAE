@@ -167,7 +167,7 @@ class ThemeDao extends Dao {
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd, host.minNumberPerson, host.maxNumberPerson FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
-        AND now() < host.slotDateStart AND datediff(slotDateStart, now()) > registrationDeadline"
+        AND now() < host.slotDateStart"
         );
         try {
             $requete->execute();
@@ -334,8 +334,7 @@ class ThemeDao extends Dao {
             $idSession, 
             (SELECT slotDateStart from host WHERE id_slot = $idSlot),  
             (SELECT slotDateEnd from host where id_slot=$idSlot),
-            null
-        WHERE datediff(slotDateStart, now()) > registrationDeadline)";
+            null)";
         $exec = (Dao::getConnexion())->prepare($sql);
             try{
                 $exec->execute();
@@ -363,7 +362,7 @@ class ThemeDao extends Dao {
         } 
         catch (PDOException $e) {
             var_dump($e->getMessage());
-            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+            throw new LisaeException("Erreur, vous ne pouvez plus vous désinscrire",1);
         }
     }
 
