@@ -174,15 +174,15 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
                         ".$theme->get_name()."
                     </div>
-            </div>";
+            </div><br><br>";
             $result .=
-            "<div style='margin-left: 5%;'><label>Nom</label><input type='text' name='name' value='".$theme->get_name()."'></div><br>";
+            "<div style='margin-left: 5%; width: 30%;'><label>Nom </label><input style='margin-left: 4%;' type='text' name='name' value='".$theme->get_name()."'></div><br><br>";
             $result .=
-                "<div style='margin-left: 5%;'><label>Color</label><input type='color' name='color' value='".$theme->get_color()."'></div><br>";    
+                "<div style='margin-left: 5%; width: 20%;'><label> Color </label><input style='margin-left: 2%;' type='color' name='color' value='".$theme->get_color()."'></div><br><br>";    
             $result .=
-                "<div style='margin-left: 5%;'><label>Description</label><input type='text' name='description' value='".$theme->get_description()."'</div><br>";
+                "<div style='margin-left: 5%;'><label>Description </label><input style='margin-left: 4%;' type='text' name='description' value='".$theme->get_description()."'</div><br><br><br>";
             $result .=
-                "<div style='margin-left: 5%;'><label>Description détaillée</label><input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
+                "<div><label>Description détaillée </label><input style='margin-left: 4%;' type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
         
         $this->_infoTheme = $result;
     }
