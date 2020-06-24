@@ -138,7 +138,7 @@ class SessionTrainingDao extends Dao{
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT * FROM session
-        WHERE SUBSTRING_INDEX(session_name, ' ', 1) = '$nTraining'"
+        WHERE SUBSTRING_INDEX(session_name,' ', 1) = '$nTraining'"
         );
         try {
             $requete->execute();
