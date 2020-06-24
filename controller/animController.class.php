@@ -322,40 +322,65 @@ class AnimController extends MainController
 
         case 30: // Feuille d'emargement
 
-          $animView = new AnimatorView();
-
           //Pour l'affichage de l'info
           $themeList = (new ThemeDao())->getListTheme();
           $arr = [];
           foreach ($themeList as $theme) {
               foreach ($theme->get_activity() as $activity) {
                   foreach($activity->get_slot() as $slot){
-                    if ($slot->get_idSlot() == $_GET["id_slot"]) {
-                      $slotInfo= [
-                      "idslot"=> $slot->get_idSlot(),
-                      "color" => $theme->get_color(),
-                      "dtsf" => $slot->get_slotDateTimeStartFormat(),
-                      "dtef" => $slot->get_slotDateTimeEndFormat(),
-                      "dts" => $slot->get_slotDateTimeStart(),
-                      "dte" => $slot->get_slotDateTimeEnd(),
-                      "nTheme" => $theme->get_name(),
-                      "nActivity" => $activity->get_name(),
-                      "information" => $slot->get_information(),
-                      "place" => $slot->get_place(),
-                      "idActivity" => $activity->get_idActivity()
-                      ]
-                      ;
-                      //var_dump($slotInfo);
-                    }
+                      if ($slot->get_idSlot() == $_GET["id_slot"]) {
+                        $slotInfo= [
+                        "idslot"=> $slot->get_idSlot(),
+                        "color" => $theme->get_color(),
+                        "dtsf" => $slot->get_slotDateTimeStartFormat(),
+                        "dtef" => $slot->get_slotDateTimeEndFormat(),
+                        "dts" => $slot->get_slotDateTimeStart(),
+                        "dte" => $slot->get_slotDateTimeEnd(),
+                        "nTheme" => $theme->get_name(),
+                        "nActivity" => $activity->get_name(),
+                        "information" => $slot->get_information(),
+                        "place" => $slot->get_place(),
+                        "idActivity" => $activity->get_idActivity()
+                        ]
+                        ;
+                        //var_dump($slotInfo);
+                      }
                   }
               }
           } 
-          $animView->setInfoSlot($slotInfo);
+          $result1 = 
+          "<div class='eloce' style='background-color:".$slotInfo["color"]."'>".
+            $slotInfo["dtsf"]."-".$slotInfo["dtef"]." - ".$slotInfo["nTheme"]." - ".$slotInfo["nActivity"].
+          "</div><br><br>";
+          $result2 =
+          "<div style='margin-left: 5%;'>
+            <label>Information</label>
+            <p name='information' style='width:40%;'>".$slotInfo["information"]."</p><br><br>
+          </div><br>
+          <div style='margin-left: 5%;'>
+            <label>Lieu</label>
+            <p name='place' style='width:40%;'>".$slotInfo["place"]."</p><br><br>
+          </div>";
 
-          //Pour Affichage du tableau de présence
-          $animView->setEmargement((new PresenceDao())->getTabPresence($_GET["id_slot"]));
+          $listUser=(new PresenceDao())->getTabPresence($_GET["id_slot"]);
+          $result ="";
+          foreach ($listUser as $user) {
+              $check="non";
+              if ($user['presence']==1) {
+                  $check = "oui";
+              }
+              $result .="
+              <tr>
+                  <td>".$user['Firstname']."</td>
+                  <td>".$user['Lastname']."</td>
+                  <td>".$user['PhoneNumber']."</td>
+                  <td>".$user['mail']."</td>
+                  <td>".$user['session_name']."</td>
+                  <td>$check</td>
+              </tr>";
+          }
 
-          $animView->run("emargement");
+          include ('output/emargement.phtml');
 
         break;
 

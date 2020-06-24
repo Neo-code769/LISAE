@@ -244,13 +244,18 @@ class AdminController extends MainController
           $activity->set_image("../../".$destinationImg);
 
           (new ActivityDao())->updateActivity($activity);
-          echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
+          echo "<html><script>window.alert('La modification a bien était effectué !');</script></html>";
           header("refresh:0");
-        } elseif (isset($_POST['deleteTraining'])) { //Bouton de suppression 
-          (new ThemeDao())->delete($_GET["idTheme"]);
-          (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
-          (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
-          header('Location:../../index.php/admin/listTheme');  
+        } elseif (isset($_POST['deleteActivity'])) { //Bouton de suppression 
+          //Delete participate
+          (new UserDao())->deleteParticipateForActivity($_GET["idActivity"]);
+          //Delete host
+          (new UserDao())->deleteHostForActivity($_GET["idActivity"]);
+          //Delete reccuring activity
+          (new ActivityDao())->deleteReccuringActivity($_GET["idActivity"]);
+          //Delete activity
+          (new ActivityDao())->delete($_GET["idActivity"]);
+          //header('Location:../../index.php/admin/listTheme');  
         }else{
           $adminview = new AdminView();
           $themeDao = new ThemeDao;

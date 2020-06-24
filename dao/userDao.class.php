@@ -196,6 +196,18 @@ class UserDao extends Dao{
         }
     }
 
+    public function deleteParticipateForActivity($idActivity) {
+        $sql = 
+        "DELETE FROM `participate` WHERE id_user = $idActivity";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
     /********** DELETE ANIMATEUR ************/
 
     public function deleteReferto($idUser) {
@@ -213,6 +225,18 @@ class UserDao extends Dao{
     public function deleteHost($idUser) {
         $sql = 
         "DELETE FROM `host` WHERE id_user = $idUser";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+
+    public function deleteHostForActivity($idActivity) {
+        $sql = 
+        "DELETE FROM `host` WHERE id_user = $idActivity";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
