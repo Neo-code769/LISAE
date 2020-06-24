@@ -193,6 +193,12 @@ class AdminView extends LisaeTemplateConnected {
         </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
+            <img src=".$activity->get_image().">
+            <label>Changer d'image :</label>
+            <input class='upload' type='file' name='image'><br><br>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
                 <label>Nom</label>
                 <input type='text' name='name' value='".$activity->get_name()."'>
             </div><br>";

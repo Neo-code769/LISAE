@@ -84,18 +84,18 @@ class AdminController extends MainController
         
           if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
           {
-            $destinationImg="/images/$fichierUpload";
+            $destinationImg="images/$fichierUpload";
                 copy($cheminUpload,$destinationImg);
                 unlink($cheminUpload);
           }
-          $activity->set_image($destinationImg);
+          $activity->set_image("../../".$destinationImg);
           
           //var_dump($activity);
           (new ActivityDao())->insert($activity);
           (new ActivityDao())->insertRecurringActivity($_GET['idTheme']);
           
           //Redirection
-          header("Location:../../admin/Dashboard");
+          header("Location:../admin/Dashboard");
 
         } else {
           $adminview = new AdminView();
@@ -216,7 +216,25 @@ class AdminController extends MainController
       //infoActivity
       case 45:
         if (isset($_POST['updateActivity'])){ 
-          (new ActivityDao())->updateActivity($_POST["name"],$_POST["description"],$_POST["detailedDescription"], null,$_GET['idActivity']);
+          //Traitement image 
+          //Recupération de fichier
+          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+        
+          $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
+        
+            $cheminUpload="./upload/$fichierUpload";
+        
+          if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
+          {
+            $destinationImg="images/$fichierUpload";
+            copy($cheminUpload,$destinationImg);
+            unlink($cheminUpload);
+          }
+          $activity = new Activity($_GET["idActivity"],$_POST["name"],$_POST["description"],$_POST["detailedDescription"],null);
+          $activity->set_image("../../".$destinationImg);
+
+          (new ActivityDao())->updateActivity($activity);
+          echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
           header("refresh:0");
         }else{
           $adminview = new AdminView();
