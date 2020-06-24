@@ -24,7 +24,11 @@ class AdminController extends MainController
       "deleteCollab"=>42,
       "deleteAnim"=>43,
       "listActivity"=>44,
-      "infoActivity"=>45
+      "infoActivity"=>45,
+      "listSession" => 46,
+      "infoSession" => 47,
+      "listTraining" => 48,
+      "infoTraining" => 49
     ];
     parent::__construct();
   }
@@ -58,7 +62,6 @@ class AdminController extends MainController
       case 32: 
         if (isset($_POST['createTheme'])){
           $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
-          var_dump($theme);
           (new ThemeDao())->insert($theme);
           (new UserDao())->insertReferToTheme($_POST['referAnimator']);
         } else {
@@ -84,18 +87,18 @@ class AdminController extends MainController
         
           if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
           {
-            $destinationImg="/images/$fichierUpload";
+            $destinationImg="images/$fichierUpload";
                 copy($cheminUpload,$destinationImg);
                 unlink($cheminUpload);
           }
-          $activity->set_image($destinationImg);
+          $activity->set_image("../../".$destinationImg);
           
           //var_dump($activity);
           (new ActivityDao())->insert($activity);
           (new ActivityDao())->insertRecurringActivity($_GET['idTheme']);
           
           //Redirection
-          header("Location:../../admin/Dashboard");
+          header("Location:../admin/Dashboard");
 
         } else {
           $adminview = new AdminView();
@@ -105,15 +108,22 @@ class AdminController extends MainController
 
       //Creation de formation
       case 34: 
+        if (isset($_POST['createFormation'])){
+          (new SessionTrainingDao())->insertTraining($_POST["name"]);
+        }
         $adminview = new AdminView();
         $adminview->run("createFormation");
       break;
-
-      //Creation de session
-      case 35: 
+  
+      case 35: //Creation de session
+        if (isset($_POST['createSession'])){
+          $session = new SessionTraining(null,$_POST['sessionName'],$_POST['startDateFormation'],$_POST['endDateFormation'],$_POST['startDatePAE'],$_POST['endDatePAE']);
+          (new SessionTrainingDao())->insert($session);
+        } else {
         $adminview = new AdminView();
         $adminview->run("createSession");
-      break;
+        }
+      break; 
 
       //Gestion des comptes utilisateurs
       case 36: 
@@ -215,9 +225,32 @@ class AdminController extends MainController
 
       //infoActivity
       case 45:
-        if (isset($_POST['updateActivity'])){ 
-          (new ActivityDao())->updateActivity($_POST["name"],$_POST["description"],$_POST["detailedDescription"], null,$_GET['idActivity']);
+        if (isset($_POST['updateActivity'])){ //Bouton de modification
+          //Traitement image 
+          //Recupération de fichier
+          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+        
+          $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
+        
+            $cheminUpload="./upload/$fichierUpload";
+        
+          if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
+          {
+            $destinationImg="images/$fichierUpload";
+            copy($cheminUpload,$destinationImg);
+            unlink($cheminUpload);
+          }
+          $activity = new Activity($_GET["idActivity"],$_POST["name"],$_POST["description"],$_POST["detailedDescription"],null);
+          $activity->set_image("../../".$destinationImg);
+
+          (new ActivityDao())->updateActivity($activity);
+          echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
           header("refresh:0");
+        } elseif (isset($_POST['deleteTraining'])) { //Bouton de suppression 
+          (new ThemeDao())->delete($_GET["idTheme"]);
+          (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
+          (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
+          header('Location:../../index.php/admin/listTheme');  
         }else{
           $adminview = new AdminView();
           $themeDao = new ThemeDao;
@@ -234,6 +267,48 @@ class AdminController extends MainController
           $adminview->setInfoActivity($infoTheme, $infoActivity);
           $adminview->run("infoActivity");
         }
+      break;
+
+      case 46: // list Session
+        $adminview = new AdminView();
+        $sessionDao = new SessionTrainingDao();
+        $sessionList = $sessionDao->getListSession();
+        $adminview->setListSession($sessionList);
+        $adminview->run("listSession");  
+      break;
+
+      case 47: //info Session (+delete Update)    
+         $adminview = new AdminView();
+         $sessionDao = new SessionTrainingDao();
+         $sessionList = $sessionDao->getListSession();
+         foreach( $sessionList as $session) {
+          if ($session->getIdSession() == $_GET['idSession']){
+            $infoSession = $session;
+          }
+        }  
+         $adminview->setInfoSession($infoSession);
+         $adminview->run("infoSession");
+       break;
+
+       case 48 : // list Formation
+        $adminview = new AdminView();
+        $trainingDao = new SessionTrainingDao();
+        $trainingList = $trainingDao->getListTraining();
+        $adminview->setListTraining($trainingList);
+        $adminview->run("listTraining");  
+      break;
+
+      case 49: // info training
+        $adminview = new AdminView();
+        $trainingDao = new SessionTrainingDao();
+        $trainingList = $trainingDao->getListTraining();
+        foreach( $trainingList as $training) {
+         if ($training["id_training"] == $_GET['idTraining']){
+           $infoTraining = $training;
+         }
+       }  
+        $adminview->setInfoTraining($infoTraining);
+        $adminview->run("infoTraining");
       break;
 
       default:
