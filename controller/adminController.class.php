@@ -26,7 +26,9 @@ class AdminController extends MainController
       "listActivity"=>44,
       "infoActivity"=>45,
       "listSession" => 46,
-      "infoSession" => 47
+      "infoSession" => 47,
+      "listTraining" => 48,
+      "infoTraining" => 49
     ];
     parent::__construct();
   }
@@ -106,6 +108,9 @@ class AdminController extends MainController
 
       //Creation de formation
       case 34: 
+        if (isset($_POST['createFormation'])){
+          (new SessionTrainingDao())->insertTraining($_POST["name"]);
+        }
         $adminview = new AdminView();
         $adminview->run("createFormation");
       break;
@@ -249,35 +254,39 @@ class AdminController extends MainController
         $adminview->run("listSession");  
       break;
 
-      case 47: //info Session (+delete Update)
-       /*  if (isset($_POST['updateTheme'])){ 
-         (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
-         header('Location:../../index.php/admin/listTheme');
-        } elseif (isset($_POST['deleteTheme'])) {
-          (new ThemeDao())->delete($_GET["idTheme"]);
-          (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
-          (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
-          header('Location:../../index.php/admin/listTheme');    
-       } else {
-         $adminview = new AdminView();
-         $themeDao = new ThemeDao;
-         $listTheme = $themeDao->getListTheme();
-         foreach( $listTheme as $theme) {
-           if ($theme -> get_idTheme() == $_GET['idTheme']){
-             $infoTheme = $theme;
-           }
-         } */
+      case 47: //info Session (+delete Update)    
          $adminview = new AdminView();
          $sessionDao = new SessionTrainingDao();
          $sessionList = $sessionDao->getListSession();
          foreach( $sessionList as $session) {
-          if ($session -> getIdSession() == $_GET['idSession']){
+          if ($session->getIdSession() == $_GET['idSession']){
             $infoSession = $session;
           }
         }  
          $adminview->setInfoSession($infoSession);
          $adminview->run("infoSession");
        break;
+
+       case 48 : // list Formation
+        $adminview = new AdminView();
+        $trainingDao = new SessionTrainingDao();
+        $trainingList = $trainingDao->getListTraining();
+        $adminview->setListTraining($trainingList);
+        $adminview->run("listTraining");  
+      break;
+
+      case 49: // info training
+        $adminview = new AdminView();
+        $trainingDao = new SessionTrainingDao();
+        $trainingList = $trainingDao->getListTraining();
+        foreach( $trainingList as $training) {
+         if ($training["id_training"] == $_GET['idTraining']){
+           $infoTraining = $training;
+         }
+       }  
+        $adminview->setInfoTraining($infoTraining);
+        $adminview->run("infoTraining");
+      break;
 
       default:
       (new LoginPageView())->run($content="");

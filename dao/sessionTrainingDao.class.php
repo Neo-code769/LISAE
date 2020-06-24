@@ -83,6 +83,16 @@ class SessionTrainingDao extends Dao{
     public function get(int $id) {
         return [];
     }  
+    public function insertTraining($name){
+        $sql = "INSERT INTO `training`(`id_training`,`name`) VALUES (null,?)";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{ 
+        $exec->execute([$name]);
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
     public function insert($obj) :void{
         $sql = "INSERT INTO `session`(`id_session`, `StartDateFormation`, `endDateFormation`, `startDatePae`, `endDatePae`, `session_name`) VALUES (null,?,?,?,?,?)";
         $exec = (Dao::getConnexion())->prepare($sql);
@@ -142,6 +152,28 @@ class SessionTrainingDao extends Dao{
                 $session = new SessionTraining($idSession,$sessionName,$startDateFormation,$endDateFormation,$startDatePae,$endDatePae);
                 $list[] = $session;
             }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+
+    public function getListTraining(){
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM `training`"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idTraining=$donnees['id_training'];
+                $name=$donnees['name'];
+                $list[] = $donnees;
+            }
+            
         }
         catch (PDOException $e) {
             throw new LisaeException("Erreur requête", 1);
