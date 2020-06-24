@@ -272,7 +272,7 @@ class AdminController extends MainController
       case 46: // list Session
         $adminview = new AdminView();
         $sessionDao = new SessionTrainingDao();
-        $sessionList = $sessionDao->getListSession();
+        $sessionList = $sessionDao->getListSession($_GET['nTraining']);
         $adminview->setListSession($sessionList);
         $adminview->run("listSession");  
       break;

@@ -133,11 +133,12 @@ class SessionTrainingDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }   
-    public function getListSession(){
+    public function getListSession($nTraining){
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT * FROM session"
+        "SELECT * FROM session
+        WHERE SUBSTRING_INDEX(session_name,' ', 1) = '$nTraining'"
         );
         try {
             $requete->execute();

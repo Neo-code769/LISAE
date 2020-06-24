@@ -224,7 +224,7 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:grey'>
                         ".$training["name"]."
                     </div>
-                    <a  id='listSession' href='./listSession?id=".$training["id_session"]."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
+                    <a  id='listSession' href='./listSession?nTraining=".$training["name"]."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
                     </div><a  id='info' href='./infoTraining?idTraining=".$training["id_training"]."'><img src='../../images/info.png' alt='info d'une formation'></a>   
             </div>";
         }
