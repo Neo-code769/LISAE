@@ -72,7 +72,7 @@ class ThemeDao extends Dao {
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT * FROM host 
-        WHERE id_activity = $idActivity"
+        WHERE id_activity = $idActivity AND now() < host.slotDateStart AND datediff(slotDateStart, now()) > registrationDeadline"
         );
         try {
             $requete->execute();
@@ -167,7 +167,7 @@ class ThemeDao extends Dao {
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
         "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd, host.minNumberPerson, host.maxNumberPerson FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
-        "
+        AND now() < host.slotDateStart"
         );
         try {
             $requete->execute();
@@ -257,7 +257,7 @@ class ThemeDao extends Dao {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT * FROM host WHERE id_activity = $idActivity AND id_user = $idUser"
+        "SELECT * FROM host WHERE id_activity = $idActivity AND id_user = $idUser AND now() < host.slotDateStart"
         );
         try {
             $requete->execute();
@@ -334,8 +334,7 @@ class ThemeDao extends Dao {
             $idSession, 
             (SELECT slotDateStart from host WHERE id_slot = $idSlot),  
             (SELECT slotDateEnd from host where id_slot=$idSlot),
-            null
-            )";
+            null)";
         $exec = (Dao::getConnexion())->prepare($sql);
             try{
                 $exec->execute();
@@ -348,9 +347,13 @@ class ThemeDao extends Dao {
 
     // requete de désinscription d'un collaborateur à un créneau d'activité
 
-    public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)
+    public function deregistrationSlot($id_user,$id_session,$idActivity, $idSlot)       //TOFIX
     {
-        $sql = "DELETE FROM `participate` WHERE `participate`.`id_user` = $id_user AND `participate`.`id_activity` = $idActivity AND `participate`.`id_session` = $id_session AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
+        $sql = "DELETE FROM `participate`
+        WHERE `participate`.`id_user` = $id_user 
+        AND `participate`.`id_activity` = $idActivity 
+        AND `participate`.`id_session` = $id_session       
+        AND `participate`.`slotDateStart` = (SELECT slotDateStart from host WHERE id_slot = $idSlot)";
         //var_dump($sql);
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
@@ -358,7 +361,7 @@ class ThemeDao extends Dao {
         } 
         catch (PDOException $e) {
             var_dump($e->getMessage());
-            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
+            throw new LisaeException("Erreur, vous ne pouvez plus vous désinscrire",1);
         }
     }
 
