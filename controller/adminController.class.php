@@ -288,6 +288,7 @@ class AdminController extends MainController
           echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
           header("refresh:0");
           } elseif (isset($_POST['deleteSession'])) {
+            (new SessionTrainingDao())->deleteParticipateForSession($_GET["idSession"]);
            (new SessionTrainingDao())->delete($_GET["idSession"]);
            header('Location:../../index.php/admin/listTraining');     
         } else {  

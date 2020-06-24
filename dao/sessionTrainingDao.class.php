@@ -122,6 +122,16 @@ class SessionTrainingDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     } 
+    public function deleteParticipateForSession($idSession){
+        $sql = "DELETE FROM `participate` WHERE id_session = $idSession";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    } 
     public function deleteTraining($idTraining){
         $sql = "DELETE FROM `training` WHERE id_training = $idTraining";
         $exec = (Dao::getConnexion())->prepare($sql);
