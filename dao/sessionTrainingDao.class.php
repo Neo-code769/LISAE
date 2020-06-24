@@ -133,6 +133,16 @@ class SessionTrainingDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }   
+    public function updateTraining($idSession){
+        $sql = "UPDATE `training` SET `id_session`=?,`StartDateFormation`=?,`endDateFormation`=?,`startDatePae`=?,`endDatePae`=?,`session_name`=? WHERE id_session = $idSession";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }   
     public function getListSession(){
         $list = []; 
         $sql = Dao::getConnexion();
