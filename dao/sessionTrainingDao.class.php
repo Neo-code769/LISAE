@@ -122,9 +122,32 @@ class SessionTrainingDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     } 
+    public function deleteTraining($idTraining){
+        $sql = "DELETE FROM `training` WHERE id_training = $idTraining";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    } 
+    public function update($obj){
+
+    }
     // update d'un objet
-    public function update($idSession){
-        $sql = "UPDATE `session` SET `id_session`=?,`StartDateFormation`=?,`endDateFormation`=?,`startDatePae`=?,`endDatePae`=?,`session_name`=? WHERE id_session = $idSession";
+    public function updateSession($StartDateFormation,$endDateFormation, $startDatePae,$endDatePae, $sessionName,$idSession){
+        $sql = "UPDATE `session` SET `StartDateFormation`='$StartDateFormation',`endDateFormation`='$endDateFormation',`startDatePae`='$startDatePae',`endDatePae`='$endDatePae',`session_name`='$sessionName' WHERE id_session = $idSession";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }   
+    public function updateTraining($name, $idTraining){
+        $sql = "UPDATE `training` SET `name`='$name' WHERE id_training = $idTraining";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();

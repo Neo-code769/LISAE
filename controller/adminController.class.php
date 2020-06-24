@@ -277,10 +277,18 @@ class AdminController extends MainController
         $adminview->run("listSession");  
       break;
 
-      case 47: //info Session (+delete Update)    
+      case 47: //info Session (+delete Update)  
+        if (isset($_POST['updateSession'])){ 
+          (new SessionTrainingDao())->updateSession($_POST["startDateFormation"],$_POST["endDateFormation"],$_POST["startDatePae"],$_POST["endDatePae"],$_POST["name"], $_GET["idSession"]);
+          echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
+          header("refresh:0");
+          } elseif (isset($_POST['deleteSession'])) {
+           (new SessionTrainingDao())->delete($_GET["idSession"]);
+           header('Location:../../index.php/admin/listTraining');     
+        } else {  
          $adminview = new AdminView();
          $sessionDao = new SessionTrainingDao();
-         $sessionList = $sessionDao->getListSession();
+         $sessionList = $sessionDao->getListSession($_GET['nTraining']);
          foreach( $sessionList as $session) {
           if ($session->getIdSession() == $_GET['idSession']){
             $infoSession = $session;
@@ -288,6 +296,7 @@ class AdminController extends MainController
         }  
          $adminview->setInfoSession($infoSession);
          $adminview->run("infoSession");
+      }
        break;
 
        case 48 : // list Formation
@@ -299,6 +308,14 @@ class AdminController extends MainController
       break;
 
       case 49: // info training
+        if (isset($_POST['updateTraining'])){ 
+          (new SessionTrainingDao())->updateTraining($_POST["name"], $_GET["idTraining"]);
+          echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
+          header("refresh:0");
+          } elseif (isset($_POST['deleteTraining'])) {
+           (new SessionTrainingDao())->deleteTraining($_GET["idTraining"]);
+           header('Location:../../index.php/admin/listTraining');    
+          }else {
         $adminview = new AdminView();
         $trainingDao = new SessionTrainingDao();
         $trainingList = $trainingDao->getListTraining();
@@ -309,6 +326,7 @@ class AdminController extends MainController
        }  
         $adminview->setInfoTraining($infoTraining);
         $adminview->run("infoTraining");
+      }
       break;
 
       default:

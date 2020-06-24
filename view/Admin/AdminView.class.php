@@ -34,8 +34,6 @@ class AdminView extends LisaeTemplateConnected {
                         
                             <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
                             <a href="../admin/listTraining"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Formation</button></a>
-                            <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Formation</button></a>
-                            <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Session</button></a>
                             <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
                             <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Mode Animateur</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
@@ -210,7 +208,7 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:grey'>
                         ".$session->get_nameSession()."
                     </div>
-                    </div><a  id='info' href='./infoSession?idSession=".$session->getIdSession()."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
+                    </div><a  id='info' href='./infoSession?idSession=".$session->getIdSession()."&nTraining=".$_GET['nTraining']."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
             </div>";
         }
         $this->_sessionList = $result;
@@ -241,7 +239,7 @@ class AdminView extends LisaeTemplateConnected {
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Nom de la formation</label>
-                <input type='text' name='startDateFormation' value='".$training["name"]."'>
+                <input type='text' name='name' value='".$training["name"]."'>
             </div><br>";
         $this->_infoTraining = $result;
     }
@@ -253,24 +251,29 @@ class AdminView extends LisaeTemplateConnected {
             </div>
         </div><br>";
         $result .=
+        "<div style='margin-left: 5%;'>
+            <label>Nom de la formation</label>
+            <input type='text' name='name' value='".$session->get_nameSession()."'>
+        </div><br>";
+        $result .=
             "<div style='margin-left: 5%;'>
                 <label>Date de Début de formation</label>
-                <input type='text' name='startDateFormation' value='".$session->get_startDateFormation()."'>
+                <input type='date' name='startDateFormation' value='".$session->get_startDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Date de fin de formation</label>
-                <input type='text' name='endDateFormation' value='".$session->get_endDateFormation()."'>
+                <input type='date' name='endDateFormation' value='".$session->get_endDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Date de Début de PAE</label>
-                <input type='text' name='startDatePae' value='".$session->get_startDatePae()."'>
+                <input type='date' name='startDatePae' value='".$session->get_startDatePae()."'>
             </div><br>"; 
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Date de Fin de PAE</label>
-                <input type='text' name='get_endDatePae' value='".$session->get_endDatePae()."'>
+                <input type='date' name='endDatePae' value='".$session->get_endDatePae()."'>
             </div><br>";   
         $this->_infoSession = $result;
     }
