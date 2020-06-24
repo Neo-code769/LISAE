@@ -123,5 +123,29 @@ class SessionTrainingDao extends Dao{
             throw new LisaeException("Erreur",1);
         }
     }   
-  
+    public function getListSession(){
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM session"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSession=$donnees['id_session'];
+                $sessionName=$donnees['session_name'];
+                $startDateFormation=$donnees['StartDateFormation'];
+                $endDateFormation=$donnees['endDateFormation'];
+                $startDatePae=$donnees['startDatePae'];
+                $endDatePae=$donnees['endDatePae'];
+                $session = new SessionTraining($idSession,$sessionName,$startDateFormation,$endDateFormation,$startDatePae,$endDatePae);
+                $list[] = $session;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
 }

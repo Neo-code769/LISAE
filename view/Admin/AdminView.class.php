@@ -11,6 +11,8 @@ class AdminView extends LisaeTemplateConnected {
     private $_nameTheme;
     private $_colorTheme;
     private $_infoActivity;
+    private $_sessionList;
+    private $_infoSession;
 
     public function __construct()
     {
@@ -28,7 +30,8 @@ class AdminView extends LisaeTemplateConnected {
                     <img src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
                         
-                        <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
+                            <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
+                            <a href="../admin/listSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Session de Formation</button></a>
                             <a href="../admin/createFormation"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Formation</button></a>
                             <a href="../admin/createSession"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Créer Session</button></a>
                             <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
@@ -81,6 +84,12 @@ class AdminView extends LisaeTemplateConnected {
             break;
 
             case "infoActivity": include "infoActivity.phtml";
+            break;
+
+            case "listSession": include "listSession.phtml";
+            break;
+
+            case "infoSession": include "infoSession.phtml";
             break;
 
             default: include "dashboard.php";
@@ -184,6 +193,50 @@ class AdminView extends LisaeTemplateConnected {
         $this->_nameTheme = $nameTheme;
     }
 
+    public function setListSession($sessionList){
+        $result ="";
+        foreach ($sessionList as $session) {
+            $result .=
+            "<div class='row justify-content-center'> 
+                    <div id='listELOCE' class='eloce' style='background-color:grey'>
+                        ".$session->get_nameSession()."
+                    </div>
+                    </div><a  id='info' href='./infoSession?idSession=".$session->getIdSession()."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
+            </div>";
+        }
+        $this->_sessionList = $result;
+    }
+
+    public function setInfoSession($session){
+        $result =
+        "<div class='row justify-content-center'> 
+            <div id='listELOCE' class='eloce' style='background-color:grey'>
+                ".$session->get_nameSession()."
+            </div>
+        </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Date de Début de formation</label>
+                <input type='text' name='startDateFormation' value='".$session->get_startDateFormation()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Date de fin de formation</label>
+                <input type='text' name='endDateFormation' value='".$session->get_endDateFormation()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Date de Début de PAE</label>
+                <input type='text' name='startDatePae' value='".$session->get_startDatePae()."'>
+            </div><br>"; 
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Date de Fin de PAE</label>
+                <input type='text' name='get_endDatePae' value='".$session->get_endDatePae()."'>
+            </div><br>";   
+        $this->_infoSession = $result;
+    }
+
     public function setInfoActivity($theme, $activity){
         $result =
         "<div class='row justify-content-center'> 
@@ -207,7 +260,7 @@ class AdminView extends LisaeTemplateConnected {
                 <input type='text' name='detailedDescription' value='".$activity->get_detailedDescription()."'>
             </div><br>";   
     $this->_infoActivity = $result;
-}
+    }
 
 }   
 

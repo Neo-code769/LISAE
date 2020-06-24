@@ -24,7 +24,9 @@ class AdminController extends MainController
       "deleteCollab"=>42,
       "deleteAnim"=>43,
       "listActivity"=>44,
-      "infoActivity"=>45
+      "infoActivity"=>45,
+      "listSession" => 46,
+      "infoSession" => 47
     ];
     parent::__construct();
   }
@@ -58,7 +60,6 @@ class AdminController extends MainController
       case 32: 
         if (isset($_POST['createTheme'])){
           $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
-          var_dump($theme);
           (new ThemeDao())->insert($theme);
           (new UserDao())->insertReferToTheme($_POST['referAnimator']);
         } else {
@@ -108,12 +109,16 @@ class AdminController extends MainController
         $adminview = new AdminView();
         $adminview->run("createFormation");
       break;
-
-      //Creation de session
-      case 35: 
+  
+      case 35: //Creation de session
+        if (isset($_POST['createSession'])){
+          $session = new SessionTraining(null,$_POST['sessionName'],$_POST['startDateFormation'],$_POST['endDateFormation'],$_POST['startDatePAE'],$_POST['endDatePAE']);
+          (new SessionTrainingDao())->insert($session);
+        } else {
         $adminview = new AdminView();
         $adminview->run("createSession");
-      break;
+        }
+      break; 
 
       //Gestion des comptes utilisateurs
       case 36: 
@@ -235,6 +240,44 @@ class AdminController extends MainController
           $adminview->run("infoActivity");
         }
       break;
+
+      case 46: // list Session
+        $adminview = new AdminView();
+        $sessionDao = new SessionTrainingDao();
+        $sessionList = $sessionDao->getListSession();
+        $adminview->setListSession($sessionList);
+        $adminview->run("listSession");  
+      break;
+
+      case 47: //info Session (+delete Update)
+       /*  if (isset($_POST['updateTheme'])){ 
+         (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
+         header('Location:../../index.php/admin/listTheme');
+        } elseif (isset($_POST['deleteTheme'])) {
+          (new ThemeDao())->delete($_GET["idTheme"]);
+          (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
+          (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
+          header('Location:../../index.php/admin/listTheme');    
+       } else {
+         $adminview = new AdminView();
+         $themeDao = new ThemeDao;
+         $listTheme = $themeDao->getListTheme();
+         foreach( $listTheme as $theme) {
+           if ($theme -> get_idTheme() == $_GET['idTheme']){
+             $infoTheme = $theme;
+           }
+         } */
+         $adminview = new AdminView();
+         $sessionDao = new SessionTrainingDao();
+         $sessionList = $sessionDao->getListSession();
+         foreach( $sessionList as $session) {
+          if ($session -> getIdSession() == $_GET['idSession']){
+            $infoSession = $session;
+          }
+        }  
+         $adminview->setInfoSession($infoSession);
+         $adminview->run("infoSession");
+       break;
 
       default:
       (new LoginPageView())->run($content="");
