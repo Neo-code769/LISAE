@@ -5,17 +5,16 @@
 
             <input id='inputSubmit' style='width:16%;' type='submit' name='updateSlot' value='Modifier'><br><br><br>
         </form>
+    <a id="inputSubmit" href="../../index.php/anim/emargement?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille d'Emargement </a><br><br>
 
-    <a id="inputSubmit" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"> Cocher les présences </a><br><br>
+    <a id="inputSubmit" style="text-decoration: none;" href="../../index.php/anim/presence?id_slot=<?=$_GET['idSlot']?>&id_activity=<?=$_GET['id_activity']?>"> Cocher les présences </a><br><br>
 
-    <a id="inputSubmit" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille Présence </a><br><br>
+    <a id="inputSubmit" style="text-decoration: none;" href="../../index.php/anim/export?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille Présence </a><br><br>
 
     <form method="post">
         <input id="inputSubmit" style="background-color:red; width: 16%;" type="submit" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette activité?')" name="deleteSlot" value = "Supprimer l'Activité">
     </form><br><br>
 
     <a id="inputSubmit" href="../../index.php/anim/dashboard"> Retour </a>
-    
-    <a id="inputSubmit" href="../../index.php/anim/emargement?id_slot=<?=$_GET['idSlot']?>"> Imprimer Feuille d'Emargement </a><br><br>
     
     <div><br></br>
