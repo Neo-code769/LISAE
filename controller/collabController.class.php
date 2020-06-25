@@ -22,7 +22,11 @@ class CollabController extends MainController
       "modifPhone"=>13,
       "modifMail"=>14,
       "deregistrationSlot"=>15,
-      "listActivity"=>16
+      "listActivity"=>16,
+      "theme"=> 17,
+      "infoTheme"=> 18,
+      "activityList"=> 19,
+      "infoActivity"=> 20
     ];
     parent::__construct();
   }
@@ -216,8 +220,13 @@ class CollabController extends MainController
         try {
           $slot = (new SlotDao())->get($_GET["idslot"]);
           $dts = new DateTime($slot->get_slotDateTimeStart());
-          if (now() < $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
-            # code...
+
+          $tz_object = new DateTimeZone('europe/paris');
+          $now = new DateTime();
+          $now->setTimezone($tz_object);
+
+          if ($now > $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
+            throw new LisaeException("Erreur, le délai de désinscription est dépassé, veuillez contactez l'animateur en cas d'urgence", 1);
           }else{
             (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
             echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
@@ -260,8 +269,51 @@ class CollabController extends MainController
           //var_dump($listActivity);
           $collabView->setListForActivity($listActivity);
           $collabView->run("listActivity");
-          
-                 
-    }
+        break;
+
+        case 17: // affichage theme
+          $collabView = new CollabView();
+          $themes = (new ThemeDao())->getListTheme();
+          $collabView->getTheme($themes);
+          $collabView->run("theme"); 
+        break;   
+        
+        case 18: //info d'un theme
+          $collabView = new CollabView();
+          $themeDao = new ThemeDao;
+          $listTheme = $themeDao->getListTheme();
+          foreach( $listTheme as $theme) {
+              if ($theme -> get_idTheme() == $_GET['idTheme']){
+                   $infoTheme = $theme;
+              }  
+          }
+          $collabView->setInfoTheme($infoTheme);
+          $collabView->run("infoTheme");
+        break;
+
+        
+      case 19: //listActivity
+        $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
+        $collabView = new CollabView();
+        $collabView->setActivityList($_GET['nTheme'],$listActivity);
+        $collabView->run("activityList");
+      break;
+
+      case 20: //info d'une activity
+        $collabView = new CollabView();
+        $themeDao = new ThemeDao;
+        $listTheme = $themeDao->getListTheme();
+        foreach( $listTheme as $theme) {
+          foreach( $theme->get_activity() as $activity) {
+            if ($activity->get_idActivity() == $_GET['idActivity']){
+              $infoActivity = $activity;
+            }  
+        }
+      }
+        $collabView->setInfoActivity($infoActivity);
+        $collabView->run("infoActivity");
+      
+      break;
+    }  
   }
 }

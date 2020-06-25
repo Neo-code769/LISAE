@@ -77,7 +77,7 @@ p
     border: 3px rgba(22, 32, 172, 0.486) solid;
     border-radius: 10px;
     background-color: rgba(136, 136, 224, 0.418);
-    
+
 }
 
 #button {
@@ -458,4 +458,16 @@ td, th {
     margin-left: 39%;
     margin-top: 2%;
     margin-bottom: 15%;
+}
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+	width: 32px;
+	height: 32px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
 }

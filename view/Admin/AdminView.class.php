@@ -102,7 +102,7 @@ class AdminView extends LisaeTemplateConnected {
 
         }
     }
-  
+
     public function setUserList($userList){
         $result = "";
         foreach ($userList as $user) {
@@ -168,23 +168,35 @@ class AdminView extends LisaeTemplateConnected {
     }
     public function setInfoTheme($theme){
             $result =
-            "<div class='row justify-content-center'> 
-                    <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
-                        ".$theme->get_name()."
-                    </div>
-            </div><br><br>";
+                "<div class='row justify-content-center'> 
+                        <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                            ".$theme->get_name()."
+                        </div>
+                </div><br>";
             $result .=
-            "<div style='margin-left: 5%; width: 30%;'><label>Nom </label><input style='margin-left: 4%;' type='text' name='name' value='".$theme->get_name()."'></div><br><br>";
+                "<div style='margin-left: 5%;'>
+                    <label>Nom </label>
+                    <input type='text' name='name' value='".$theme->get_name()."'>
+                </div><br>";
             $result .=
-                "<div style='margin-left: 5%; width: 20%;'><label> Color </label><input style='margin-left: 2%;' type='color' name='color' value='".$theme->get_color()."'></div><br><br>";    
+                "<div style='margin-left: 5%;'>
+                    <label>Color </label>
+                    <input type='color' name='color' value='".$theme->get_color()."'>
+                </div><br>";    
             $result .=
-                "<div style='margin-left: 5%;'><label>Description </label><input style='margin-left: 4%;' type='text' name='description' value='".$theme->get_description()."'</div><br><br><br>";
+                "<div style='margin-left: 5%;'>
+                    <label>Description </label>
+                    <input type='text' name='description' value='".$theme->get_description()."'>
+                </div><br>";
             $result .=
-                "<div><label>Description détaillée </label><input style='margin-left: 4%;' type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'></div><br>";      
+                "<div style='margin-left: 5%;'>
+                    <label>Description détaillée </label>
+                    <input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'>
+                </div><br>";      
         
         $this->_infoTheme = $result;
     }
-
+ 
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
         $result ="";
         //var_dump($listActivity);
@@ -208,7 +220,7 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:grey'>
                         ".$session->get_nameSession()."
                     </div>
-                    </div><a  id='info' href='./infoSession?idSession=".$session->getIdSession()."&nTraining=".$_GET['nTraining']."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
+                    <a  id='info' href='./infoSession?idSession=".$session->getIdSession()."&nTraining=".$_GET['nTraining']."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
             </div>";
         }
         $this->_sessionList = $result;
@@ -222,12 +234,12 @@ class AdminView extends LisaeTemplateConnected {
                     <div id='listELOCE' class='eloce' style='background-color:grey'>
                         ".$training["name"]."
                     </div>
-                    <a  id='listSession' href='./listSession?nTraining=".$training["name"]."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
-                    </div><a  id='info' href='./infoTraining?idTraining=".$training["id_training"]."'><img src='../../images/info.png' alt='info d'une formation'></a>   
+                    <a  id='listSession' href='./listSession?nTraining=".$training['name']."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
+                    <a  id='info' href='./infoTraining?idTraining=".$training['id_training']."'><img src='../../images/info.png' alt='info d'une formation'></a>   
             </div>";
         }
         $this->_trainingList = $result;
-    }
+    } 
 
     public function setInfoTraining($training){
         $result =
@@ -243,36 +255,37 @@ class AdminView extends LisaeTemplateConnected {
             </div><br>";
         $this->_infoTraining = $result;
     }
+    
     public function setInfoSession($session){
         $result =
-        "<div class='row justify-content-center'> 
-            <div id='listELOCE' class='eloce' style='background-color:grey'>
-                ".$session->get_nameSession()."
-            </div>
-        </div><br>";
-        $result .=
-        "<div style='margin-left: 5%;'>
-            <label>Nom de la formation</label>
-            <input type='text' name='name' value='".$session->get_nameSession()."'>
-        </div><br>";
+            "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:grey'>
+                    ".$session->get_nameSession()."
+                </div>
+            </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Date de Début de formation</label>
+                <label>Nom de la formation</label>
+                <input type='text' name='name' value='".$session->get_nameSession()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Début de formation</label>
                 <input type='date' name='startDateFormation' value='".$session->get_startDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Date de fin de formation</label>
+                <label>Fin de formation</label>
                 <input type='date' name='endDateFormation' value='".$session->get_endDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Date de Début de PAE</label>
+                <label>Début de PAE</label>
                 <input type='date' name='startDatePae' value='".$session->get_startDatePae()."'>
             </div><br>"; 
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Date de Fin de PAE</label>
+                <label>Fin de PAE</label>
                 <input type='date' name='endDatePae' value='".$session->get_endDatePae()."'>
             </div><br>";   
         $this->_infoSession = $result;
