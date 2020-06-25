@@ -10,4 +10,6 @@
         </article>
         <br><br><br><br><br><br><br><br><br><br>
     </section>
-    <a id="inputSubmit" href="../../index.php/admin/createSession" style="width:20%;text-align: center;margin-left:40%" > Créer une nouvelle session de formation </a><br><br> 
+    <a id="inputSubmit" href="../../index.php/admin/createSession?nTraining=<?php echo $_GET['nTraining']?>" style='width:20%;text-align: center;margin-left:40%' "> Créer une session de formation </a><br><br> 
+
+    <a href="javascript:history.back()"><input id="inputSubmit" style="width: 20%;text-align: center;margin-left:40%" value="Retour"></a>

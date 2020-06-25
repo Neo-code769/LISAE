@@ -1,13 +1,11 @@
 <?php
-/*
-* Administrator Type
-*/
+//
+//Administrator Type
 
-class AdminController extends MainController
-{
-
+class AdminController extends MainController {
   public function __construct()
   {
+
     $this->_listUseCases=
     [
       "registration" => 31,
@@ -35,6 +33,7 @@ class AdminController extends MainController
 
   public function run(): void
   {
+
     switch ($this->_case) {
       
       //Admin
@@ -64,6 +63,7 @@ class AdminController extends MainController
           $theme = new Theme(null,$_POST['name'],$_POST['color'],$_POST['description'],$_POST['detailedDescription'],null);
           (new ThemeDao())->insert($theme);
           (new UserDao())->insertReferToTheme($_POST['referAnimator']);
+          header("Location:../admin/listTheme");
         } else {
           $adminview = new AdminView();
           $adminview->setUserList((new UserDao())->listAnim());
@@ -110,15 +110,18 @@ class AdminController extends MainController
       case 34: 
         if (isset($_POST['createFormation'])){
           (new SessionTrainingDao())->insertTraining($_POST["name"]);
-        }
+          header("Location:../admin/listTraining");
+        } else {
         $adminview = new AdminView();
         $adminview->run("createFormation");
+        }
       break;
   
       case 35: //Creation de session
-        if (isset($_POST['createSession'])){
-          $session = new SessionTraining(null,$_POST['sessionName'],$_POST['startDateFormation'],$_POST['endDateFormation'],$_POST['startDatePAE'],$_POST['endDatePAE']);
+        if (isset($_POST['createSession'])) {
+          $session = new SessionTraining(null,$_GET['nTraining']. " " . $_POST['sessionNumber'],$_POST['startDateFormation'],$_POST['endDateFormation'],$_POST['startDatePAE'],$_POST['endDatePAE']);
           (new SessionTrainingDao())->insert($session);
+          header("Location:../admin/listTraining");
         } else {
         $adminview = new AdminView();
         $adminview->run("createSession");
@@ -341,4 +344,6 @@ class AdminController extends MainController
       break;
     }
   }
+
 }
+
