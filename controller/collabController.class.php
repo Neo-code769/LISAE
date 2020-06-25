@@ -214,9 +214,15 @@ class CollabController extends MainController
       case 15 : //Désinscription créneaux
         $collabView = new CollabView();
         try {
-          (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
-          echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
-          header('Refresh:0;url=../../index.php/collab/dashboard');
+          $slot = (new SlotDao())->get($_GET["idslot"]);
+          $dts = new DateTime($slot->get_slotDateTimeStart());
+          if (now() < $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
+            # code...
+          }else{
+            (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
+            echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
+            header('Refresh:0;url=../../index.php/collab/dashboard');
+          }
         } catch (LisaeException $e) {
           $collabView->run("dashboard",$e->render());
         }
