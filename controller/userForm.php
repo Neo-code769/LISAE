@@ -85,11 +85,6 @@ class UserForm{
         }
     }
 
-    /***** Alerte Supression Créneaux PHP MAILER *****/
-    //TODO
-
-    
-
     ///////// Creation Collaborateur /////////////
     public function createCollab()
     {

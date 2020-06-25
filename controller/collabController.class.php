@@ -158,7 +158,7 @@ class CollabController extends MainController
 
       case 12: //info Creneaux
         $collabView = new CollabView();
-        $themeList = (new ThemeDao())->getListTheme();
+        $themeList = (new ThemeDao())->getListTheme(false);
         $arr = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {
@@ -220,13 +220,22 @@ class CollabController extends MainController
         try {
           $slot = (new SlotDao())->get($_GET["idslot"]);
           $dts = new DateTime($slot->get_slotDateTimeStart());
+          $now = new DateTime();
 
           $tz_object = new DateTimeZone('europe/paris');
-          $now = new DateTime();
+
           $now->setTimezone($tz_object);
 
-          if ($now > $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
-            throw new LisaeException("Erreur, le délai de désinscription est dépassé, veuillez contactez l'animateur en cas d'urgence", 1);
+          $now->format("Y-m-d H:i:s P");
+          $dts->format("Y-m-d H:i:s P");
+
+          $dts->modify("+".$slot->get_unsubscribeDeadLine()." day");
+
+          //var_dump(($now < $dts));
+          if ($now < $dts) {
+            echo "<html><script>window.alert(\"Erreur, le délai de désinscription est dépassé, veuillez contactez l'animateur en cas d'urgence\");</script></html>";
+            //echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
+            header('Refresh:0;url=../../index.php/collab/dashboard');
           }else{
             (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
             echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";

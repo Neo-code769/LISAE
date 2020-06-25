@@ -43,7 +43,7 @@ class PresenceDao extends Dao {
            " SELECT users.id_user, Lastname, Firstname, PhoneNumber, mail, session_name, presence FROM users
             INNER JOIN participate ON participate.id_user = users.id_user
             INNER JOIN activity ON activity.id_activity = participate.id_activity
-            INNER JOIN session on participate.id_session = session.id_session
+            INNER JOIN session ON participate.id_session = session.id_session
             WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)"
         );
         try {
@@ -92,6 +92,27 @@ class PresenceDao extends Dao {
            var_dump($e->getMessage());
            throw new LisaeException("Erreur, vous êtes déjà inscrit",1);
        }
+    }
+
+    // Recupere les e-mails des inscrits à l'activité pour annulation
+    public function getMailRegistered($idSlot) {
+        $mail = [];
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare("SELECT `mail` FROM `users` 
+        INNER JOIN participate ON participate.id_user = users.id_user 
+        WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = 12)");
+
+        try{
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $mail[] = ['mail'=> $donnees["mail"]];
+            }
+        }catch(PDOException $e) {
+            throw new LisaeException("Erreur");
+        }
+        return $mail;
+
     }
     
     public function getList(): array{

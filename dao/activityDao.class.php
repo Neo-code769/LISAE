@@ -134,6 +134,20 @@ class ActivityDao extends Dao {
             throw new LisaeException("Erreur",1);
         }
     }
+
+    public function getNameActivity($idSlot) {
+        $sql = "SELECT `name` FROM `activity` 
+        INNER JOIN `host` ON activity.id_activity = host.id_activity 
+        WHERE id_slot= $idSlot";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try {
+            $result = $exec->execute();
+            //var_dump($sql);
+        }catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+        return $result;
+    }
 }
 
 
