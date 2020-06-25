@@ -186,12 +186,12 @@ class AdminView extends LisaeTemplateConnected {
             $result .=
                 "<div style='margin-left: 5%;'>
                     <label>Description </label>
-                    <textarea name='description' cols='40' rows='5'  value='".$theme->get_description()."'></textarea><br><br>
+                    <textarea name='description' cols='40' rows='5'>".$theme->get_description()."</textarea><br><br>
                 </div><br>";
             $result .=
                 "<div style='margin-left: 5%;'>
                     <label>Description détaillée </label>
-                    <textarea name='description' cols='40' rows='5'  value='".$theme->get_detailsDescription()."'></textarea><br><br>
+                    <textarea name='detailedDescription' cols='40' rows='5'>".$theme->get_detailsDescription()."</textarea><br><br>
                 </div><br>";      
         
         $this->_infoTheme = $result;

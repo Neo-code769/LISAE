@@ -312,10 +312,11 @@ class ThemeDao extends Dao {
 
     // requete pour modifier un thème
     public function updateTheme($name, $color, $description, $detailedDescription, $idTheme) : void{
-        $sql = "UPDATE theme SET `name`='$name',`color`='$color',`description`='$description',`detailedDescription`='$detailedDescription' WHERE id_theme= $idTheme";
+        $sql ="UPDATE theme SET `name`='$name',`color`='$color',`description`=\"$description\",`detailedDescription`=\"$detailedDescription\" WHERE id_theme= $idTheme";
         $exec = (Dao::getConnexion())->prepare($sql);
         try {
             $exec->execute();
+            var_dump($sql);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
@@ -330,7 +331,6 @@ class ThemeDao extends Dao {
        $exec = (Dao::getConnexion())->prepare($sql);
         try {
             $exec->execute();
-            var_dump($sql);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
