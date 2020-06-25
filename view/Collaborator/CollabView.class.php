@@ -75,10 +75,20 @@ class CollabView extends LisaeTemplateConnected {
             if ($element["complete"]== true){
             $result .=
             "<div class='row justify-content-center'> 
-            <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
-            <a  id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
-            <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='info d'un créneau'></a>
-            <a  id='signup' href='../collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["id_activity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>            
+                <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'>
+                    <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>
+                    ".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."
+                </a>
+                    </div>
+                <a  id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'>
+                    <img src='../../images/dossier.png' alt='créneaux pour une activité'>
+                </a>
+                <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'>
+                    <img src='../../images/info.png' alt='info d'un créneau'>
+                </a>
+                <a  id='signup' href='../collab/signUpSlot?idSlot=".$element["idslot"]."&idActivity=".$element["id_activity"]."'>
+                    <img src='../../images/add.png' alt='S'inscrire a l'atelier'>
+                </a>            
             </div>";
             }
             else {
@@ -207,16 +217,20 @@ class CollabView extends LisaeTemplateConnected {
         $result .=
             "<h3>Contenu :</h3>
             <p>".$activity->get_detailedDescription()."</p>
-            <br>";      
-      
-    $this->_infoActivity = $result;
+            <br>";   
+       /*  $result .=   
+        "<a  id='listActivity' href='../collab/listActivity?id_activity=".$activity["id_activity"]."'>
+            <img src='../../images/dossier.png' alt='créneaux pour une activité'>
+        </a>"; */
+  
+        $this->_infoActivity = $result;
     }
     public function setActivityList($nameTheme,$activityList,$colorTheme){
         $result ="";   
         foreach ($activityList as $activity) {
             $result .=
                 "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
-                    <button class='btn-hover' style='background-color:".$colorTheme."; color: black; font-size: 22px;'>
+                    <button class='bouton' style='background-color:".$colorTheme."; color: black; font-size: 22px;'>
                     ".$activity->get_name()."
                     </button>
                 </a>"; 

@@ -175,24 +175,24 @@ class AdminView extends LisaeTemplateConnected {
                 </div><br>";
             $result .=
                 "<div style='margin-left: 5%;'>
-                    <label>Nom </label>
+                    <label>Nom :</label>
                     <input type='text' name='name' value='".$theme->get_name()."'>
                 </div><br>";
             $result .=
                 "<div style='margin-left: 5%;'>
-                    <label>Color </label>
+                    <label>Color :</label>
                     <input type='color' name='color' value='".$theme->get_color()."'>
                 </div><br>";    
             $result .=
                 "<div style='margin-left: 5%;'>
-                    <label>Description </label>
-                    <textarea name='description' cols='40' rows='5'>".$theme->get_description()."</textarea><br><br>
+                    <label>Description du thème :</label>
+                    <textarea name='description' cols='60' rows='7'>".$theme->get_description()."</textarea><br><br>
                 </div><br>";
             $result .=
-                "<div style='margin-left: 5%;'>
-                    <label>Description détaillée </label>
-                    <textarea name='detailedDescription' cols='40' rows='5'>".$theme->get_detailsDescription()."</textarea><br><br>
-                </div><br>";      
+                '<div style="margin-left: 5%;">
+                    <label>Description détaillée :</label>
+                    <textarea name="detailedDescription" cols="60" rows="7">'.$theme->get_detailsDescription().'</textarea><br><br>
+                </div><br>';        
         
         $this->_infoTheme = $result;
     }
@@ -265,27 +265,27 @@ class AdminView extends LisaeTemplateConnected {
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Nom de la formation</label>
+                <label>Nom de la formation :</label>
                 <input type='text' name='name' value='".$session->get_nameSession()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Début de formation</label>
+                <label>Début de formation :</label>
                 <input type='date' name='startDateFormation' value='".$session->get_startDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Fin de formation</label>
+                <label>Fin de formation :</label>
                 <input type='date' name='endDateFormation' value='".$session->get_endDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Début de PAE</label>
+                <label>Début de PAE :</label>
                 <input type='date' name='startDatePae' value='".$session->get_startDatePae()."'>
             </div><br>"; 
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Fin de PAE</label>
+                <label>Fin de PAE :</label>
                 <input type='date' name='endDatePae' value='".$session->get_endDatePae()."'>
             </div><br>";   
         $this->_infoSession = $result;
@@ -300,23 +300,23 @@ class AdminView extends LisaeTemplateConnected {
         </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-            <img src=".$activity->get_image()."><br>
+            <img src=".$activity->get_image()."></img><br>
             <label>Changer d'image :</label>
             <input class='upload' type='file' name='image'><br><br>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Nom</label>
+                <label>Nom :</label>
                 <input type='text' name='name' value='".$activity->get_name()."'>
             </div><br>";
         $result .=
-            '<div style="margin-left: 5%;">
-                <label>Description</label>
-                <textarea name="description" cols="60" rows="6"> '.$activity->get_description().'</textarea><br><br>
-            </div><br>';
+            "<div style='margin-left: 5%;'>
+                <label>Description de l'activité :</label>
+                <textarea name='description' cols='60' rows='7'>".$activity->get_description()."</textarea><br><br>
+            </div><br>";
         $result .=
             '<div style="margin-left: 5%;">
-                <label>Description détaillée</label>
+                <label>Description détaillée :</label>
                 <textarea name="detailedDescription" cols="60" rows="7">'.$activity->get_detailedDescription().'</textarea><br><br>
             </div><br>';   
             $this->_infoActivity = $result;
