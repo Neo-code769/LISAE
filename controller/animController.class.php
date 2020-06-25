@@ -191,13 +191,13 @@ class AnimController extends MainController
           (new SlotDao())->deleteSlotHost($_GET["idSlot"]);
 
           //PHP MAILER
-          (new ActivityDao())->getActivityName($_GET['id_slot']);
+          $activityName = (new ActivityDao())->getNameActivity($_GET['id_slot']);
           $registered = new PresenceDao();
-          $listRegistered = $registred->getMailRegistered($_GET['id_slot']);
+          $listRegistered = $registered->getMailRegistered($_GET['id_slot']);
           foreach($listRegistered as $mail) {
-          $this->sendMailDeleteActivity($mail); // Envoi du mail d'annulation d'inscription
+          $this->sendMailDeleteActivity($mail, $activityName); // Envoi du mail d'annulation d'inscription
           }
-          header('Location:../../index.php/anim/infoSlot');
+          header('Refresh: 0');
         }elseif(isset($_POST["updateSlot"])){
             (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['idSlot']);
             header('Refresh: 0');
@@ -393,7 +393,7 @@ class AnimController extends MainController
   }
 
   /***** Alerte Supression Créneaux PHP MAILER *****/
-  public function sendMailDeleteActivity($_mail) {
+  public function sendMailDeleteActivity($_mail, $activity) {
 
     try{
         $mail= new PHPMailer\PHPMailer\PHPMailer();
@@ -411,8 +411,6 @@ class AnimController extends MainController
         $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
         $mail->Subject = 'AFPA ALERTE Activité ELOCE annulé! - AFPA-LISAE';
 
-        $activityName= new ActivityDao();
-        $activity = $activityName->getNameActivity($_GET['id_slot']);
         $mail->Body = "L'activité". ' '.$activity. "a été annulé par l'animateur."; 
         $mail->isHTML(true);
         $mail->setLanguage('fr');
