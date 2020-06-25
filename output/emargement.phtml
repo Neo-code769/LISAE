@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output/styleEmargement.css" >
     <title>Feuille d'Emargement</title>
 </head>
 <body>
     <img src="/images/Afpa.jpeg" alt="Logo AFPA">
+    <h2 style="text-decoration: underline; font-size: 22px;">AFPA BALMA</h2>
+
     <?php echo $result1;?>
-    <?php echo $result2;?>
+
     <table id="presence">
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>N° de téléphone</th>
+            <th>Téléphone</th>
+            <th>E-mail</th>
             <th>Formation</th>
             <th> Emargement</th>
         </tr>
         <?php echo $result;?>
-    </table>
-    <br>
+    </table><br>
+
+    
+    <!--<?php echo $result2;?>-->
 </body>
 </html>
