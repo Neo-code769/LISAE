@@ -424,7 +424,7 @@ input {
 }
 
 .btn-hover.color-2 {
-  background-image: linear-gradient(to right, #017939c9, #29be15d0, #44d431c5, #44d431d2);
+  background-image: linear-gradient(to right, #a6e434, #a6e434, #c6e4ae, #c6e4ae);
   box-shadow: 0 2px 5px 0 rgba(83, 176, 57, 0.75);
 }
 
