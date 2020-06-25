@@ -300,7 +300,7 @@ class AdminView extends LisaeTemplateConnected {
         </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-            <img src=".$activity->get_image().">
+            <img src=".$activity->get_image()."><br>
             <label>Changer d'image :</label>
             <input class='upload' type='file' name='image'><br><br>
             </div><br>";
@@ -310,15 +310,15 @@ class AdminView extends LisaeTemplateConnected {
                 <input type='text' name='name' value='".$activity->get_name()."'>
             </div><br>";
         $result .=
-            "<div style='margin-left: 5%;'>
+            '<div style="margin-left: 5%;">
                 <label>Description</label>
-                <textarea name='description' cols='40' rows='5'  value='".$activity->get_description()."'></textarea><br><br>
-            </div><br>";
+                <textarea name="description" cols="60" rows="6"> '.$activity->get_description().'</textarea><br><br>
+            </div><br>';
         $result .=
-            "<div style='margin-left: 5%;'>
+            '<div style="margin-left: 5%;">
                 <label>Description détaillée</label>
-                <textarea name='description' cols='40' rows='5'  value='".$activity->get_detailedDescription()."'></textarea><br><br>
-            </div><br>";   
+                <textarea name="detailedDescription" cols="60" rows="7">'.$activity->get_detailedDescription().'</textarea><br><br>
+            </div><br>';   
             $this->_infoActivity = $result;
     }
 

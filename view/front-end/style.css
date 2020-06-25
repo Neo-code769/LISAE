@@ -471,3 +471,9 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
 	border: none;
 }
+img{
+    display:block;
+    width:auto;
+    margin-left:auto;
+    margin-right:auto;
+}    

@@ -98,7 +98,7 @@ class AdminController extends MainController {
           (new ActivityDao())->insertRecurringActivity($_GET['idTheme']);
           
           //Redirection
-          header("Location:../admin/Dashboard");
+          header("Location:../admin/listTheme");
 
         } else {
           $adminview = new AdminView();
@@ -248,7 +248,7 @@ class AdminController extends MainController {
 
           (new ActivityDao())->updateActivity($activity);
           echo "<html><script>window.alert('La modification a bien était effectué !');</script></html>";
-          header("refresh:0");
+         // header("refresh:0");
         } elseif (isset($_POST['deleteActivity'])) { //Bouton de suppression 
           //Delete participate
           (new UserDao())->deleteParticipateForActivity($_GET["idActivity"]);

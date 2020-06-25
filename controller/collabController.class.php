@@ -295,7 +295,7 @@ class CollabController extends MainController
       case 19: //listActivity
         $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
         $collabView = new CollabView();
-        $collabView->setActivityList($_GET['nTheme'],$listActivity);
+        $collabView->setActivityList($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
         $collabView->run("activityList");
       break;
 

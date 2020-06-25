@@ -39,8 +39,8 @@ class CollabView extends LisaeTemplateConnected {
                             <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Tableau de Bord</button></a>
                             <a href="../collab/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Calendrier ELOCE</button></a>
                             <a href="../collab/theme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
-                            <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Soft Skills</button></a>
-                            <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Job Cible</button></a>
+                            <!-- <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Soft Skills</button></a> -->
+                            <!-- <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Job Cible</button></a> -->
                             <a href="../collab/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Mon Compte</button></a>
                             <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
                         </div>
@@ -211,16 +211,16 @@ class CollabView extends LisaeTemplateConnected {
       
     $this->_infoActivity = $result;
     }
-    public function setActivityList($nameTheme,$activityList){
+    public function setActivityList($nameTheme,$activityList,$colorTheme){
         $result ="";   
         foreach ($activityList as $activity) {
             $result .=
                 "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
-                    <button class='btn-hover' style ='color: black; font-size: 22px';>
+                    <button class='btn-hover' style='background-color:".$colorTheme."; color: black; font-size: 22px;'>
                     ".$activity->get_name()."
                     </button>
                 </a>"; 
-        }
+        }  
             $this->_activityList = $result;
             $this->_nameTheme = $nameTheme;
     }
