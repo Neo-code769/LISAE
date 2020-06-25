@@ -195,7 +195,7 @@ class AnimController extends MainController
             header('Refresh: 0');
         } else {
           $animView = new AnimatorView();
-          $themeList = (new ThemeDao())->getListTheme();
+          $themeList = (new ThemeDao())->getMyListThemeAnim($_SESSION['id_user']);
           $arr = [];
           foreach ($themeList as $theme) {
               foreach ($theme->get_activity() as $activity) {

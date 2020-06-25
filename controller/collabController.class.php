@@ -216,8 +216,13 @@ class CollabController extends MainController
         try {
           $slot = (new SlotDao())->get($_GET["idslot"]);
           $dts = new DateTime($slot->get_slotDateTimeStart());
-          if (now() < $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
-            # code...
+
+          $tz_object = new DateTimeZone('europe/paris');
+          $now = new DateTime();
+          $now->setTimezone($tz_object);
+
+          if ($now > $dts->modify("+". $slot->get_unsubscribeDeadLine()."day")) {
+            throw new LisaeException("Erreur, le délai de désinscription est dépassé, veuillez contactez l'animateur en cas d'urgence", 1);
           }else{
             (new ThemeDao())->deregistrationSlot($_SESSION["id_user"],$_SESSION["id_session"],$_GET["idActivity"],$_GET["idslot"]);
             echo "<html><script>window.alert('Vous vous êtes bien désinscrit !');</script></html>";
