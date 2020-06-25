@@ -158,7 +158,7 @@ class CollabController extends MainController
 
       case 12: //info Creneaux
         $collabView = new CollabView();
-        $themeList = (new ThemeDao())->getListTheme();
+        $themeList = (new ThemeDao())->getListTheme(false);
         $arr = [];
         foreach ($themeList as $theme) {
             foreach ($theme->get_activity() as $activity) {

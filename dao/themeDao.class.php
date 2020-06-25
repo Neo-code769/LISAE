@@ -4,7 +4,8 @@ class ThemeDao extends Dao {
 
     /*********************Recuperation de la liste des activités ELOCE********************/
 
-    public function getListTheme()
+    public function getListTheme(bool $sorting=true) 
+    //Variable pour gérer le tri, indispensable de mettre a false pour afficher les info Eloce par exemple
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -23,7 +24,7 @@ class ThemeDao extends Dao {
                 $description = $donnees['description'];
                 $detailsDescription = $donnees['detailedDescription']; 
 
-                $activity = $this->getListActivity($idTheme);
+                $activity = $this->getListActivity($idTheme,$sorting);
 
                 $theme = new Theme($idTheme, $name, $color, $description, $detailsDescription, $activity);
                 $list[] = $theme;
@@ -36,7 +37,7 @@ class ThemeDao extends Dao {
     return $list;    
     }
 
-    public function getListActivity($idTheme)
+    public function getListActivity($idTheme,bool $sorting=true)
     {
         $list = []; 
         $pdo = Dao::getConnexion();
@@ -54,7 +55,7 @@ class ThemeDao extends Dao {
                     $description = $donnees['description'];
                     $detailedDescription = $donnees['detailedDescription'];
                     $image = $donnees['image'];
-                    $slot = $this->getListSlot($idActivity);
+                    $slot = $this->getListSlot($idActivity,$sorting);
                     $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot, $image);
                    
                     $list[] = $activity;
@@ -66,14 +67,21 @@ class ThemeDao extends Dao {
            
         return $list;
     }
-    public function getListSlot($idActivity)
+    public function getListSlot($idActivity,bool $sorting=true)
     {
         $list = []; 
         $sql = Dao::getConnexion();
-        $requete = $sql->prepare(
-        "SELECT * FROM host 
-        WHERE id_activity = $idActivity AND now() < host.slotDateStart AND datediff(slotDateStart, now()) > registrationDeadline"
+        if ($sorting==false) {
+            $requete = $sql->prepare(
+                "SELECT * FROM host 
+                WHERE id_activity = $idActivity
+                ");
+        }else{
+            $requete = $sql->prepare(
+            "SELECT * FROM host 
+            WHERE id_activity = $idActivity AND now() < host.slotDateStart AND datediff(slotDateStart, now()) > registrationDeadline"
         );
+        }
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
@@ -166,7 +174,11 @@ class ThemeDao extends Dao {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd, host.minNumberPerson, host.maxNumberPerson FROM participate, host WHERE participate.id_activity = $idActivity AND participate.id_user = $idUser AND participate.slotDateStart = host.slotDateStart
+        "SELECT DISTINCT(host.id_slot), participate.slotDateStart, participate.slotDateEnd, host.minNumberPerson, host.maxNumberPerson 
+        FROM participate, host 
+        WHERE participate.id_activity = $idActivity 
+        AND participate.id_user = $idUser 
+        AND participate.slotDateStart = host.slotDateStart
         AND now() < host.slotDateStart"
         );
         try {

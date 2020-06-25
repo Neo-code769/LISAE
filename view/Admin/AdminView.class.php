@@ -186,12 +186,12 @@ class AdminView extends LisaeTemplateConnected {
             $result .=
                 "<div style='margin-left: 5%;'>
                     <label>Description </label>
-                    <input type='text' name='description' value='".$theme->get_description()."'>
+                    <textarea name='description' cols='40' rows='5'  value='".$theme->get_description()."'></textarea><br><br>
                 </div><br>";
             $result .=
                 "<div style='margin-left: 5%;'>
                     <label>Description détaillée </label>
-                    <input type='text' name='detailedDescription' value='".$theme->get_detailsDescription()."'>
+                    <textarea name='description' cols='40' rows='5'  value='".$theme->get_detailsDescription()."'></textarea><br><br>
                 </div><br>";      
         
         $this->_infoTheme = $result;
@@ -312,14 +312,14 @@ class AdminView extends LisaeTemplateConnected {
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Description</label>
-                <input type='text' name='description' value='".$activity->get_description()."'>
+                <textarea name='description' cols='40' rows='5'  value='".$activity->get_description()."'></textarea><br><br>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
                 <label>Description détaillée</label>
-                <input type='text' name='detailedDescription' value='".$activity->get_detailedDescription()."'>
+                <textarea name='description' cols='40' rows='5'  value='".$activity->get_detailedDescription()."'></textarea><br><br>
             </div><br>";   
-    $this->_infoActivity = $result;
+            $this->_infoActivity = $result;
     }
 
 }   
