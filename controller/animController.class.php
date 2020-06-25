@@ -349,34 +349,31 @@ class AnimController extends MainController
               }
           } 
           $result1 = 
-          "<div class='eloce' style='background-color:".$slotInfo["color"]."'>".
-            $slotInfo["dtsf"]."-".$slotInfo["dtef"]." - ".$slotInfo["nTheme"]." - ".$slotInfo["nActivity"].
-          "</div><br><br>";
+          "<div class='eloce' style='background-color: none; font-size: 22px;".$slotInfo["color"]."'>".
+            $slotInfo["nTheme"]." - ".$slotInfo["nActivity"]." <br> ".$slotInfo["dtsf"]." - ".$slotInfo["dtef"]."
+            </div><br>";
+
           $result2 =
-          "<div style='margin-left: 5%;'>
-            <label>Information</label>
-            <p name='information' style='width:40%;'>".$slotInfo["information"]."</p><br><br>
-          </div><br>
-          <div style='margin-left: 5%;'>
-            <label>Lieu</label>
-            <p name='place' style='width:40%;'>".$slotInfo["place"]."</p><br><br>
+          "<div>
+            <label>Information: </label>
+            <p name='information' style='width:40%;'>".$slotInfo["information"]."</p>
+          </div>
+          <div>
+            <label>Lieu: </label>
+            <p name='place' style='width:40%;'>".$slotInfo["place"]."</p>
           </div>";
 
           $listUser=(new PresenceDao())->getTabPresence($_GET["id_slot"]);
           $result ="";
           foreach ($listUser as $user) {
-              $check="non";
-              if ($user['presence']==1) {
-                  $check = "oui";
-              }
               $result .="
               <tr>
                   <td>".$user['Firstname']."</td>
                   <td>".$user['Lastname']."</td>
-                  <td>".$user['PhoneNumber']."</td>
+                  <td>0".$user['PhoneNumber']."</td>
                   <td>".$user['mail']."</td>
                   <td>".$user['session_name']."</td>
-                  <td>$check</td>
+                  <td></td>
               </tr>";
           }
 
