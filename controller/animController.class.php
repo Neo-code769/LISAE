@@ -189,9 +189,14 @@ class AnimController extends MainController
         if (isset($_POST["deleteSlot"])) {
           (new SlotDao())->deleteSlotParticipate($_GET["idSlot"]);
           (new SlotDao())->deleteSlotHost($_GET["idSlot"]);
-          
-          // TODO PHP MAILER
 
+          //PHP MAILER
+          (new ActivityDao())->getActivityName($_GET['id_slot']);
+          $registered = new PresenceDao();
+          $listRegistered = $registred->getMailRegistered($_GET['id_slot']);
+          foreach($listRegistered as $mail) {
+          $this->sendMailDeleteActivity($mail); // Envoi du mail d'annulation d'inscription
+          }
           header('Location:../../index.php/anim/infoSlot');
         }elseif(isset($_POST["updateSlot"])){
             (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['idSlot']);
@@ -386,4 +391,42 @@ class AnimController extends MainController
 
     }
   }
+
+  /***** Alerte Supression Créneaux PHP MAILER *****/
+  public function sendMailDeleteActivity($_mail) {
+
+    try{
+        $mail= new PHPMailer\PHPMailer\PHPMailer();
+
+        $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+        $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+        $mail->SMTPAuth = true; // Activer authentication SMTP
+        $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
+        $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
+        $mail->SMTPSecure = 'ssl'; // Accepter SSL
+        $mail->Port = 465; 
+
+        $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
+        $mail->addAddress($_mail);  // Liste des inscrits à l'activité  
+        $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
+        $mail->Subject = 'AFPA ALERTE Activité ELOCE annulé! - AFPA-LISAE';
+
+        $activityName= new ActivityDao();
+        $activity = $activityName->getNameActivity($_GET['id_slot']);
+        $mail->Body = "L'activité". ' '.$activity. "a été annulé par l'animateur."; 
+        $mail->isHTML(true);
+        $mail->setLanguage('fr');
+
+        if ($mail->send()) {
+            echo 'Confirmation Message has been sent.';
+        }else {
+            echo 'Message was not sent.<br>';
+            echo 'Mailer error: ' . $mail->ErrorInfo; 
+        }
+
+    } catch (Exception $e) {
+        var_dump($e->getLine());
+        throw new LisaeException("ERROR" . $e->getLine());
+    }
+}
 }
