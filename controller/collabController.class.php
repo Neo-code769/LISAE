@@ -22,7 +22,11 @@ class CollabController extends MainController
       "modifPhone"=>13,
       "modifMail"=>14,
       "deregistrationSlot"=>15,
-      "listActivity"=>16
+      "listActivity"=>16,
+      "theme"=> 17,
+      "infoTheme"=> 18,
+      "activityList"=> 19,
+      "infoActivity"=> 20
     ];
     parent::__construct();
   }
@@ -254,8 +258,51 @@ class CollabController extends MainController
           //var_dump($listActivity);
           $collabView->setListForActivity($listActivity);
           $collabView->run("listActivity");
-          
-                 
-    }
+        break;
+
+        case 17: // affichage theme
+          $collabView = new CollabView();
+          $themes = (new ThemeDao())->getListTheme();
+          $collabView->getTheme($themes);
+          $collabView->run("theme"); 
+        break;   
+        
+        case 18: //info d'un theme
+          $collabView = new CollabView();
+          $themeDao = new ThemeDao;
+          $listTheme = $themeDao->getListTheme();
+          foreach( $listTheme as $theme) {
+              if ($theme -> get_idTheme() == $_GET['idTheme']){
+                   $infoTheme = $theme;
+              }  
+          }
+          $collabView->setInfoTheme($infoTheme);
+          $collabView->run("infoTheme");
+        break;
+
+        
+      case 19: //listActivity
+        $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
+        $collabView = new CollabView();
+        $collabView->setActivityList($_GET['nTheme'],$listActivity);
+        $collabView->run("activityList");
+      break;
+
+      case 20: //info d'une activity
+        $collabView = new CollabView();
+        $themeDao = new ThemeDao;
+        $listTheme = $themeDao->getListTheme();
+        foreach( $listTheme as $theme) {
+          foreach( $theme->get_activity() as $activity) {
+            if ($activity->get_idActivity() == $_GET['idActivity']){
+              $infoActivity = $activity;
+            }  
+        }
+      }
+        $collabView->setInfoActivity($infoActivity);
+        $collabView->run("infoActivity");
+      
+      break;
+    }  
   }
 }

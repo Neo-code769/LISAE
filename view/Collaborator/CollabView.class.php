@@ -15,6 +15,11 @@ class CollabView extends LisaeTemplateConnected {
     private $_mySlot;
     private $_session;
     private $_listActivity;
+    private $_themes;
+    private $_infoTheme;
+    private $_activityList;
+    private $_nameTheme;
+    private $_infoActivity;
 
     public function __construct()
     {
@@ -33,6 +38,7 @@ class CollabView extends LisaeTemplateConnected {
                         <div class="buttons">
                             <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Tableau de Bord</button></a>
                             <a href="../collab/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Calendrier ELOCE</button></a>
+                            <a href="../collab/theme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
                             <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Soft Skills</button></a>
                             <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Job Cible</button></a>
                             <a href="../collab/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Mon Compte</button></a>
@@ -153,6 +159,71 @@ class CollabView extends LisaeTemplateConnected {
         $this->_infoSlotButton = $result;
     }
 
+    public function getTheme($themes){
+        $result ="";
+        foreach ($themes as $theme) {
+            $result .=
+            "<a href='../collab/infoTheme?idTheme=".$theme->get_idTheme()."'>
+                <button class='btn-hover' style='background-color:".$theme->get_color()."; color: black; font-size: 22px;'>
+                ".$theme->get_name()."
+                </button>
+            </a>";
+        }
+        $this->_themes = $result;
+    }
+    
+    public function setInfoTheme($theme){
+            $result =
+                "<div class='row justify-content-center'> 
+                        <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+                            ".$theme->get_name()."
+                        </div>
+                </div><br>";
+            $result .=
+                "<h3>Objectifs :</h3>
+                    <p>".$theme->get_description()."</p>
+                <br>";
+            $result .=
+                "<h3>Contenu :</h3>
+                <p>".$theme->get_detailsDescription()."</p>
+                <br>";      
+            $result .=
+               "<a  id='listActivity' href='./activityList?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'>Activités de ce Thème</a>";
+        $this->_infoTheme = $result;
+    }
+    public function setInfoActivity($activity){
+        $result =
+            "<div class='row justify-content-center'> 
+                    <div id='listELOCE' class='eloce'>
+                        ".$activity->get_name()."
+                    </div>
+            </div><br>";
+        $result .=
+                "<img src='".$activity->get_image()."'</img>";
+        $result .=
+            "<h3>Objectifs :</h3>
+                <p>".$activity->get_description()."</p>
+            <br>";
+        $result .=
+            "<h3>Contenu :</h3>
+            <p>".$activity->get_detailedDescription()."</p>
+            <br>";      
+      
+    $this->_infoActivity = $result;
+    }
+    public function setActivityList($nameTheme,$activityList){
+        $result ="";   
+        foreach ($activityList as $activity) {
+            $result .=
+                "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
+                    <button class='btn-hover' style ='color: black; font-size: 22px';>
+                    ".$activity->get_name()."
+                    </button>
+                </a>"; 
+        }
+            $this->_activityList = $result;
+            $this->_nameTheme = $nameTheme;
+    }
     public function setBody($content) {
 
         switch ($content) {
@@ -176,6 +247,18 @@ class CollabView extends LisaeTemplateConnected {
             break;
 
             case "listActivity": include "listActivity.phtml"; 
+            break;
+
+            case "theme": include "theme.phtml";
+            break;
+
+            case "infoTheme": include "infoTheme.phtml";
+            break;
+
+            case "activityList": include "activityList.phtml";
+            break;
+
+            case "infoActivity": include "infoActivity.phtml";
             break;
 
             default: include "dashboard.php";
