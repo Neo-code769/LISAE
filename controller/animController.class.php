@@ -189,6 +189,9 @@ class AnimController extends MainController
         if (isset($_POST["deleteSlot"])) {
           (new SlotDao())->deleteSlotParticipate($_GET["idSlot"]);
           (new SlotDao())->deleteSlotHost($_GET["idSlot"]);
+          
+          // TODO PHP MAILER
+
           header('Location:../../index.php/anim/infoSlot');
         }elseif(isset($_POST["updateSlot"])){
             (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['idSlot']);

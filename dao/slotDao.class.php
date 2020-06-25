@@ -26,7 +26,7 @@ class SlotDao extends Dao {
         }
     }
     
-    // Suppression d'un créneau d'une activité(table participate)
+    // Suppression d'un créneau d'une activité(table host)
 
     public function deleteSlotHost($idSlot){
         $sql = 
