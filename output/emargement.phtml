@@ -1,3 +1,13 @@
+<?php 
+function getDatetimeNow() {
+        $tz_object = new DateTimeZone('europe/paris');
+    
+        $datetime = new DateTime();
+        $datetime->setTimezone($tz_object);
+        return $datetime->format('Y\-m\-d\ h:i:s');
+} 
+?>
+    
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,9 +19,10 @@
 <body>
     <img src="/images/Afpa.jpeg" alt="Logo AFPA">
     <h2 style="text-decoration: underline; font-size: 22px;">AFPA BALMA</h2>
+    
 
-    <?php echo $result1;?>
-
+    <?php echo $result1; ?><p> Edité le: <?php echo getDatetimeNow();?></p><br>
+    
     <table id="presence">
         <tr>
             <th>Nom</th>

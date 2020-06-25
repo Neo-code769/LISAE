@@ -351,7 +351,7 @@ class AnimController extends MainController
           $result1 = 
           "<div class='eloce' style='background-color: none; font-size: 22px;".$slotInfo["color"]."'>".
             $slotInfo["nTheme"]." - ".$slotInfo["nActivity"]." <br> ".$slotInfo["dtsf"]." - ".$slotInfo["dtef"]."
-            </div><br><br>";
+            </div><br>";
 
           $result2 =
           "<div>
