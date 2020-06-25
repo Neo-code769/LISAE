@@ -100,9 +100,36 @@ class SlotDao extends Dao {
         }
     }
 
-    public function get(int $id) {
-        return $tab=[];
-    }	
+    public function get(int $idSlot)
+    {
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM host 
+        WHERE id_slot = $idSlot"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idSlot=$donnees['id_slot'];
+                $registrationDeadLine=$donnees['registrationDeadline'];
+                $unsubscribeDeadLine=$donnees['unsubscribeDeadline'];
+                $place=$donnees['place'];
+                $information=$donnees['information'];
+                $slotDateTimeStart=$donnees['slotDateStart'];
+                $slotDateTimeEnd=$donnees['slotDateEnd'];
+                $minNumberPerson = $donnees['minNumberPerson'];
+                $maxNumberPerson = $donnees['maxNumberPerson'];
+                $slot = new Slot($idSlot,$registrationDeadLine, $unsubscribeDeadLine, $place, $information, $slotDateTimeStart,$slotDateTimeEnd,$minNumberPerson,$maxNumberPerson);
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $slot;
+    } 
+
+
     public function insert($obj) : void{
 
     }
