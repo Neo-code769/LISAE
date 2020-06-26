@@ -335,11 +335,12 @@ class UserDao extends Dao{
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT id_user, LastName, FirstName FROM users
-        Inner join referto on users.id_user = referto.id_user
-         where role='Animator' or role='Admin' and id_theme = $idTheme");
+        "SELECT users.id_user, LastName, FirstName FROM users
+        inner join referto on users.id_user = referto.id_user
+        and id_theme = $idTheme");
         try {
             $requete->execute();
+            //var_dump($requete);
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
                 $lastName = $donnees["LastName"];
@@ -347,12 +348,12 @@ class UserDao extends Dao{
                 $idUser = $donnees["id_user"];
                 $user = new Animator( $idUser,$lastName,$firstName, null, null, null,null);
                 $list[]=$user;
-                
             }
         }
         catch (PDOException $e) {
             throw new LisaeException("Erreur requête", 1);
         }
+        //var_dump($list);
         return $list;
     }
     // requete pour recuperer le nom et prenom de l'animateur pour la liste déroulante de la création d'un thème
@@ -360,7 +361,10 @@ class UserDao extends Dao{
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT id_user, LastName, FirstName FROM users where role='Animator' or role='Admin' ");
+        "SELECT id_user, LastName, FirstName 
+        FROM users 
+        where role='Animator' or role='Admin' 
+        ");
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
@@ -370,7 +374,6 @@ class UserDao extends Dao{
                 $idUser = $donnees["id_user"];
                 $user = new Animator( $idUser,$lastName,$firstName, null, null, null,null);
                 $list[]=$user;
-                
             }
         }
         catch (PDOException $e) {
@@ -398,11 +401,11 @@ class UserDao extends Dao{
 
     //requete pour modifier un référent d'un thème aprés la modification d'un thème 
 
-    public function updateReferToTheme($idUser){
+    public function updateReferToTheme($idUser,$idTheme){
         $sql = 
-        "UPDATE `referto` SET
-           `id_theme`= (SELECT MAX(id_theme) from theme),
-           `id_user`= (SELECT id_user from users where id_user = $idUser))
+        "UPDATE `referto` SET`id_user`= $idUser
+        WHERE 'id_Theme' = $idTheme
+        )
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
@@ -417,7 +420,7 @@ class UserDao extends Dao{
 
     public function deleteReferToTheme($idUser){
         $sql = 
-        "DELETE FROM `referto` WHERE (MAX)id_user = $idUser))
+        "DELETE FROM `referto` WHERE $idUser))
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{

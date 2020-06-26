@@ -195,16 +195,57 @@ class AdminView extends LisaeTemplateConnected {
                     <label>Description détaillée :</label>
                     <textarea name="detailedDescription" cols="60" rows="7">'.$theme->get_detailsDescription().'</textarea><br><br>
                 </div><br>';        
-           /*  $result1 .=
-            '<div style="margin-left: 5%;">
-                <label>Animateur Référent :</label>
-                <select name="referAnimator"><br><br>
-                    <option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim  ->get_firstname().'</option>
-                </select>
-                <input type=text name="referAnimator" value="'.$anim->get_lastname()." ".$anim->get_firstname().'"><br><br>
-            </div><br>'; */  
         $this->_infoTheme = $result;
-        //$this->_infoAnim = $result1;
+        
+    }
+
+    public function setInfoAnim($animList,$referentList){
+        //Animateur référent 1
+        $result = "
+        <div style='margin-left: 5%;'>
+            <label>Animateur Référent 1:</label>
+        ";
+        $result.='<select name="referAnimator1"><br><br>';
+        if (isset($referentList[0])==false) { //Si il y a déjà un référent l'affiche en "Selected"
+            $result .= '<option selected>Choisir un référent</option>';
+            foreach ($animList as $anim) {
+                $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+            }
+        }else{ //Sinon affiche un message pour en mettre un
+            foreach ($animList as $anim) {
+                if($referentList[0] == $anim){
+                    $result .= '<option value='.$anim->get_idUser().' selected>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+                }else{
+                    $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+                }
+            }
+        }
+        $result .='</select></div><br>'; 
+
+        //Animateur référent 2 THE SAME
+
+        $result .= "
+        <div style='margin-left: 5%;'>
+            <label>Animateur Référent 2:</label>
+        ";
+        $result.='<select name="referAnimator2"><br><br>';
+        if (isset($referentList[1])==false) {
+            $result .= '<option selected>Choisir un référent</option>';
+            foreach ($animList as $anim) {
+                $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+            }
+        }else{
+            foreach ($animList as $anim) {
+                if($referentList[1] == $anim){
+                    $result .= '<option value='.$anim->get_idUser().' selected>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+                }else{
+                    $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
+                }
+            }
+        }
+        $result .='</select></div><br>'; 
+
+        $this->_infoAnim = $result;
     }
  
     public function setListActivity($nameTheme,$listActivity,$colorTheme){

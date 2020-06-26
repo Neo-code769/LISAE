@@ -173,7 +173,8 @@ class AdminController extends MainController {
     case 41:
       if (isset($_POST['updateTheme'])){ 
         (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
-        (new UserDao())->updateReferToTheme($_POST["referAnimator"]);
+        //(new UserDao())->updateReferToTheme($_POST["referAnimator1"]);
+        //(new UserDao())->updateReferToTheme($_POST["referAnimator2"]);
        header('Location:../../index.php/admin/listTheme');
       } elseif (isset($_POST['deleteTheme'])) {
         (new ThemeDao())->delete($_GET["idTheme"]);
@@ -182,20 +183,26 @@ class AdminController extends MainController {
         header('Location:../../index.php/admin/listTheme');    
      } else {
        $adminview = new AdminView();
-       $animDao = new UserDao();
+       
+       //Récupération des informations pour le théme
        $themeDao = new ThemeDao();
-       //$animList = $animDao->listAnimForTheme($_GET['idTheme']);
        $listTheme = $themeDao->getListTheme();
        foreach( $listTheme as $theme) {
-        // foreach ($animList as $anim) {
           if ($theme -> get_idTheme() == $_GET['idTheme']){
            $infoTheme = $theme;
-          // $infoAnim = $anim;
          }
        }
-      
-       $adminview->setInfoTheme($infoTheme);
-       $adminview->run("infoTheme");
+
+      $animDao = new UserDao();
+
+      //Récupération des informations pour la liste des référents
+      $referentList = $animDao->listAnimForTheme($_GET['idTheme']);
+      $animList=$animDao->listAnim();
+
+      //VUE
+      $adminview->setInfoAnim($animList,$referentList);
+      $adminview->setInfoTheme($infoTheme);
+      $adminview->run("infoTheme");
       }
      break;
 
