@@ -6,17 +6,13 @@ class SessionTraining
     private $_nameSession;
     private $_startDateFormation;
     private $_endDateFormation;
-    private $_startDatePae;
-    private $_endDatePae;
 
-    public function __construct( $idSession, $nameSession, $startDateFormation, $endDateFormation, $startDatePae, $endDatePae)
+    public function __construct( $idSession, $nameSession, $startDateFormation, $endDateFormation)
     {
         $this->_idSession = $idSession;
         $this->_nameSession = $nameSession;
         $this->_startDateFormation = $startDateFormation;
         $this->_endDateFormation = $endDateFormation;
-        $this->_startDatePae = $startDatePae;
-        $this->_endDatePae = $endDatePae;
     }
 
     public function get_startDateFormation()
@@ -43,29 +39,7 @@ class SessionTraining
         return $this;
     }
 
-    public function get_endDatePae()
-    {
-        return $this->_endDatePae;
-    }
 
-    public function set_endDatePae($_endDatePae)
-    {
-        $this->_endDatePae = $_endDatePae;
-
-        return $this;
-    }
-
-    public function get_startDatePae()
-    {
-        return $this->_startDatePae;
-    }
-
-    public function set_startDatePae($_startDatePae)
-    {
-        $this->_startDatePae = $_startDatePae;
-
-        return $this;
-    }
 
     public function get_referent()
     {

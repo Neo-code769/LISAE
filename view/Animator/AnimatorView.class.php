@@ -110,7 +110,7 @@ class AnimatorView extends LisaeTemplateConnected {
         $result = "";
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             
                 $result .=
                 "<div class='row justify-content-center'> 
@@ -134,7 +134,7 @@ class AnimatorView extends LisaeTemplateConnected {
         $result = "";
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             $result .=
             "<div class='row justify-content-center'> 
             <a style='text-decoration: none;' href='../anim/infoSlotEloce?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
@@ -174,7 +174,7 @@ class AnimatorView extends LisaeTemplateConnected {
         $result = "";
         foreach ($element as $activity) {
             $result .= 
-                "<div id='listELOCE' class='eloce' style='background-color:".$activity["color"]."'>".strftime('%A %d %B %Y %H:%M', strtotime($activity["dts"]))."-".$activity["dte"]." - ".$activity["nTheme"]." - ".$activity["nActivity"]."</div> <a  id='signups' href='../collab/signUpSlot?idSlot=".$activity["idslot"]."&idActivity=".$activity["idActivity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>"; 
+                "<div id='listELOCE' class='eloce' style='background-color:".$activity["color"]."'>".utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($activity["dts"])))."-".$activity["dte"]." - ".$activity["nTheme"]." - ".$activity["nActivity"]."</div> <a  id='signups' href='../collab/signUpSlot?idSlot=".$activity["idslot"]."&idActivity=".$activity["idActivity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>"; 
                 }
         $this->_listActivity = $result;
     } 

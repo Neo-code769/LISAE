@@ -15,6 +15,7 @@ require_once 'model/collaborator.class.php';
 require_once 'model/sessionTraining.class.php';
 require_once 'model/slot.class.php';
 require_once 'model/theme.class.php';
+require_once 'model/pae.class.php';
 
 require_once 'exception/LisaeException.class.php';
 

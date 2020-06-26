@@ -266,7 +266,7 @@ class AdminView extends LisaeTemplateConnected {
         $this->_infoTraining = $result;
     }
     
-    public function setInfoSession($session){
+    public function setInfoSessionPae($session, $pae){
         $result =
             "<div class='row justify-content-center'> 
                 <div id='listELOCE' class='eloce' style='background-color:grey'>
@@ -274,31 +274,56 @@ class AdminView extends LisaeTemplateConnected {
                 </div>
             </div><br>";
         $result .=
+                '<input type="number" hidden name="idPae1" value='.$pae[0]->get_idPae().'>
+                <input type="number" hidden name="idPae2" value='.$pae[1]->get_idPae().'>
+                <input type="number" hidden name="idPae3" value='.$pae[2]->get_idPae().'>';
+        $result .=
             "<div style='margin-left: 5%;'>
-                <label>Nom de la formation :</label>
+                <label>Nom de la formation:</label>
                 <input type='text' name='name' value='".$session->get_nameSession()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Début de formation :</label>
+                <label>Début de la formation :</label>
                 <input type='date' name='startDateFormation' value='".$session->get_startDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Fin de formation :</label>
+                <label>Fin de la formation : </label><br>
                 <input type='date' name='endDateFormation' value='".$session->get_endDateFormation()."'>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Début de PAE :</label>
-                <input type='date' name='startDatePae' value='".$session->get_startDatePae()."'>
+                <label>Début de la première PAE :</label>
+                <input type='date' name='startDatePae1' value='".$pae[0]->get_startDatePae()."'>
             </div><br>"; 
         $result .=
             "<div style='margin-left: 5%;'>
-                <label>Fin de PAE :</label>
-                <input type='date' name='endDatePae' value='".$session->get_endDatePae()."'>
-            </div><br>";   
+                <label>Fin de la première PAE :</label>
+                <input type='date' name='endDatePae1' value='".$pae[0]->get_endDatePae()."'>
+            </div><br>";
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Début de la deuxième PAE :</label>
+                <input type='date' name='startDatePae2' value='".$pae[1]->get_startDatePae()."'>
+            </div><br>"; 
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Fin de la deuxième PAE :</label>
+                <input type='date' name='endDatePae2' value='".$pae[1]->get_endDatePae()."'>
+            </div><br>";  
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Début de la troisième PAE :</label>
+                <input type='date' name='startDatePae3' value='".$pae[2]->get_startDatePae()."'>
+            </div><br>"; 
+        $result .=
+            "<div style='margin-left: 5%;'>
+                <label>Fin de la troisième PAE :</label>
+                <input type='date' name='endDatePae3' value='".$pae[2]->get_endDatePae()."'>
+            </div><br>";     
         $this->_infoSession = $result;
+
     }
 
     public function setInfoActivity($theme, $activity){
@@ -310,9 +335,9 @@ class AdminView extends LisaeTemplateConnected {
         </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-            <img id = 'img1' src=".$activity->get_image()."></img><br>
+            <img id = 'imgActivity' src=".$activity->get_image()."></img><br>
             <label>Changer d'image :</label>
-            <input class='upload' type='file' name='image' value='".$activity->get_image()."'><br><br>
+            <input class='upload' type='file' name='image'><br><br>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>

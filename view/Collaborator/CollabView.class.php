@@ -71,7 +71,7 @@ class CollabView extends LisaeTemplateConnected {
         $result = "";
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             if ($element["complete"]== true){
             $result .=
             "<div class='row justify-content-center'> 
@@ -114,7 +114,7 @@ class CollabView extends LisaeTemplateConnected {
         $result = "";
         foreach ($arr as $element) {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            $dateForm =strftime('%A %d %B %Y %H:%M', strtotime($element["dts"]));
+            $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             $result .=
             "<div class='row justify-content-center'> 
             <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."&id_activity=".$element["id_activity"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
