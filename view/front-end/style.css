@@ -471,7 +471,8 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
 	border: none;
 }
-#img1{
+#imgActivity
+{
     display:block;
     width:auto;
     margin-left:auto;

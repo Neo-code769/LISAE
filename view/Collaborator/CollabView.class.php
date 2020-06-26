@@ -209,7 +209,7 @@ class CollabView extends LisaeTemplateConnected {
                     </div>
             </div><br>";
         $result .=
-                "<img id = 'img1' src='".$activity->get_image()."'</img>";
+                "<img id='imgActivity' src='".$activity->get_image()."'</img>";
         $result .=
             "<h3>Objectifs :</h3>
                 <p>".$activity->get_description()."</p>

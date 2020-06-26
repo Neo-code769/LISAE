@@ -141,12 +141,15 @@ class ActivityDao extends Dao {
         WHERE id_slot= $idSlot";
         $exec = (Dao::getConnexion())->prepare($sql);
         try {
-            $result = $exec->execute();
+            $requete = $exec->execute();
+            while($donnees= $requete->fetch(PDO::FETCH_ASSOC)) {
+                $name = $donnees["name"];
+            }
             //var_dump($sql);
         }catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
         }
-        return $result;
+        return $name;
     }
 }
 
