@@ -15,6 +15,7 @@ class AdminView extends LisaeTemplateConnected {
     private $_infoSession;
     private $_trainingList;
     private $_infoTraining;
+    private $_infoAnim;
 
     public function __construct()
     {
@@ -167,6 +168,7 @@ class AdminView extends LisaeTemplateConnected {
         $this->_listAnim = $result;
     }
     public function setInfoTheme($theme){
+        $result1 = "";
             $result =
                 "<div class='row justify-content-center'> 
                         <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
@@ -193,8 +195,16 @@ class AdminView extends LisaeTemplateConnected {
                     <label>Description détaillée :</label>
                     <textarea name="detailedDescription" cols="60" rows="7">'.$theme->get_detailsDescription().'</textarea><br><br>
                 </div><br>';        
-        
+           /*  $result1 .=
+            '<div style="margin-left: 5%;">
+                <label>Animateur Référent :</label>
+                <select name="referAnimator"><br><br>
+                    <option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim  ->get_firstname().'</option>
+                </select>
+                <input type=text name="referAnimator" value="'.$anim->get_lastname()." ".$anim->get_firstname().'"><br><br>
+            </div><br>'; */  
         $this->_infoTheme = $result;
+        //$this->_infoAnim = $result1;
     }
  
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
@@ -300,9 +310,9 @@ class AdminView extends LisaeTemplateConnected {
         </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>
-            <img src=".$activity->get_image()."></img><br>
+            <img id = 'img1' src=".$activity->get_image()."></img><br>
             <label>Changer d'image :</label>
-            <input class='upload' type='file' name='image'><br><br>
+            <input class='upload' type='file' name='image' value='".$activity->get_image()."'><br><br>
             </div><br>";
         $result .=
             "<div style='margin-left: 5%;'>

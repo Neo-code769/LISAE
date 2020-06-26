@@ -331,13 +331,36 @@ class UserDao extends Dao{
     public function update($obj){
         
     } 
-
+    public function listAnimForTheme($idTheme){
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT id_user, LastName, FirstName FROM users
+        Inner join referto on users.id_user = referto.id_user
+         where role='Animator' or role='Admin' and id_theme = $idTheme");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $lastName = $donnees["LastName"];
+                $firstName = $donnees["FirstName"];
+                $idUser = $donnees["id_user"];
+                $user = new Animator( $idUser,$lastName,$firstName, null, null, null,null);
+                $list[]=$user;
+                
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
     // requete pour recuperer le nom et prenom de l'animateur pour la liste déroulante de la création d'un thème
     public function listAnim(){
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT id_user, LastName, FirstName FROM users where role='Animator' ");
+        "SELECT id_user, LastName, FirstName FROM users where role='Animator' or role='Admin' ");
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))

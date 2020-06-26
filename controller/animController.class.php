@@ -108,7 +108,6 @@ class AnimController extends MainController
             }
         }
         $animView->setTheme($arr);
-
         $animView->run("ListELOCE");
       break;
 

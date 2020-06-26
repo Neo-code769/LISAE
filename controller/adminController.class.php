@@ -172,7 +172,8 @@ class AdminController extends MainController {
     //info theme
     case 41:
       if (isset($_POST['updateTheme'])){ 
-       (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
+        (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
+        (new UserDao())->updateReferToTheme($_POST["referAnimator"]);
        header('Location:../../index.php/admin/listTheme');
       } elseif (isset($_POST['deleteTheme'])) {
         (new ThemeDao())->delete($_GET["idTheme"]);
@@ -181,11 +182,15 @@ class AdminController extends MainController {
         header('Location:../../index.php/admin/listTheme');    
      } else {
        $adminview = new AdminView();
-       $themeDao = new ThemeDao;
+       $animDao = new UserDao();
+       $themeDao = new ThemeDao();
+       //$animList = $animDao->listAnimForTheme($_GET['idTheme']);
        $listTheme = $themeDao->getListTheme();
        foreach( $listTheme as $theme) {
-         if ($theme -> get_idTheme() == $_GET['idTheme']){
+        // foreach ($animList as $anim) {
+          if ($theme -> get_idTheme() == $_GET['idTheme']){
            $infoTheme = $theme;
+          // $infoAnim = $anim;
          }
        }
       

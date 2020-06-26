@@ -56,8 +56,7 @@ class ThemeDao extends Dao {
                     $detailedDescription = $donnees['detailedDescription'];
                     $image = $donnees['image'];
                     $slot = $this->getListSlot($idActivity,$sorting);
-                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot, $image);
-                   
+                    $activity = new RecurringActivity($idActivity, $name, $description, $detailedDescription, $slot, $image);         
                     $list[] = $activity;
                 }
             } catch (PDOException $e) {
