@@ -1,1 +1,0 @@
-SELECT * FROM host WHERE now() < host.slotDateStart AND datediff(slotDateStart, now()) > registrationDeadline;
