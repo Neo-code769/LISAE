@@ -174,7 +174,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($themes as $theme) {
             $result .=
             "<a href='../collab/infoTheme?idTheme=".$theme->get_idTheme()."'>
-                <button class='btn-hover' style='background-color:".$theme->get_color()."; color: black; font-size: 22px;'>
+                <button class='btn' style='background-color:".$theme->get_color()."; color: black; font-size: 22px;'>
                 ".$theme->get_name()."
                 </button>
             </a>";
@@ -198,8 +198,8 @@ class CollabView extends LisaeTemplateConnected {
                 <p>".$theme->get_detailsDescription()."</p>
                 <br>";      
             $result .=
-               "<a  id='listActivity' href='./activityList?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'>Activités de ce Thème</a>";
-        $this->_infoTheme = $result;
+               "<a  id='btnActivity' href='./activityList?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'>Activités de ce Thème</a>";
+            $this->_infoTheme = $result;
     }
     public function setInfoActivity($activity){
         $result =
@@ -227,14 +227,21 @@ class CollabView extends LisaeTemplateConnected {
     }
     public function setActivityList($nameTheme,$activityList,$colorTheme){
         $result ="";   
+        var_dump($activityList);
         foreach ($activityList as $activity) {
             $result .=
                 "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
-                    <button class='bouton' style='background-color:".$colorTheme."; color: black; font-size: 22px;'>
+                <button class='btn'  color: black; font-size: 22px;'>
                     ".$activity->get_name()."
                     </button>
                 </a>"; 
-        }  
+          $result .= 
+          "<div class='row justify-content-center'> 
+                <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
+                ".$activity->get_name()."
+                </div>
+            </div>";
+        }
             $this->_activityList = $result;
             $this->_nameTheme = $nameTheme;
     }

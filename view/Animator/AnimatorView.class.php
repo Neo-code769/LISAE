@@ -41,7 +41,7 @@ class AnimatorView extends LisaeTemplateConnected {
             case "infoUser": include "infoUser.phtml";
             break;
 
-            case "ListELOCE": include "listELOCE.phtml";
+            case "ListELOCE": include "ListELOCE.phtml";
             break;
 
             case "createSlot": include "createSlot.phtml";
