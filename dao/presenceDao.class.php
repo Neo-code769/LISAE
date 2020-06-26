@@ -100,13 +100,12 @@ class PresenceDao extends Dao {
         $sql = Dao::getConnexion();
         $requete = $sql->prepare("SELECT `mail` FROM `users` 
         INNER JOIN participate ON participate.id_user = users.id_user 
-        WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = 12)");
-
+        WHERE participate.slotDateStart = (SELECT slotDateStart FROM host WHERE id_slot = $idSlot)");
         try{
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
-                $mail[] = ['mail'=> $donnees["mail"]];
+                $mail[] = $donnees["mail"];
             }
         }catch(PDOException $e) {
             throw new LisaeException("Erreur");

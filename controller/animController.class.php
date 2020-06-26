@@ -191,13 +191,18 @@ class AnimController extends MainController
           (new SlotDao())->deleteSlotHost($_GET["idSlot"]);
 
           //PHP MAILER
-          $activityName = (new ActivityDao())->getNameActivity($_GET['id_slot']);
+          //$activity = new ActivityDao();
+          //$activityName = $activity->getNameActivity($_GET['idSlot']);
+          //var_dump($activityName);
+
           $registered = new PresenceDao();
-          $listRegistered = $registered->getMailRegistered($_GET['id_slot']);
+          $listRegistered = $registered->getMailRegistered($_GET['idSlot']);
+
           foreach($listRegistered as $mail) {
-          $this->sendMailDeleteActivity($mail, $activityName); // Envoi du mail d'annulation d'inscription
+          $this->sendMailDeleteActivity($mail); // Envoi du mail d'annulation d'inscription
           }
           header('Refresh: 0');
+
         }elseif(isset($_POST["updateSlot"])){
             (new SlotDao())->updateSlotInfo($_POST['information'], $_POST['place'], $_GET['idSlot']);
             header('Refresh: 0');
@@ -393,7 +398,7 @@ class AnimController extends MainController
   }
 
   /***** Alerte Supression Créneaux PHP MAILER *****/
-  public function sendMailDeleteActivity($_mail, $activity) {
+  public function sendMailDeleteActivity($_mail) {
 
     try{
         $mail= new PHPMailer\PHPMailer\PHPMailer();
@@ -408,10 +413,11 @@ class AnimController extends MainController
 
         $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
         $mail->addAddress($_mail);  // Liste des inscrits à l'activité  
+        // var_dump($_mail);
         $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
-        $mail->Subject = 'AFPA ALERTE Activité ELOCE annulé! - AFPA-LISAE';
+        $mail->Subject = 'AFPA ALERTE!';
 
-        $mail->Body = "L'activité". ' '.$activity. "a été annulé par l'animateur."; 
+        $mail->Body = "Une de vos activités a été annulé par l'animateur. Veuillez verifier la liste de vos inscriptions sur LISAE"; 
         $mail->isHTML(true);
         $mail->setLanguage('fr');
 
