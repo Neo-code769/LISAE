@@ -94,13 +94,11 @@ class SessionTrainingDao extends Dao{
         }
     }
     public function insert($obj) :void{
-        $sql = "INSERT INTO `session`(`id_session`, `StartDateFormation`, `endDateFormation`, `startDatePae`, `endDatePae`, `session_name`) VALUES (null,?,?,?,?,?)";
+        $sql = "INSERT INTO `session`(`id_session`, `StartDateFormation`, `endDateFormation`, `session_name`) VALUES (null,?,?,?)";
         $exec = (Dao::getConnexion())->prepare($sql);
         $exec->bindValue(1, $obj->get_startDateFormation());
         $exec->bindValue(2, $obj->get_endDateFormation());
-        $exec->bindValue(3, $obj->get_endDatePae());
-        $exec->bindValue(4, $obj->get_startDatePae());
-        $exec->bindValue(5, $obj->get_nameSession());
+        $exec->bindValue(3, $obj->get_nameSession());
         try{
         $exec->execute();
         } 
@@ -146,8 +144,8 @@ class SessionTrainingDao extends Dao{
 
     }
     // update d'un objet
-    public function updateSession($StartDateFormation,$endDateFormation, $startDatePae,$endDatePae, $sessionName,$idSession){
-        $sql = "UPDATE `session` SET `StartDateFormation`='$StartDateFormation',`endDateFormation`='$endDateFormation',`startDatePae`='$startDatePae',`endDatePae`='$endDatePae',`session_name`='$sessionName' WHERE id_session = $idSession";
+    public function updateSession($StartDateFormation,$endDateFormation, $sessionName,$idSession){
+        $sql = "UPDATE `session` SET `StartDateFormation`='$StartDateFormation',`endDateFormation`='$endDateFormation',`session_name`='$sessionName' WHERE id_session = $idSession";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
@@ -181,9 +179,7 @@ class SessionTrainingDao extends Dao{
                 $sessionName=$donnees['session_name'];
                 $startDateFormation=$donnees['StartDateFormation'];
                 $endDateFormation=$donnees['endDateFormation'];
-                $startDatePae=$donnees['startDatePae'];
-                $endDatePae=$donnees['endDatePae'];
-                $session = new SessionTraining($idSession,$sessionName,$startDateFormation,$endDateFormation,$startDatePae,$endDatePae);
+                $session = new SessionTraining($idSession,$sessionName,$startDateFormation,$endDateFormation);
                 $list[] = $session;
             }
         }
@@ -214,4 +210,59 @@ class SessionTrainingDao extends Dao{
         }
         return $list;
     }
-}
+
+    public function getListPae($idSession){
+        $list = []; 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT * FROM `pae` WHERE id_session = $idSession"
+        );
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $idPae=$donnees['id_pae'];
+                $startDatePae=$donnees['startDatePae'];
+                $endDatePae=$donnees['endDatePae'];
+                $pae = new Pae($idPae, $startDatePae, $endDatePae);
+                $list[] = $pae;
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $list;
+    }
+    public function insertPae($obj) :void{
+        $sql = "INSERT INTO `pae`(`id_pae`, `startDatePae`, `endDatePae`, id_session) VALUES (null,?,?,(SELECT MAX(id_session) from session)) ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        $exec->bindValue(1, $obj->get_startDatePae());
+        $exec->bindValue(2, $obj->get_endDatePae());
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+    public function updatePae($startDatePae, $endDatePae,$idPae) :void{
+        $sql = "UPDATE `pae` SET startDatePae='$startDatePae', `endDatePae`='$endDatePae' WHERE id_pae =$idPae ";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+            $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    }
+    public function deletePae($idSession){
+        $sql = "DELETE FROM `pae` WHERE id_session = $idSession";
+        $exec = (Dao::getConnexion())->prepare($sql);
+        try{
+        $exec->execute();
+        } 
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur",1);
+        }
+    } 
+} 

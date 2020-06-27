@@ -119,8 +119,14 @@ class AdminController extends MainController {
   
       case 35: //Creation de session
         if (isset($_POST['createSession'])) {
-          $session = new SessionTraining(null,$_GET['nTraining']. " " . $_POST['sessionNumber'],$_POST['startDateFormation'],$_POST['endDateFormation'],$_POST['startDatePAE'],$_POST['endDatePAE']);
+          $session = new SessionTraining(null,$_GET['nTraining']. " " . $_POST['sessionNumber'],$_POST['startDateFormation'],$_POST['endDateFormation']);
+          $pae1 = new Pae(null,$_POST['startDatePae1'],$_POST['endDatePae1']);
+          $pae2 = new Pae(null,$_POST['startDatePae2'],$_POST['endDatePae2']);
+          $pae3 = new Pae(null,$_POST['startDatePae3'],$_POST['endDatePae3']);
           (new SessionTrainingDao())->insert($session);
+          (new SessionTrainingDao())->insertPae($pae1);
+          (new SessionTrainingDao())->insertPae($pae2);
+          (new SessionTrainingDao())->insertPae($pae3);
           header("Location:../admin/listTraining");
         } else {
         $adminview = new AdminView();
@@ -236,24 +242,24 @@ class AdminController extends MainController {
         if (isset($_POST['updateActivity'])){ //Bouton de modification
           //Traitement image 
           //Recupération de fichier
-          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
-        
-          $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
-        
-            $cheminUpload="./upload/$fichierUpload";
-        
-          if(move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload))
-          {
-            $destinationImg="images/$fichierUpload";
-            copy($cheminUpload,$destinationImg);
-            unlink($cheminUpload);
-          }
           $activity = new Activity($_GET["idActivity"],$_POST["name"],$_POST["description"],$_POST["detailedDescription"],null);
-          $activity->set_image("../../".$destinationImg);
-
+          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+          if ($image != "") {
+            $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé 
+            $cheminUpload="./upload/$fichierUpload";
+               if( move_uploaded_file($_FILES['image']['tmp_name'], $cheminUpload)){
+                $destinationImg="images/$fichierUpload";
+                copy($cheminUpload,$destinationImg);
+                unlink($cheminUpload);
+              }  
+              $activity->set_image("../../".$destinationImg);  
+          } else {
+            $activity->set_image((new ActivityDao())->getImage($_GET['idActivity']));
+          }
           (new ActivityDao())->updateActivity($activity);
           echo "<html><script>window.alert('La modification a bien était effectué !');</script></html>";
-         header("refresh:0");
+          header("refresh:0");
+          
         } elseif (isset($_POST['deleteActivity'])) { //Bouton de suppression 
           //Delete participate
           (new UserDao())->deleteParticipateForActivity($_GET["idActivity"]);
@@ -292,24 +298,31 @@ class AdminController extends MainController {
 
       case 47: //info Session (+delete Update)  
         if (isset($_POST['updateSession'])){ 
-          (new SessionTrainingDao())->updateSession($_POST["startDateFormation"],$_POST["endDateFormation"],$_POST["startDatePae"],$_POST["endDatePae"],$_POST["name"], $_GET["idSession"]);
+          (new SessionTrainingDao())->updateSession($_POST["startDateFormation"],$_POST["endDateFormation"],$_POST["name"], $_GET["idSession"]);
+          (new SessionTrainingDao())->updatePae($_POST['startDatePae1'],$_POST['endDatePae1'],$_POST['idPae1']);
+          (new SessionTrainingDao())->updatePae($_POST['startDatePae2'],$_POST['endDatePae2'],$_POST['idPae2']);
+          (new SessionTrainingDao())->updatePae($_POST['startDatePae3'],$_POST['endDatePae3'],$_POST['idPae3']);
           echo "<html><script>window.alert('La modification est bien était effectué !');</script></html>";
           header("refresh:0");
           } elseif (isset($_POST['deleteSession'])) {
             (new SessionTrainingDao())->deleteParticipateForSession($_GET["idSession"]);
+            (new SessionTrainingDao())->deletePae($_GET["idSession"]);
            (new SessionTrainingDao())->delete($_GET["idSession"]);
+           (new SessionTrainingDao())->deletePae($_GET["idSession"]);          
            header('Location:../../index.php/admin/listTraining');     
         } else {  
          $adminview = new AdminView();
          $sessionDao = new SessionTrainingDao();
          $sessionList = $sessionDao->getListSession($_GET['nTraining']);
+         $paeDao = new SessionTrainingDao();
+         $paeList = $paeDao->getListPae($_GET['idSession']);
          foreach( $sessionList as $session) {
-          if ($session->getIdSession() == $_GET['idSession']){
-            $infoSession = $session;
+              if($session->getIdSession() == $_GET['idSession']){
+                $infoSession = $session;
+              }
           }
-        }  
-         $adminview->setInfoSession($infoSession);
-         $adminview->run("infoSession");
+        $adminview->setInfoSessionPae($infoSession,$paeList);
+        $adminview->run("infoSession");
       }
        break;
 

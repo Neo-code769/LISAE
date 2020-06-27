@@ -369,8 +369,7 @@ class UserDao extends Dao{
                 $firstName = $donnees["FirstName"];
                 $idUser = $donnees["id_user"];
                 $user = new Animator( $idUser,$lastName,$firstName, null, null, null,null);
-                $list[]=$user;
-                
+                $list[]=$user;    
             }
         }
         catch (PDOException $e) {
