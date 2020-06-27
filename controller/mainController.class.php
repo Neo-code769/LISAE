@@ -15,11 +15,12 @@ class MainController
       session_start();
     }
     if (array_key_exists('PATH_INFO', $_SERVER)) {
-      $urlLinks = explode("/", $_SERVER['PATH_INFO']);
-      $contStr = $urlLinks[count($urlLinks) - 2];
-      $this->_class = $contStr . self::CONTROLLER_SUFF;
-      $caseStr = $urlLinks[count($urlLinks) - 1];
-      $this->_case = $this->_listUseCases[$caseStr];
+      $urlLinks = explode("/", $_SERVER['PATH_INFO']); // renvoie l'array avec : l'espace,du controller et du case de ma page et fait la concaténation avec le / (ex: collab/dashboard)
+      $contStr = $urlLinks[count($urlLinks) - 2]; // renvoie le nom de mon controller (ex : collab)
+      $this->_class = $contStr . self::CONTROLLER_SUFF; // renvoie le nom complet de mon controller (ex : collabController)
+      $caseStr = $urlLinks[count($urlLinks) - 1]; //renvoie le nom de mon case (ex:dashboard)
+      $this->_case = $this->_listUseCases[$caseStr]; // $this->listUsesCases = renvoie l'array des cases dans ce controller(ex :nom et chiffre des cases de mon collabController), $this->case = renvoie le chiffre du case de la page (ex : 6)
+      // ex : 6 = va chercher dans l'array des cases le chiffre qui correspond au case[dashboard];
     }
   }
 

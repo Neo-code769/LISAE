@@ -227,20 +227,13 @@ class CollabView extends LisaeTemplateConnected {
     }
     public function setActivityList($nameTheme,$activityList,$colorTheme){
         $result ="";   
-        var_dump($activityList);
         foreach ($activityList as $activity) {
             $result .=
                 "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
-                <button class='btn'  color: black; font-size: 22px;'>
+                <button class='btn' style='background-color:".$colorTheme." color: black; font-size: 22px;'>
                     ".$activity->get_name()."
                     </button>
                 </a>"; 
-          $result .= 
-          "<div class='row justify-content-center'> 
-                <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
-                ".$activity->get_name()."
-                </div>
-            </div>";
         }
             $this->_activityList = $result;
             $this->_nameTheme = $nameTheme;
