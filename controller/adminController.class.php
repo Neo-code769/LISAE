@@ -145,9 +145,7 @@ class AdminController extends MainController {
         $adminview = new AdminView();
         $userDao = new UserDao;
         $collabList = $userDao->getCollab();
-        $result = $adminview->getListCollab($collabList);
-
-        
+        $adminview->getListCollab($collabList);
         $adminview->run("collabManagement");
       break;
 
@@ -156,7 +154,7 @@ class AdminController extends MainController {
         $adminview = new AdminView();
         $user = new UserDao;
         $animList = $user->getAnim();
-        $result = $adminview->getListAnim($animList);
+        $adminview->getListAnim($animList);
         $adminview->run("animManagement");
       break;
 
@@ -245,6 +243,7 @@ class AdminController extends MainController {
         $listActivity=(new themeDao())->getListActivity($_GET['idTheme']);
         $adminview = new AdminView();
         $adminview->setListActivity($_GET['nTheme'],$listActivity,$_GET['colorTheme']);
+        var_dump($_GET['colorTheme']);
         $adminview->run("listActivity");
         //echo "hey";
       break;
