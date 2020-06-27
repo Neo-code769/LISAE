@@ -144,7 +144,7 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>0".$user['PhoneNumber']."</td>
+            <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td>".$user['session']."</td>
             <td><a style='color: red;' href='../admin/deleteCollab?idUser=".$user['id_user']."'> X </a></td>
@@ -160,7 +160,7 @@ class AdminView extends LisaeTemplateConnected {
         <tr>
             <td>".$user['Firstname']."</td>
             <td>".$user['Lastname']."</td>
-            <td>0".$user['PhoneNumber']."</td>
+            <td>".$user['PhoneNumber']."</td>
             <td>".$user['mail']."</td>
             <td><a style='color: red;' href='../admin/deleteAnim?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
