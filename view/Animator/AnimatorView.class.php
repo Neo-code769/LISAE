@@ -88,15 +88,18 @@ class AnimatorView extends LisaeTemplateConnected {
             EOD;
         echo "<p>".$errorMess."</p>";
         
-        //var_dump($_SESSION,$_POST);
     }
     
     private $_activityList = null;
 
     public function setActivityList($activityList){
         $result = "";
-        foreach ($activityList as $activity) {
-            $result .= "<option value='".$activity->get_name()."'>".$activity->get_name()."</option>";
+        foreach ($activityList as $activityList1) {
+            foreach ($activityList1 as $activity) {
+                if(!empty($activity)){
+                    $result .= "<option value='".$activity->get_name()."'>".$activity->get_name()."</option>";
+                }
+            }
         }
         $this->_activityList = $result;
     }

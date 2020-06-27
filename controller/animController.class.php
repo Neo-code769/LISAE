@@ -124,15 +124,19 @@ class AnimController extends MainController
               header('Refresh:2;url=../../index.php/anim/dashboard');
             }
           } catch (LisaeException $e) {
-            $errorMess = $e->render();
+            /* $errorMess = $e->render();
             $animView = new AnimatorView();
             $animView->setActivityList((new ActivityDao())->getActivityList());
             $animView->run("createSlot", $errorMess); 
-            exit();
+            exit(); */
           }  
         }else {
+            $activityDao=new ActivityDao();
+            foreach ($_SESSION['IdTheme'] as $idTheme) {
+              $listActivity[] = $activityDao->getActivityList($idTheme);
+            }
             $animView = new AnimatorView();
-            $animView->setActivityList((new ActivityDao())->getActivityList());
+            $animView->setActivityList($listActivity);
             $animView->run("createSlot");
       }
       

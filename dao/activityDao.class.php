@@ -90,14 +90,18 @@ class ActivityDao extends Dao {
     
     // requete pour recuperer le nom et l'id des activités pour faire l'insert d'un créneau d'activité (partie anim)
 
-    public function getActivityList() : array 
+    public function getActivityList($idTheme) : array 
     {
         $list = []; 
         $sql = Dao::getConnexion();
         $requete = $sql->prepare(
-        "SELECT name, id_activity FROM activity");
+        "SELECT name, activity.id_activity FROM activity
+        INNER JOIN recurring_activity ON recurring_activity.id_activity = activity.id_activity
+        WHERE id_theme = $idTheme
+        ");
         try {
             $requete->execute();
+            //var_dump($requete);
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
                 $idActivity=$donnees['id_activity'];
