@@ -388,7 +388,7 @@ class UserDao extends Dao{
         "INSERT INTO `referto`
             VALUES(
             (SELECT MAX(id_theme) from theme),
-            (SELECT id_user from users where id_user = $idUser))
+            $idUser)
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
@@ -403,13 +403,13 @@ class UserDao extends Dao{
 
     public function updateReferToTheme($idUser,$idTheme){
         $sql = 
-        "UPDATE `referto` SET`id_user`= $idUser
-        WHERE 'id_Theme' = $idTheme
-        )
+        "INSERT INTO `referto`
+        VALUES($idTheme,$idUser)
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{
         $exec->execute();
+        //var_dump($exec);
         } 
         catch (PDOException $e) {
             throw new LisaeException("Erreur",1);
@@ -418,9 +418,11 @@ class UserDao extends Dao{
 
     //requete pour supprimer un référent d'un thème aprés la suppression d'un thème 
 
-    public function deleteReferToTheme($idUser){
+    public function deleteReferToTheme($idUser,$idTheme){
         $sql = 
-        "DELETE FROM `referto` WHERE $idUser))
+        "DELETE FROM `referto` 
+        WHERE id_user = $idUser
+        AND id_theme = $idTheme
         ";
         $exec = (Dao::getConnexion())->prepare($sql);
         try{

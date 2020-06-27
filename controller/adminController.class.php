@@ -173,18 +173,23 @@ class AdminController extends MainController {
     case 41:
       if (isset($_POST['updateTheme'])){ 
         (new ThemeDao())->updateTheme($_POST["name"],$_POST["color"],$_POST["description"],$_POST["detailedDescription"],$_GET["idTheme"]);
-        //(new UserDao())->updateReferToTheme($_POST["referAnimator1"]);
-        //(new UserDao())->updateReferToTheme($_POST["referAnimator2"]);
        header('Location:../../index.php/admin/listTheme');
       } elseif (isset($_POST['deleteTheme'])) {
         (new ThemeDao())->delete($_GET["idTheme"]);
         (new ActivityDao())->deleteThemeActivity($_GET["idTheme"]);
         (new UserDao())->deleteThemeReferTo($_GET["idTheme"]);
-        header('Location:../../index.php/admin/listTheme');    
+        header('Location:../../index.php/admin/listTheme');
+      } elseif (isset($_POST['createRefer'])) {
+        (new UserDao())-> updateReferToTheme($_POST['idUser'],$_GET["idTheme"]);
+        header('Refresh:0');
+      }
+      elseif (isset($_POST['deleteRefer'])) {
+        (new UserDao())->deleteReferToTheme($_POST['idUser'],$_GET["idTheme"]);
+        header('Refresh:0');
      } else {
        $adminview = new AdminView();
        
-       //Récupération des informations pour le théme
+       //Récupération des informations pour le thème
        $themeDao = new ThemeDao();
        $listTheme = $themeDao->getListTheme();
        foreach( $listTheme as $theme) {

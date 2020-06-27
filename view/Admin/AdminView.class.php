@@ -203,47 +203,50 @@ class AdminView extends LisaeTemplateConnected {
         //Animateur référent 1
         $result = "
         <div style='margin-left: 5%;'>
-            <label>Animateur Référent 1:</label>
         ";
-        $result.='<select name="referAnimator1"><br><br>';
-        if (isset($referentList[0])==false) { //Si il y a déjà un référent l'affiche en "Selected"
-            $result .= '<option selected>Choisir un référent</option>';
-            foreach ($animList as $anim) {
-                $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-            }
-        }else{ //Sinon affiche un message pour en mettre un
-            foreach ($animList as $anim) {
-                if($referentList[0] == $anim){
-                    $result .= '<option value='.$anim->get_idUser().' selected>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-                }else{
-                    $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-                }
+        
+        $result .="
+        <table style ='border-collapse: collapse; border:1px solid black; '>
+            <tr>
+                <th style='width: 80%;'>Referent(s)</th>
+                <th style='width: 20%;'></th>
+            </tr>
+        "; 
+
+        //Supprimer référent
+        foreach ($referentList as $referent) {
+            if (isset($referentList)) {
+                $result .= "
+                <tr>
+                    <td style='width: 80%;'>".$referent->get_lastname()." ".$referent->get_firstname()."</td>
+                    <td style='width: 20%;'>
+                        <form method='post'>
+                            <input type='hidden' name='idUser' value='".$referent->get_idUser()."'>
+                            <input id='inputSubmit' style='background-color:red;font-size:80%;padding-left:7%'' type='submit' name='deleteRefer' value = 'Supprimer'>
+                        </form>
+                    </td>
+                </tr>";
+            }else {
+                $result .="Pas de référent pour ce théme";
             }
         }
-        $result .='</select></div><br>'; 
 
-        //Animateur référent 2 THE SAME
+        //Ajout autre referéent
 
-        $result .= "
-        <div style='margin-left: 5%;'>
-            <label>Animateur Référent 2:</label>
-        ";
-        $result.='<select name="referAnimator2"><br><br>';
-        if (isset($referentList[1])==false) {
-            $result .= '<option selected>Choisir un référent</option>';
-            foreach ($animList as $anim) {
-                $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-            }
-        }else{
-            foreach ($animList as $anim) {
-                if($referentList[1] == $anim){
-                    $result .= '<option value='.$anim->get_idUser().' selected>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-                }else{
-                    $result .= '<option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim->get_firstname().'</option>';
-                }
-            }
+        //Afficher autre référent
+        $otherAnimator = array_udiff($animList, $referentList,
+        function ($obj_a, $obj_b) {
+            return $obj_a->get_idUser() - $obj_b->get_idUser();
         }
-        $result .='</select></div><br>'; 
+        );
+
+        $result .="<tr><form method='post'><td style='width: 80%;'><select name='idUser'>";
+        foreach ($otherAnimator as $anim) {
+            $result .= "<option value='".$anim->get_idUser()."'>".$anim->get_lastname()." ".$anim->get_firstname()."</option>";
+        }
+        $result .="</td><td style='width: 20%;'><input id='inputSubmit' style='background-color:green;font-size:80%;padding-left:7%'' type='submit' name='createRefer' value = 'Ajouter'></td></form></tr>";
+
+        $result .='</table></div><br>'; 
 
         $this->_infoAnim = $result;
     }
