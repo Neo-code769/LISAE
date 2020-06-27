@@ -2,12 +2,16 @@
 
 abstract class Dao {
         
-        const HOST = "mysql:host=localhost:3308";
+         const HOST = "mysql:host=localhost:3308";
         const DB_NAME = "lisae";
         const USER = "root";
-        const PASSW = "";
+        const PASSW = ""; 
+       /*  const HOST = "mysql:host=185.98.131.94";
+        const DB_NAME = "alafp1241787_16y2fld";
+        const USER = "alafp1241787_16y2fld";
+        const PASSW = "nD38kRymEh"; */
         private static $_conn = null;	
-    
+       
         public static function getConnexion() {
         
             if(is_null(self::$_conn))
@@ -17,6 +21,7 @@ abstract class Dao {
                 self::HOST . ";dbname=" . self::DB_NAME,
                 self::USER,
                 self::PASSW);
+              
                // echo "<p>Succes connexion</p>";
                 } catch (PDOException $e) {
                     //echo " echec lors de la connexion : " . $e->getMessage();
@@ -24,6 +29,7 @@ abstract class Dao {
                     throw new LisaeException("Echec");
                 }
             } 
+            
             return self::$_conn;
         }
         public function __destruct() {

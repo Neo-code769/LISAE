@@ -39,9 +39,13 @@ class ActivityDao extends Dao {
     }
     // requete pour modifier une activity d'un thème
     public function updateActivity($activity) {
-        $sql = "UPDATE `activity` SET `name`='".$activity->get_name()."',`description`='".$activity->get_description()."',`detailedDescription`='".$activity->get_detailedDescription()."',`image`='".$activity->get_image()."' WHERE id_activity = ".$activity->get_idActivity();
+        $name = $activity->get_name();
+        $description = $activity->get_description();
+        $detailedDescription = $activity->get_detailedDescription();
+        $image = $activity->get_image();
+        $idActivity = $activity->get_idActivity();
+        $sql = "UPDATE `activity` SET `name`='".$name."',`description`=\"$description\",`detailedDescription`=\"$detailedDescription\",`image`='".$image."' WHERE id_activity = $idActivity";
         $exec = (Dao::getConnexion())->prepare($sql);
-        //var_dump($sql);
         try{
         $exec->execute();
         } 
@@ -136,12 +140,12 @@ class ActivityDao extends Dao {
     }
 
     public function getNameActivity($idSlot) {
-        $sql = "SELECT `name` FROM `activity` 
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare("SELECT `name` FROM `activity` 
         INNER JOIN `host` ON activity.id_activity = host.id_activity 
-        WHERE id_slot= $idSlot";
-        $exec = (Dao::getConnexion())->prepare($sql);
+        WHERE id_slot= $idSlot");
         try {
-            $requete = $exec->execute();
+            $requete->execute();
             while($donnees= $requete->fetch(PDO::FETCH_ASSOC)) {
                 $name = $donnees["name"];
             }
@@ -151,7 +155,25 @@ class ActivityDao extends Dao {
         }
         return $name;
     }
+    public function getImage($idActivity) {
+        $sql = Dao::getConnexion();
+        $requete = $sql->prepare(
+        "SELECT `image` FROM `activity` 
+        WHERE id_activity= $idActivity");
+        try {
+            $requete->execute();
+            while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
+            {
+                $image = $donnees["image"]; 
+            }
+        }
+        catch (PDOException $e) {
+            throw new LisaeException("Erreur requête", 1);
+        }
+        return $image;
+    }
 }
 
-
+     
+       
 ?>
