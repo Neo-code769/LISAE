@@ -253,7 +253,6 @@ class AdminView extends LisaeTemplateConnected {
  
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
         $result ="";
-        var_dump($_GET['colorTheme']);
         //var_dump($listActivity);
         foreach ($listActivity as $activity) {
             $result .=

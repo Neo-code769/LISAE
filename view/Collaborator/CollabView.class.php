@@ -198,13 +198,13 @@ class CollabView extends LisaeTemplateConnected {
                 <p>".$theme->get_detailsDescription()."</p>
                 <br>";      
             $result .=
-               "<a  id='btnActivity' href='./activityList?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".$theme->get_color()."'>Activités de ce Thème</a>";
+               "<a  class='btnActivity' href='./activityList?idTheme=".$theme->get_idTheme()."&nTheme=".$theme->get_name()."&colorTheme=".substr($theme->get_color(),1)."'>Activités de ce Thème</a>";
             $this->_infoTheme = $result;
     }
-    public function setInfoActivity($activity){
+    public function setInfoActivity($activity,$colorTheme){
         $result =
             "<div class='row justify-content-center'> 
-                    <div id='listELOCE' class='eloce'>
+                    <div id='listELOCE' class='eloce' style='background-color:".$colorTheme.";'>
                         ".$activity->get_name()."
                     </div>
             </div><br>";
@@ -218,10 +218,10 @@ class CollabView extends LisaeTemplateConnected {
             "<h3>Contenu :</h3>
             <p>".$activity->get_detailedDescription()."</p>
             <br>";   
-       /*  $result .=   
-        "<a  id='listActivity' href='../collab/listActivity?id_activity=".$activity["id_activity"]."'>
-            <img src='../../images/dossier.png' alt='créneaux pour une activité'>
-        </a>"; */
+        $result .=   
+            "<a  class='btnActivity' href='../collab/listActivity?id_activity=".$activity->get_idActivity()."'>
+           Créneaux pour cette activité
+            </a>"; 
   
         $this->_infoActivity = $result;
     }
@@ -230,7 +230,7 @@ class CollabView extends LisaeTemplateConnected {
         foreach ($activityList as $activity) {
             $result .=
                 "<a href='../collab/infoActivity?idActivity=".$activity->get_idActivity()."'>
-                <button class='btn' style='background-color:".$colorTheme." color: black; font-size: 22px;'>
+                <button class='btn' style='background-color:#".$colorTheme."; color: black; font-size: 22px;'>
                     ".$activity->get_name()."
                     </button>
                 </a>"; 
