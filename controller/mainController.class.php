@@ -58,15 +58,24 @@ class MainController
                             } elseif ($_SESSION['role'] == 'Animator')
                             {
                               $theme=(new ThemeDao())->getThemeForAnimator($_SESSION['id_user']);
-                              if ($theme[1]>0) {
-                                $_SESSION['IdTheme'] = $theme[0]->get_idTheme();
-                                $_SESSION['NameTheme'] = $theme[0]->get_name();
+                              if ($theme[0]>0) {
+                                for ($i=1; $i < count($theme); $i++) { 
+                                  $_SESSION['IdTheme'][] = $theme[$i]->get_idTheme();
+                                  $_SESSION['NameTheme'][] = $theme[$i]->get_name();
+                                }
                               }
                               header('Location:../../index.php/anim/dashboard');
                               exit();
                             }
                             elseif ($_SESSION['role'] == 'Admin');
                             {
+                              $theme=(new ThemeDao())->getThemeForAnimator($_SESSION['id_user']);
+                              if ($theme[0]>0) {
+                                for ($i=1; $i < count($theme); $i++) { 
+                                  $_SESSION['IdTheme'][] = $theme[$i]->get_idTheme();
+                                  $_SESSION['NameTheme'][] = $theme[$i]->get_name();
+                                }
+                              }
                               header('Location:../../index.php/anim/dashboard');
                               exit();
                             } 

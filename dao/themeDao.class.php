@@ -445,17 +445,19 @@ class ThemeDao extends Dao {
             WHERE id_user = $idUser");
         try {
             $requete->execute();
+            $list[]=$requete->rowCount();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC))
             {
                 $idTheme = $donnees['id_theme'];
                 $nameTheme = $donnees['name'];
                 $theme = new Theme($idTheme, $nameTheme,null,null,null,null);
+                $list[]=$theme;
             }
         }
         catch (PDOException $e) {
             throw new LisaeException("Erreur requête", 1);
         }
-        return $list[]=[$theme,$requete->rowCount()];
+        return $list;
     }
 
     public function getList(): array{

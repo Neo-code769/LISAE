@@ -195,16 +195,60 @@ class AdminView extends LisaeTemplateConnected {
                     <label>Description détaillée :</label>
                     <textarea name="detailedDescription" cols="60" rows="7">'.$theme->get_detailsDescription().'</textarea><br><br>
                 </div><br>';        
-           /*  $result1 .=
-            '<div style="margin-left: 5%;">
-                <label>Animateur Référent :</label>
-                <select name="referAnimator"><br><br>
-                    <option value='.$anim->get_idUser().'>'.$anim->get_lastname()." ".$anim  ->get_firstname().'</option>
-                </select>
-                <input type=text name="referAnimator" value="'.$anim->get_lastname()." ".$anim->get_firstname().'"><br><br>
-            </div><br>'; */  
         $this->_infoTheme = $result;
-        //$this->_infoAnim = $result1;
+        
+    }
+
+    public function setInfoAnim($animList,$referentList){
+        //Animateur référent 1
+        $result = "
+        <div style='margin-left: 5%;'>
+        ";
+        
+        $result .="
+        <table style ='border-collapse: collapse; border:1px solid black; '>
+            <tr>
+                <th style='width: 80%;'>Referent(s)</th>
+                <th style='width: 20%;'></th>
+            </tr>
+        "; 
+
+        //Supprimer référent
+        foreach ($referentList as $referent) {
+            if (isset($referentList)) {
+                $result .= "
+                <tr>
+                    <td style='width: 80%;'>".$referent->get_lastname()." ".$referent->get_firstname()."</td>
+                    <td style='width: 20%;'>
+                        <form method='post'>
+                            <input type='hidden' name='idUser' value='".$referent->get_idUser()."'>
+                            <input id='inputSubmit' style='background-color:red;font-size:80%;padding-left:7%'' type='submit' name='deleteRefer' value = 'Supprimer'>
+                        </form>
+                    </td>
+                </tr>";
+            }else {
+                $result .="Pas de référent pour ce théme";
+            }
+        }
+
+        //Ajout autre referéent
+
+        //Afficher autre référent
+        $otherAnimator = array_udiff($animList, $referentList,
+        function ($obj_a, $obj_b) {
+            return $obj_a->get_idUser() - $obj_b->get_idUser();
+        }
+        );
+
+        $result .="<tr><form method='post'><td style='width: 80%;'><select name='idUser'>";
+        foreach ($otherAnimator as $anim) {
+            $result .= "<option value='".$anim->get_idUser()."'>".$anim->get_lastname()." ".$anim->get_firstname()."</option>";
+        }
+        $result .="</td><td style='width: 20%;'><input id='inputSubmit' style='font-size:80%;padding-left:7%'' type='submit' name='createRefer' value = 'Ajouter'></td></form></tr>";
+
+        $result .='</table></div><br>'; 
+
+        $this->_infoAnim = $result;
     }
  
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
