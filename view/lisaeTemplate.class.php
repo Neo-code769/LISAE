@@ -41,6 +41,7 @@ abstract class LisaeTemplate {
                     <img src="/images/ELOCE.png" alt="logo ELOCE" />
                     <img src="/images/AFPA.jpg" alt="logo AFPA" />
                 </figure>
+                <p style='font-size:75%;text-align:center;'>© Lisae - Emma SCHURRER, Nathan LEBON, Pierre TRUBLEREAU </p>
             </footer>
         </body>
         EOD;
