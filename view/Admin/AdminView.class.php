@@ -3,8 +3,8 @@
 class AdminView extends LisaeTemplateConnected {
     private $_userList;
     private $_themeList;
-    private $_listCollab;
-    private $_listAnim;
+    private $_collabList;
+    private $_animList;
     private $_listTheme;
     private $_infoTheme;
     private $_listActivity;
@@ -137,9 +137,9 @@ class AdminView extends LisaeTemplateConnected {
         $this->_listTheme = $result;
     }
 
-    public function getListCollab($list) {
+    public function getListCollab($collabList) {
         $result ="";
-        foreach ($list as $user) {
+        foreach ($collabList as $user) {
             $result .="
         <tr>
             <td>".$user['Firstname']."</td>
@@ -150,12 +150,12 @@ class AdminView extends LisaeTemplateConnected {
             <td><a style='color: red;' href='../admin/deleteCollab?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
         }
-        $this->_listCollab = $result;
+        $this->_collabList = $result;
     }
 
-    public function getListAnim($list) {
+    public function getListAnim($animList) {
         $result ="";
-        foreach ($list as $user) {
+        foreach ($animList as $user) {
             $result .="
         <tr>
             <td>".$user['Firstname']."</td>
@@ -165,7 +165,7 @@ class AdminView extends LisaeTemplateConnected {
             <td><a style='color: red;' href='../admin/deleteAnim?idUser=".$user['id_user']."'> X </a></td>
         </tr>";
         }
-        $this->_listAnim = $result;
+        $this->_animList = $result;
     }
     public function setInfoTheme($theme){
         $result1 = "";
@@ -253,7 +253,6 @@ class AdminView extends LisaeTemplateConnected {
  
     public function setListActivity($nameTheme,$listActivity,$colorTheme){
         $result ="";
-        //var_dump($_GET['colorTheme']);
         //var_dump($listActivity);
         foreach ($listActivity as $activity) {
             $result .=

@@ -79,7 +79,7 @@ class AdminController extends MainController {
 
           //Traitement image 
           //Recupération de fichier
-          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE (ici, avec l'attribut name="ID")
+          $image=$_FILES['image']['tmp_name']; // 1. on récupère notre input de type FILE
         
           $fichierUpload=basename($_FILES['image']['name']); // 2. fonction basename : indispensable pour récupérer le fichier uploadé
         
@@ -145,9 +145,7 @@ class AdminController extends MainController {
         $adminview = new AdminView();
         $userDao = new UserDao;
         $collabList = $userDao->getCollab();
-        $result = $adminview->getListCollab($collabList);
-
-        
+        $adminview->getListCollab($collabList);
         $adminview->run("collabManagement");
       break;
 
@@ -156,7 +154,7 @@ class AdminController extends MainController {
         $adminview = new AdminView();
         $user = new UserDao;
         $animList = $user->getAnim();
-        $result = $adminview->getListAnim($animList);
+        $adminview->getListAnim($animList);
         $adminview->run("animManagement");
       break;
 

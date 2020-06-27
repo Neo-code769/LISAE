@@ -301,7 +301,7 @@ class CollabController extends MainController
         break;
 
         
-      case 19: //listActivity
+      case 19: //ActivityList
         $activityList=(new themeDao())->getListActivity($_GET['idTheme']);
         $collabView = new CollabView();
         $collabView->setActivityList($_GET['nTheme'],$activityList,$_GET['colorTheme']);
@@ -316,10 +316,11 @@ class CollabController extends MainController
           foreach( $theme->get_activity() as $activity) {
             if ($activity->get_idActivity() == $_GET['idActivity']){
               $infoActivity = $activity;
+              $colorTheme = $theme->get_color();
             }  
         }
       }
-        $collabView->setInfoActivity($infoActivity);
+        $collabView->setInfoActivity($infoActivity,$colorTheme);
         $collabView->run("infoActivity");
       
       break;
