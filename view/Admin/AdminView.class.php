@@ -244,7 +244,7 @@ class AdminView extends LisaeTemplateConnected {
         foreach ($otherAnimator as $anim) {
             $result .= "<option value='".$anim->get_idUser()."'>".$anim->get_lastname()." ".$anim->get_firstname()."</option>";
         }
-        $result .="</td><td style='width: 20%;'><input id='inputSubmit' style='background-color:green;font-size:80%;padding-left:7%'' type='submit' name='createRefer' value = 'Ajouter'></td></form></tr>";
+        $result .="</td><td style='width: 20%;'><input id='inputSubmit' style='font-size:80%;padding-left:7%'' type='submit' name='createRefer' value = 'Ajouter'></td></form></tr>";
 
         $result .='</table></div><br>'; 
 
