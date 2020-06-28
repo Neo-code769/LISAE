@@ -26,7 +26,9 @@ class AdminController extends MainController {
       "listSession" => 46,
       "infoSession" => 47,
       "listTraining" => 48,
-      "infoTraining" => 49
+      "infoTraining" => 49,
+      "sendLinkAnim"=>50,
+      "sendLinkAdmin"=>51
     ];
     parent::__construct();
   }
@@ -370,6 +372,103 @@ class AdminController extends MainController {
       (new LoginPageView())->run($content="");
         throw new LisaeException("Erreur");
       break;
+
+      case 50: //lien a envoyé a l'animateur pour création compte
+        if (isset($_POST['sendLinkAnim'])){
+            $this->sendLinkAnim($_POST['mail']);
+            echo 'Le lien a bien été envoyé pour la création de son compte';
+            header('Location:../../index.php/admin/animManagement');
+            exit();
+        }else {
+          $link = new AdminView();
+          $link->run("sendLinkAnim");
+        }
+        break;
+    
+    case 51: //lien a envoyé a l'admin pour création compte
+      if (isset($_POST['sendLinkAdmin'])){
+          $this->sendLinkAdmin($_POST['mail']);
+          echo 'Le lien a bien été envoyé pour la création de son compte';
+          header('Location:../../index.php/admin/animManagement');
+          exit();
+      }else {
+        $link = new AdminView();
+        $link->run("sendLinkAdmin");
+      }
+      break;
+    }
+  }
+  public function sendLinkAnim($emails) {
+    try{
+        $mail= new PHPMailer\PHPMailer\PHPMailer();
+    
+        $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+        $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+        $mail->SMTPAuth = true; // Activer authentication SMTP
+        $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
+        $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
+        $mail->SMTPSecure = 'ssl'; // Accepter SSL
+        $mail->Port = 465; 
+    
+        $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
+        $mail->addAddress($emails);  // Personnaliser l'adresse d'envoi  
+        $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
+        $message ="Création de votre compte d'animateur sur LISAE";
+        $mail->Subject = utf8_decode($message);
+        $link = "http://lisae.alafpa.fr/index.php/anim/registration";
+        //$link = "http://www.lisae.fr:8081/index.php/anim/registration";
+        $messageLink = "Cliquez sur ce lien pour accèder au formulaire de création de votre compte <br><br>";
+        $mail->Body = utf8_decode($messageLink) . $link; // Creation page: "LISAE/registration/confirm-registration"
+        $mail->isHTML(true);
+        $mail->setLanguage('fr');
+    
+        if ($mail->send()) {
+            echo 'Confirmation Message has been sent.';
+        }else {
+            echo 'Message was not sent.<br>';
+            echo 'Mailer error: ' . $mail->ErrorInfo; 
+        }
+    
+    } catch (Exception $e) {
+        var_dump($e->getLine());
+        throw new LisaeException("ERROR" . $e->getLine());
+    }
+  }
+
+  public function sendLinkAdmin($emails) {
+    try{
+        $mail= new PHPMailer\PHPMailer\PHPMailer();
+    
+        $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+        $mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+        $mail->SMTPAuth = true; // Activer authentication SMTP
+        $mail->Username = 'contact.afpa.lisae@gmail.com'; // Votre adresse email d'envoi
+        $mail->Password = 'AR3n96f4aQ'; // Le mot de passe de cette adresse email
+        $mail->SMTPSecure = 'ssl'; // Accepter SSL
+        $mail->Port = 465; 
+    
+        $mail->setFrom('contact.afpa.lisae@gmail.com', 'AFPA LISAE');
+        $mail->addAddress($emails);  // Personnaliser l'adresse d'envoi  
+        $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
+        $message ="Création de votre compte d'administrateur sur LISAE";
+        $mail->Subject = utf8_decode($message);
+        $link = "http://lisae.alafpa.fr/index.php/admin/registration";
+        //$link = "http://www.lisae.fr:8081/index.php/anim/registration";
+        $messageLink = "Cliquez sur ce lien pour accèder au formulaire de création de votre compte <br><br>";
+        $mail->Body = utf8_decode($messageLink) . $link; // Creation page: "LISAE/registration/confirm-registration"
+        $mail->isHTML(true);
+        $mail->setLanguage('fr');
+    
+        if ($mail->send()) {
+            echo 'Confirmation Message has been sent.';
+        }else {
+            echo 'Message was not sent.<br>';
+            echo 'Mailer error: ' . $mail->ErrorInfo; 
+        }
+    
+    } catch (Exception $e) {
+        var_dump($e->getLine());
+        throw new LisaeException("ERROR" . $e->getLine());
     }
   }
 

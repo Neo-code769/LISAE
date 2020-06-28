@@ -22,7 +22,6 @@ class PasswordController extends MainController
   {
     switch ($this->_case) {
       case 2:  // forgotPassword
-
           // On se place sur le bon formulaire grâce au "name" de la balise "input"
           if (isset($_POST['forgotPassword'])){
             try {
@@ -74,18 +73,19 @@ class PasswordController extends MainController
         }
       break;
 
-      case '4': //Logout
-        $_SESSION = array();
-        unset($_SESSION['id_user']);
-        unset($_SESSION['mail']);
-        unset($_SESSION['password']);
-        unset($_SESSION['role']);
-        session_destroy();
-        header('Location:../../index.php');
-      break;
-    }
-  }
+    case 4: //Logout
+      $_SESSION = array();
+      unset($_SESSION['id_user']);
+      unset($_SESSION['mail']);
+      unset($_SESSION['password']);
+      unset($_SESSION['role']);
+      session_destroy();
+      header('Location:../../index.php');
+    break;
+  
 
+  }
+  }
   public function sendMailPassword($email) {
     try{
         $mail= new PHPMailer\PHPMailer\PHPMailer();
@@ -102,9 +102,9 @@ class PasswordController extends MainController
         $mail->addAddress($email);  // Personnaliser l'adresse d'envoi  
         $mail->addReplyTo('contact.afpa.lisae@gmail.com', 'Information'); // L'adresse de réponse
         $mail->Subject = 'Changement de mot de passe - AFPA-LISAE';
-
-        $link = "http://www.lisae.fr:8081/index.php/password/change?mail=" . $email;
-        $mail->Body = "Cliquer sur ce lien pour changer votre mot de passe <br><br>" . $link; // Creation page: "LISAE/registration/confirm-registration"
+        $link = "http://lisae.alafpa.fr/index.php/password/change?mail=" . $email;
+        //$link = "http://www.lisae.fr:8081/index.php/password/change?mail=" . $email;
+        $mail->Body = "Cliquez sur ce lien pour changer votre mot de passe <br><br>" . $link; // Creation page: "LISAE/registration/confirm-registration"
         $mail->isHTML(true);
         $mail->setLanguage('fr');
     
@@ -119,5 +119,6 @@ class PasswordController extends MainController
         var_dump($e->getLine());
         throw new LisaeException("ERROR" . $e->getLine());
     }
-}
+  }
+   
 }
