@@ -38,6 +38,7 @@ footer
 }
 
 /****** HEADER ******/
+
 #headerIMG {
     margin-bottom: 7%;
 }
@@ -205,11 +206,12 @@ input {
 
 #dashboard {
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 70%;
-    height: 50%;
+    height: 400px;
     justify-content: center;
     border: 3px rgba(80, 92, 255, 0.377) ridge;
-    border-radius: 30px;
+    border-radius: 10px;
     padding-top: 1%;
     margin-left: auto;
     margin-right: auto;
@@ -339,26 +341,28 @@ input {
 /* WEBKIT SCROLLBAR */
 /********************/
 
+/* Let's get this party started */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(128, 128, 128); 
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
     border-radius: 10px;
-    margin : 20px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0); 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(104, 104, 104); 
-  }
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: lightgray; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: lightgray; 
+}
 
 .signup{
     width: -40%;
