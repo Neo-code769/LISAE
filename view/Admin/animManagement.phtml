@@ -14,18 +14,3 @@
         </table><br></br>
     </form>
 <a id="inputSubmit" style="text-decoration: none;  margin-left: 10%;" href="../../index.php/admin/accountManagement"> Retour </a>
-<p style="font-size: 14px; text-align: center;"><a  id="inputSubmit"href="../../index.php/admin/sendLinkAnim">Nouvel Animateur</a></p><br>
-<p style="font-size: 14px; text-align: center;"><a  id="inputSubmit"href="../../index.php/admin/sendLinkAdmin">Nouvel Administrateur</a></p>
-<!-- Jquery -->
-<script>
-$(document).ready(function(){
-    var cc = document.getElementById('check_all');
-    $(cc).on('click', function(){
-        if (cc.checked){
-            $('input[type=checkbox]').prop('checked', true);
-        } else {
-            $('input[type=checkbox]').prop('checked', false);
-        }
-    });
-});
-</script>
