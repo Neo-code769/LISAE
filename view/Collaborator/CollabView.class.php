@@ -196,7 +196,7 @@ class CollabView extends LisaeTemplateConnected {
                 </div><br>";
             $result .=
                 "<h3>Objectifs :</h3>
-                    <p>".$theme->get_description()."</p>
+                    <p >".$theme->get_description()."</p>
                 <br>";
             $result .=
                 "<h3>Contenu :</h3>
@@ -217,11 +217,11 @@ class CollabView extends LisaeTemplateConnected {
                 "<img id='imgActivity' src='".$activity->get_image()."'</img>";
         $result .=
             "<h3>Objectifs :</h3>
-                <p>".$activity->get_description()."</p>
+                <p class='desc'>".$activity->get_description()."</p>
             <br>";
         $result .=
             "<h3>Contenu :</h3>
-            <p>".$activity->get_detailedDescription()."</p>
+            <p class='desc'>".$activity->get_detailedDescription()."</p>
             <br>";   
         $result .=   
             "<a  class='btnActivity' href='../collab/listActivity?id_activity=".$activity->get_idActivity()."'>
