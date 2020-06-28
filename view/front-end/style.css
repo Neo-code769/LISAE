@@ -110,7 +110,7 @@ footer
 
 input {
     margin-top: 10px;
-    width: 75%;
+    width: auto;
     float: center;
     background: #EEF9FE;
     border: 1px solid #CDDBEF;
@@ -121,7 +121,7 @@ input {
 }
 
 #inputSubmit {
-    width: 50%;
+    width: auto;
     float: center;
     cursor: pointer;
     border: none;
