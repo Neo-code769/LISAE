@@ -73,13 +73,13 @@ class CollabView extends LisaeTemplateConnected {
             $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             if ($element["complete"]== true){
             $result .=
-            "<div class='row justify-content-center'> 
+            "<div class='row justify-content-center' style='margin-bottom:1%'> 
                 <a style='text-decoration: none;' href='../collab/infoSlot?idSlot=".$element["idslot"]."'>
                     <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>
                     ".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."
                 </a>
                     </div>
-                <a  id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'>
+                <a style='margin-left:1%' id='listActivity' href='../collab/listActivity?id_activity=".$element["id_activity"]."'>
                     <img src='../../images/dossier.png' alt='créneaux pour une activité'>
                 </a>
                 <a  id='info' href='../collab/infoSlot?idSlot=".$element["idslot"]."'>
@@ -92,11 +92,11 @@ class CollabView extends LisaeTemplateConnected {
             }
             else {
                 $result .=
-                "<div class='row justify-content-center'> 
+                "<div class='row justify-content-center' style='margin-bottom:1%'> 
                 <a style='text-decoration: none;' href=''><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a> <div style='margin-left:4%'> COMPLET</div></div>
-                <a  id='listActivity' href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
-                <a  id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
-                <a  id='signup' href=''><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>          
+                <a style='margin-left:1%' id='listActivity' href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
+                <a id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
+                <a id='signup' href=''><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>          
                 </div>";
             }
         }
