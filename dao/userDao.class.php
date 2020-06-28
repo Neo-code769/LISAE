@@ -316,7 +316,11 @@ class UserDao extends Dao{
     // Recupere tous les animateurs
     public function getAnim() {
         $pdo = Dao::getConnexion();
+<<<<<<< HEAD
         $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Animator' or `role` = 'Admin'");
+=======
+        $requete = $pdo->prepare("SELECT * FROM users WHERE `role` = 'Animator' OR `role` = 'Admin'");
+>>>>>>> fdee067e4439a72bb19060949af24321def72b28
         try {
             $requete->execute();
             while($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
