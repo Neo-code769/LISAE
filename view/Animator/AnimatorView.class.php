@@ -66,25 +66,24 @@ class AnimatorView extends LisaeTemplateConnected {
             header("Refresh:2;url=http://www.lisae.fr:8081/index.php");
         }
         echo <<<EOD
+            <body>
             <header>
-                <div id="headerIMG">
-                    <img src="/images/LISAE.png" alt="logo LISAE" />
+                    <div id="headerIMG">
+                        <img style="float:left;" src="/images/LISAE.png" alt="logo LISAE" />
                         <div class="buttons">
-                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Tableau de Bord</button></a>
-                            <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Calendrier ELOCE</button></a>
-                            <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Nouveau Créneau</button></a>
-                            <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Mon Compte</button></a>
+                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Tableau de Bord</button></a>
+                            <a href="../anim/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black;"> Calendrier ELOCE</button></a>
+                            <a href="../anim/createSlot"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Nouveau Créneau</button></a>
+                            <a href="../anim/info"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Mon Compte</button></a>
         EOD;
         if ($_SESSION['role']=='Admin') {
-            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black; font-size: 22px;'> Mode Admin</button></a>";
+            echo "<a href='../../index.php/admin/dashboard'><button class='btn-hover color-1' style='text-decoration: none; color: black;'> Mode Admin</button></a>";
         }
         echo <<<EOD
-                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 24px;">Deconnexion</button></a>
+                                <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Deconnexion</button></a>
+                            </div>
                         </div>
-                </div>
-            </header>
-            <div id="margin"></div>
-            <body>
+                </header>
             EOD;
         echo "<p>".$errorMess."</p>";
         

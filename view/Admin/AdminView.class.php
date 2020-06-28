@@ -28,21 +28,19 @@ class AdminView extends LisaeTemplateConnected {
             header("Refresh:2;url=http://www.lisae.fr:8081/index.php");
         }
         echo <<<EOD
-            <header>
-                <div id="headerIMG">
-                    <img src="/images/LISAE.png" alt="logo LISAE" />
-                        <div class="buttons">
-                        
-                            <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
-                            <a href="../admin/listTraining"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Formation</button></a>
-                            <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Gestion Compte</button></a>
-                            <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Mode Animateur</button></a>
-                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
-                        </div>
-                </div>
-            </header>
-            <div id="margin"></div>
             <body id="admin">
+                    <header>
+                        <div id="headerIMG">
+                            <img style="float:left" src="/images/LISAE.png" alt="logo LISAE" />
+                            <div class="buttons">
+                                <a href="../admin/listTheme"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Thèmes</button></a>
+                                <a href="../admin/listTraining"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Formation</button></a>
+                                <a href="../admin/accountManagement"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Gestion Compte</button></a>
+                                <a href="../anim/dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black;"> Mode Animateur</button></a>
+                                <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Deconnexion</button></a>
+                            </div>
+                        </div>
+                    </header>
             EOD;
         echo "<p>".$errorMess."</p>";
     }

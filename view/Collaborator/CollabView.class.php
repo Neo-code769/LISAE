@@ -32,22 +32,21 @@ class CollabView extends LisaeTemplateConnected {
             header("Location:http://www.lisae.fr:8081/index.php");
         }
         echo <<<EOD
-            <header>
-                <div id="headerIMG">
-                    <img src="/images/LISAE.png" alt="logo LISAE" />
-                        <div class="buttons">
-                            <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Tableau de Bord</button></a>
-                            <a href="../collab/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;"> Calendrier ELOCE</button></a>
-                            <a href="../collab/theme"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Thèmes</button></a>
-                            <!-- <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Soft Skills</button></a> -->
-                            <!-- <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Atelier Job Cible</button></a> -->
-                            <a href="../collab/info"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Mon Compte</button></a>
-                            <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black; font-size: 22px;">Deconnexion</button></a>
-                        </div>
-                </div>
-            </header>
-            <div id="margin"></div>
             <body>
+                    <header>
+                        <div id="headerIMG">
+                            <img style="float:left;" src="/images/LISAE.png" alt="logo LISAE" />
+                            <div class="buttons">
+                                <a href="./dashboard"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Tableau de Bord</button></a>
+                                <a href="../collab/eloce"><button class="btn-hover color-1" style="text-decoration: none; color: black;"> Calendrier ELOCE</button></a>
+                                <a href="../collab/theme"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Thèmes</button></a>
+                                <!-- <a href="../collab/softskill"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Atelier Soft Skills</button></a> -->
+                                <!-- <a href="../collab/jobcible"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Atelier Job Cible</button></a> -->
+                                <a href="../collab/info"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Mon Compte</button></a>
+                                <a href="../password/logout"><button class="btn-hover color-1" style="text-decoration: none; color: black;">Deconnexion</button></a>
+                            </div>
+                        </div>
+                    </header>
             EOD;
         echo "<p>".$errorMess."</p>";
     }
