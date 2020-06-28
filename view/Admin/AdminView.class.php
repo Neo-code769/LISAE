@@ -97,6 +97,12 @@ class AdminView extends LisaeTemplateConnected {
             case "infoTraining": include "infoTraining.phtml";
             break;
 
+            case "sendLinkAnim": include "sendLinkAnim.phtml";
+            break;
+
+            case "sendLinkAdmin": include "sendLinkAdmin.phtml";
+            break;
+
             default: include "dashboard.php";
 
         }

@@ -323,6 +323,7 @@ class UserDao extends Dao{
                 $list[] = ['id_user'=> $donnees["id_user"], 'Lastname'=> $donnees["LastName"], 'Firstname'=> $donnees["FirstName"], 'PhoneNumber'=> $donnees["PhoneNumber"], 'mail'=> $donnees["mail"]];
             }
         } catch (PdoException $e) {
+           
             echo " ERREUR REQUETE : " . $e->getMessage();
         }
         return $list;
