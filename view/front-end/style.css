@@ -205,14 +205,14 @@ input {
 
 #dashboard {
     overflow-y: scroll;
-    width: 60%;
+    width: 70%;
     height: 50%;
     justify-content: center;
     border: 3px rgba(80, 92, 255, 0.377) ridge;
     border-radius: 30px;
     padding-top: 1%;
-    margin-left: 20%;
-    margin-right: 25%;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 2%;
     margin-top: 2%;
 }

@@ -93,7 +93,7 @@ class CollabView extends LisaeTemplateConnected {
             else {
                 $result .=
                 "<div class='row justify-content-center' style='margin-bottom:1%'> 
-                <a style='text-decoration: none;' href=''><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a> <div style='margin-left:4%'> COMPLET</div></div>
+                <a style='text-decoration: none;text-decoration:line-through' href=''><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a> <div style='margin-left:4%'> COMPLET</div></div>
                 <a style='margin-left:1%' id='listActivity' href=''><img src='../../images/dossier.png' alt='créneaux pour une activité'></a>
                 <a id='info' href=''><img src='../../images/info.png' alt='info d'un créneau'></a>
                 <a id='signup' href=''><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a>          
