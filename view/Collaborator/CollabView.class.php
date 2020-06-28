@@ -138,9 +138,15 @@ class CollabView extends LisaeTemplateConnected {
         $result .=
         "<div style='margin-left: 5%;'><label></label><img src='".$element['image']."'</img></div>";
         $result .=
-        "<div style='margin-left: 5%;'><label>Description</label><p id='desc'>".$element['description']."</p></div>";
+            "<div style='margin-left: 5%;'>
+                <label>Description</label>
+                <p id='desc'>".$element['description']."</p>
+            </div>";
         $result .=
-        "<div style='margin-left: 5%;'><label>Description détaillée</label><p id='desc'>".$element['detailedDescription']."</p></div>";
+            "<div style='margin-left: 5%;'>
+                <label>Description détaillée</label>
+                <p id='desc'>".$element['detailedDescription']."</p>
+            </div>";
         $result .=
         "<div style='margin-left: 5%;'><label>Information</label><p id='desc'>".$element['information']."</p></div><br>";
         $result .=

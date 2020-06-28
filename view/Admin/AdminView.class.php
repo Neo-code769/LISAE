@@ -261,7 +261,7 @@ class AdminView extends LisaeTemplateConnected {
         foreach ($listActivity as $activity) {
             $result .=
             "<div class='row justify-content-center'> 
-                <div id='listELOCE' class='eloce' style='background-color:".$colorTheme."'>
+                <div id='listELOCE' class='eloce' style='background-color:#".$colorTheme."'>
                     ".$activity->get_name()."
                 </div><a  id='info' href='./infoActivity?idActivity=".$activity->get_idActivity()."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
