@@ -7,11 +7,9 @@ class LoginPageView extends LisaeTemplateDisconnected {
         echo <<<EOD
             <div id="menu">
                 <ul>
-                    <hr>
                     <li id="signIn">
                     <a href="/index.php">Connexion</a>
                     </li>
-                    <hr>
                     <li id="signUp">
                     <a href="/index.php/collab/registration">Inscription</a>
                     </li>
