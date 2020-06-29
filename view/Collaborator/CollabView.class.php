@@ -159,7 +159,7 @@ class CollabView extends LisaeTemplateConnected {
         $result = "";
         foreach ($element as $activity) {
             $result .= 
-                "<div class='row justify-content-center'>
+                "<div class='row justify-content-center' style='margin-bottom:1%'>
                 <div id='listELOCE' class='eloce' style='background-color:".$activity["color"]."'>".$activity["dtsf"]."-".$activity["dtef"]." - ".$activity["nTheme"]." - ".$activity["nActivity"]."</div>
                 <a id='signups' href='../collab/signUpSlot?idSlot=".$activity["idslot"]."&idActivity=".$activity["idActivity"]."'><img src='../../images/add.png' alt='S'inscrire a l'atelier'></a> 
                 </div>";    
