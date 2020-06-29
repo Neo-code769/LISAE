@@ -5,10 +5,5 @@
 
     <h3>Mes Inscriptions</h3>
     <section id="dashboard">
-        <article>
-            <div>
-                <?php echo $this->_mySlot ?>
-            </div>
-        </article>
-        <br><br><br><br><br><br><br><br><br><br>
+        <?php echo $this->_mySlot ?>
     </section>
