@@ -260,7 +260,7 @@ class AdminView extends LisaeTemplateConnected {
         //var_dump($listActivity);
         foreach ($listActivity as $activity) {
             $result .=
-            "<div class='row justify-content-center'> 
+            "<div class='row justify-content-center' style='margin-bottom:1%'> 
                 <div id='listELOCE' class='eloce' style='background-color:#".$colorTheme."'>
                     ".$activity->get_name()."
                 </div><a  id='info' href='./infoActivity?idActivity=".$activity->get_idActivity()."'><img src='../../images/info.png' alt='info d'un créneau'></a>
@@ -274,8 +274,8 @@ class AdminView extends LisaeTemplateConnected {
         $result ="";
         foreach ($sessionList as $session) {
             $result .=
-            "<div class='row justify-content-center'> 
-                    <div id='listELOCE' class='eloce' style='background-color:grey'>
+            "<div class='row justify-content-center' style='margin-bottom:1%'> 
+                    <div id='listELOCE' class='eloce' style='background-color:grey;margin-right:1%'>
                         ".$session->get_nameSession()."
                     </div>
                     <a  id='info' href='./infoSession?idSession=".$session->getIdSession()."&nTraining=".$_GET['nTraining']."'><img src='../../images/info.png' alt='info d'une session de formation'></a>   
@@ -288,12 +288,12 @@ class AdminView extends LisaeTemplateConnected {
         $result ="";
         foreach ($trainingList as $training) {
             $result .=
-            "<div class='row justify-content-center'> 
-                    <div id='listELOCE' class='eloce' style='background-color:grey'>
+            "<div class='row justify-content-center' style='margin-bottom:1%' > 
+                    <div id='listELOCE' class='eloce' style='background-color:grey;margin-right:1%'>
                         ".$training["name"]."
                     </div>
-                    <a  id='listSession' href='./listSession?nTraining=".$training['name']."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
-                    <a  id='info' href='./infoTraining?idTraining=".$training['id_training']."'><img src='../../images/info.png' alt='info d'une formation'></a>   
+                    <a id='listSession' href='./listSession?nTraining=".$training['name']."'><img src='../../images/dossier.png' alt='créneaux pour une formation'></a>
+                    <a id='info' href='./infoTraining?idTraining=".$training['id_training']."'><img src='../../images/info.png' alt='info d'une formation'></a>   
             </div>";
         }
         $this->_trainingList = $result;
