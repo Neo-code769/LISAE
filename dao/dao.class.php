@@ -21,12 +21,10 @@ abstract class Dao {
                 self::HOST . ";dbname=" . self::DB_NAME,
                 self::USER,
                 self::PASSW);
-              
-               // echo "<p>Succes connexion</p>";
+                self::$_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				self::$_conn->exec('SET Names UTF8');
                 } catch (PDOException $e) {
-                    //echo " echec lors de la connexion : " . $e->getMessage();
-                    //die();
-                    throw new LisaeException("Echec");
+                    throw new LisaeException("Echec connexion");
                 }
             } 
             
@@ -34,7 +32,6 @@ abstract class Dao {
         }
         public function __destruct() {
             // déconnexion de la bd
-            //echo "<p>Deconnexion</>";
             self::$_conn = null;
         }
     abstract public function getList();		
@@ -46,8 +43,5 @@ abstract class Dao {
     abstract public function delete(int $id ); 
     // update d'un objet
     abstract public function update($obj ); 
-
-    /*abstract public function getListTheme();
-    abstract public function getThemeActivity();*/
 
     }
