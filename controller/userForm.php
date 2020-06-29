@@ -15,11 +15,11 @@ class UserForm{
     public function __construct($params)
     {
         $this->_password = sha1($params["password"]);
-        $this->_firstname = htmlentities($params["firstname"]);
-        $this->_lastname = htmlentities($params["lastname"]);
-        $this->_birthdate = htmlentities($params["birthdate"]);
-        $this->_phoneNumber = htmlentities($params["phoneNumber"]);
-        $this->_mail = htmlentities($params["mail"]);
+        $this->_firstname = htmlspecialchars($params["firstname"]);
+        $this->_lastname = htmlspecialchars($params["lastname"]);
+        $this->_birthdate = htmlspecialchars($params["birthdate"]);
+        $this->_phoneNumber = htmlspecialchars($params["phoneNumber"]);
+        $this->_mail = htmlspecialchars($params["mail"]);
         $this->_password2 = sha1($params["password2"]);
     }
 
