@@ -227,6 +227,10 @@ input {
     padding-right: 2%;
 }
 
+#info{
+    margin-left: 1.5%;
+}
+
 #signup, #info, #listActivity
 {
     margin-left: 1%;
@@ -295,7 +299,7 @@ input {
     font-size: 26px;
     display: flex;
     justify-content: center;
-    width: 95%;
+    width: 82%;
     padding-left: 2%;
     padding-right: 2%;
     border: solid rgba(80, 92, 255, 0.377);
