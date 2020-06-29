@@ -129,8 +129,8 @@ class AdminView extends LisaeTemplateConnected {
         //var_dump($listTheme);
         foreach ($listTheme as $theme) {
             $result .=
-            "<div class='row justify-content-center'> 
-                    <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color()."'>
+            "<div class='row justify-content-center' style='margin-bottom:1%'> 
+                    <div id='listELOCE' class='eloce' style='background-color:".$theme->get_color().";margin-right:1%'>
                         ".$theme->get_name()."
                     </div>
                     
