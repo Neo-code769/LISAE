@@ -115,7 +115,7 @@ class AnimatorView extends LisaeTemplateConnected {
             $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             
                 $result .=
-                "<div class='row justify-content-center'> 
+                "<div class='row justify-content-center' style='margin-bottom:1%'> 
                     <a style='text-decoration: none;' href='../anim/infoSlot?idSlot=".$element["idslot"]."&id_activity=".$element["id_activity"]."'>
                     <div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."
                     </a><div style='margin-left:5%'>".$element['participateNumber']."</div></div>
@@ -138,7 +138,7 @@ class AnimatorView extends LisaeTemplateConnected {
             setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
             $dateForm =utf8_encode(strftime('%A %d %B %Y %H:%M', strtotime($element["dts"])));
             $result .=
-            "<div class='row justify-content-center'> 
+            "<div class='row justify-content-center' style='margin-bottom:1%'> 
             <a style='text-decoration: none;' href='../anim/infoSlotEloce?idSlot=".$element["idslot"]."'><div id='listELOCE' class='eloce' style='background-color:".$element["color"]."'>".$dateForm."-".$element["dte"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</a></div>
             <a  id='info' href='../anim/infoSlotEloce?idSlot=".$element["idslot"]."'><img src='../../images/info.png' alt='info d'un créneau'></a>
             </div>";
@@ -164,8 +164,8 @@ class AnimatorView extends LisaeTemplateConnected {
         $result1 = 
         "<div class='eloce' style='background-color:".$element["color"]."'>".$element["dtsf"]."-".$element["dtef"]." - ".$element["nTheme"]." - ".$element["nActivity"]."</div><br><br>";
         $result2 =
-        "<div style='margin-left: 5%;'><label>Information</label><input type='text' name='information' style='width:40%;' value='".$element["information"]."'><br><br></div><br>
-        <div style='margin-left: 5%;'><label>Lieu</label><input type='text' name='place' style='width:40%;' value='".$element["place"]."'><br><br></div>";
+        "<div style='margin-left: 5%;'><label>Information </label><input style='margin-left:1%' type='text' name='information' style='width:40%;' value='".$element["information"]."'><br><br></div><br>
+        <div style='margin-left: 5%;'><label>Lieu</label><input style='margin-left:1%' type='text' name='place' style='width:40%;' value='".$element["place"]."'><br><br></div>";
         
         $this->_infoSlot1 = $result1;
         $this->_infoSlot2 = $result2;

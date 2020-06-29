@@ -293,7 +293,9 @@ input {
     font-size: 26px;
     display: flex;
     justify-content: center;
-    width: 84%;
+    width: 95%;
+    padding-left: 2%;
+    padding-right: 2%;
     border: solid rgba(80, 92, 255, 0.377);
     border-radius: 30px;
 }
