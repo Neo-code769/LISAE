@@ -79,6 +79,10 @@ class PasswordController extends MainController
       unset($_SESSION['mail']);
       unset($_SESSION['password']);
       unset($_SESSION['role']);
+      unset($_SESSION['id_session']);
+      unset($_SESSION['session_name']);
+      unset($_SESSION['IdTheme']);
+      unset($_SESSION['NameTheme']);
       session_destroy();
       header('Location:../../index.php');
     break;

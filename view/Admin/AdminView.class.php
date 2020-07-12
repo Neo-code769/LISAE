@@ -186,7 +186,7 @@ class AdminView extends LisaeTemplateConnected {
                 </div><br>";
             $result .=
                 "<div style='margin-left: 5%;'>
-                    <label>Color :</label>
+                    <label>Choix de la couleur du thème :</label>
                     <input type='color' name='color' value='".$theme->get_color()."'>
                 </div><br>";    
             $result .=

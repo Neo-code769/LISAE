@@ -55,7 +55,7 @@ class Slot
     }
     public function get_slotDateTimeEnd()
     {
-        return $this->_slotDateTimeStart;
+        return $this->_slotDateTimeEnd;
     }
     public function get_slotDateTimeEndFormat()
     {

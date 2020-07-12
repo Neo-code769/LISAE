@@ -22,7 +22,7 @@ class ActivityDao extends Dao {
 
     // requete création d'une recurring activity avec les données d'une activity
 
-    public function insertRecurringActivity($idTheme) : void	
+    public function insertRecurringActivity($idTheme) : void 
     {
         $sql = ("INSERT INTO `recurring_Activity` VALUES
         ((SELECT MAX(id_activity) from activity),$idTheme)");

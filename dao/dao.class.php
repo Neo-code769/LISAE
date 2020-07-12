@@ -21,8 +21,8 @@ abstract class Dao {
                 self::HOST . ";dbname=" . self::DB_NAME,
                 self::USER,
                 self::PASSW);
-                self::$_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				self::$_conn->exec('SET Names UTF8');
+                //self::$_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				//self::$_conn->exec('SET Names UTF8');
                 } catch (PDOException $e) {
                     throw new LisaeException("Echec connexion");
                 }
